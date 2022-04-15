@@ -45,6 +45,46 @@ In this code, we bring in the functionality of the `express`
 package with the `require` function, then create an 
 'express' instance named 'app'.
 
+We then use the app object's `get` method to instruct our application
+to send a resonse of "Hello World" when a user accesses the
+root URL ('/').  Lastely, we instruct our application to run on 
+port 4000.  This will allow us to view the application locally at 
+the URL 'http://localhost:4000'.
 
+Now to run the application, from the command line, we use the
+command:
+
+`node src/index.js`
+
+When we submit this command, we see the following output in the
+console:
+
+```
+Listening on port 4000!
+```
+
+and in the browser, if we open 'localhost:4000', we get
+'Hello World' printed to the browser!
+
+
+// NODEMON
+
+Now, let's say that the output of this example doesn't properly express 
+our excitement.  We want to change our code so that it adds an exclamation
+mark to our response.  let's update our source to the following:
+
+```
+// index.js
+// This is the main entry point of our application
+
+const express = require('express');
+const app = express()
+
+app.get('/', (req,res) => res.send('Hello World!!!! You the man!'));
+
+app.listen(4000, () => console.log('Listening on port 4000!'));
+```
+
+We have to stop our server with `CTRL+C` in the 
 
  */
