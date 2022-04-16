@@ -85,6 +85,45 @@ app.get('/', (req,res) => res.send('Hello World!!!! You the man!'));
 app.listen(4000, () => console.log('Listening on port 4000!'));
 ```
 
-We have to stop our server with `CTRL+C` in the 
+We have to stop our server with `CTRL+C` in the to stop the server. Now
+restart it by again typing `node index.js`.  Now, when you navigate
+to back to your browser and refresh the page, you should see the 
+updated response.
+
+As you can stopping and restargin our server for every change can 
+quickly become tedious.  Thankfully, we can use the Node package
+`nodemon` to automatically restart the server on changes.  If you take 
+a look at the project's 'package.json' file. you will see the 
+'dev' property within the 'scripts' object, which instructs `nodemon`
+to watch our 'index.js' file:
+
+```
+  "scripts": {
+    "start": "nodemon src/index.js",
+    "dev": "nodemon src/index.js",
+    "final": "nodemon final/index.js",
+    "seed": "node final/util/seed/index.js",
+    ...
+},
+```
+
+now we to start the terminal, we just have to use the command:
+
+`npm run dev`
+
+from our terminal.  
+
+// EXTENDING PORT OPTIONS
+
+Currently our application is served on port 4000.  This works
+great for local development, but we will need the flexiblity to set
+this port to a different port number when deploying the application.
+Let's take the steps to update this now.  We'll start by adding
+a port variables:
+
+`const port = process.env.PORT || 4000;`
+
+This change will allow us to dynamically set the port in the Node 
+environment, but fall back to port 4000 when no port is specified!
 
  */
