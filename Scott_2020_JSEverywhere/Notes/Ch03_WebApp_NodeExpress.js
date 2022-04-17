@@ -126,4 +126,40 @@ a port variables:
 This change will allow us to dynamically set the port in the Node 
 environment, but fall back to port 4000 when no port is specified!
 
+Now let's adjsut our app.listen code to work with this change use a 
+template literal to log the correct port:
+
+```
+app.listen(port, () => {
+    console.log(`Server running at http://localhost:${4000}`)
+});
+```
+
+```
+const express = require('express');
+const app = express()
+
+const port = process.env.PORT || 4000;
+
+app.get('/', (req,res) => res.send('Hello World!!!! You the man!'));
+
+app.listen(port, () => console.log(`Server running at http://localhost:${port}!`));
+```
+
+With this, we now have the basics of our web server code up and
+running.  To test that everything is working, verify that no errors
+present in your console and reload your web browser at 
+http://localhost:4000
+
+// CONCLUSION
+
+Server-side web applications are the foundation of API development.
+In this chapter, we built a basic web application using the Express.js
+framework.  When developing Node-based web applications, you have a 
+wide array of frameworks and tools to choose from.  Express.js is a
+great choice due to its flexibility, community support, and
+maturity as a project.  In the next chapter, we'll turn our web
+application into an API.
+
+
  */
