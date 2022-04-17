@@ -81,6 +81,24 @@ const resolvers = {
 };
 ```
 
+Lastly, we integrate Apollo Server to servr our GraphQL API. To do so,
+we add some Apollo Server-specific settings and middle ware and update 
+our `app.listen` call:
+
+```
+// Apollo Server setup
+const server = new ApollowServer({ typeDefs, resolvers });
+
+// Apply the Apollo GraphQL middleware and set teh path to '/api'
+server.applyMiddleware({ app, path: '/api' });
+
+app.listen({ port }, => {
+    console.log(
+        `GraphQL Server running at http://localhost:${port}${server.graphqlPath}`
+    )
+});
+
+```
 
 */
 
