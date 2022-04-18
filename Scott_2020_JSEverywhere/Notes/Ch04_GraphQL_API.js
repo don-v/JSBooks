@@ -100,5 +100,40 @@ app.listen({ port }, => {
 
 ```
 
+Now when we access http://localhost:4000/api, we will be greeted with the GraphQL
+Playground, which is a web application that comes bundled with Apollo Server.
+Teach says the GraphQL Playground is one of the great benefits of working with
+GraphQL!
+
+From here, we can run GraphQL queries and see the results.  You can also click 
+the Schema tab to access automatically created documentation for the API.
+
+GraphQL Playground has a 'dark' colored default syntax theme, this
+can be adjusted in the GraphQL Playground's settings by clicking the
+gear icon in the GUI.
+
+We can now write our query against our GraphQL API.  To do so, type the following
+into the GraphQL Playground:
+
+```
+query {
+    hello
+}
+```
+
+When we click the 'Play' button in the GraphQL Playground (GP) GUI, we 
+get the following output:
+
+```
+{
+  "data": {
+    "hello": "Hello World"
+  }
+}
+```
+
+That's it! We now have a working GraphQL API that we've accessed via
+GP!  The API took the query of 'hello' and returns the staring 'Hello 
+
 */
 
