@@ -133,7 +133,59 @@ get the following output:
 ```
 
 That's it! We now have a working GraphQL API that we've accessed via
-GP!  The API took the query of 'hello' and returns the staring 'Hello 
+GP!  The API took the query of 'hello' and returns the staring 'Hello
 
+// GRAPHQL BASICS
+
+2 priamry building blocks of GraphQL API:
+1. Schemas
+2. Resolvers
+
+**************************** START: SCHEMAS ****************************
+// 1. SCHEMAS
+
+A schema is a written representation of our data and interactions. By
+requiring a schema, GraphQL enforaces a strict plan for our API. This is 
+because your API can only return data and perform interactions that are
+defined within the schema.
+
+The fundamental component of GraphQL scheams are object types.  In the
+previous example, we created a GraphQL object type of `Query` with a 
+field `hello`, which returned a scalar type of `String`.  GraphQL
+contains 5 built-in scalar types:
+
+1. `String`: A string with UTF-8 character encoding
+2. `Boolean`: True or False
+3. `Int`: a 32-bit integer
+4. `Float`: A floating-point value
+5. `ID`: a unique identifier
+
+With these basic components, one can construct a schema for our API! We 
+do this by first defining a type.  If we were developoing an API for a 
+pizza menu, we might define a GraphQL schema type of `Pizza` with the
+following considerations:
+
+Each pizza has a unique ID, a size (['small', 'medium', 'large']),
+nubmer of slices, and optional toppings.  So our Pizza schema might
+look like so:
+
+```
+type Pizza {
+    id: ID
+    size: String
+    slices: Int
+    toppings: [String]
+}
+```
+
+
+
+**************************** END: SCHEMAS ****************************
+
+**************************** START: SCHEMAS ****************************
+// 2. RESOLVERS
+
+
+**************************** END: SCHEAMS ****************************
 */
 
