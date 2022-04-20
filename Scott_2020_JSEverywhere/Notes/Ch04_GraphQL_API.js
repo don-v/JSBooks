@@ -178,14 +178,58 @@ type Pizza {
 }
 ```
 
+In this schema, some field values are required  (such as ID, size, and slices), 
+while others may be optional (such as toppings).  We can express that a field 
+must contain a value by using an exclamation mark.  it appears that `[]` around
+the scalar value implies that it is an optional field! Let's update our schema to
+represent the rquired values:
+
+```
+type Pizza {
+    id: ID!
+    size: String!
+    slices: Int!
+    toppings: [String]
+}
+```
+
+In this book we just creating basic schema, which will enable one to execute
+the vast majority of operations found in a common API.  If one would like to explore
+all of the GraphQL schema options, teach recs exploring the GraphQL Schema docs:
+https://oreil.ly/DPT8C
 
 
 **************************** END: SCHEMAS ****************************
 
-**************************** START: SCHEMAS ****************************
+**************************** START: RESOLVERS ****************************
 // 2. RESOLVERS
 
+The second piece of our GraphQL API will be resolvers.  Resolvers perform
+exaclty the action their name implies: they resovle the data that the API
+user has requested!
 
-**************************** END: SCHEAMS ****************************
+We will write these resolvers by first defining them in our schema and then
+implementing the logic within our JS code! Our API will contain two types 
+of resolvers: queries and mutations!
+
+// Queries
+
+A query requests specific data from an API, in its desired format. In our
+hypothetical pizza API we may write a query that will return a full ist of 
+pizzas on the menu and another that will return detailed information about
+a single pizza.  The query will then return an object, containing the data
+that the API user has requested.  A query never modifies the data, only 
+accesses it!
+
+
+// Mutations
+
+We use mutations when we ant to modify the data in our API.  In our pizza
+example, we may write a mutation that changes the toppings for a given pizza
+and antoher that allows us to adjust the number of slices.  Similar to a query,
+a mutation is also expected to return a result in the form of an object, 
+typically the end result of the performed action!
+
+**************************** END: RESOLVERS ****************************
 */
 
