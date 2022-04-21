@@ -231,5 +231,47 @@ a mutation is also expected to return a result in the form of an object,
 typically the end result of the performed action!
 
 **************************** END: RESOLVERS ****************************
+
+// ADAPTING OUR API
+
+Now we will adapt our initial API code for our notes application. To begin, 
+we'll write some code to read and create notes
+
+The first thing we'll need is data for our API to work with! Le's create an
+array of "note" objects, which we'll use as the basic data served by our
+API.  As our project evolves, we'll replace this in-memory data representation
+with a database.  For now, we will store our data in a variable named 
+`notes`.  Each note in the array will be an object with 3 properties:
+
+{ 'id', 'content', 'author' }
+
+```
+let notes  = [
+    { id: '1', content: 'This is an ote', author: 'Adam Scot' },
+    { id: '2', content: 'This is another note', author: 'Harlow Everly' },
+    { id: '3', content: 'Oh hey look, another note!', author: 'Riley Harrison' }
+];
+```
+
+Now, that we have some data, we'll adapt our GraphQL API to work with it.
+Let's begin by focusing on our schema. Our schema is GraphQL's representation
+of our data and how it will be interacted with.  We know that we will have 
+notes, which will be queried and mutated.  These notes will, for now, contain
+and ID, content, and author attributes.  Let's create a corresponding note
+type within our typeDefs GraphQL schema. This will represent the properteis of a 
+note within our API:
+
+recall that the scalars are id, int, float, string, and, bool, and that
+an exclamation point `!` after the scalar means it is a required 
+field, and brackets around the scalar mean it is an optional field!
+
+```
+type Note {
+    id: ID!
+    content: String!
+    author: String!
+}
+```
+
 */
 
