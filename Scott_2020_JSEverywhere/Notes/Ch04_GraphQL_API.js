@@ -273,5 +273,54 @@ type Note {
 }
 ```
 
+from:
+https://graphql.org/learn/schema/
+
+String! means that the field is non-nullable, meaning that the GraphQL 
+service promises to always give you a value when you query this field. 
+In the type language, we'll represent those with an exclamation mark.
+
+[Episode!]! represents an array of Episode objects. Since it is also 
+non-nullable, you can always expect an array (with zero or more items) 
+when you query the appearsIn field. And since Episode! is also 
+non-nullable, you can always expect every item of the array to be an 
+Episode object.
+
+
+Now, let's add a query that will allow us to retrieve the list of all
+notes. Let's update the `Query` type to indluce a `notes` query, which
+will return the array of note objects:
+
+```
+type Query {
+    hello: String!
+    notes: [Note!]!
+}
+```
+
+Now, we can update our resolver code to perform the work of 
+returning teh array of data.  Let's update our `Query` code 
+to include the following `notes` resolver, which returns the 
+raw data object:
+
+```
+Query: {
+    hello: () => 'Hello world!',
+    notes: () => notes
+}
+```
+
+If we now go to the GP, we can test the notes query.  To do so,
+type the following query:
+
+query {
+    notes {
+        id
+        content
+        author
+    }
+}
+
+
 */
 
