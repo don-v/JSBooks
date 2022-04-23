@@ -313,6 +313,7 @@ Query: {
 If we now go to the GP, we can test the notes query.  To do so,
 type the following query:
 
+```
 query {
     notes {
         id
@@ -320,6 +321,76 @@ query {
         author
     }
 }
+```
+
+which returns the following:
+
+{
+  "data": {
+    "notes": [
+      {
+        "id": "1",
+        "content": "This is an ote",
+        "author": "Adam Scot"
+      },
+      {
+        "id": "2",
+        "content": "This is another note",
+        "author": "Harlow Everly"
+      },
+      {
+        "id": "3",
+        "content": "Oh hey look, another note!",
+        "author": "Riley Harrison"
+      }
+    ]
+  }
+}
+
+
+To try out one of the coolest aspects of GraphQL, we can remove any of
+our requested fields, such as `id`, or `author`. When we do so, 
+the API returns precisely the data that we've requested.  this allows
+the client that consumes the data to control the amount of data sent
+within each request and limit the data to exactly what is
+required!
+
+if we try the following query:
+
+```
+query {
+    notes {
+        content
+    }
+}
+```
+
+we get the following output:
+
+```
+{
+  "data": {
+    "notes": [
+      {
+        "content": "This is an ote"
+      },
+      {
+        "content": "This is another note"
+      },
+      {
+        "content": "Oh hey look, another note!"
+      }
+    ]
+  }
+}
+```
+
+
+Now that we can query our full list of notes, let's write some code
+that will allow us to query a single note.  One can imagine the 
+usefulness of this from a user interface perspective, for displaying a 
+view that contains a single, specific note.  To do so, we'll wnat to 
+request 
 
 
 */
