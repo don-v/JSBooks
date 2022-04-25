@@ -389,9 +389,57 @@ we get the following output:
 Now that we can query our full list of notes, let's write some code
 that will allow us to query a single note.  One can imagine the 
 usefulness of this from a user interface perspective, for displaying a 
-view that contains a single, specific note.  To do so, we'll wnat to 
-request 
+view that contains a single, specific note.  To do so, we'll want to 
+request a note with a specific `id` value. This will require us to use
+an `argument` in our GraphQL schema.  
 
+An argument allows the API consumer to pass specific values to the 
+resolver function, providing the necessary information for it to 
+resolve. 
+
+Let's add a `note` query, which wil ltake an argument of `id`, 
+with type `ID`. We'll upate our Query object within our `typeDefs`
+to the following, which includes wthe new note query:
+
+```
+type Query {
+  hello: String
+  notes: [Note!]!
+  note(id: ID!): Note!
+}
+```
+
+With our schema updated, we can write a query resolver to return the
+requested note.  To do this, we'll need to be able to read the API user's
+argument values.  Helpfully, Apollo Server passes the following useful
+parameters to our resolver functions:
+
+`parent`: The result of the parent query, which is useful when
+nesting queries
+
+`args`: These are the argumetns passed by the user in the query.
+
+`context`: Information passed along from the server application
+to the resolver functions.  This could include things such as the
+current user or database information.
+
+`info`: information about the query itself!
+
+To learn more about this, one should visit the Apollo Server docs!:
+https://oreil.ly/l6mL4
+
+For now, we'll need ony the information contained within the 
+second parameter, `args`!
+
+the `note` query will take the noted `id` as an argument and find it 
+within our array of note objects.  Add the following to the 
+query resolver code:
+
+```
+note: (parent, args) => {
+  return notes.find(note => note.id === args.id);
+}
+``
 
 */
 
