@@ -441,5 +441,54 @@ note: (parent, args) => {
 }
 ``
 
+the resolver code should now look as follows:
+
+```
+const resolvers = {
+  Query: {
+    hello: () => 'Hello World!',
+    notes: () => notes,
+    note: (parent, args) => {
+      return notes.find(note => note.id === args.id);
+    }
+  }
+};
+```
+
+the typeDefs for `Query` and the resolvers
+in our 'src/index.js' file have been updated.
+
+now we can test our GP api again by submitting the
+following query:
+
+```
+query {
+  note(id: "1") {
+    id
+    content
+    author
+  }
+}
+```
+
+it worked: the query returned the following:
+
+```
+{
+  "data": {
+    "note": {
+      "id": "1",
+      "content": "This is an ote",
+      "author": "Adam Scot"
+    }
+  }
+}
+```
+
+So this query should return the requested note with the specified
+`id` value.  If one tries to query a note that does not exist, 
+the query will return a value of null
+
+
 */
 

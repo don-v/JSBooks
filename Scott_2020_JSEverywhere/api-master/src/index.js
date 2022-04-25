@@ -16,26 +16,29 @@ let notes  = [
 
 // Construct a schema, using GraphQL schema language
 const typeDefs = gql`
-    type Query {
-        hello: String!
-        notes: [Note!]!
-    }
-
     type Note {
         id: ID!
         content: String!
         author: String!
     }
-`;
 
+    type Query {
+        hello: String
+        notes: [Note!]!
+        note(id: ID!): Note!
+    }
+`;
 
 // Provide resolver function for our schema fields
 const resolvers = {
     Query: {
-        hello: () => 'Hello world!',
-        notes: () => notes
+      hello: () => 'Hello World!',
+      notes: () => notes,
+      note: (parent, args) => {
+        return notes.find(note => note.id === args.id);
+      }
     }
-};
+  };
 
 const app = express()
 
