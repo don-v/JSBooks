@@ -489,6 +489,90 @@ So this query should return the requested note with the specified
 `id` value.  If one tries to query a note that does not exist, 
 the query will return a value of null
 
+```
+query {
+  note(id: "4") {
+    id
+    content
+    author
+  }
+}
+```
+
+
+well not only did it return  the following:
+
+```
+"data": nul
+```
+
+above all of this, it returns a stack trace of errors:
+
+```
+{
+  "errors": [
+    {
+      "message": "Cannot return null for non-nullable field Query.note.",
+      "locations": [
+        {
+          "line": 2,
+          "column": 3
+        }
+      ],
+      "path": [
+        "note"
+      ],
+      "extensions": {
+        "code": "INTERNAL_SERVER_ERROR",
+        "exception": {
+          "stacktrace": [
+            "Error: Cannot return null for non-nullable field Query.note.",
+            "    at completeValue (\\node_modules\\graphql\\execution\\execute.js:560:13)",
+            "    at completeValueCatchingError (\\node_modules\\graphql\\execution\\execute.js:495:19)",
+            "    at resolveField (\\node_modules\\graphql\\execution\\execute.js:435:10)",
+            "    at executeFields (\\node_modules\\graphql\\execution\\execute.js:275:18)",
+            "    at executeOperation (\\node_modules\\graphql\\execution\\execute.js:219:122)",
+            "    at executeImpl (\\node_modules\\graphql\\execution\\execute.js:104:14)",
+            "    at Object.execute (\\node_modules\\graphql\\execution\\execute.js:64:35)",
+            "    at \\node_modules\\apollo-server-core\\dist\\requestPipeline.js:195:36",
+            "    at Generator.next (<anonymous>)",
+            "    at \\node_modules\\apollo-server-core\\dist\\requestPipeline.js:7:71"
+          ]
+        }
+      }
+    }
+  ],
+  "data": null
+}
+```
+
+We will finalize the initial API by ontroducing the ability to create a new
+note using a `GraphQL` mutation.  In the mutation, the user passes in the 
+note's content.  For now, we hardcode the author of the note.  We begin by 
+updating our `typeDefs` schema with a `Mutation` type, which we will call 
+`newNote`:
+
+```
+type Mutation {
+  newNote(content: String!): Note!
+}
+```
+
+Now we will write a resolver, which will take the note contents
+as an argument, store the note as an object, and add it in memory 
+to our `notes` array. To do this, we add a `Mutation` object to our 
+resolvers.  Within the `Mutation` object, we'll add a function called
+`newNote`, with `parent` and `args`  parameters.  
+
+Within this function, we take the arugment `content` and create an 
+object with `id`, `content`, and `author` keys.
+
+As can be noticed, thi mathces the current schema of a note.  We will
+then push this object to our `notes` array and return the object. 
+Returning the object allows the GraphQL mutation to receive a 
+response in the intended format.  The code is as follows:
+
+
 
 */
 
