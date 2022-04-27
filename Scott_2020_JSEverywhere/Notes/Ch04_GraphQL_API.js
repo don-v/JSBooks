@@ -567,12 +567,57 @@ resolvers.  Within the `Mutation` object, we'll add a function called
 Within this function, we take the arugment `content` and create an 
 object with `id`, `content`, and `author` keys.
 
-As can be noticed, thi mathces the current schema of a note.  We will
+As can be noticed, this mathces the current schema of a note.  We will
 then push this object to our `notes` array and return the object. 
 Returning the object allows the GraphQL mutation to receive a 
 response in the intended format.  The code is as follows:
 
+```
+Mutation: {
+  newNote: (parent,args) => {
+    let noteValue = {
+      id: String(notes.length + 1),
+      content = args.content,
+      author = 'Random User',
+    };
+    notes.push(noteValue);
+    return noteValue
+  }
+}
+```
 
+now I will update my '/src/index.js' file!
+
+
+With the Schema and resolver updated to accept a mutation, let's
+try it out on GP! ('localhost:4000/api')
+
+In the playground, we submit the following in a new tab:
+
+```
+mutation {
+  newNote (content: "This is a mutant note!") {
+    content
+    id
+    author
+  }
+}
+```
+
+When we click the Play button, one shoudl recieve a response containing the 
+`content`, `id`, and `author` of our new note.  On can also see that
+the mutation worked by rerunning the `notes` query.  To do so, either 
+seithc back to GP tab containing the that query, or submit in a new tab:
+
+```
+query {
+  noes {
+    content
+    id
+    author
+  }
+}
+```
 
 */
 

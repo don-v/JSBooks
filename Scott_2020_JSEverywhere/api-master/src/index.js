@@ -6,6 +6,8 @@ const express = require('express');
 
 // Ch 4: apollo-server-express
 const { ApolloServer, gql} = require('apollo-server-express');
+
+// Run our server on a port specified in our '.env' file or port 4000
 const port = process.env.PORT || 4000;
 
 let notes  = [
@@ -27,6 +29,10 @@ const typeDefs = gql`
         notes: [Note!]!
         note(id: ID!): Note!
     }
+
+    type Mutation {
+        newNote(content: String!): Note!
+    }
 `;
 
 // Provide resolver function for our schema fields
@@ -37,7 +43,18 @@ const resolvers = {
       note: (parent, args) => {
         return notes.find(note => note.id === args.id);
       }
-    }
+    },
+    Mutation: {
+        newNote: (parent,args) => {
+          let noteValue = {
+            id: String(notes.length + 1),
+            content: args.content,
+            author: 'Random User',
+          };
+          notes.push(noteValue);
+          return noteValue
+        }
+      }
   };
 
 const app = express()
