@@ -605,19 +605,86 @@ mutation {
 ```
 
 When we click the Play button, one shoudl recieve a response containing the 
-`content`, `id`, and `author` of our new note.  On can also see that
-the mutation worked by rerunning the `notes` query.  To do so, either 
-seithc back to GP tab containing the that query, or submit in a new tab:
+`content`, `id`, and `author` of our new note.  
+
+the output is as follows:
+
+{
+  "data": {
+    "newNote": {
+      "content": "This is a mutant note!",
+      "id": "4",
+      "author": "Random User"
+    }
+  }
+}
+
+
+On can also see that the mutation worked by rerunning the `notes` 
+query. as now there are 4 notes!  To do so, either wtich back to 
+GP tab containing the that query, or submit in a new tab:
 
 ```
 query {
-  noes {
+  notes {
     content
     id
     author
   }
 }
 ```
+
+which returns the following output:
+
+```
+{
+  "data": {
+    "notes": [
+      {
+        "id": "1",
+        "content": "This is an ote",
+        "author": "Adam Scot"
+      },
+      {
+        "id": "2",
+        "content": "This is another note",
+        "author": "Harlow Everly"
+      },
+      {
+        "id": "3",
+        "content": "Oh hey look, another note!",
+        "author": "Riley Harrison"
+      },
+      {
+        "id": "4",
+        "content": "This is a mutant note!",
+        "author": "Random User"
+      }
+    ]
+  }
+}
+```
+
+
+// Data Storage:
+
+We are currently storing our data in memory. This means that any-time
+we restart our server, we will lose that data.  We'll be persisting
+our data using a database in the next chapter.
+
+We've now successfully implemented our query and mutation resolvers
+and tested them wihtin the GraphQL Playground user interface.
+
+// CONCLUSION
+
+In this chapter we've successfully built a GraphQL API, using
+the `apollo-server-express` module. We can now run queries 
+and mutations against an in-memory data object.  This setup
+provides us a solid foundation on which to build any API. 
+In the next chapter we'll explore the ability to persist data
+by using a database. 
+
+
 
 */
 
