@@ -1,3 +1,6 @@
+#vs-defined
+**/*/to_ignore.txt
+
 # Logs
 logs
 *.log
