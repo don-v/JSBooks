@@ -59,5 +59,49 @@ are URL encoded.
 teach uses a the 'mongo' executable in the shell, but i'll just follow along
 since I don't want to install more software on my machine!
 
+the first command is:
+
+```
+$ mongo
+```
+
+which should return informatio about our MongoDB shell, the local
+server connection, and some additional information printed
+to the terminal.
+
+We can now interact directly with MongoDB from within the terminal
+application.  We can create a database as well as switch to a new
+database with the `use` command as follows. we can use the `use`
+command to create and switch to a database named `learning`
+
+```
+$ use learning
+```
+
+MongoDB organizes information into `collection` units, which
+are used to group together similar `document` objects! For example,
+a blog application might have a colleciton for posts, another for users,
+and a third for comments.  If we compare a `collection` to a JS object,
+it would be the top-level object; while documens are the individual 
+objects contained within. Loosely, it seems that collections are like SQL
+tables, and the documents are the indivdiual table records. 
+It can be visualized as follows :
+
+```
+collection: {
+  document: {},
+  document: {},
+  document: {},
+  ...
+}
+```
+
+For me, I have a cluster, which houses a database, which then
+can contain collections, and then documents.
+
+With this information in hand, let's create a document within
+a collection in our `learning` database.  We'll create a 
+`pizza` collection in which we will store documents with
+pizza type.  
 
 */
