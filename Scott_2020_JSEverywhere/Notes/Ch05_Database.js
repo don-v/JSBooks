@@ -102,6 +102,43 @@ can contain collections, and then documents.
 With this information in hand, let's create a document within
 a collection in our `learning` database.  We'll create a 
 `pizza` collection in which we will store documents with
-pizza type.  
+pizza type. Enter the following into the MongoDB shell:
+
+```
+$ db.pizza.save({ type: "Cheese" })
+```
+
+If this is successful, we should see a returned result that reads:
+
+```
+WriteResult({ "nInserted": 1 })
+```
+
+We can also write multiple entries into the database at once:
+
+```
+$ db.pizza.save([{type: "Veggie"}, {type: "Olive"}])
+```
+
+Nowe that we've written some documents to our database, we can
+retrieve them!  To do so, we use the MongoDB `find` method. To
+see all of the documents in the collection, run a `find` command,
+with empty parameters:
+
+```
+$ db.pizza.find()
+```
+
+We should now see all three entries in the database.  In addition
+to storing the data, MongoDB automatically assigns a unique ID to
+each entry.  The results should look something like this:
+
+```
+{ "_id": ObjectID("5c7528b223ab40938c7dc536"), "type" : "Cheese"}
+{ "_id": ObjectID("5c7f59fa23ab40938c7dc53e"), "type" : "Veggie"}
+{ "_id": ObjectID("5c7529fa23ab40938c7dc53f"), "type" : "Olive"}
+```
+
+We can also find 
 
 */
