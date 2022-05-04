@@ -134,11 +134,54 @@ to storing the data, MongoDB automatically assigns a unique ID to
 each entry.  The results should look something like this:
 
 ```
-{ "_id": ObjectID("5c7528b223ab40938c7dc536"), "type" : "Cheese"}
-{ "_id": ObjectID("5c7f59fa23ab40938c7dc53e"), "type" : "Veggie"}
-{ "_id": ObjectID("5c7529fa23ab40938c7dc53f"), "type" : "Olive"}
+{ "_id": ObjectId("5c7528b223ab40938c7dc536"), "type" : "Cheese"}
+{ "_id": ObjectId("5c7f59fa23ab40938c7dc53e"), "type" : "Veggie"}
+{ "_id": ObjectId("5c7529fa23ab40938c7dc53f"), "type" : "Olive"}
 ```
 
-We can also find 
+We can also find individual documents, both by property values as well as 
+with Mongo's assigned ID:
+
+```
+$ db.pizza.find({  type: "Cheese" })
+$ db.pizza.find( { _id: ObjectId("<document id here>")})
+```
+
+Not only do we want to be able to find documents, but it's also useful
+to be able to update them.  We can do so by using mongo's `update`
+method, which accepts a first parameter of a document to change and a 
+second parameter of the chagne to the document.  Let's update our
+'Veggie' pizza to be a 'Mushroom' pizza:
+
+```
+$ db.pizza.update({ type: "Veggie" }, { type: "Mushroom" })
+```
+
+Now, if we run `db.pizza.find()`, we shoudl see that our document
+has been updated:
+
+
+```
+{ "_id": ObjectId("5c7528b223ab40938c7dc536"), "type" : "Cheese"}
+{ "_id": ObjectId("5c7f59fa23ab40938c7dc53e"), "type" : "Mushroom"}
+{ "_id": ObjectId("5c7529fa23ab40938c7dc53f"), "type" : "Olive"}
+```
+
+As with updating a document, we can also remove one using Mongo's `remove`
+method.  Let's remove the mushroom pizza from our database:
+
+```
+db.pizza.remove({ type: "Mushroom" })
+```
+
+Now if we perform a `db.pizza.find` query, we will see only 2 documents 
+in our collection!.  If we decided that we no longer wanted to include any 
+data, we pass an empty object literal to the `remove` method, which will
+wipe the entire collection:
+
+```
+$ db.pizza.remove({})
+``
+
 
 */
