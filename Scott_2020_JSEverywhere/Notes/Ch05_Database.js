@@ -183,5 +183,39 @@ wipe the entire collection:
 $ db.pizza.remove({})
 ``
 
+We've not successfully used the MongoDB shell to create a database, 
+add documents to a collection, update those documents, and remove
+them.  These fundamental database operations will provide a solid
+footing as we integrate a database into our project.  
+
+In developement, we can also access our database using the MongoDB
+shell.  this can prove helpful for tasks such as debugging and 
+manually removing and updating entries. 
+
+// CONNECTING MONGODB TO OUR APPLICATION
+
+To connect our app to mongodb, we will use teh 'Mongoose
+Object Document Mapper (ODM) (https://mongoosejs.com). Mongoose
+is a library that simplifies working with MongoDB in a Node.js
+application by reducing and streamlining boilerplate code, through
+the use of its schema-based modeling solution. 
+
+We will first need to update our '.env' file with the URL of our
+local database.  This will allow us to set the database URL in
+whatever environment we are working (such as local dev or produciton).
+The default URL of a local MongoDB server is:
+
+```
+mongodb://localhost:27017
+```
+
+to which we'll add the name of our database.  So, wihtin our 
+'.env' file, we will st a `DB_HOST` variable with the URL of 
+our Mongo database instance as follows:
+
+```
+DB_HOST=mongo://localhost:27017/notedly
+```
+
 
 */
