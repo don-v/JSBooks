@@ -1,6 +1,12 @@
 // index.js
 // This is the main entry point of our application
 
+// Ch 5: connect mongodb to app!
+const fs = require('fs');
+// https://nodejs.org/docs/latest-v12.x/api/fs.html#fs_fs_readfile_path_options_callback
+
+
+
 const express = require('express');
 
 
