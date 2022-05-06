@@ -5,6 +5,12 @@
 const fs = require('fs');
 // https://nodejs.org/docs/latest-v12.x/api/fs.html#fs_fs_readfile_path_options_callback
 
+const mongo_cred =  fs.readFile('.\\..\\to_ignore.txt', 'utf-8', async (err, data) => {
+  if (err) throw err;
+  const mongo_cred = await JSON.parse(data)
+});
+
+console.log(mongo_cred);
 
 
 const express = require('express');

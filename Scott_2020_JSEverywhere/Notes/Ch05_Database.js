@@ -1,5 +1,7 @@
 /* 
 
+05/06/2022: trying to extract the filecontents of async fs.readFile method!
+
 // DATABASE
 
 At its core, a database allows one to store information and 
