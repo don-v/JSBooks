@@ -5,14 +5,48 @@
 const fs = require('fs');
 // https://nodejs.org/docs/latest-v12.x/api/fs.html#fs_fs_readfile_path_options_callback
 
-// const {user, pw} = await fs.readFile('.\\..\\to_ignore.txt', 'utf-8', (err, data) => {
-//   if (err) throw err;
-//   const { user, pw } = JSON.parse(data);
-//   console.log(`user: ${user}, pw: ${pw}`);
-//   return { user, pw}
-// });
 
 
+// new Promise((resolve,reject)=>{
+//   fs.readFile('.\\..\\to_ignore.txt','utf-8',(err, data)=>{
+//       if (err) {
+//           reject(err); // in the case of error, control flow goes to the catch block with the error occured.
+//       }
+//       else{
+//           resolve(data);  // in the case of success, control flow goes to the then block with the content of the file.
+//       }
+//   });
+// })
+// .then((data)=>{
+//   mongoCredentials = data; // use your content of the file here (in this then).
+//   console.log('typeof mongoCredentials:', typeof mongoCredentials);    
+// })
+// .catch((err)=>{
+//   throw err; //  handle error here.
+// })
+
+
+// const getMongoCredentials = () => {
+//   return new Promise((resolve,reject)=>{
+//     fs.readFile('.\\..\\to_ignore.txt','utf-8',(err, data)=>{
+//         if (err) {
+//             reject(err); // in the case of error, control flow goes to the catch block with the error occured.
+//         }
+//         else{
+//             resolve(data);  // in the case of success, control flow goes to the then block with the content of the file.
+//         }
+//     });
+//   })
+// }
+
+// (async () => {
+//   const mongoCredientials = await getMongoCredentials();
+//   console.log('typeof mongoCredientials:', typeof mongoCredientials);
+// })();
+
+
+const { user, pw } = JSON.parse(fs.readFileSync('.\\..\\to_ignore.txt'));
+console.log({ user, pw })
 
 
 
