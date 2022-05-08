@@ -5,11 +5,13 @@
 const fs = require('fs');
 // https://nodejs.org/docs/latest-v12.x/api/fs.html#fs_fs_readfile_path_options_callback
 
-fs.readFile('.\\..\\to_ignore.txt', 'utf-8', (err, data) => {
-  if (err) throw err;
-  const { user, pw } = JSON.parse(data);
-  console.log(`user: ${user}, pw: ${pw}`);
-});
+// const {user, pw} = await fs.readFile('.\\..\\to_ignore.txt', 'utf-8', (err, data) => {
+//   if (err) throw err;
+//   const { user, pw } = JSON.parse(data);
+//   console.log(`user: ${user}, pw: ${pw}`);
+//   return { user, pw}
+// });
+
 
 
 
