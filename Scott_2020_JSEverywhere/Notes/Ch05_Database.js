@@ -218,6 +218,16 @@ our Mongo database instance as follows:
 ```
 DB_HOST=mongo://localhost:27017/notedly
 ```
+The next step in working with a database in our application is to connect
+to it! we will put our connection code in a new file located in our
+/src/ directory! named 'db.js', so the filepath from our project root
+will be '/src/db.js' 
+
+We will write our database connection code in this new 'db.js' file!
+
+We will also include a function to close our database connection, 
+will prove useful for testing our application!
+
 
 
 */

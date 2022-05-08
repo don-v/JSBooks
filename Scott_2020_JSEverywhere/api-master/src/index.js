@@ -46,9 +46,7 @@ const fs = require('fs');
 
 
 const { user, pw } = JSON.parse(fs.readFileSync('.\\..\\to_ignore.txt'));
-console.log({ user, pw })
-
-
+const mongo_url = `mongodb+srv://${user}:${pw}@notes-graphql.6z3u3.mongodb.net/notedly?retryWrites=true&w=majority`;
 
 const express = require('express');
 
