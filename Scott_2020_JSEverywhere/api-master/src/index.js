@@ -1,11 +1,14 @@
 // index.js
 // This is the main entry point of our application
+// Ch 4: apollo-server-express
+const express = require('express');
+const { ApolloServer, gql} = require('apollo-server-express');
+require('dotenv').config();
+const db = require('./db');
 
 // Ch 5: connect mongodb to app!
 const fs = require('fs');
 // https://nodejs.org/docs/latest-v12.x/api/fs.html#fs_fs_readfile_path_options_callback
-
-
 
 // new Promise((resolve,reject)=>{
 //   fs.readFile('.\\..\\to_ignore.txt','utf-8',(err, data)=>{
@@ -43,19 +46,14 @@ const fs = require('fs');
 //   const mongoCredientials = await getMongoCredentials();
 //   console.log('typeof mongoCredientials:', typeof mongoCredientials);
 // })();
-
-
 const { user, pw } = JSON.parse(fs.readFileSync('.\\..\\to_ignore.txt'));
 const mongo_url = `mongodb+srv://${user}:${pw}@notes-graphql.6z3u3.mongodb.net/notedly?retryWrites=true&w=majority`;
 
-const express = require('express');
-
-
-// Ch 4: apollo-server-express
-const { ApolloServer, gql} = require('apollo-server-express');
-
 // Run our server on a port specified in our '.env' file or port 4000
 const port = process.env.PORT || 4000;
+
+
+const DB_HOST = mongo_url;
 
 let notes  = [
     { id: '1', content: 'This is an ote', author: 'Adam Scot' },
@@ -107,6 +105,11 @@ const resolvers = {
 const app = express()
 
 app.get('/', (req,res) => res.send('Hello World!!!! You the man!'));
+
+// Connect to the database
+// db.connect(DB_HOST);
+
+// db.close();
 
 // Apollo Server setup
 const server = new ApolloServer({ typeDefs, resolvers });

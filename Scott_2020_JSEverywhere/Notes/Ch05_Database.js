@@ -228,6 +228,66 @@ We will write our database connection code in this new 'db.js' file!
 We will also include a function to close our database connection, 
 will prove useful for testing our application!
 
+so in our '/scr/db.js' file, we add the following source:
+
+```
+// Require the mongose library
+const mongoose = require('mongoose');
+
+module.exports = {
+  connect: DB_HOST => {
+    // Use the Mongo driver's updated URL string parser
+    mongoose.set('useNewUrlParser', true);
+    // Use `findOneAndUpdate()` in place of findAndModify()
+    mongoose.set('useFindAndModify', false);
+    // Use `createIndex()` in place of `ensureIndex()`
+    mongoose.set('useCreateIndex', true);
+    // Use the new server discovery & monitoring engine
+    mongoose.set('useUnifiedTopology', true);
+    // Connect to the DB
+    mongoose.connect(DB_HOST);
+    // Log an error if we fail to connect
+    mongoose.connection.on('error', err => {
+      console.error(err);
+      console.log(
+        'MongoDB connection error. Please make sure MongoDB is running.'
+      );
+      process.exit();
+    });
+  },
+
+  close: () => {
+    mongoose.connection.close();
+  }
+};
+
+```
+
+now we have to update our '/src/index.js' file so it uses 
+the `connection` property passed through by the module.exports.
+
+to do so, we must first import our '.env' configuration as well
+as the '/src/db.js' file.  So at the top of our '/src/index.js' 
+file, we add these imports:
+
+```
+require('dotenv').config();
+const db = require('./db');
+```
+
+Teach likes to store the `DB_HOST` value that id defined 
+in the our '.env' file as a variable.  Add this variable
+directly below the port variable definition:s
+
+```
+const DB_HOST = process.env.DB_HOST;
+```
+
+we can then add our db connection:
+
+```
+db.connect(DB_HOST);
+```
 
 
 */
