@@ -289,5 +289,39 @@ we can then add our db connection:
 db.connect(DB_HOST);
 ```
 
+Though the actual ufnctionality has not changed, if one
+ran `npm run dev`, the application should successfully connect
+to the database and run without errors.
+
+// READING AND WRITING DATA FROM OUR APPLICATION
+
+Now that we can connect to our database, let's write the code 
+needed to read and write data to it from within the application. 
+
+Mongoose allows us to define how the data will be stored in 
+our database as a JavaScript object ,and we can then store
+and act upon data that fits that model structure.  With this in
+mind, let's create our ojbect, referred to as Mongoose schema.
+
+First, we create a folder within our 'src' dir called 'models'
+to house this schema file.  In the filder, creat a file 
+named 'note.js', so it's bath will be :'/src/models/notes.js'.
+
+in our '/src/models/notes.js' file, we begin by defining the 
+basic set up of the file:
+
+```
+// Require the mongoose library
+const mongoose = require('mongoose');
+
+// Define the notes' database schema
+const noteSchema - new mongoose.Schema();
+
+// Define the 'Note' model with the schema
+const Note = mongoose.model('Note', noteSchema);
+
+// export them module:
+module.exports = Note
+```
 
 */

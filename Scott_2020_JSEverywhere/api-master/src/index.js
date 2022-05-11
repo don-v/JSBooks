@@ -52,7 +52,7 @@ const mongo_url = `mongodb+srv://${user}:${pw}@notes-graphql.6z3u3.mongodb.net/n
 // Run our server on a port specified in our '.env' file or port 4000
 const port = process.env.PORT || 4000;
 
-
+// Store the DB_HOST value as a variable
 const DB_HOST = mongo_url;
 
 let notes  = [
