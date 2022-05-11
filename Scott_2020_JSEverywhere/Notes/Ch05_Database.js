@@ -315,13 +315,54 @@ basic set up of the file:
 const mongoose = require('mongoose');
 
 // Define the notes' database schema
-const noteSchema - new mongoose.Schema();
+const noteSchema = new mongoose.Schema();
 
 // Define the 'Note' model with the schema
 const Note = mongoose.model('Note', noteSchema);
 
 // export them module:
-module.exports = Note
+module.exports = Note;
 ```
+
+Next, we will define our schema, and store it in the 
+`noteSchema` variable. Similar to our in-memory data
+example, our current schema will, for now, include the
+content of the note as well as a hardcoded string 
+representing the author.   We'll also include the option
+to inlcude timestamps for our notes, which will be 
+automatically stored whe na note is created or
+edited.  We'll be adding functionality to our note
+schema as we go.
+
+Our Mongoose schema will be structured as follows:
+
+```
+// Define the note's database schema
+const noteSchema = new mongoose.Schema(
+  {
+    content: {
+      type: String,
+      required: true
+    },
+    author: {
+      type: String,
+      required: true
+    }
+  },
+  {
+    // Assigns `createdAt` and `updatedAt` properties with a `Date` type:
+    timestamps: true
+  }
+);
+```
+
+To simplify imorting our models int oour Apollo Server Express
+applications, we'll add an 'index.js' file to the '/src/models'
+directory.  This will combine our models into a single JavaScript
+module.  While this isn't strictly necessary, I find it to be a 
+good pattern to follow as applications and database models grow.
+
+In '/src/models/index.js', we'll import our note model
+
 
 */
