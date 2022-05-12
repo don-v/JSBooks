@@ -362,7 +362,39 @@ directory.  This will combine our models into a single JavaScript
 module.  While this isn't strictly necessary, I find it to be a 
 good pattern to follow as applications and database models grow.
 
-In '/src/models/index.js', we'll import our note model
+In '/src/models/index.js', we'll import our note model and add it
+to a `models` object to be exported:
 
+```
+const Note = require('./note');
+
+const models = {
+  Note
+};
+
+module.exports = models;
+```
+
+We can now incorporate our database models into our Apollo Server
+Express application code by importing our models into our 
+'/src/index.js' file:
+
+```
+const models = require('./models');
+```
+
+With out database model code imported, we can adapt our resolvers
+to save and read from the database, rather than an in-memory variable.
+To do this, we'll rewrite the `notes` query to pull the notes from 
+the database by using the MongoDB `find` method:
+
+```
+notes: async () => {
+  return await models.Note.find();
+},
+```
+
+With our server running, we can visit the GraphQL Playground
+in our browser and run our notes query:
 
 */

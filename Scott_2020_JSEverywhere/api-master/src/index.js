@@ -5,6 +5,10 @@ const express = require('express');
 const { ApolloServer, gql} = require('apollo-server-express');
 require('dotenv').config();
 const db = require('./db');
+// bring mongoose models into our application so Apollo Server
+// can access them, note that we are pointing to the directory,
+// which appears to automatically look at our 'index.js' file:
+const models = require('./models');
 
 // Ch 5: connect mongodb to app!
 const fs = require('fs');
