@@ -88,22 +88,21 @@ const typeDefs = gql`
 const resolvers = {
     Query: {
       hello: () => 'Hello World!',
-      notes: () => notes,
+      notes: async () => {
+        return await models.Note.find();
+      },      
       note: (parent, args) => {
         return notes.find(note => note.id === args.id);
       }
     },
     Mutation: {
-        newNote: (parent,args) => {
-          let noteValue = {
-            id: String(notes.length + 1),
-            content: args.content,
-            author: 'Random User',
-          };
-          notes.push(noteValue);
-          return noteValue
-        }
+      newNote: async (parent, args) => {
+        return await models.Note.create({
+          content: args.content,
+          author: 'Random User'
+        });
       }
+    }
   };
 
 const app = express()

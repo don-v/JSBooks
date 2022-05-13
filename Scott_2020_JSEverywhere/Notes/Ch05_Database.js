@@ -356,6 +356,50 @@ const noteSchema = new mongoose.Schema(
 );
 ```
 
+
+// DATA PERMANENCE
+
+We'll be updating and changing our data model throughout
+development, at times removing all of the data from our 
+database.  As a result, teach doesnt' recommend using
+the API we are building to store important thinks like 
+class ntoes, a list of one's friends' birthdays, or the
+directions to one's favirote pizza place!
+
+
+Out overall '/src/models/note.js' file should end up
+as follows:
+
+```
+// Require the mongoose library
+const mongoose = require('mongoose');
+
+// Define the note's database schema
+const noteSchema = new mongoose.Schema(
+    {
+      content: {
+        type: String,
+        required: true
+      },
+      author: {
+        type: String,
+        required: true
+      }
+    },
+    {
+      // Assigns `createdAt` and `updatedAt` properties with a `Date` type:
+      timestamps: true
+    }
+  );
+
+// Define the 'Note' model with the schema
+const Note = mongoose.model('Note', noteSchema);
+
+// export them module:
+module.exports = Note;
+```
+
+
 To simplify imorting our models int oour Apollo Server Express
 applications, we'll add an 'index.js' file to the '/src/models'
 directory.  This will combine our models into a single JavaScript
@@ -396,5 +440,38 @@ notes: async () => {
 
 With our server running, we can visit the GraphQL Playground
 in our browser and run our notes query:
+
+```
+query {
+  notes {
+    content
+    id
+    author
+  }
+}
+```
+
+The expected result will be an empty array, since we have yet to
+add any data to our database (Figure 5-1):
+
+{
+  "data": {
+    "notes": []
+  }
+}
+
+To update our `newNote` mutation to add a note to our database,
+we'll use our the `create` method made available by MongDB's API.
+We will pass to the `create` method an object, and as before,
+we will continue to hardcode our author's name:
+
+```
+newNote: async (parent, args) => {
+  return await models.Note.create({
+    content: args.content,
+    author: 'Random User'
+  });
+}
+```
 
 */
