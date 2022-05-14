@@ -474,4 +474,79 @@ newNote: async (parent, args) => {
 }
 ```
 
+We can now visit the GraphQL Playground and write a mutation that will
+add a note to our database:
+
+```
+mutation {
+  newNote (content: "This is a note in our database!") {
+    content
+    author
+    id
+  }
+}
+```
+
+When we execute this query, we get the following output:
+
+```
+{
+  "data": {
+    "newNote": {
+      "content": "This is a note in our database!",
+      "author": "Random User",
+      "id": "6280057a77cc7522a47ab48e"
+    }
+  }
+}
+```
+
+now, if we re-run our 'notes' query, we should see
+our note retrieved from the data base!
+
+```
+query {
+  notes {
+    content
+    id
+    author
+  }
+}
+```
+
+which returns the following output:
+
+```
+{
+  "data": {
+    "notes": [
+      {
+        "content": "This is a note in our database!",
+        "id": "6280057a77cc7522a47ab48e",
+        "author": "Random User"
+      }
+    ]
+  }
+}
+```
+
+The last step is to rewrite our `notes` query to pull a specific
+note from our database, using the unique ID that MongoDB assigns
+to each entry.  To do so, we'll use Mongoose's `findByID` method:
+
+```
+note: async (parent, args) => {
+  return await models.Note.findById(args.id);
+}
+```
+
+We can now write a query using the unique ID we see saw when
+we executed our `newNote` mutation and `notes` query!, in order 
+to retrieve an individual ntoe from our database.  To do so, we'll
+write a `note` query with an `id` argument as folllows:
+
+
+
+
+
 */
