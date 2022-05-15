@@ -546,7 +546,52 @@ to retrieve an individual ntoe from our database.  To do so, we'll
 write a `note` query with an `id` argument as folllows:
 
 
+```
+query {
+  note(id: "6280057a77cc7522a47ab48e") {
+    id
+    content
+    author
+  }
+}
+```
 
+and now when we ran the code, we get returned the 
+following output:
 
+```
+{
+  "data": {
+    "note": {
+      "id": "6280057a77cc7522a47ab48e",
+      "content": "This is a note in our database!",
+      "author": "Random User"
+    }
+  }
+}
+```
+
+teach confirms the final state of the 
+source for our '/src/index.js/' file:
+
+We can now read from and write to our database with our
+GraphQL API! 
+
+// CONCLUSION
+
+In this chapter, we learned to use MongoDB and 'Mongoose'
+client to allow our node application to interface with
+our mongodb database!
+
+Mongodb allows us to securely store and retrieve our 
+application's data.  
+
+An object modeling module, like `Mongoose`, simplifies
+working with a database by providing tools for database 
+queries and data validation.  
+
+In the next chapter, we update our API to have full 
+CRUD (create, read, update, and delete) functionality
+with our database content!
 
 */

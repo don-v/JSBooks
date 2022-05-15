@@ -60,7 +60,7 @@ const port = process.env.PORT || 4000;
 const DB_HOST = mongo_url;
 
 let notes  = [
-    { id: '1', content: 'This is an note', author: 'Adam Scot' },
+    { id: '1', content: 'This is a note', author: 'Adam Scot' },
     { id: '2', content: 'This is another note', author: 'Harlow Everly' },
     { id: '3', content: 'Oh hey look, another note!', author: 'Riley Harrison' }
 ];
@@ -112,7 +112,7 @@ app.get('/', (req,res) => res.send('Hello World!!!! You the man!'));
 // Connect to the database
 db.connect(DB_HOST);
 
-db.close();
+// db.close();
 
 // Apollo Server setup
 const server = new ApolloServer({ typeDefs, resolvers });
