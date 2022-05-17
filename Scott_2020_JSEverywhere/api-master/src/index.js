@@ -2,7 +2,7 @@
 // This is the main entry point of our application
 // Ch 4: apollo-server-express
 const express = require('express');
-const { ApolloServer, gql} = require('apollo-server-express');
+const { ApolloServer } = require('apollo-server-express');
 require('dotenv').config();
 const db = require('./db');
 // bring mongoose models into our application so Apollo Server
@@ -66,28 +66,11 @@ let notes  = [
 ];
 
 // Construct a schema, using GraphQL schema language
-const typeDefs = gql`
-    type Note {
-        id: ID!
-        content: String!
-        author: String!
-    }
-
-    type Query {
-        hello: String
-        notes: [Note!]!
-        note(id: ID!): Note!
-    }
-
-    type Mutation {
-        newNote(content: String!): Note!
-    }
-`;
+const typeDefs = require('./schema');
 
 // Provide resolver function for our schema fields
 const resolvers = {
     Query: {
-      hello: () => 'Hello World!',
       notes: async () => {
         return await models.Note.find();
       },      

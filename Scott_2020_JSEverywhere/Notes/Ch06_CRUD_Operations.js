@@ -44,6 +44,43 @@ package and export our schema as a module using Node's
 also remove the `hello` query, which we won't need in our
 final application. 
 
+```
+const { gql } = require('apollo-server-express');
+
+module.exports = gql`
+    type Note {
+        id: ID!
+        content: String!
+        author: String!
+    }
+
+    type Query {
+        notes: [Note!]!
+        note(id: ID!): Note!
+    }
+
+    type Mutation {
+        newNote(content: String!): Note!
+    }
+`;
+```
+
+now with our '/src/schema.js' file populated with our
+schema source, we can upate our '/src/index.js' file
+by updating the destructuring of object returned from
+our call to `require('apollo-server-express)` and then
+setting our typeDefs variable equal to the a `require` call
+to the code contained in the `module.exports` from our
+'/src/chema.js' file. The updated code will look as follows: 
+(note, 'hello' from resolvers was also removed!)
+
+```
+const { ApolloServer } = require('apollo-server-express');
+
+const typeDefs = require('./schema.js');
+```
+Now that we have isolated our GraphQL
+
 
 
 */
