@@ -59,10 +59,10 @@ const port = process.env.PORT || 4000;
 // Store the DB_HOST value as a variable
 const DB_HOST = mongo_url;
 
-let notes  = [
-    { id: '1', content: 'This is a note', author: 'Adam Scot' },
-    { id: '2', content: 'This is another note', author: 'Harlow Everly' },
-    { id: '3', content: 'Oh hey look, another note!', author: 'Riley Harrison' }
+let notes = [
+  { id: '1', content: 'This is a note', author: 'Adam Scot' },
+  { id: '2', content: 'This is another note', author: 'Harlow Everly' },
+  { id: '3', content: 'Oh hey look, another note!', author: 'Riley Harrison' }
 ];
 
 // Construct a schema, using GraphQL schema language
@@ -70,27 +70,27 @@ const typeDefs = require('./schema');
 
 // Provide resolver function for our schema fields
 const resolvers = {
-    Query: {
-      notes: async () => {
-        return await models.Note.find();
-      },      
-      note: async (parent, args) => {
-        return await models.Note.findById(args.id);
-      }
+  Query: {
+    notes: async () => {
+      return await models.Note.find();
     },
-    Mutation: {
-      newNote: async (parent, args) => {
-        return await models.Note.create({
-          content: args.content,
-          author: 'Random User'
-        });
-      }
+    note: async (parent, args) => {
+      return await models.Note.findById(args.id);
     }
-  };
+  },
+  Mutation: {
+    newNote: async (parent, args) => {
+      return await models.Note.create({
+        content: args.content,
+        author: 'Random User'
+      });
+    }
+  }
+};
 
 const app = express()
 
-app.get('/', (req,res) => res.send('Hello World!!!! You the man!'));
+app.get('/', (req, res) => res.send('Hello World!!!! You the man!'));
 
 // Connect to the database
 db.connect(DB_HOST);
@@ -104,7 +104,7 @@ const server = new ApolloServer({ typeDefs, resolvers });
 server.applyMiddleware({ app, path: '/api' });
 
 app.listen({ port }, () => {
-    console.log(
-        `GraphQL Server running at http://localhost:${port}${server.graphqlPath}`
-    )
+  console.log(
+    `GraphQL Server running at http://localhost:${port}${server.graphqlPath}`
+  )
 });
