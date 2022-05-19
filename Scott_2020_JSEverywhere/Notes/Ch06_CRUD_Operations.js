@@ -118,7 +118,53 @@ module.exports = {
 }
 ```
 
-Next, we have to import the resolver code:
+Next, we have to import the resolver code into our 
+'/src/index.js' file:
+
+```
+cosnt resolvers = require('./resolvers');
+```
+
+The final step in refactoring our application is to connect them to
+our database models.  As one may have noticed, our resolver modules
+reference these models, but have no way of accessing them.  To fix 
+this problem, we'll use a concept that 'Apollo Server' calls 
+_context_, which allows us to pass specific information along from our
+server code to an individual resolver with each request.  For now,
+this may feel excessive, but it will be useful for incorporating
+user authentication into our application.  To do this, we'll update
+our 'Apollo Server' setup code inside of our '/src/index.js' file
+by adding a context function that will return our database models:
+
+```
+// Apollo server setup
+const server = new ApolloServer({
+    typeDefs,
+    resolvers,
+    context: () => {
+        // Add the db models to the context
+        return { models };
+    }
+});
+```
+
+Now we'll updated each of our resolvers to make use of this context
+by passing { models } to the third parameter in each function:
+
+
+so in our '/src/resolvers/query.js' file we add the following:
+```
+module.exports = {
+    notes: async (parent, args, { models }) => {
+        return await models.Note.find()
+    },
+    note: async (parent, args, { models }) => {
+        return await models.Note.findById(args.id);
+    }
+}
+```
+
+HERE: p. 48
 
 
 */

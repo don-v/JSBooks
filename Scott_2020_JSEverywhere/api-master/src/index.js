@@ -69,24 +69,7 @@ let notes = [
 const typeDefs = require('./schema');
 
 // Provide resolver function for our schema fields
-const resolvers = {
-  Query: {
-    notes: async () => {
-      return await models.Note.find();
-    },
-    note: async (parent, args) => {
-      return await models.Note.findById(args.id);
-    }
-  },
-  Mutation: {
-    newNote: async (parent, args) => {
-      return await models.Note.create({
-        content: args.content,
-        author: 'Random User'
-      });
-    }
-  }
-};
+const resolvers = require('./resolvers');
 
 const app = express()
 
@@ -97,8 +80,17 @@ db.connect(DB_HOST);
 
 db.close();
 
-// Apollo Server setup
-const server = new ApolloServer({ typeDefs, resolvers });
+
+// Apollo server setup
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  context: () => {
+      // Add the db models to the context
+      return { models };
+  }
+});
+
 
 // Apply the Apollo GraphQL middleware and set teh path to '/api'
 server.applyMiddleware({ app, path: '/api' });
