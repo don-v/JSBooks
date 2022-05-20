@@ -164,7 +164,27 @@ module.exports = {
 }
 ```
 
-HERE: p. 48
+Now we need to move the following code to our 
+'/src/resolvers/mutations.js' file:
+
+```
+module.exports = {
+    newNote: async (parent, args, { models }) => {
+        return await models.Note.create({
+            content: args.content,
+            author: 'Random User'
+        });
+    }
+}
+```
+
+now our code should be refactored. ok, so tested our database,
+added a new note, and got tehm back returned! looks like
+our database is stil working!
+
+now just have to confirm the contents of our '/src/index.js' file:
+
+HERE: p. 49
 
 
 */
