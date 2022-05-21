@@ -184,7 +184,60 @@ our database is stil working!
 
 now just have to confirm the contents of our '/src/index.js' file:
 
-HERE: p. 49
+// WRITING OUR GRAPHQL CRUD SCHEMA
 
+Now we have to implement our CRUD operations. So far, we
+are able to create and read notes, which leaves us with 
+implementing our Update and Deleate functionality. To accomplish
+this, we will want to update our schema.
+
+Since update and delete operations will make changes to our data,
+they will be mutations.  Our update note will require an `ID`
+argument to locate the note as well as the the content we want
+to use to update the note that we locate.
+
+For the delete operation, our API will return a Boolean value of
+`true` to inform us that the note deletion was succesful.
+
+Now that we have conceptually defined what our our update and
+delete functions will need and do, let's update our schema file
+at '/src/schema.js' accordingly:
+
+```
+type Mutation {
+    newNote(content: String!): Note!
+    updateNote(id: ID!, content: String!): Note!
+    deleteNote(id: ID!): Boolean!
+}
+```
+
+with our Mutation schema updated in our '/src/schema.js' file, 
+our schema is now ready to perform CRUD operations:
+
+// CRUD RESOLVERS
+
+With our schema in place, we can now update our resolvers
+to either remove or update a note. Let's begin with our 
+`deleteNote` mutation.  To delete a note, we will use
+Mongoose's `fineOneAndRemove` method and pass it the `id`
+of the itme that we want to delete.  If our item is found 
+and deletted, we'll return `true` to the client, but if our
+item failt to delete, we'll return `false`:
+
+in our '/src/resolvers/mutation.js' file, we shall add the
+following within the module.exporst object:
+
+```
+deleteNote: async (parent, { id }, { models }) => {
+    try {
+        await models.Note.findOneAndRemove({ _id: id });
+        return true;
+    } catch (err) {
+        return false;
+    }
+}
+```
+
+HERE p. 49!
 
 */
