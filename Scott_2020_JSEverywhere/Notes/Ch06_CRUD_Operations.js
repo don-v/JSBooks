@@ -235,9 +235,44 @@ deleteNote: async (parent, { id }, { models }) => {
     } catch (err) {
         return false;
     }
+},
+```
+
+now that our '/src/resolvers/mutation.js' file has been
+updated with our `deleteNote` resolver, we can test 
+the function our in our GP!
+
+we can try the following, being sure to pass
+the correct `id` to our GraphQL database:
+
+```
+mutation {
+    deleteNote(id: "<_id of note!>")
 }
 ```
 
-HERE p. 49!
+so i have a duplicate note, so let me delete the
+one with the following id:6287f432a559922a58e178b1
+
+
+```
+mutation {
+    deleteNote(id: "6287f432a559922a58e178b1")
+}
+```
+
+and it looks to be working as we got the following
+output:
+
+```
+{
+  "data": {
+    "deleteNote": true
+  }
+}
+```
+
+If one passes a non-existent ID, one'll receive 
+
 
 */
