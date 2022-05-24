@@ -31,7 +31,7 @@ app.get('/', (req, res) => res.send('Hello World!!!! You the man!'));
 // Connect to the database
 db.connect(DB_HOST);
 
-db.close();
+// db.close();
 
 
 // Apollo server setup
@@ -39,8 +39,8 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   context: () => {
-      // Add the db models to the context
-      return { models };
+    // Add the db models to the context
+    return { models };
   }
 });
 

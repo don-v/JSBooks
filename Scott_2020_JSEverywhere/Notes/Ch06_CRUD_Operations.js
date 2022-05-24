@@ -272,7 +272,43 @@ output:
 }
 ```
 
-If one passes a non-existent ID, one'll receive 
+If one passes a non-existent ID, one'll receive a response of:
+
+```
+"deleteNote": false
+```
+
+according to teach; however, this didn't work for me, it returned
+true regardless! ok, well when I deleted a note that existed in the
+DB, it returend true the first time, and when I tried runnign the
+query again, it remained true, even though it was deleted. however
+when i entered an empty string, it returned false. So for the mutation:
+
+```
+mutation {
+    deleteNote(id: "")
+}
+```
+
+it returned the output:
+
+```
+{
+  "data": {
+    "deleteNote": false
+  }
+}
+```
+
+With our delete functionality in palce, let's write our `updateNote`
+mutation. To do this, we will use Mongoose's `findOneAndUpdate` method.
+This method will take an initial parameter of a query to find the
+correct note in the database, followed by a second parameter where
+we'll set new note content. Lastly, we'll pass a third parameter
+of new: `true`, which instructs the database to return the updated
+note content to us!s
+
+HERE p. 50!
 
 
 */
