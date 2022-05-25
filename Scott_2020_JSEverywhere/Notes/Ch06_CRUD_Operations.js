@@ -394,7 +394,91 @@ which returned the following output, which was what was expected!
 }
 ```
 
-HERE!
+If we pass an incorrect ID, the response fails, and we will receive 
+an internal server error with an `Error updating note` message.
+
+here's some of the ouput from an error:
+
+```
+{
+  "errors": [
+    {
+      "message": "Cast to ObjectId failed for value \"628d75728a694b2c3891e7a\" at path \"_id\" for model \"Note\"",
+      "locations": [
+        {
+          "line": 2,
+          "column": 3
+        }
+      ],
+      "path": [
+        "updateNote"
+      ],
+      "extensions": {
+        "code": "INTERNAL_SERVER_ERROR",
+        "exception": {
+          "message": "Cast to ObjectId failed for value \"628d75728a694b2c3891e7a\" at path \"_id\" for model \"Note\"",
+          "name": "CastError",
+          "stringValue": "\"628d75728a694b2c3891e7a\"",
+          "kind": "ObjectId",
+          "value": "628d75728a694b2c3891e7a",
+          "path": "_id",
+          "stacktrace": [
+            "CastError: Cast to ObjectId failed for value \"628d75728a694b2c3891e7a\" at path \"_id\" for model \"Note\"",
+            "    at new CastError (\\node_modules\\mongoose\\lib\\error\\cast.js:29:11)",
+            "    at ObjectId.cast (\\node_modules\\mongoose\\lib\\schema\\objectid.js:246:11)",
+            "    at ObjectId.SchemaType.applySetters (\\node_modules\\mongoose\\lib\\schematype.js:969:12)",
+            "    at ObjectId.SchemaType._castForQuery (\\node_modules\\mongoose\\lib\\schematype.js:1383:15)",
+            "    at ObjectId.SchemaType.castForQuery (\\node_modules\\mongoose\\lib\\schematype.js:1373:15)",
+            "    at ObjectId.SchemaType.castForQueryWrapper (\\node_modules\\mongoose\\lib\\schematype.js:1352:15)",
+            "    at cast (\\node_modules\\mongoose\\lib\\cast.js:315:32)",
+            "    at model.Query.Query.cast (\\node_modules\\mongoose\\lib\\query.js:4641:12)",
+            "    at castQuery (\\node_modules\\mongoose\\lib\\query.js:4454:18)",
+            "    at model.Query.Query._findAndModify (\\node_modules\\mongoose\\lib\\query.js:3417:23)",
+            "    at model.Query.<anonymous> (\\node_modules\\mongoose\\lib\\query.js:3002:8)",
+            "    at model.Query._wrappedThunk [as _findOneAndUpdate] (\\node_modules\\mongoose\\lib\\helpers\\query\\wrapThunk.js:16:8)",
+            "    at \\node_modules\\kareem\\index.js:278:20",
+            "    at _next (\\node_modules\\kareem\\index.js:102:16)",
+            "    at \\node_modules\\kareem\\index.js:507:38",
+            "    at processTicksAndRejections (internal/process/task_queues.js:79:11)"
+          ]
+        }
+      }
+    }
+  ],
+  "data": null
+}
+```
+
+We are now able to create, read, update, and delete notes. With
+this we have full CRUD functionality in our app!
+
+// DATE AND TIME
+
+When we created our database schema, we requested that Mongoose
+automatically store timestamps to record when entries are created 
+and updated in the database. This information will be useful 
+in our application, as it will allows us to show the 
+user when a note was created or last edited within our user 
+interface. Let's add `createdAt` and `updatedAt` fields ot our
+schema so we can return these values!
+
+One may recall that GraphQL allows for the default types of
+`String`, `Boolean`, `Int`, `Float`, and `ID`. Unfortunately,
+GraphQL does not come with a built-in date scalar type.  We 
+_could_ use the `String` type, but this would mean that we 
+wouldn't be taking advantage of the type validation that GraphQL
+offers, ensuring that our dates and times are actually dates
+and times.  
+
+Instead, we will creat a custom scalar type. A Custom type allows  
+us to define a new type and validate it against every query and 
+mutaiton that requests data of that type!
+
+Let's update the GraphQL schema in '/src/schema.js' by adding
+a custom scalar at the top of our GQL string literal:
+
+HERE
+
 
 
 */
