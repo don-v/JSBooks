@@ -304,11 +304,97 @@ With our delete functionality in palce, let's write our `updateNote`
 mutation. To do this, we will use Mongoose's `findOneAndUpdate` method.
 This method will take an initial parameter of a query to find the
 correct note in the database, followed by a second parameter where
-we'll set new note content. Lastly, we'll pass a third parameter
+we'll `$set` new note content. Lastly, we'll pass a third parameter
 of new: `true`, which instructs the database to return the updated
-note content to us!s
+note content to us!
 
-HERE p. 50!
+In '/src/resolvers/mutation.js', we add the following within the 
+`module.exports` object:
+
+```
+updateNote: async (parent, { content, id }, { models }) => {
+    return await models.Note.findOneAndUpdate(
+        {
+            _id: id
+        },
+        {
+            $set: {
+                content
+            }
+        },
+        {
+            new: true
+        }
+    );
+},
+```
+
+We can now visit the GP API in our browser to try out
+our `updateNote` mutation. In a new tab in the playground,
+write a mutation with the parameters of an `id` and 
+`content`:
+
+i did a quick query to retreive the notes that so
+far exist in our database:
+
+```
+query {
+  notes {
+    content
+    id
+    author
+  }
+}
+```
+
+which returned the following ouput:
+
+```
+{
+  "data": {
+    "notes": [
+      {
+        "content": "This is a note in our database!",
+        "id": "6280057a77cc7522a47ab48e",
+        "author": "Random User"
+      },
+      {
+        "content": "This is a new note that I will update",
+        "id": "628d75728a694b2c3891e7ae",
+        "author": "Random User"
+      }
+    ]
+  }
+}
+```
+
+ now we can submit our query:
+```
+mutation {
+    updateNote(
+        id: "628d75728a694b2c3891e7ae",
+        content: "This is the updated note!"
+    ){
+        id
+        content
+    }
+}
+```
+
+which returned the following output, which was what was expected!
+
+```
+{
+  "data": {
+    "updateNote": {
+      "id": "628d75728a694b2c3891e7ae",
+      "content": "This is the updated note!"
+    }
+  }
+}
+```
+
+HERE!
 
 
 */
