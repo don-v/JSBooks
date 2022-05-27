@@ -477,8 +477,70 @@ mutaiton that requests data of that type!
 Let's update the GraphQL schema in '/src/schema.js' by adding
 a custom scalar at the top of our GQL string literal:
 
-HERE
+```
+module.exports = gql`
+  scaler DateTime
+  ...
+`;
+```
+
+Then we update the `Note` type and assign our new
+custom `DateTime` scalar to our `createdAt` and
+`updatedAt` keys.
+
+so now our '/src/schema.js` file will appear as follows:
+
+```
+const { gql } = require('apollo-server-express');
+
+module.exports = gql`
+    scaler DateTime
+    type Note {
+        id: ID!
+        content: String!
+        author: String!
+        createdAt: DateTime!
+        updatedAt: DateTime!
+    }
+
+    type Query {
+        notes: [Note!]!
+        note(id: ID!): Note!
+    }
+
+    type Mutation {
+        newNote(content: String!): Note!
+        updateNote(id: ID!, content: String!): Note!
+        deleteNote(id: ID!): Boolean!
+    }
+`;
+```
+
+The last step is to validate this new type. While we can write our
+own validation, for our use case we'll use the `graphql-iso-date` 
+package.  To do so, we'll add validation to any resolver function
+that requests a value wit ha type of DateTime.
+
+In the '/src/resolvers/index.js' file, import the package and add
+a `DateTime` value ot the exported resolvers like so:
+
+```
+const Query = require('./query');
+const Mutation = require('./mutation');
+const { GraphQLDateTime } = require('graphql-iso-date');
+
+module.exports = {
+  Query,
+  Mutation,
+  DateTime: GraphQLDateTime
+};
+```
+Now if we visit the GraphQL playgournd in our browser and refresh the
+page, we can validate that our custom types work as intended. If we 
+consult our schema, we can see that the 
+`createdAt` and `updatedAt` field have a type of DateTime. 
 
 
+p. 52!
 
 */
