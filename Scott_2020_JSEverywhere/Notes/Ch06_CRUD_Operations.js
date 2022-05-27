@@ -540,7 +540,76 @@ page, we can validate that our custom types work as intended. If we
 consult our schema, we can see that the 
 `createdAt` and `updatedAt` field have a type of DateTime. 
 
+To test this, let's write a  `newNote` mutation in the 
+GraphQL PlayGround that includes our date fields:
 
-p. 52!
+```
+mutation {
+  newNote (content: "This is a new note with a custom type!") {
+    content
+    author
+    id
+    createdAt
+    updatedAt
+  }
+}
+```
+
+when we ran this query, it returned the following:
+
+```
+
+  "data": {
+    "newNote": {
+      "content": "This is a new note with a custom type!",
+      "author": "Random User",
+      "id": "62915f9a65b436024c8daaa2",
+      "createdAt": "2022-05-27T23:32:42.264Z",
+      "updatedAt": "2022-05-27T23:32:42.264Z"
+    }
+  }
+}
+```
+
+We see that his returned `createdAt` and `updatedAt` values
+as ISO-formatted date-time values. If we then run an 
+`updateNote` mutation against this same note, we'll see
+a differnt 'updatedAt' value:
+
+```
+mutation {
+    updateNote(
+        id: "62915f9a65b436024c8daaa2",
+        content: "This is the updated note to test updatedAt!"
+    ){
+        content
+        author
+        id
+        createdAt
+        updatedAt
+    }
+}
+```
+
+which returns the following output:
+
+```
+{
+  "data": {
+    "updateNote": {
+      "content": "This is the updated note to test updatedAt!",
+      "author": "Random User",
+      "id": "62915f9a65b436024c8daaa2",
+      "createdAt": "2022-05-27T23:32:42.264Z",
+      "updatedAt": "2022-05-27T23:38:35.523Z"
+    }
+  }
+}
+```
+
+For more information on defining and validating custom scalar
+types, I recommend Apollo Server's "Custom scalars and enums"
+documentation
+
 
 */
