@@ -608,8 +608,22 @@ which returns the following output:
 ```
 
 For more information on defining and validating custom scalar
-types, I recommend Apollo Server's "Custom scalars and enums"
-documentation
+types, teach recommends Apollo Server's "Custom scalars and enums"
+documentation:
+https://gql.readthedocs.io/en/latest/usage/custom_scalars_and_enums.html
+
+// CONCLUSION
+
+In this chapter, we added CRUD (create, read, update, delete) 
+functionality to our API. CRUD is a common design patterns and 
+is used by many applications
+
+Wewill add functionality to our API to create and authenticate
+user accounts.
+
+
+
+
 
 
 */
