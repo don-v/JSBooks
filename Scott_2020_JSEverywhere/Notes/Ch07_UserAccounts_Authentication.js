@@ -67,6 +67,55 @@ reset reques via email first. For brevity's sake, we won't be
 implementing password reset functionality in this book, but if one is
 interested in examples and resources for creating a passowrd reset flow, 
 visit the `JavaScript Everywhere Spectrum` community:
-http://spectrum.chat/jseverywhere
+https://spectrum.chat/jseverywhere
+
+// ENCRYPTION AND TOKENS
+
+In our exploration of the user authentication flow, teach mentioned
+encryption and tokens. Teach will discuss the detail of each of
+these in more detail:
+
+// ENCRYPTING PASSWORDS
+
+To effectively encrypt user passwords, one should use a combination
+of hashing and salting. _Hashing_ is the act of obscuring a string 
+of text by turning it into a seemingly random string. Hashing functions
+are 'one-way', meaning that once the text is hashed, the resulting
+hashed-string cannot be used to derive the original source text. 
+When a password is hashed, the plain text of the password is never 
+stored in a database.
+
+Salting is the act of generating a random string of data that will
+be used in addition to the hashed password. This ensures that even
+if two user passwords are the same, the hashed and salted versions 
+be unique. 
+
+`bcrypt` is a popular hashing function based on the blowfish cipher:
+
+https://en.wikipedia.org/wiki/Blowfish_(cipher)
+
+it is commonly used within a range of web frameworks. In Node.js 
+development we can use the the 'bcrypt' module to both salt and
+hash our passowrds:
+
+https://www.npmjs.com/package/bcrypt
+
+In our application code we would require the `bcrypt` module to
+write a function to handle salting and hashing.
+
+// Salting and Hashing eamples:
+
+The following examples are for illustrative purposes. We will
+integrate password salting and hashing with `bcrypt` later
+in this chapter.
+
+```
+// require the module
+const bcrypt = require('bcrypt');
+// note that we had to insatll 'bcryptjs'
+
+HERE!
+```
+
 
 */
