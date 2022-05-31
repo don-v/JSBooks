@@ -114,8 +114,64 @@ in this chapter.
 const bcrypt = require('bcrypt');
 // note that we had to insatll 'bcryptjs'
 
-HERE!
+// the cost of processing the salting dta, 10, is the default:
+const saltRounds = 10;
+
+// function for hashing and salting:
+const passwordEncrypt = async password => {
+    return await bcrypt.hash(password, saltRounds)
+};
 ```
 
+In this example, teach could pass a password of `PizzaP@rty99`, which
+generates a salt of $2a#10$HF2rs.iYSvX1l5FPrX6970 and the hashed and
+salted password of $2a$10$HF2rs.iYSvX1l5FPrx6970/02kwHuKdQTdy.7oaMwVga54bWG
+which is the salt plus the encrypted passowrd string.
+
+Now when checking a user's password against the hashed and salted
+password, we will use the bcrypt's compare method:
+
+```
+// password is a value provided by the user (`plainTextPassword`)
+// hash is retreived from our DB:
+const checkPassword = async (plainTextPassword, hashedPassword) => {
+    // res is either true or false
+    return await bcrycpt.compare(hashedPassword, plainTextPassword)
+};
+```
+
+With the user passowrds encrypted, we are able to safely store them 
+in a database.
+
+// JSON WEB TOKENS
+
+As a user it would be extremely frustrating if we needed to enter our
+username and passowrd each time we wanted to access a single protected
+page of a site or application. Instead, we can securely store a user's 
+ID on their device within a JSON Web Token (https://jwt.io).
+
+With each request the user makes from the client, they can send that 
+token, which the server will use to identify the user.
+
+A JSON Web Token (JWT) consists of 3 parts:
+
+1. Header: General information about the token and type of 
+signing algo that is being used
+
+2. Payload: The information that we've intentionally stored within
+the token (such as the Username or ID)
+
+3. Signature: A means to verify the token
+
+If we were to look at the token, it would appear to be made up
+of random characters with each part separted by a period:
+
+```
+xx-header-xx.yy-payload-yy.zz-signature-zz
+```
+
+In our application 
+
+# HERE p. 58!
 
 */
