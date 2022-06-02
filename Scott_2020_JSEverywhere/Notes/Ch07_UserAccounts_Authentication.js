@@ -170,8 +170,40 @@ of random characters with each part separted by a period:
 xx-header-xx.yy-payload-yy.zz-signature-zz
 ```
 
-In our application 
+In our application code we can use the `jsonwebtoken` module 
+to generate and validate our tokens. To do this we pass in the 
+information we wish to store, along with a secret password, which 
+would typically be stored within our .env file.:
 
-# HERE p. 58!
+```
+const jwt = require('jsonwebtoken');
+
+// generate a JWT that stores a user id:
+const generateJWT = await user +> {
+    return await jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+}
+
+// validate the JWT
+const validateJWT = await token => {
+    return await jwt.verify(token, process.env.JWT_SECRET);
+}
+```
+
+// JWTs Versus Sessions
+
+If you've worked with user authentication in web applications
+before, you've likely come accross user _sessions_. Session 
+information is stored locally, typically in a cookie, and verified 
+against an in-memory data store (such s Redis), though traditional
+databases can be used as well. 
+
+There is much debate about which is better, JWTs or sessions, but
+teach has found that JWTs offer the most flexibility, particularly
+when integrating with non-web environments such as native mobile,
+applications. Though sessions works well with GraphQL, JWTs are 
+also the recommended approach in the GraphQL Foundation and
+Apollo Server documentation.
+
+HERE p. 59!s
 
 */
