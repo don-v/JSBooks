@@ -204,6 +204,50 @@ applications. Though sessions works well with GraphQL, JWTs are
 also the recommended approach in the GraphQL Foundation and
 Apollo Server documentation.
 
-HERE p. 59!s
+By using JWTs, one can securely return and store a user's ID with the 
+client application!
+
+// INTEGRATING AUTHENTICATION INTO OUR API
+
+Now that one has a solid understanding of the components of user
+authentication, we'll implement the ability for users to sign up and 
+sign in to our application. To do this we'll be updating both our 
+`GraphQL` and `Mongoose` schemas, writing `signUp` and 
+`signIn` mutaiton resolvers that generate a user token, and validating
+the token on each request to the server!
+
+To begin, we will update our GraphQL schema by adding a `User` type
+and updating the `Note` type's `author` field to refrence the `User`
+type. To do so, update the '/src/schema.js' file:
+
+```
+type Note {
+    id: ID!
+    content: String!
+    author: User!
+    createdAt: DateTime!
+    updatedAt: DateTime!
+}
+
+type User {
+    id: ID!
+    username: String!
+    email: String!
+    avatar: String!
+    notes: [Note!]!
+}
+```
+
+When a user signs up for our application, they will submit a username,
+email address, and password. When a user signs in to our application, 
+they will send a mutation containing their username or email address 
+along with a password. If a sign-up or sign-in mutation is successful,
+the API will return a token as a string. To accomplish this in our 
+schema, we will need to add two new mutations to our '/src/schema.js'
+file, each of which will return a `String`, which will be our JWT:
+
+```
+HERE! p. 60!
+```
 
 */
