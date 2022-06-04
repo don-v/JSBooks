@@ -261,6 +261,72 @@ model file, with fields for username, email, password, and avatar. We
 will also require the username and email fields to be unqiue in our 
 database by setting index: { unique: true }:
 
-# HERE p. 50!
+To create the user database model, we enter the following into our 
+'/src/models/user.js' file:
+
+```
+const mongoose = require('mongoose');
+
+const UserSchema = new mongoose.Schema(
+    {
+        username: {
+            type: String,
+            required: true,
+            index: { unique: true }
+        },
+        email: {
+            type: String,
+            required: true,
+            index: { unique: true }
+        },
+        password: {
+            type: String,
+            required: true
+        },
+        avatar: {
+            type: String
+        }
+    },
+    {
+        // Assigns createdAt and updatedAt fields with a Data type
+        timestamps: true
+    }
+);
+
+const User = mongoose.model('User', UserSchema);
+module.exports = User;
+```
+
+With our user model file in place, we now must update the
+'/src/models/index.js' to export the model:
+
+```
+const Note = require('./note');
+const User = require('./user');
+
+const models = {
+  Note,
+  User
+};
+
+module.exports = models;
+```
+
+// AUTHENTICATE RESOLVERS
+
+With our GrpahQL schemas and Mongoose models/schema written,
+we can implement the resolvers tht will allow a user to sign up
+and sign in to our application.
+
+First, we need to add a value of teh `JWT_SECRET` variable in our 
+.env file. This value shoudl be a string without spaces. It will
+be used to sign our JWT, which allows us to verify them when they
+are decoded.
+
+```
+JWT_SECRET=YourPassphrase
+```
+
+# HERE p. 61!
 
 */
