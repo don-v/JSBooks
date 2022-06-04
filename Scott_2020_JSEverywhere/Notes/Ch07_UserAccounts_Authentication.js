@@ -247,7 +247,20 @@ schema, we will need to add two new mutations to our '/src/schema.js'
 file, each of which will return a `String`, which will be our JWT:
 
 ```
-HERE! p. 60!
+type Mutation {
+    ...
+    signUp(username: String!, email: String!, password: String!): String!
+    signIn(username: String, email: String, password: String!): String!
+}
 ```
+
+Now that our GraphQL schema has been updated, we also need to update
+our database models. To dos this, we'll creat ea Mongoose Schema file 
+'/src/models/user.js'. This file will be set up similarly to our 'note'
+model file, with fields for username, email, password, and avatar. We
+will also require the username and email fields to be unqiue in our 
+database by setting index: { unique: true }:
+
+# HERE p. 50!
 
 */
