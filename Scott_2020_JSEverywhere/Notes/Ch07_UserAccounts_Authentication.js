@@ -327,6 +327,42 @@ are decoded.
 JWT_SECRET=YourPassphrase
 ```
 
+Once we have created this variable, we can import teh required
+packages within our `/src/resolvers/mutation.js` file.  We will
+utilize the 3rd party `bcrypt`, `jsonwebtoken`, `mongoose`, and
+`dotenv` packages and also import the 'Apollo Server' module's 
+`AuthenticationError` and `ForbiddenError` utility classes. 
+
+Additionally, we'll import the `gravatar` utility function, which
+teach has included with the project. This will generate a 
+'Gravatar' image, from a user's email address. For more info:
+https://en.gravatar.com
+https://en.wikipedia.org/wiki/Gravatar
+
+So in our `/src/resolvers/mutation.js` file, we update our code
+with the following:
+
+```
+// const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const { 
+    AuthenticationError, 
+    ForbiddenError
+} = require('apollo-server-express');
+require('dotenv').config();
+
+const gravatar = require('../util/gravatar');
+```
+
+now with our '/src/resolvers/mutation.js' file updated,
+we can write our `signUp` mutation. This mutation will
+accept a username, email address, and password as 
+parameters.
+
+We will normalize...
+
 # HERE p. 61!
+
 
 */
