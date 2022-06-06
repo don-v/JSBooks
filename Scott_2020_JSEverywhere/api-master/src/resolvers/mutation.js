@@ -39,4 +39,28 @@ module.exports = {
             }
         );
     },
+    signUp: async(parent, { username, email, password }, { models }) => {
+        // normalize email address
+        email = email.trim().toLowerCase();
+
+        // hash the passowrd
+        const hashed = await bcrypt.hash(password, 10);
+
+        // create the gravatar url
+        const avatar = gravatar(email)
+
+        // create a user:
+        try {
+            const user = await models.User.create({
+                username,
+                email,
+                avatar,
+                password: hashed
+            });
+        } catch (error) {
+            console.log(error);
+            // if there's an error creating the account, throw an error
+            throw new Error('Error creating account');
+        }
+    },
 }

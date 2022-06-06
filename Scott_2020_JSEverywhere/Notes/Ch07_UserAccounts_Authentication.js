@@ -360,9 +360,52 @@ we can write our `signUp` mutation. This mutation will
 accept a username, email address, and password as 
 parameters.
 
-We will normalize...
+We will normalize the email address and username by 
+trimming any whitespace and converting it to al lowercase.
+Next, we will encrypt the user's password using the `bcrypt`
+('bcryptjs`) module. We will also generate a Gravatar
+image URL for user avatars by using our helper library.
 
-# HERE p. 61!
+Once we have performed these actions, we will store the
+user in the database and return a tokeen to the user. 
+We can set this al lup within a `try-catch` block, so
+that our resover returns an intentionally vague error to 
+the client if there are any issues iwth the sign-up
+process.
+
+T accomplish all f this, we write the `signUp` mutation
+as follows within our '/src/resolvers/mutation.js' file:
+
+
+```
+signUp: async(parent, { username, email, password }, { models }) => {
+        // normalize email address
+        email = email.trim().toLowerCase();
+
+        // hash the passowrd
+        const hashed = await bcrypt.hash(password, 10);
+
+        // create the gravatar url
+        const avatar = gravatar(email)
+
+        // create a user:
+        try {
+            const user = await models.User.create({
+                username,
+                email,
+                avatar,
+                password: hashed
+            });
+        } catch (error) {
+            console.log(error);
+            // if there's an error creating the account, throw an error
+            throw new Error('Error creating account');
+        }
+    },
+
+```
+
+# HERE p. 62!
 
 
 */
