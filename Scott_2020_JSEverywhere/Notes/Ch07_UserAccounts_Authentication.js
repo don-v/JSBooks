@@ -405,7 +405,61 @@ signUp: async(parent, { username, email, password }, { models }) => {
 
 ```
 
-# HERE p. 62!
+Now, if we switch over to the GraphQL Playground in our browser, we can try
+out our 'signUp' mutation. To do so we'll write a GraphQL mutation with 
+username, email, and passord values:
 
+```
+mutation {
+    signUp(
+        username: "BeeBoop"
+        email: "robot@example.com"
+        password: "NotARobot10010!"
+    )
+}
+```
+
+When we run this mutation, our server should return a token like
+this:
+
+```
+"data": {
+    "signUp": "eyJhbGciOiJIUzI`NiIsInR5cCI6"
+}
+```
+
+got the following error:
+
+```
+{
+  "errors": [
+    {
+      "message": "Cannot return null for non-nullable field Mutation.signUp.",
+      "locations": [
+        {
+          "line": 2,
+          "column": 3
+        }
+      ],
+      "path": [
+        "signUp"
+      ],
+      "extensions": {
+        "code": "INTERNAL_SERVER_ERROR",
+        "exception": {
+          "stacktrace": [
+            "Error: Cannot return null for non-nullable field Mutation.signUp.",
+            "    at completeValue (...\api-master\\node_modules\\graphql\\execution\\execute.js:560:13)",
+            "    at ...\api-master\\node_modules\\graphql\\execution\\execute.js:492:16",
+            "    at processTicksAndRejections (internal/process/task_queues.js:97:5)"
+          ]
+        }
+      }
+    }
+  ],
+  "data": null
+}
+```
+# HERE! p. 62!s
 
 */
