@@ -57,6 +57,10 @@ module.exports = {
                 avatar,
                 password: hashed
             });
+
+            // create and return the json web token
+            return jwt.sign({ id: user._id}, process.env.JWT_SECRET)
+        
         } catch (error) {
             console.log(error);
             // if there's an error creating the account, throw an error

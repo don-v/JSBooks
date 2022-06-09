@@ -396,6 +396,10 @@ signUp: async(parent, { username, email, password }, { models }) => {
                 avatar,
                 password: hashed
             });
+
+            // create and return the json web token
+            return jwt.sign({ id: user._id}, process.env.JWT_SECRET)
+
         } catch (error) {
             console.log(error);
             // if there's an error creating the account, throw an error
@@ -460,6 +464,85 @@ got the following error:
   "data": null
 }
 ```
-# HERE! p. 62!s
+
+we tried the mutation again, but this time go the following error:
+
+```
+{
+  "errors": [
+    {
+      "message": "Error creating account",
+      "locations": [
+        {
+          "line": 2,
+          "column": 3
+        }
+      ],
+      "path": [
+        "signUp"
+      ],
+      "extensions": {
+        "code": "INTERNAL_SERVER_ERROR",
+        "exception": {
+          "stacktrace": [
+            "Error: Error creating account",
+            "    at signUp (...\\api-master\\src\\resolvers\\mutation.js:67:19)",
+            "    at processTicksAndRejections (internal/process/task_queues.js:97:5)"
+          ]
+        }
+      }
+    }
+  ],
+  "data": null
+}
+```
+
+so the output in the console was:
+
+```
+GraphQL Server running at http://localhost:4000/api
+MongoError: E11000 duplicate key error collection: notedly.users index: username_1 dup key: { username: "BeeBoop" }
+    at Function.create (...\api-master\node_modules\mongoose\node_modules\mongodb\lib\core\error.js:44:12)
+    at toError (...\api-master\node_modules\mongoose\node_modules\mongodb\lib\utils.js:150:22)
+    at ...\api-master\node_modules\mongoose\node_modules\mongodb\lib\operations\common_functions.js:266:39
+    at handler (...\api-master\node_modules\mongoose\node_modules\mongodb\lib\core\sdam\topology.js:971:24)
+    at ...\api-master\node_modules\mongoose\node_modules\mongodb\lib\core\sdam\server.js:496:5
+    at ...\api-master\node_modules\mongoose\node_modules\mongodb\lib\core\connection\pool.js:414:18
+    at processTicksAndRejections (internal/process/task_queues.js:79:11) {
+  driver: true,
+  index: 0,
+  code: 11000,
+  keyPattern: { username: 1 },
+  keyValue: { username: 'BeeBoop' },
+  errmsg: 'E11000 duplicate key error collection: notedly.users index: username_1 dup key: { username: "BeeBoop" }',
+  [Symbol(mongoErrorContextSymbol)]: {}
+}
+```
+
+
+```
+mutation {
+    signUp(
+        username: "BeeBoop4"
+        email: "robot3@example.com"
+        password: "Not3ARobot10010!"
+    )
+}
+
+```
+
+
+it worked!
+
+```
+{
+  "data": {
+    "signUp": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyYTEzOWM3ZjNmYjllMjUwYzEwMjliZSIsImlhdCI6MTY1NDczMzI1NX0.AVDkkSHZccDgrBpj1WBN__AWaQppkGUJZ3Ka0D_Wk3k"
+  }
+}
+```
+
+#HERE: p. 63!
+
 
 */
