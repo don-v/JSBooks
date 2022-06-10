@@ -59,7 +59,7 @@ module.exports = {
             });
 
             // create and return the json web token
-            return jwt.sign({ id: user._id}, process.env.JWT_SECRET)
+            return jwt.sign({ id: user._id}, process.env.JWT_SECRET);
         
         } catch (error) {
             console.log(error);

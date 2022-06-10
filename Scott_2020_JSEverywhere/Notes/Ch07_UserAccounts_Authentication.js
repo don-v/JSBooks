@@ -398,7 +398,7 @@ signUp: async(parent, { username, email, password }, { models }) => {
             });
 
             // create and return the json web token
-            return jwt.sign({ id: user._id}, process.env.JWT_SECRET)
+            return jwt.sign({ id: user._id}, process.env.JWT_SECRET);
 
         } catch (error) {
             console.log(error);
@@ -542,7 +542,47 @@ it worked!
 }
 ```
 
-#HERE: p. 63!
+The next step will be to write our `signIn` mutation. This mutation
+will accept the user's username, email, and password. It will then
+find the user in the database, based on the username or email address.
+
+Once the user is located, it will decrypt the password stored in the 
+database and compare it with the one the user has entered. If the user
+and password match, our application will return a token to the user.
+If they don't match, we will want to throw an error!
+
+we will write the mutation as follows in the '/src/resolvers/mutation.js'
+file:
+
+```
+signIn: async (parent, { username, email, password }, { models }) => {
+  if (email) {
+    // normalize email address
+    email = email.trim().toLowerCase();
+  }
+
+  const user = await models.User.findOne({
+    $or: [{ email }, { username}]
+  });
+
+  // if no user is found, throw an authentication error:
+  if (!user) {
+    throw new AuthenticationError('Error signing in');
+  }
+
+  // if the passwords don't match, throw an authentication error:
+  const valid = await bcrypt.compare(password, user.password)
+  if (!valid) {
+    throw new AuthenticationError('Error signing in');
+  }
+
+  // create and return the json web token:
+  return jwt.sign({ id: user._id}, process.env.JWT_SECRET);
+}
+```
+
+update '/src/resolvers/mutation.js' with `signIn` mutation,
+then test GP p. 64!
 
 
 */
