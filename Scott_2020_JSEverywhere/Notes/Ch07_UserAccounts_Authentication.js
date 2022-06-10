@@ -582,7 +582,50 @@ signIn: async (parent, { username, email, password }, { models }) => {
 ```
 
 update '/src/resolvers/mutation.js' with `signIn` mutation,
-then test GP p. 64!
+then test :
+
+so the following signIn mutation was submitted:
+```
+mutation {
+    signIn(
+        username: "BeeBoop4"
+        email: "robot3@example.com"
+        password: "Not3ARobot10010!"
+    )
+}
+```
+
+and we got the desired output!:
+
+```
+{
+  "data": {
+    "signIn": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyYTEzOWM3ZjNmYjllMjUwYzEwMjliZSIsImlhdCI6MTY1NDg4NDkyMH0.0xFCjEG3ALQ55-gTxubb1uy3OF18pSZalrDnTfVaCBY"
+  }
+}
+```
+
+With these 2 resolvers in place, users will be able to both sign up for 
+and sign in to our application using JWTs. To experiment with this, 
+one may try adding more accoutns and even intentionally entering 
+incorrect information, such as passwords that od not match, to see what
+the GP returns!
+
+// ADDING THE USER TO THE RESOLVER CONTEXT
+
+Now that a user can use GraphQL mutation to receive a unique token,
+we'll need to verify that the token on each request. Our expectation
+will be that our client, whehter it be web, mobile, or desktop, will
+send the token with the request in an HTTP header named `Authorization`.
+
+We can then read the token from the HTTP header, decode it using our 
+`JWT_SECRET` environment variable, and pass along the user's info with
+the context to each GraphQL resolver. By doing this, we can determine if 
+a signed-in user is making a request, and if so, which user made the
+request!
+
+p. 65!
+
 
 
 */
