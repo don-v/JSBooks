@@ -624,8 +624,56 @@ the context to each GraphQL resolver. By doing this, we can determine if
 a signed-in user is making a request, and if so, which user made the
 request!
 
-p. 65!
+First, we import the `jsonwebtoken` module into our '/src/index.js'
+file:
 
+```
+const jwt = require('jsonwebtoken);
+```
+
+With the module imported, we can add a function that will verify
+the validity of the token:
+
+```
+// get the user infor from a JWT:
+const getUser = token => {
+  if (token) {
+    try {
+      // return the user information from the token
+      return jwt.verify(token, process.env.JWT_SECRET);
+    } catch (err) {
+      // if there's a problem with the token, throw an error
+      throw new Error('Session invalid');
+    }  
+  }
+};
+```
+
+Now within each GraphQL API request we will grab the token
+from the hader of the request, attempt to verify the validity
+of the token, and add the user's information to the context.
+
+Once this is done, each GraphQL resolver will ahve access to
+the user ID stored in the token!
+
+the current state of the `Apollo Server setup` section of
+our '/src/index.js' file:
+
+```
+// Apollo server setup
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  context: () => {
+    // Add the db models to the context
+    return { models };
+  }
+});
+
+```
+
+
+p. 65!
 
 
 */

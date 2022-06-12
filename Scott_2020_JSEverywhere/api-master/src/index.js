@@ -14,6 +14,24 @@ const typeDefs = require('./schema');
 // Provide resolver function for our schema fields
 const resolvers = require('./resolvers');
 
+// Ch07: User Accounts and Auth
+const jwt = require('jsonwebtoken');
+
+// get the user infor from a JWT:
+const getUser = token => {
+  if (token) {
+    try {
+      // return the user information from the token
+      return jwt.verify(token, process.env.JWT_SECRET);
+    } catch (err) {
+      // if there's a problem with the token, throw an error
+      throw new Error('Session invalid');
+    }  
+  }
+};
+  
+
+
 // Run our server on a port specified in our '.env' file or port 4000
 const port = process.env.PORT || 4000;
 
