@@ -56,12 +56,17 @@ db.close();
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  context: () => {
-    // Add the db models to the context
-    return { models };
+  context: ({ req }) => {
+    // get the user token from the headers
+    const token = req.headers.authorization;
+    // try to retrieve a user with the token
+    const user = getUser(token);
+    // for now, let's log the user to the console:
+    console.log(user);
+    // add the db models and the user to the context
+    return { models, user };
   }
 });
-
 
 // Apply the Apollo GraphQL middleware and set teh path to '/api'
 server.applyMiddleware({ app, path: '/api' });

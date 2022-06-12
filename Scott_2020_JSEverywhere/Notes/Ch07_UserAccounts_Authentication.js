@@ -672,8 +672,68 @@ const server = new ApolloServer({
 
 ```
 
+so we need to upate the `//Apollo server setup`
+section of our '/src/index.js' file as follows:
 
-p. 65!
+```
+// Apollo server setup
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  context: ({ req }) => {
+    // get the user token from the headers
+    const token = req.headers.authorization;
+    // try to retrieve a user with the token
+    const user = getUser(token);
+    // for now, let's log the user to the console:
+    console.log(user);
+    // add the db models and the user to the context
+    return { models, user };
+  }
+});
+```
+
+Though we're not yet performing user interactions, we can
+test our user context within our GP. In the lower-left
+corner of the GP UI, there is a space labeled HTTP Headers.
+
+In that portion of the UI, one can add a header that contains
+a JWT that was returned in either our `signUp` or
+`signIn` mutation as follows (Figure 7-3):
+
+```
+{
+  "Authorization": "<YOUR_JWT>"
+}
+```
+
+We can test this authorization header by passing it along with
+any query mutation in the GP. To do this, we'll write a simple
+`notes` query and include the `Authorization` header
+
+```
+query {
+  notes {
+    id
+  }
+}
+```
+
+If our authentication is successful, we should see an object
+containing the user's ID logged to our terminal application's 
+output, as shown in Figure 7-5!
+
+With all of these pieces in place, we are now able to 
+authenticate users in our API!
+
+// CONSCLUSION
+
+User account creation and sign-in flows can feel mysterious
+and overwhelming, but by taking it piece by piece, we can
+implement a stable and secure authentication flow in our 
+API. In this chapter...
+
+HERE p. 67!
 
 
 */
