@@ -726,14 +726,47 @@ output, as shown in Figure 7-5!
 With all of these pieces in place, we are now able to 
 authenticate users in our API!
 
+
+```
+{
+  "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyYTEzOWM3ZjNmYjllMjUwYzEwMjliZSIsImlhdCI6MTY1NDg4NDkyMH0.0xFCjEG3ALQ55-gTxubb1uy3OF18pSZalrDnTfVaCBY"
+}
+```
+
+and pass the following query:
+
+```
+query {
+  notes {
+    id
+  }
+}
+```
+
+when we ran this, we got the following output to the console:
+
+```
+undefined
+{ id: '62a139c7f3fb9e250c1029be', iat: 1654884920 }
+undefined
+{ id: '62a139c7f3fb9e250c1029be', iat: 1654884920 }
+{ id: '62a139c7f3fb9e250c1029be', iat: 1654884920 }
+{ id: '62a139c7f3fb9e250c1029be', iat: 1654884920 }
+```
+
 // CONSCLUSION
 
 User account creation and sign-in flows can feel mysterious
 and overwhelming, but by taking it piece by piece, we can
 implement a stable and secure authentication flow in our 
-API. In this chapter...
+API. In this chapter we created both 'sign-up' and 
+'sign-in' user flows. These are a small gragment of the 
+account management ecosystem, but will provide us with a
+stable foundation on which to build. 
 
-HERE p. 67!
-
+In the next chapter 
+we'll implement user-specific interactions in our API, 
+which will assign ownership to note and activities within
+the application!
 
 */
