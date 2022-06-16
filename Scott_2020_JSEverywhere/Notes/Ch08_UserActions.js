@@ -47,9 +47,51 @@ us debug our application and send appropriate responses to
 the client!
 
 Before we get tarted, we'll need to import the 'mongoose' package
-into our '/src/resolvers/mutation.js' file
+into our '/src/resolvers/mutation.js' file:
 
-HERE -- p. 70!s
+```
+const mongoose = require('mongoose');
+```
 
+Now in our `newNote` mutation, we'll add `user` as a function 
+parameter, then check to see if a user is passed into the
+function.  If a user ID is not found, we'll throw an 
+`AuthenticationError`, as a person must be signed in to our 
+service to create a new note.
+
+Once we have verified that the request has been made by an 
+authenticated user, we can create the note in the database. 
+
+In doing so, we will now assign the author the user ID that
+is passed to the resolver. This will allow us to reference
+the creating user from the note itself. 
+
+so in our '/src/resolvers/mutation.js' file, update our 
+`newNote` resolver function:
+
+```
+// add the user context
+newNote: async (parent, args, { models, user}) => {
+    // if here is no user on the context, throw an authentication error
+    if (!user) {
+        throw new AuthenticationError('You must be signed in to create a note');
+    }
+
+    return await models.Note.create({
+        content: args.content,
+        // reference the author's `mongo` id
+        author: mongoose.types.ObjectId(user.id)
+    });
+},
+```
+
+The last step is to apply the cross referencing to the data in our
+database. To do this, we will need to upat the `author` field of our 
+MongoDB `note` schema. So in our '/src/models/note.js' file, we update
+the author field as follows:
+
+```
+HERE p. 70!
+```
 
  */

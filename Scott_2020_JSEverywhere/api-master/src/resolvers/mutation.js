@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { 
@@ -10,10 +11,16 @@ const gravatar = require('../util/gravatar');
 
 
 module.exports = {
-    newNote: async (parent, args, { models }) => {
+    newNote: async (parent, args, { models, user}) => {
+        // if here is no user on the context, throw an authentication error
+        if (!user) {
+            throw new AuthenticationError('You must be signed in to create a note');
+        }
+    
         return await models.Note.create({
             content: args.content,
-            author: 'Random User'
+            // reference the author's `mongo` id
+            author: mongoose.types.ObjectId(user.id)
         });
     },
     deleteNote: async (parent, { id }, { models }) => {
