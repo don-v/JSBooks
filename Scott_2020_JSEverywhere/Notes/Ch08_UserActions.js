@@ -86,12 +86,24 @@ newNote: async (parent, args, { models, user}) => {
 ```
 
 The last step is to apply the cross referencing to the data in our
-database. To do this, we will need to upat the `author` field of our 
+database. To do this, we will need to upate the `author` field of our 
 MongoDB `note` schema. So in our '/src/models/note.js' file, we update
 the author field as follows:
 
 ```
-HERE p. 70!
+author: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
+}
+```
+
+With this reference in place, all new notes will accuately record
+and cross-reference the author from the context of the request. 
+Let's try this out by writing a `newNote` mutation in GP!
+
+```
+HERE p. 71!
 ```
 
  */

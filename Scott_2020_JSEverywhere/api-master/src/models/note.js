@@ -9,9 +9,10 @@ const noteSchema = new mongoose.Schema(
         required: true
       },
       author: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
         required: true
-      }
+    }
     },
     {
       // Assigns `createdAt` and `updatedAt` properties with a `Date` type:

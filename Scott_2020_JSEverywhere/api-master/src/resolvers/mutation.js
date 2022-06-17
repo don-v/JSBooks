@@ -20,7 +20,7 @@ module.exports = {
         return await models.Note.create({
             content: args.content,
             // reference the author's `mongo` id
-            author: mongoose.types.ObjectId(user.id)
+            author: mongoose.Types.ObjectId(user.id)
         });
     },
     deleteNote: async (parent, { id }, { models }) => {
