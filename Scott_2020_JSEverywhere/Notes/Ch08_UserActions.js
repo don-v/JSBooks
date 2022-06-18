@@ -103,7 +103,70 @@ and cross-reference the author from the context of the request.
 Let's try this out by writing a `newNote` mutation in GP!
 
 ```
-HERE p. 71!
+mutation {
+    newNote(content: "Hello! This is a user-created note!") {
+        id
+        content
+    }
+}
 ```
+
+When creating the mutation, we also must be sure to pas a JWT in 
+the `Authorization` header 
+
+```
+{
+    "Authorization": "<YOUR_JWT>"
+}
+```
+
+which is:
+
+```
+{
+  "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyYTEzOWM3ZjNmYjllMjUwYzEwMjliZSIsImlhdCI6MTY1NDg4NDkyMH0.0xFCjEG3ALQ55-gTxubb1uy3OF18pSZalrDnTfVaCBY"
+}
+```
+
+it worked! the output for our query was:
+
+```
+{
+  "data": {
+    "newNote": {
+      "id": "62ad64e8ab1a9232047c7a38",
+      "content": "Hello! This is a user-created note!"
+    }
+  }
+}
+```
+
+and output to the console was out userId!
+
+```
+[nodemon] 1.18.7
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching: *.*
+[nodemon] starting `node src/index.js`      
+GraphQL Server running at http://localhost:4000/api
+undefined
+{ id: '62a139c7f3fb9e250c1029be', iat: 1654884920 }
+{ id: '62a139c7f3fb9e250c1029be', iat: 1654884920 }
+{ id: '62a139c7f3fb9e250c1029be', iat: 1654884920 }
+```
+
+Note, if one didn't have a JWT handy, one could simply execute
+a signIn query to generate a new JWT! Then, run the `newNote`
+mutation, passing the retrieved JWT to our 'headers!'
+
+For now, our API doesn't return the author information, but 
+we can verify that the author was added correctly by looking
+up the note in the MongoDB shell. In a terminal window, we can
+type the following:
+
+```
+# HERE!
+```
+
 
  */
