@@ -183,6 +183,7 @@ ID that is passed into the resolver context!
 So we upate our '/src/resolvers/mutation.js' as follows,
 starting with the `deleteNote` mutaiton:
 
+```
 deleteNoe: async (parent, { id }, { models, user }) => {
   // if note a user, throw an AuthenticationError -- 
   if (!user) {
@@ -200,11 +201,38 @@ deleteNoe: async (parent, { id }, { models, user }) => {
 
   try {
     // if everyting checks out, remove the note -- 
-    # HERE!s
+    await note.remove();
+    return true;
   } catch (error) {
-    
+    // if there's an error along the way, return false
+    return false;
   }
- 
 }
+```
+
+Now, also in '/src/resolvers/mutation.js', update the `updateNote`
+mutation as follows:
+
+```
+updateNote: async (parent, { content, id }, { models, user }) => {
+  // if not a user, throw an AuthenticationError -- 
+  if (!user) {
+    throw new AuthenticationError('You must be signed in to upate a note');
+  }
+
+  // find the note
+  const note = await models.Note.findById(id);
+
+  // if the note owner and current user don't match, throw a forbidden error --
+  if (note && String(note.author) !== user.id) {
+    throw new ForbiddenError("You don't have permissionss to update the note");
+  }
+
+  // Update the note in the db and return the updated note
+  HERE p. 73!
+  );
+}
+```
+
 
  */

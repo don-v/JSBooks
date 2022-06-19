@@ -23,14 +23,30 @@ module.exports = {
             author: mongoose.Types.ObjectId(user.id)
         });
     },
-    deleteNote: async (parent, { id }, { models }) => {
-        try {
-            await models.Note.findOneAndRemove({ _id: id });
-            return true;
-        } catch (err) {
-            return false;
+    deleteNote: async (parent, { id }, { models, user }) => {
+        // if note a user, throw an AuthenticationError -- 
+        if (!user) {
+          throw new AuthenticationError('You must be signed in to delete a note');
         }
-    },
+      
+        // find the note
+        const note = await models.Note.findById(id);
+      
+        // if the note owner and current user don't match, throw
+        // a ForbiddenError -- 
+        if (note && String(note.author) !== user.id) {
+          throw new ForbiddenError("You don't have permission to delete the note");
+        }
+      
+        try {
+          // if everyting checks out, remove the note -- 
+          await note.remove();
+          return true;
+        } catch (error) {
+          // if there's an error along the way, return false
+          return false;
+        }
+      },
     updateNote: async (parent, { content, id }, { models }) => {
         return await models.Note.findOneAndUpdate(
             {
