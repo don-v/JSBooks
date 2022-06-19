@@ -165,8 +165,46 @@ up the note in the MongoDB shell. In a terminal window, we can
 type the following:
 
 ```
-# HERE!
+mongo
+db.notes.find({_id: ObjectId("<DOCUMENT-ID-HERE>")})
 ```
+The returned value should include an author key, with a value 
+of an Object ID.
 
+// USER PERMISSIONS FOR UPDATES AND DELETES
+
+Now we can add user checks to our `deleteNote` and `updateNote`
+mutations as well. These will require that we check both that a 
+user is passed to the context and whether that user is the owner 
+of the note. To accomplish this, we'll check if the userID 
+stored in the `author` field of our database mathces the user
+ID that is passed into the resolver context!
+
+So we upate our '/src/resolvers/mutation.js' as follows,
+starting with the `deleteNote` mutaiton:
+
+deleteNoe: async (parent, { id }, { models, user }) => {
+  // if note a user, throw an AuthenticationError -- 
+  if (!user) {
+    throw new AuthenticationError('You must be signed in to delete a note');
+  }
+
+  // find the note
+  const note = await models.Note.findById(id);
+
+  // if the note owner and current user don't match, throw
+  // a ForbiddenError -- 
+  if (note && String(note.author) !== user.id) {
+    throw new ForbiddenError("You don't have permission to delete the note");
+  }
+
+  try {
+    // if everyting checks out, remove the note -- 
+    # HERE!s
+  } catch (error) {
+    
+  }
+ 
+}
 
  */
