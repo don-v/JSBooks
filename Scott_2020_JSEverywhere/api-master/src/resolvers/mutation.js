@@ -47,21 +47,35 @@ module.exports = {
           return false;
         }
       },
-    updateNote: async (parent, { content, id }, { models }) => {
+      updateNote: async (parent, { content, id }, { models, user }) => {
+        // if not a user, throw an AuthenticationError -- 
+        if (!user) {
+          throw new AuthenticationError('You must be signed in to upate a note');
+        }
+      
+        // find the note
+        const note = await models.Note.findById(id);
+      
+        // if the note owner and current user don't match, throw a forbidden error --
+        if (note && String(note.author) !== user.id) {
+          throw new ForbiddenError("You don't have permissionss to update the note");
+        }
+      
+        // Update the note in the db and return the updated note
         return await models.Note.findOneAndUpdate(
-            {
-                _id: id
-            },
-            {
-                $set: {
-                    content
-                }
-            },
-            {
-                new: true
+          {
+            _id: id
+          },
+          {
+            $set: {
+              content
             }
+          },
+          {
+            new: true
+          }
         );
-    },
+      },
     signUp: async(parent, { username, email, password }, { models }) => {
         // normalize email address
         email = email.trim().toLowerCase();

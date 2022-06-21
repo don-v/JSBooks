@@ -229,10 +229,47 @@ updateNote: async (parent, { content, id }, { models, user }) => {
   }
 
   // Update the note in the db and return the updated note
-  HERE p. 73!
+  return await models.Note.findOneAndUpdate(
+    {
+      _id: id
+    },
+    {
+      $set: {
+        content
+      }
+    },
+    {
+      new: true
+    }
   );
 }
 ```
+
+// USER QUERIES
+
+With out existing mutations updated to include user checks, 
+let's also add some user-specific queries. To do this, we'll add 
+3 new queries:
+
+1. 'user': Given a specific username, returns the user's information
+
+2. 'users': Returns a list of all users
+
+3. 'me': Returns the user information for the current user
+
+Before we write teh query resolver code, add these queries to the
+'GraphQL' '/src/schema.js' file like so:
+
+```
+type Query {
+  ...
+  user(username: String!): User
+  users: [User!]!
+  me: User!
+}
+```
+
+# HERE p. 73!
 
 
  */
