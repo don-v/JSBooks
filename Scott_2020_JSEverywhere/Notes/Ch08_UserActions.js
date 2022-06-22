@@ -269,7 +269,49 @@ type Query {
 }
 ```
 
-# HERE p. 73!
+Now, in the '/src/resolvers/query.js' file, we update the
+code to the following:
 
+```
+module.exports = {
+    notes: async (parent, args, { models }) => {
+        return await models.Note.find();
+    },
+    note: async (parent, args, { models }) => {
+        return await models.Note.findById(args.id);
+    },
+    user: async (parent, { username }, { models }) => {
+        // find a user given their username --
+        return await models.User.findOne({ username });
+    },
+    users: async (parent, { username }, { models }) => {
+        // find all users --
+        return await models.User.findOne({ });
+    },
+    me: async (parent, args, { models, user }) => {
+        // find a user given the curent user context --
+        return await models.User.findById( user.id );
+    },
+}
+```
+
+Let's see how these look in our GP! First we can write a user 
+query to look up the information of a specific user. Be sure
+to use a username that you've alredy created:
+
+```
+query {
+  user(username: "adam") {
+    username
+    email
+    id
+  }
+}
+```
+
+This will return a data object, containing the username, email,
+and ID values for the specified user!
+
+HERE p. 74!
 
  */
