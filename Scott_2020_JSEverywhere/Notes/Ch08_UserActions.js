@@ -312,6 +312,142 @@ query {
 This will return a data object, containing the username, email,
 and ID values for the specified user!
 
-HERE p. 74!
+actually, it might be better to use the 'users' query first!
+
+```
+query {
+  users {
+    username
+    email
+    id
+  }
+}
+```
+
+we got an error!
+
+```
+{
+  "errors": [
+    {
+      "message": "Expected Iterable, but did not find one for field Query.users.",
+      "locations": [
+        {
+          "line": 2,
+          "column": 3
+        }
+      ],
+      "path": [
+        "users"
+      ],
+      "extensions": {
+        "code": "INTERNAL_SERVER_ERROR",
+        "exception": {
+          "message": "Expected Iterable, but did not find one for field Query.users.",
+          "stacktrace": [
+            "GraphQLError: Expected Iterable, but did not find one for field Query.users.",
+            "    at completeListValue (...\\api-master\\node_modules\\graphql\\execution\\execute.js:606:11)",
+            "    at completeValue (...\\api-master\\node_modules\\graphql\\execution\\execute.js:573:12)",
+            "    at completeValue (...\\api-master\\node_modules\\graphql\\execution\\execute.js:557:21)",
+            "    at ...\\api-master\\node_modules\\graphql\\execution\\execute.js:492:16",
+            "    at processTicksAndRejections (internal/process/task_queues.js:97:5)",
+            "    at async Promise.all (index 0)"
+          ]
+        }
+      }
+    }
+  ],
+  "data": null
+}
+```
+
+fixed the error! and now got the correct result:
+
+```
+{
+  "data": {
+    "users": [
+      {
+        "username": "BeeBoop",
+        "email": "robot@example.com",
+        "id": "629fd85713f2c82ee4b4e9ae"
+      },
+      {
+        "username": "BeeBoop4",
+        "email": "robot3@example.com",
+        "id": "62a139c7f3fb9e250c1029be"
+      }
+    ]
+  }
+}
+```
+
+now we can try the `user` query next time!:
+
+```
+query {
+  user(username: "BeeBoop4") {
+    username
+    email
+    id
+  }
+}
+```
+
+and this time we get the correct data:
+
+{
+  "data": {
+    "user": {
+      "username": "BeeBoop4",
+      "email": "robot3@example.com",
+      "id": "62a139c7f3fb9e250c1029be"
+    }
+  }
+}
+
+next time we just have to test the context!
+
+so we pass the following header
+
+```
+{
+  "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyYTEzOWM3ZjNmYjllMjUwYzEwMjliZSIsImlhdCI6MTY1NDg4NDkyMH0.0xFCjEG3ALQ55-gTxubb1uy3OF18pSZalrDnTfVaCBY"
+}
+```
+
+and make the `me` query:
+
+```
+query{
+  me {
+    username
+    email
+    id
+  }
+}
+```
+
+which gives us the following output:
+
+```
+{
+  "data": {
+    "me": {
+      "username": "BeeBoop4",
+      "email": "robot3@example.com",
+      "id": "62a139c7f3fb9e250c1029be"
+    }
+  }
+}
+```
+
+and our id is also printed to the console:
+
+```
+{ id: '62a139c7f3fb9e250c1029be', iat: 1654884920 }
+```
+
+HERE -- p. 76!
 
  */
