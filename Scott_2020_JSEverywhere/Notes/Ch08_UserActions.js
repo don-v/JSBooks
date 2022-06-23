@@ -448,6 +448,69 @@ and our id is also printed to the console:
 { id: '62a139c7f3fb9e250c1029be', iat: 1654884920 }
 ```
 
-HERE -- p. 76!
+With these resolvers in place, we can now query our API for user
+information.
+
+// TOGGLING NOTE FAVORITES
+
+We have one last piece of functionality to add to our user 
+interactions. One may recall that our application specifications 
+stated that "users will be able to favorite the notes of other
+users as well as retrieve a list of their favorites".
+
+Similar to Twitter "hearts" and Facebook "likes", we'd like our 
+users to be able to mark (and unmark) a note as a favorite. To 
+implement this behavior, we'll follow our standard pattern of
+updating the GraphQL schema, then the database model, and 
+lastly the resolver function:
+
+1. GraphQL schema
+2. Database model
+3. Resolver function!
+
+First, we will update our GraphQL schema in '/src/shema.js' by 
+adding two new proprties to our `Note` type:
+
+1.`favoriteCount`: tracks total number of 'favorites' received
+by note
+2.`favoriteBy`: contains an array of users who have favorited a
+note
+
+so we update our `Note` type in our '/src/schema.js' file as 
+follows:
+
+```
+type Note {
+  // add the following properties to the Note type
+  favoriteCount: Int!
+  favoriteBy: [User!]
+}
+```
+
+We'll also add the list of favorites to our `User` type:
+also in our '/src/schema.js` file:
+
+```
+type User {
+  // add the favorites property to the `User` type
+  favorites: [Note!]!
+}
+```
+
+Next, we will add a mutation in '/src/schema.js' called
+`toggleFavorite`, which will resolve by either adding or
+removing a favorite for the specified note. This mutation
+will take a note ID as a parameter and return the 
+specified note:
+
+```
+type Mutation {
+  // add toggleFavorite to the `Mutation` type
+  toggleFavorite(id: ID!): Note!
+}
+```
+
+HERE p. 77!
+
 
  */
