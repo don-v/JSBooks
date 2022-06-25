@@ -510,7 +510,49 @@ type Mutation {
 }
 ```
 
-HERE p. 77!
+Next, we need to update our note model to include
+the `favoriteCount` and `favoriteBy` properteis in our
+database. `favoriteCount` will be a `Number` type with a 
+default value of 0; `favoriteBy` will be an `array` of
+objects, containing references to user objects IDs in
+our database. Our full '/src/models/node.js' file will
+then look as follows:
+
+```
+const noteSchema = new mongoose.Schema(
+  {
+    content: {
+      type: String,
+      required: true
+    },
+    author: {
+      type: String,
+      required: true
+    },
+    // add the `favoriteCount` property --
+    favoriteCount: {
+      type: Number,
+      default: 0
+    },
+    // add the favoriteBy property --
+    favoriteBy: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+      }
+    ]
+  },
+  {
+    // Assigns `createdAt and `updatedAt fields with a `Date` type --
+    timestamps: true
+  }
+);
+```
+
+With our GraphQL schema and database models updated, we can now
+write the `toggleFavorite` mutation:
+
+p. 77!
 
 
  */
