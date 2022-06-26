@@ -8,7 +8,7 @@ const {
 require('dotenv').config();
 
 const gravatar = require('../util/gravatar');
-const { modelNames } = require('mongoose');
+const { modelNames, models } = require('mongoose');
 
 
 module.exports = {
@@ -138,9 +138,44 @@ module.exports = {
         // check to see if the user has already favorited the note --
         let noteCheck = await models.Note.findById(id);
         const hasUser = noteCheck.favoritedBy.indexOf(user.id);
-      }
+      
 
       // if the user exists in the list
       // pull them from the list and reduce the `favoriteCount` by 1 --
-      
+      if (hasUser >= 0) {
+        return await models.Note.findByIdAndUpdate(
+          id,
+          {
+            $pull: {
+              favoritedBy: mongoose.Types.ObjectId(user.id)
+            },
+            $inc: {
+              favoriteCount: -1
+            }
+          },
+          {
+            // set new to true to return the updated doc
+            new: true
+          }
+        );
+      } else {
+        // if the user doesn't exist in the list
+        // add them to the list and increment the `favoriteCount` by 1 --
+        return await models.Note.findByIdAndUpdate(
+          id,
+          {
+            $push: {
+              favoritedBy: mongoose.Types.ObjectId(user.id)
+            },
+            $inc: {
+              favoriteCount: 1
+            }
+          },
+          {
+            // set new to true to return the updated doc
+            new: true
+          }
+        );
+      }
+    },
 }
