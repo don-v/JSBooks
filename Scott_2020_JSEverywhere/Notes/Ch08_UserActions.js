@@ -550,9 +550,18 @@ const noteSchema = new mongoose.Schema(
 ```
 
 With our GraphQL schema and database models updated, we can now
-write the `toggleFavorite` mutation:
+write the `toggleFavorite` mutation; This mutation will receive
+a note ID as a parameter and check to see if the user is already
+listed in the `favoritedBy` array. If the user is listed, we 
+will remove the favorite by decreasing the `favoriteCount` and
+removing the user from the list. If the user has not yet favorited
+teh note, we will increment the `favoriteCount` by ` and add the 
+current user to the `favoriteBy` array. To do all of this, add the
+following code to the '/src/resolvers/mutation.js' file:
 
-p. 77!
+```
+HERE -- p. 78!
+```
 
 
  */
