@@ -611,12 +611,195 @@ toggleFavorite: async (parent, { id }, { models, user }) => {
     },
 ```
 
-updated the `toggleFavorite` rsolver -- will have to
+updated the `toggleFavorite` resolver -- will have to
 test it out next time!
 
-HERE p. 79!
+
+With this code in place, let's test our ability to toggle
+a note favorite in the GraphQL Playground. Let's do this
+with a freshly created note. We'll begin by writing a `newNote`
+mutation, being usre to include an `Authorization` header
+with a valid JWT:
+
+```
+mutation {
+  newNote(content: "New note to test toggleFavorite resolver!") {
+    content
+    favoriteCount
+    id
+  }
+}
+```
 
 
+HTTP HEADERS:
+
+```
+{
+  "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyYTEzOWM3ZjNmYjllMjUwYzEwMjliZSIsImlhdCI6MTY1NDg4NDkyMH0.0xFCjEG3ALQ55-gTxubb1uy3OF18pSZalrDnTfVaCBY"
+}
+```
+
+and when we execute our `newNote` mutation, we are returned
+with the following:
+
+```
+{
+  "data": {
+    "newNote": {
+      "content": "New note to test toggleFavorite resolver!",
+      "favoriteCount": 0,
+      "id": "62ba50d21fea342ac0fd73c1"
+    }
+  }
+}
+```
+
+
+One will note that the `favoriteCount` property of our
+note is automatically set to `0`, because that's the default 
+value we had set in our data model. Now, let's write a 
+`toggleFavorite` mutation to mark it as a favorite, passing
+the ID of the note as a parameter. Again, be sure to indclude
+the `Authorization` HTTP header, with a valid JWT:
+
+```
+mutation {
+  toggleFavorite(id: "62ba50d21fea342ac0fd73c1") {
+    favoriteCount
+  }
+}
+```
+
+```
+{
+  "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyYTEzOWM3ZjNmYjllMjUwYzEwMjliZSIsImlhdCI6MTY1NDg4NDkyMH0.0xFCjEG3ALQ55-gTxubb1uy3OF18pSZalrDnTfVaCBY"
+}
+```
+
+
+
+we got an error!
+
+```
+{
+  "errors": [
+    {
+      "message": "Cannot read property 'indexOf' of undefined",
+      "locations": [
+        {
+          "line": 2,
+          "column": 3
+        }
+      ],
+      "path": [
+        "toggleFavorite"
+      ],
+      "extensions": {
+        "code": "INTERNAL_SERVER_ERROR",
+        "exception": {
+          "stacktrace": [
+            "TypeError: Cannot read property 'indexOf' of undefined",
+            "    at toggleFavorite (...\\api-master\\src\\resolvers\\mutation.js:140:47)",
+            "    at processTicksAndRejections (internal/process/task_queues.js:97:5)"
+          ]
+        }
+      }
+    }
+  ],
+  "data": null
+}
+```
+
+tried to update schema changed `favoriteBy` to `favoritedBy`
+
+```
+
+  "errors": [
+    {
+      "message": "Cannot read property 'indexOf' of undefined",
+      "locations": [
+        {
+          "line": 2,
+          "column": 3
+        }
+      ],
+      "path": [
+        "toggleFavorite"
+      ],
+      "extensions": {
+        "code": "INTERNAL_SERVER_ERROR",
+        "exception": {
+          "stacktrace": [
+            "TypeError: Cannot read property 'indexOf' of undefined",
+            "    at toggleFavorite (...\\api-master\\src\\resolvers\\mutation.js:140:47)",
+            "    at processTicksAndRejections (internal/process/task_queues.js:97:5)"
+          ]
+        }
+      }
+    }
+  ],
+  "data": null
+}
+```
+
+
+error when just trying to retrieve regular note:
+
+```
+{
+  "error": {
+    "errors": [
+      {
+        "message": "Field \"author\" of type \"User!\" must have a selection of subfields. Did you mean \"author { ... }\"?",
+        "locations": [
+          {
+            "line": 5,
+            "column": 5
+          }
+        ],
+        "extensions": {
+          "code": "GRAPHQL_VALIDATION_FAILED",
+          "exception": {
+            "stacktrace": [
+              "GraphQLError: Field \"author\" of type \"User!\" must have a selection of subfields. Did you mean \"author { ... }\"?",
+              "    at Object.Field (...\api-master\\node_modules\\graphql\\validation\\rules\\ScalarLeafs.js:45:31)",
+              "    at Object.enter (...\api-master\\node_modules\\graphql\\language\\visitor.js:324:29)",
+              "    at Object.enter (...\api-master\\node_modules\\graphql\\language\\visitor.js:375:25)",
+              "    at visit (...\api-master\\node_modules\\graphql\\language\\visitor.js:242:26)",
+              "    at Object.validate (...\api-master\\node_modules\\graphql\\validation\\validate.js:73:24)",
+              "    at validate (...\api-master\\node_modules\\apollo-server-core\\dist\\requestPipeline.js:172:32)",
+              "    at Object.<anonymous> (...\api-master\\node_modules\\apollo-server-core\\dist\\requestPipeline.js:110:42)",
+              "    at Generator.next (<anonymous>)",
+              "    at fulfilled (...\api-master\\node_modules\\apollo-server-core\\dist\\requestPipeline.js:4:58)",
+              "    at processTicksAndRejections (internal/process/task_queues.js:97:5)"
+            ]
+          }
+        }
+      }
+    ]
+  }
+}
+```
+
+ok finally got it to work!
+we got the following output:
+```
+{
+  "data": {
+    "toggleFavorite": {
+      "favoriteCount": 1
+    }
+  }
+}
+```
+
+used solution to update the following files:
+
+'/src/models/note.js'
+'/src/models/resolvers/mutation.js':
+
+p. 80!
 
 
  */
