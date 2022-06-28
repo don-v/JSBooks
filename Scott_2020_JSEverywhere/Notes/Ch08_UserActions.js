@@ -801,5 +801,17 @@ used solution to update the following files:
 
 p. 80!
 
+Users can now mark and unmark notes as favorites. More 
+importantly, this functionality demosntrates how one
+can add new features to a GraphQL application's API.
+
+// NESTED QUERIES
+
+One of the great things about GraphQL is that we can 
+_nest_ queries, allowing us to write a single query
+that returns precisely teh data we need, rather than
+multiple queries. Our GraphQL schema's `User`
+
+p. 80!
 
  */
