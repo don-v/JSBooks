@@ -809,9 +809,40 @@ can add new features to a GraphQL application's API.
 
 One of the great things about GraphQL is that we can 
 _nest_ queries, allowing us to write a single query
-that returns precisely teh data we need, rather than
-multiple queries. Our GraphQL schema's `User`
+that returns precisely the data we need, rather than
+multiple queries. Our GraphQL schema's `User` type
+includes a list of notes by the author in an array 
+format, whic our `Notes` type includes a reference to
+author. As a result, we can pull a lsit of notes from 
+a user query or get the author information from a 
+note query.
 
-p. 80!
+
+this means we can write a query that looks like this:
+
+```
+query {
+  note(id: "62ba50d21fea342ac0fd73c1") {
+    id
+    content
+    # the information about the author note
+    author {
+      username
+      id
+    }
+  }
+}
+```
+
+If we currently try to run a nested query like the preceding
+one, we'll receive an error. This is because we haven't yet 
+written the resolver code that performs the database lookup
+for this information.
+
+To enable this functionality, we'll add 2 new files in our 
+'/src/resolvers' directory:
+
+p. 81!
+
 
  */
