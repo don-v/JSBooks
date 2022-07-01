@@ -842,7 +842,34 @@ for this information.
 To enable this functionality, we'll add 2 new files in our 
 '/src/resolvers' directory:
 
-p. 81!
+In '/src/resolvers/note.js, we add the following: 
+
+```
+module.exports = {
+  // Resolve teh author infor for a ntoe when requested
+  author: async (note, args, { models }) => {
+    return await models.User.findById(note.author);
+  },
+  // Resolved the `favoritedBy` infor for a note when requested
+  favoritedBy: async (note, args, { models }) => {
+    return await models.User.find({ _id: { $in: note.favoretedBy }});
+  }
+};
+```
+
+In '/src/resolvers/user.js, add the following:
+
+```
+module.exports = {
+  // Resolve the list of notes for a user when requested
+  notes: async (user, args, { models }) => {
+    return await models.Note.find({ author: user._id }).sort( { _id: -1 });
+  },
+  favorites: async (user, args, { models }) => {
+    return await models.Note.find({ favoritedBy: user._id }).sort({ _id: -1 })
+  }
+};
+```
 
 
  */
