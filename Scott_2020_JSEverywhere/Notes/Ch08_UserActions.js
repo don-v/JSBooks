@@ -895,15 +895,30 @@ Now if we write a nested GraphQL query or mutation, we will
 receive the informaiton that we expect. One can try thi out by 
 writing the following note query:
 
-```
 query {
-  note(id: "<YOUR_NOTE_ID_HERE>") {
+  note(id: "62ba50d21fea342ac0fd73c1") {
     id
     content
-    # the information about he author note
+    # the information about the author note
     author {
       username
       id
+    }
+  }
+}
+
+and we get the following output:
+
+```
+{
+  "data": {
+    "note": {
+      "id": "62ba50d21fea342ac0fd73c1",
+      "content": "New note to test toggleFavorite resolver!",
+      "author": {
+        "username": "BeeBoop4",
+        "id": "62a139c7f3fb9e250c1029be"
+      }
     }
   }
 }
@@ -915,7 +930,7 @@ about users who have "favorited" a note:
 
 ```
 mutation {
-  toggleFavorite(id: "<YOUR_NOTE_ID_HERE>") {
+  toggleFavorite(id: "62ba50d21fea342ac0fd73c1") {
     favoriteCount
     favoritedBy {
       username
@@ -923,6 +938,37 @@ mutation {
   }
 }
 ```
-# HERE p. 82!
+
+the first time we run this, we get the following ouput:
+
+```
+{
+  "data": {
+    "toggleFavorite": {
+      "favoriteCount": 0,
+      "favoritedBy": []
+    }
+  }
+}
+```
+
+so let's call it again, to see if we get back
+our username!
+
+```
+{
+  "data": {
+    "toggleFavorite": {
+      "favoriteCount": 1,
+      "favoritedBy": []
+    }
+  }
+}
+```
+so it didn't quite work -- we need to get a list of
+usernames, which should be at least 1!, but we
+haven't gotten that!
+
+HERE p. 82!
 
  */
