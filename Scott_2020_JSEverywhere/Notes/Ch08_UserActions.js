@@ -871,5 +871,58 @@ module.exports = {
 };
 ```
 
+Now we need to update our '/src/resolvers/index.js' file 
+and import the modules from '/src/resolvers/note.js', and
+from '/src/resolvers/user.js'. We do this as follows:
+
+```
+const Query = require('./query');
+const Mutation = require('./mutation');
+const Note = require('./note');
+const User = require('./user');
+const { GraphQLDateTime } = require('graphql-iso-date');
+
+module.exports = {
+  Query,
+  Mutation,
+  Note,
+  User,
+  DateTime: GraphQLDateTime
+};
+```
+
+Now if we write a nested GraphQL query or mutation, we will 
+receive the informaiton that we expect. One can try thi out by 
+writing the following note query:
+
+```
+query {
+  note(id: "<YOUR_NOTE_ID_HERE>") {
+    id
+    content
+    # the information about he author note
+    author {
+      username
+      id
+    }
+  }
+}
+```
+
+This query should correctly resolve with the author's username
+and ID. Another practical example would be to return informaiton 
+about users who have "favorited" a note:
+
+```
+mutation {
+  toggleFavorite(id: "<YOUR_NOTE_ID_HERE>") {
+    favoriteCount
+    favoritedBy {
+      username
+    }
+  }
+}
+```
+# HERE p. 82!
 
  */
