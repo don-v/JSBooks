@@ -26,10 +26,10 @@ const getUser = token => {
     } catch (err) {
       // if there's a problem with the token, throw an error
       throw new Error('Session invalid');
-    }  
+    }
   }
 };
-  
+
 
 
 // Run our server on a port specified in our '.env' file or port 4000
