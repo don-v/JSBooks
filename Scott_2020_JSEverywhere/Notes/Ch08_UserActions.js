@@ -970,5 +970,6 @@ usernames, which should be at least 1!, but we
 haven't gotten that!
 
 HERE p. 82!
+tested API, seems to work;
 
  */
