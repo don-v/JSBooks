@@ -972,4 +972,26 @@ haven't gotten that!
 HERE p. 82!
 tested API, seems to work;
 
+// CONCLUSION
+
+Congratulations! In this chapter our API graduated to 
+being something that users can truly interact with. This 
+API demonstrates the true the true power of GraphQL by 
+integrating user actions, adding new features, and nesting 
+resolvers. 
+
+We've also followed a tried-and-true pattern for adding 
+new code to our projects: first write the GraphQL schema,
+then write the database model, and finally write the resolver
+code:
+
+1. GraphQL schema
+2. database model
+3. resolver code (to query or update the data)
+
+By breaking down the process into these three steps, we
+can add all sorts of features ot our applications. In the next 
+chapter we'll look at the final steps needed to make our API
+production ready, including pagination and security.
+
  */
