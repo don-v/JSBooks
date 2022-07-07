@@ -2,6 +2,11 @@
 // This is the main entry point of our application
 // Ch 4: apollo-server-express
 const express = require('express');
+// C9: first require the package at the top of the file
+const helmet = require('helmet');
+// C9: first require teh package at the top of the file
+const cors = require('cors');
+
 const { ApolloServer } = require('apollo-server-express');
 require('dotenv').config();
 const db = require('./db');
@@ -43,6 +48,12 @@ const mongo_url = `mongodb+srv://${user}:${pw}@notes-graphql.6z3u3.mongodb.net/n
 const DB_HOST = mongo_url;
 
 const app = express()
+// C9: add the middleware at the top of the stack, after `const app = express()`
+app.use(helmet());
+
+// C9: add the middleware after app.use(helmet());
+app.use(cors());
+
 
 app.get('/', (req, res) => res.send('Hello World!!!! You the man!'));
 
