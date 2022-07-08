@@ -90,6 +90,48 @@ conceptually, it can run into scaling and performing issues.
 
 2. CURSOR-BASED PAGINATION:
 
-# HERE p. 85!';
+The second type, _cursor-based pagination_, in which a time-based
+cursor or unique identifier is passed a a starting point. We then
+request a specific amount of data that follows this record. This
+approach gives us the greatest control over our pagination. 
+Additionally, because Mongo's object IDs are ordered (they begin with
+4-byte time value), we can easily utilize them as our cursor. To
+learn more about Mongo's object ID, reach recommends reading the 
+corresponding MongoDB docs:
+https://www.mongodb.com/docs/manual/reference/method/ObjectId/
+
+Let's walk through implementing a paginated feed of notes as a 
+GraphQL query. First, let's define what we'll be creating, folowed
+by our schema updates, and lastly our resolver code. For our feed,
+we'll want to query our API while optionally passing a cursor as a
+parameter. The API should then return a limited amount of data, 
+a cursor point representing the last item in the data set, and a 
+Boolean value if there is an additional page of data to query. 
+
+With this description, we can update our '/src/schema.js' file 
+to define this new query. First, we'll need to add a `NoteFeed`
+type to our file:
+
+```
+type NoteFeed {
+    notes: [Note]!
+    cursor: String!
+    hasNextPage: Boolean!
+}
+```
+
+Next, we add our `noteFeed` query:
+
+```
+type Query {
+    # add `noteFeed` to our existing queries
+    noteFeed(cursor: String): NoteFeed
+}
+```
+
+With out schema updated, we can 
+
+# HERE -- p. 85!
+
 
 */
