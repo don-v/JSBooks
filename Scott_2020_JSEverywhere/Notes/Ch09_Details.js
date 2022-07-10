@@ -177,7 +177,7 @@ noteFeed: async (parent, { cursor } , { models }) => {
 
 need to look up mongodb limit, and slice methods!
 
-# HERE -- p. 86!
+# HERE -- p. 86! read about slice, limit!, keep going!
 
 
 
