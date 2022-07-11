@@ -175,9 +175,13 @@ noteFeed: async (parent, { cursor } , { models }) => {
 }
 ```
 
-need to look up mongodb limit, and slice methods!
+OK we were able to update our '/src/resolvers/query.js' file!
 
-# HERE -- p. 86! read about slice, limit!, keep going!
+With this resolver in place, one can now query our `noteFeed`, which
+will return a maximum of 10 results. In the GP, we can write a query
+as follows:
+
+# HERE p. 86!
 
 
 
