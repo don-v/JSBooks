@@ -179,9 +179,81 @@ OK we were able to update our '/src/resolvers/query.js' file!
 
 With this resolver in place, one can now query our `noteFeed`, which
 will return a maximum of 10 results. In the GP, we can write a query
-as follows:
+as follows to receive a list of notes, their object IDs, their 
+`createdAt` timestamps, the cursor, and `hasNextPage` boolean:
 
-# HERE p. 86!
+```
+query {
+    noteFeed {
+        notes {
+            id
+            createdAt
+        }
+        cursor
+        hasNextPage
+    }
+}
+```
+
+this gave us the following output:
+
+```
+{
+  "data": {
+    "noteFeed": {
+      "notes": [
+        {
+          "id": "62ba50d21fea342ac0fd73c1",
+          "createdAt": "2022-06-28T00:52:34.513Z"
+        },
+        {
+          "id": "62ad64e8ab1a9232047c7a38",
+          "createdAt": "2022-06-18T05:38:48.443Z"
+        },
+        {
+          "id": "62915f9a65b436024c8daaa2",
+          "createdAt": "2022-05-27T23:32:42.264Z"
+        },
+        {
+          "id": "628d75728a694b2c3891e7ae",
+          "createdAt": "2022-05-25T00:16:50.763Z"
+        },
+        {
+          "id": "6280057a77cc7522a47ab48e",
+          "createdAt": "2022-05-14T19:39:38.821Z"
+        }
+      ],
+      "cursor": "6280057a77cc7522a47ab48e",
+      "hasNextPage": false
+    }
+  }
+}
+```
+
+# HERE -- p. 87, maybe make more notes!
+
+Since we have a more than 10 notes in our database, this returns
+a cursor as well as a hasNextPage value of true. With that cursor,
+we can query the second page of the feed:
+
+```
+query {
+    noteFeed(cursor: "<YOUR_OBJECT_ID>") {
+        notes {
+            id
+            createdAt
+        }
+        cursor
+        hasNextPage
+    }
+}
+```
+
+We can continue to do this for each cursor where the
+hasNextPage value is `true`. With this implementation
+in place, we've created a paginated feed of notes. This
+will both allow our UI to request a specific feed of data,
+as well as reduce the burden on our server and database!
 
 
 
