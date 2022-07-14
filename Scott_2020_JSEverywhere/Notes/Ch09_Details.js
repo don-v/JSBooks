@@ -230,7 +230,7 @@ this gave us the following output:
 }
 ```
 
-# HERE -- p. 87, maybe make more notes!
+# HERE -- p. 87, made 10 more notes, test noteFeed with limit > 10 tomorrow!
 
 Since we have a more than 10 notes in our database, this returns
 a cursor as well as a hasNextPage value of true. With that cursor,
