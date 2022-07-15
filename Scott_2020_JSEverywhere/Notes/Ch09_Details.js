@@ -230,7 +230,73 @@ this gave us the following output:
 }
 ```
 
-# HERE -- p. 87, made 10 more notes, test noteFeed with limit > 10 tomorrow!
+made 10 more notes, test noteFeed with limit > 10 tomorrow!
+
+now that we have more than 10 notes, the call to our `noteFeed` query
+returned the last 10 notes we created:
+
+```
+{
+  "data": {
+    "noteFeed": {
+      "notes": [
+        {
+          "id": "62cf6054f669b20668f7e0d5",
+          "createdAt": "2022-07-14T00:16:20.835Z",
+          "content": "This is an new note 10"
+        },
+        {
+          "id": "62cf604ff669b20668f7e0d4",
+          "createdAt": "2022-07-14T00:16:15.089Z",
+          "content": "This is an new note 9"
+        },
+        {
+          "id": "62cf6048f669b20668f7e0d3",
+          "createdAt": "2022-07-14T00:16:08.896Z",
+          "content": "This is an new note 8"
+        },
+        {
+          "id": "62cf6042f669b20668f7e0d2",
+          "createdAt": "2022-07-14T00:16:02.659Z",
+          "content": "This is an new note 7"
+        },
+        {
+          "id": "62cf603bf669b20668f7e0d1",
+          "createdAt": "2022-07-14T00:15:55.999Z",
+          "content": "This is an new note 6"
+        },
+        {
+          "id": "62cf6035f669b20668f7e0d0",
+          "createdAt": "2022-07-14T00:15:49.103Z",
+          "content": "This is an new note 5"
+        },
+        {
+          "id": "62cf5ffaf669b20668f7e0cf",
+          "createdAt": "2022-07-14T00:14:50.759Z",
+          "content": "This is an new note 4"
+        },
+        {
+          "id": "62cf5feff669b20668f7e0ce",
+          "createdAt": "2022-07-14T00:14:39.192Z",
+          "content": "This is an new note 3"
+        },
+        {
+          "id": "62cf5fe5f669b20668f7e0cd",
+          "createdAt": "2022-07-14T00:14:29.184Z",
+          "content": "This is an new note 2"
+        },
+        {
+          "id": "62cf5fbbf669b20668f7e0cc",
+          "createdAt": "2022-07-14T00:13:47.324Z",
+          "content": "This is an new note"
+        }
+      ],
+      "cursor": "62cf5fbbf669b20668f7e0cc",
+      "hasNextPage": true
+    }
+  }
+}
+```
 
 Since we have a more than 10 notes in our database, this returns
 a cursor as well as a hasNextPage value of true. With that cursor,
@@ -238,14 +304,59 @@ we can query the second page of the feed:
 
 ```
 query {
-    noteFeed(cursor: "<YOUR_OBJECT_ID>") {
+    noteFeed(cursor: "62cf5fbbf669b20668f7e0cc") {
         notes {
             id
             createdAt
+            content
+            author {
+              username
+            }
         }
         cursor
         hasNextPage
     }
+}
+```
+
+this returned the older notes that existed before
+the most recent 10 that were created:
+
+```
+{
+  "data": {
+    "noteFeed": {
+      "notes": [
+        {
+          "id": "62ba50d21fea342ac0fd73c1",
+          "createdAt": "2022-06-28T00:52:34.513Z",
+          "content": "New note to test toggleFavorite resolver!"
+        },
+        {
+          "id": "62ad64e8ab1a9232047c7a38",
+          "createdAt": "2022-06-18T05:38:48.443Z",
+          "content": "Hello! This is a user-created note!"
+        },
+        {
+          "id": "62915f9a65b436024c8daaa2",
+          "createdAt": "2022-05-27T23:32:42.264Z",
+          "content": "This is the updated note to test updatedAt!"
+        },
+        {
+          "id": "628d75728a694b2c3891e7ae",
+          "createdAt": "2022-05-25T00:16:50.763Z",
+          "content": "This is the updated note!"
+        },
+        {
+          "id": "6280057a77cc7522a47ab48e",
+          "createdAt": "2022-05-14T19:39:38.821Z",
+          "content": "This is a note in our database!"
+        }
+      ],
+      "cursor": "6280057a77cc7522a47ab48e",
+      "hasNextPage": false
+    }
+  }
 }
 ```
 
@@ -255,6 +366,132 @@ in place, we've created a paginated feed of notes. This
 will both allow our UI to request a specific feed of data,
 as well as reduce the burden on our server and database!
 
+just to test teh nested query functionality, we made the
+following query:
 
+```
+query {
+    noteFeed {
+        notes {
+            id
+            createdAt
+            content
+          	author {
+              id
+              username
+            }
+        }
+        cursor
+        hasNextPage
+    }
+}
+```
+
+which returned the following:
+
+```
+{
+  "data": {
+    "noteFeed": {
+      "notes": [
+        {
+          "id": "62cf6054f669b20668f7e0d5",
+          "createdAt": "2022-07-14T00:16:20.835Z",
+          "content": "This is an new note 10",
+          "author": {
+            "id": "62a139c7f3fb9e250c1029be",
+            "username": "BeeBoop4"
+          }
+        },
+        {
+          "id": "62cf604ff669b20668f7e0d4",
+          "createdAt": "2022-07-14T00:16:15.089Z",
+          "content": "This is an new note 9",
+          "author": {
+            "id": "62a139c7f3fb9e250c1029be",
+            "username": "BeeBoop4"
+          }
+        },
+        {
+          "id": "62cf6048f669b20668f7e0d3",
+          "createdAt": "2022-07-14T00:16:08.896Z",
+          "content": "This is an new note 8",
+          "author": {
+            "id": "62a139c7f3fb9e250c1029be",
+            "username": "BeeBoop4"
+          }
+        },
+        {
+          "id": "62cf6042f669b20668f7e0d2",
+          "createdAt": "2022-07-14T00:16:02.659Z",
+          "content": "This is an new note 7",
+          "author": {
+            "id": "62a139c7f3fb9e250c1029be",
+            "username": "BeeBoop4"
+          }
+        },
+        {
+          "id": "62cf603bf669b20668f7e0d1",
+          "createdAt": "2022-07-14T00:15:55.999Z",
+          "content": "This is an new note 6",
+          "author": {
+            "id": "62a139c7f3fb9e250c1029be",
+            "username": "BeeBoop4"
+          }
+        },
+        {
+          "id": "62cf6035f669b20668f7e0d0",
+          "createdAt": "2022-07-14T00:15:49.103Z",
+          "content": "This is an new note 5",
+          "author": {
+            "id": "62a139c7f3fb9e250c1029be",
+            "username": "BeeBoop4"
+          }
+        },
+        {
+          "id": "62cf5ffaf669b20668f7e0cf",
+          "createdAt": "2022-07-14T00:14:50.759Z",
+          "content": "This is an new note 4",
+          "author": {
+            "id": "62a139c7f3fb9e250c1029be",
+            "username": "BeeBoop4"
+          }
+        },
+        {
+          "id": "62cf5feff669b20668f7e0ce",
+          "createdAt": "2022-07-14T00:14:39.192Z",
+          "content": "This is an new note 3",
+          "author": {
+            "id": "62a139c7f3fb9e250c1029be",
+            "username": "BeeBoop4"
+          }
+        },
+        {
+          "id": "62cf5fe5f669b20668f7e0cd",
+          "createdAt": "2022-07-14T00:14:29.184Z",
+          "content": "This is an new note 2",
+          "author": {
+            "id": "62a139c7f3fb9e250c1029be",
+            "username": "BeeBoop4"
+          }
+        },
+        {
+          "id": "62cf5fbbf669b20668f7e0cc",
+          "createdAt": "2022-07-14T00:13:47.324Z",
+          "content": "This is an new note",
+          "author": {
+            "id": "62a139c7f3fb9e250c1029be",
+            "username": "BeeBoop4"
+          }
+        }
+      ],
+      "cursor": "62cf5fbbf669b20668f7e0cc",
+      "hasNextPage": true
+    }
+  }
+}
+```
+
+# HERE -- p. 87, DATA LIMITATIONS!
 
 */
