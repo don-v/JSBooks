@@ -492,6 +492,55 @@ which returned the following:
 }
 ```
 
-# HERE -- p. 87, DATA LIMITATIONS!
+// DATA LIMITATIONS
+
+In addition to establishing pagination, we'll want to limit 
+the amount of data that can be requested through our API. This
+prevents queries that could overlaod our server or database!
+
+A simple first step in this process is to limit the amount of
+data that a query can return. Two of our queries, `users` and 
+`notes`, return all of the matching data from the database. We
+could address this by setting a `limit` method on our database
+queries.
+
+For example, in our '/src/resolvers.query.js' file, we can
+update our `notes` query as follows:
+
+```
+notes: async (parent, args, { models}) => {
+  return await models.Note.find().limit(100);
+}
+```
+
+While limiting dat is a solid start, currently our queries can
+be written with an unlimited depth. This means that a single 
+query could be written to retrieve a list of notes, the author
+informaiton for each of those notes, the list of favorites of 
+each author, the author informaiton for each of those favorites,
+and so on.
+
+That's a lot of data in one query, and we could keep going! To
+prevent these types of overnested queries, we can _limit
+the depth_ of qeuries against our API.
+
+Additionally, we might have complex queries that are not overly
+nested, but still require heavy computation to return the data.
+We can protect against these types of requests by _limiting
+query complexity_.
+
+We can implement these limits by using the `graphql-depth-limit`
+and `graphql-validation-complexity` packages in our application.
+To take advantage of these packages' functionality, we can 
+update our '/src/index.js' file as follows:
+
+```
+// import the modules at the top of the file
+const depthlimit = require('graphql-depth-limit');
+const { createComplexityLimitRule } = require('graphql-validation-complexity); 
+```
+
+# HERE -- p. 87!
+
 
 */
