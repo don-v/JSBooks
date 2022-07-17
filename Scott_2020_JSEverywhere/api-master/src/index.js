@@ -7,6 +7,9 @@ const helmet = require('helmet');
 // C9: first require teh package at the top of the file
 const cors = require('cors');
 
+const depthLimit = require('graphql-depth-limit');
+const { createComplexityLimitRule } = require('graphql-validation-complexity');
+
 const { ApolloServer } = require('apollo-server-express');
 require('dotenv').config();
 const db = require('./db');
@@ -67,7 +70,8 @@ db.close();
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  context: ({ req }) => {
+  validationRules: [depthLimit(5), createComplexityLimitRule(1000)],
+  context: async ({ req }) => {
     // get the user token from the headers
     const token = req.headers.authorization;
     // try to retrieve a user with the token
@@ -78,6 +82,17 @@ const server = new ApolloServer({
     return { models, user };
   }
 });
+
+
+
+
+
+
+
+
+
+
+
 
 // Apply the Apollo GraphQL middleware and set teh path to '/api'
 server.applyMiddleware({ app, path: '/api' });

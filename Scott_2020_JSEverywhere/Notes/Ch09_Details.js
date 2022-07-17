@@ -538,9 +538,29 @@ update our '/src/index.js' file as follows:
 // import the modules at the top of the file
 const depthlimit = require('graphql-depth-limit');
 const { createComplexityLimitRule } = require('graphql-validation-complexity); 
+
+// update our ApolloServer code to include validationRules
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  validationRules: [depthLimit(5), createComplexityLimitRule(1000)],
+  context: async({ req }) => {
+    // get the user token from the headers
+    const token = req.headers.authorization;
+    // try to retrieve a user with the token
+    const user = await gtUser(token);
+    // add the db models and the user to the context
+    return { models, user };
+  }
+});
 ```
 
-# HERE -- p. 87!
+With these package additions, we've added extra query
+protection to our API. For more informaiton, on securing
+a GraphQL API from malicious queries, check out the
+fantastic article:
+
+# HERE -- p. 88!
 
 
 */
