@@ -560,7 +560,59 @@ protection to our API. For more informaiton, on securing
 a GraphQL API from malicious queries, check out the
 fantastic article:
 
-# HERE -- p. 88!
+https://oreil.ly/_r5tl) from Max Stoiber, CTO of Spectrum.
+
+// OTHER CONSIDERATIONS
+
+After building our API, one should have a solid understanding of 
+the fundamentals of GraphQL development. If one is eager to dig in
+more on the topics, some excellent places to go next would be
+testing. GraphQL subscriptions an Apollo Engine.
+
+// TESTING
+
+Testing code is important because it allows us to comfortably 
+make changes and improves our collaboration with other devs. 
+One of the great things about our GraphQL setups is that
+resolvers are simply functions, taking some parameters and
+returning data. This makes our GraphQL logic straightforward
+to test.
+
+// SUBSCRIPTIONS
+
+Subscriptions are an incredibly powerful feature of GraphQL, which
+offers a straightforward way to integrate the publish-subscribe
+pattern in our application. This means that a UI can subscribe to
+be notified or updated when data is published on the server. This 
+makes GraphQL servers an ideal solution for applications that work
+with real-time data. For more information about GraphQL 
+subscriptions, teach recs looking at the Apollo Server 
+documentation:
+https://www.apollographql.com/docs/apollo-server/
+
+// APOLLO GRAPHQL PLATFORM
+
+Throughout the development of our API, teach has been using
+the Apollo GraphQL library. In future chapters, we'll be using the 
+Apollo client librariesto interface with our API. Teach has chosen 
+these libraries because they are industry standards and offer
+a great developer experience for working with GraphQL. If one 
+takes one's application to production, Apollo, the company who 
+maintains these libraries, also offers a platform that provides 
+monitoring and tooling for GraphQL APIs. One can learn mor at 
+Apollo's website!
+
+// CONCLUSION
+
+In this chapter we added some finishing touches to our
+application. Though there are many other options we could
+implement, at this point we have developed a solid 
+MVP (minimal viable product). In this state, we are 
+ready to lauch our API! 
+
+In the next chapter, we deploy our API to a public
+web server!
+
 
 
 */
