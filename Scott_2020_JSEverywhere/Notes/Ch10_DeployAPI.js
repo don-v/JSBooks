@@ -56,8 +56,19 @@ individual database cluster.
 From the 'Clusters' screen, click 'Connect', where one'll be prompted to 
 set up one's connection security. The first step will be to whitelist 
 one's IP address. Because our application will have a dynamic IP address,
-you'll need to open this to any IP address by using 0.0.0.0/0.
+you'll need to open this to any IP address by using 0.0.0.0/0. With all IP 
+addresses whitelisted, one'll then need to set up a 
+secure username and password for accessing the data!
 
-# HERE -- p. 94!
+Once your IP has been whitelisted and one's user account has been created,
+one'll choose the connection method for the database. In this case, it will
+be 'Application' conneciton!
+
+From here, one can copy the connection string, which we'll be using in our
+production .env file!
+
+> WARNING: Mongo Passwords -- MongoDB Atlas hex-encodes special...
+
+# HERE p. 96!
 
  */
