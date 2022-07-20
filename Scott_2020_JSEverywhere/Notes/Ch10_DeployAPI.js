@@ -67,8 +67,54 @@ be 'Application' conneciton!
 From here, one can copy the connection string, which we'll be using in our
 production .env file!
 
-> WARNING: Mongo Passwords -- MongoDB Atlas hex-encodes special...
+> WARNING: Mongo Passwords -- MongoDB Atlas _hex-encodes_ special
+characters within passwords. This means that if one uses (and one shoudl!)
+any non-alpha or numeric values, one will need to use the hex value for
+that code when adding one's password to the connection string. 
 
-# HERE p. 96!
+The site `ascii.cl` offers the corresponding hex coes for all special
+characters. For example, if one's password was `Pizz@2!` one would need
+to encode the `@1 and `!` characters. One wwould do this with a `%` followed
+bye the hex value. The resulting passowrd would be: `Pizz%402%21`.
+
+With out MongoDB Atlas managed database up and running, we now have
+a hosted daa store for our application. In the next step we'll host our
+application code and connect it to our database!
+
+// DEPLOYING OUR APPLICATION
+
+The next step in our deployment setup is to deploy our application code.
+For the purpose of this book we will use the cloud application platform
+Heroku. Teach chose 'Heroku' due ot its excellent user experience, and
+generous free tier, but other cloud platforms like Amazon Web Services,
+Google Cloud Platform, and Digital Ocean, or Microsoft Azure all
+provide alternative hosting environments for Node.js applications.
+
+Before we begin, one will need to visit Heroku's website:
+https://heroku.com/apps and create an account. Once your account has been
+created, one'll need to install the Heroku command-line tools for one's
+operating system.
+
+For macOS one can install the Heroku command-line tools using Homebrew as
+follows:
+
+```
+$ brew tap heroku/brew && brew install heroku
+```
+
+For Windows users, visit Heroku command-line tools guid and donwload the
+appropriate installer.
+
+// Project Setup
+
+With the Heroku command-line tools installed, we can setup our project
+within the Heroku website. Create a new Heroku project by clicking
+New --> Create New App
+
+From here, one'll be prompted to give the application a unqiue name, 
+after which one can click the 'Create App' button (Figure 10-7). Going
+forward, use the name anywhere one sees `YOUR_APP_NAME`
+
+# HERE -- p. 99!
 
  */
