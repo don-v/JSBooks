@@ -115,6 +115,67 @@ From here, one'll be prompted to give the application a unqiue name,
 after which one can click the 'Create App' button (Figure 10-7). Going
 forward, use the name anywhere one sees `YOUR_APP_NAME`
 
-# HERE -- p. 99!
+Nowe we can add environment variables. Similar to how we used our
+.env file locally, we can manage our production environment variables within
+the Heroku website interface. To do so, click 'Settings' by the 'Reveal
+Config Vars' button. From this screen, we add the following 
+configuration variables:
+
+{
+    "NODE_ENV": "production",
+    "JWT_SECRET": "A_UNIQUE_PASSPHRASE" ("TopSecret@123!"),
+    "DB_HOST": "YOUR_MONGO_ATLAS_URL" ("mongodb_srv://user:pass@...")
+}
+
+With out application configured, we are ready to deploy our code.
+
+
+// DEPLOYMENT
+
+Nowe we're ready to deploy our code Heroku's servers. To do this, we
+can use straightforward Git commands from our terminal application. We'll
+set 'Heroku' as a remote endpoint, then add and commit our changes 
+and finally push our code to Heroku. To do this, we run the following
+commands within our terminal application:
+
+```
+$ heroku git:remote -a <YOUR_APP_NAME>
+$ git add .
+$ git commit -am "application ready for production"
+$ git push heroku master
+```
+
+One should see output in one's terminal while 'Heroku' builds
+and deploys the files. Once complete, Heroku will use the 
+`run` script within our 'package.json' file to run our
+application on their servers.
+
+// TESTING
+
+Once our application has been successfully deployed, we will be
+able to make GraphQL API requests ot our remote server. By default,
+the GraphQL Playground UI is disabled in production, but we can test
+our application using `curl` from our terminal application. To run
+a `curl` request, enter the following in your terminal application:
+
+```
+$ curl \
+  -X POST \
+  -H "Content-Type: application/json" \
+  --data '{"query": "{ notes { id } }"}' \
+  htps://<YOUR_APP_NAME>.herokuapp.com/api
+```
+
+if the test is successful, we should receive a response containing
+an empty notes array, sincour produciton database does not yet
+contain any data:
+
+```
+{"data": {"notes":[]}}
+```
+
+With this, we have deployed our application!
+
+# HERE p. 100!
 
  */
