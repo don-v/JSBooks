@@ -176,6 +176,13 @@ contain any data:
 
 With this, we have deployed our application!
 
-# HERE p. 100!
+// CONCLUSION
+
+In this chapter we used cloud services to deploy a database and 
+our application code. Services such as MOngoDB Atlas and Heroku enable
+developers to launch small applications and scale them from hobby
+projects to heavily trafficked business. With out API deployed, we 
+have successfully developed the backend services of our application's
+stack. In the following chapters, we focus on the UIs of our app!
 
  */
