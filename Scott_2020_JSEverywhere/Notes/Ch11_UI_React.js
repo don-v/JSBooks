@@ -66,8 +66,44 @@ UI environment!
 In early 2010s, devs at FB began to face challenges in the
 organization, and management of their JS code. In response,
 the software engineer Jordan Walke wrote React, inspired
-by FB's PHP library, XHP. React...
+by FB's PHP library, XHP. React differed from other popular
+JS frameworks in that it focused solely on the rendering of
+the UI. To do this, React took a 'declarative' programming 
+approach, meaning that it provides an abstraction that allows
+devs to focus on describing what the state of the UI should
+be!
 
+With the rise of React, and similar libraries like Vue.js, 
+there has been a shift in the way devs write UIs; these
+frameowrks provide a means to manage the state of a UI at 
+the component level! This approach makes applications
+feel smooth and seamless to users, while providing an 
+excellent development experience. With tooling such as 
+Electron for building desktop apps and 'React Native' for
+cross-platform mobile applications, devs and teams are now
+able to leverage these paradigms in all of their 
+applications!
+
+// JUST ENOUGH REACT
+
+Throughout the remaining chapter, we will rely on the 
+'React' library to build out UIs. One does not need to 
+have any prior experience with 'React' to follow along.
+Still, it may be helpful to get a sens of the syntax before
+jumping in. To do this, we'll use `creat-react-app` to
+scaffold out a new project. `create-react-app` is a tool
+developed by the 'React' team that allows one to quickly
+set up a new 'React' project and helpfully abstracts the 
+underlying build tooling, such as 'Webpack' and 'Babel'.
+
+In our terminal, application, cd into the 'projects' 
+directory and run the following commands, which will create
+a new 'React' application in  folder named 'just-enough-react':
+
+```
+$ npx creat-react-app just-enough-react
+cd just-enough-react
+```
 # HERE -- p. 103!
 
 */
