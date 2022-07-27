@@ -101,9 +101,9 @@ directory and run the following commands, which will create
 a new 'React' application in  folder named 'just-enough-react':
 
 ```
-$ npx creat-react-app just-enough-react
+$ npx create-react-app just-enough-react
 cd just-enough-react
 ```
-# HERE -- p. 103!
+# HERE -- p. 103!, still here!
 
 */
