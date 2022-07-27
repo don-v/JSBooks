@@ -104,6 +104,6 @@ a new 'React' application in  folder named 'just-enough-react':
 $ npx create-react-app just-enough-react
 cd just-enough-react
 ```
-# HERE -- p. 103!, still here!
+# HERE -- p. 103!, still here! +
 
 */
