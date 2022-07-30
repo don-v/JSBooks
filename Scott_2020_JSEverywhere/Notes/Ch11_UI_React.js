@@ -104,6 +104,36 @@ a new 'React' application in  folder named 'just-enough-react':
 $ npx create-react-app just-enough-react
 cd just-enough-react
 ```
-# HERE -- p. 103!, still here! +
+uninstalled Node v16, and instead installed v14
 
+Running these commands will output a directory in 
+`just-enough-react`, which contains all of the project
+structure, code dependencies, and development scripts to
+build a full-featured application. Start the application
+by running:
+
+```
+$ npm start
+```
+
+we got the following console output:
+
+Compiled successfully!
+
+You can now view just-enough-react in the browser.
+
+  Local:            http://localhost:3000
+  On Your Network:  http://xxx.xxx.x.xx:3000      
+
+Note that the development build is not optimized. 
+To create a production build, use npm run build.  
+
+webpack compiled successfully
+
+I was able to access the app from my mobile device
+as well!
+
+We can now...
+
+# HERE -- p. 104!
 */
