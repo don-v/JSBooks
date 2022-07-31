@@ -169,8 +169,36 @@ import './App.css';
 
 function App() {
   return (
-    # HERE -- p. 105!
-  )
+    <div className="App">
+      <p>Hello world!</p>
+    </div>
+  );
+}
+
+export default App;
+```
+
+One may notice the enclosing `<div>` tag that wraps all of the
+JSX content. Each React UI component must be contained within a 
+parent HTML element or use a React fragment, which represents
+a non-HTML element container, such as:
+
+```
+function App() {
+  return (
+    <React.Fragment>
+      <p>Hello world!</p>
+    </React.Fragment>
+  );
 }
 ```
+
+One of hte most powerful things about React is that one can use
+JS directly within our JSX by enclosing it within curly brackets,
+`{}`. Let's up date our `App` function to make use of some 
+variables:
+
+
+
+
 */
