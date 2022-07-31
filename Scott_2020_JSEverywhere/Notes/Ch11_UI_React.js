@@ -133,7 +133,44 @@ webpack compiled successfully
 I was able to access the app from my mobile device
 as well!
 
-We can now...
+We can now begin to edit our application by making changes to the
+'/src/App.js' file. This file contains our primary React component.
+After requiring some dependencies, it consists of a function that 
+returns some HTML-like markup:
 
-# HERE -- p. 104!
+function App() {
+  return (
+    // markup is here
+  )
+}
+
+The markup used within the component is something called JSX. JSX
+is an XML based syntax, similar to HTML, which allows one to precisely
+describe our UI and couple it with user actions within our JS files!. If
+one knows HTML, picking up JSX is a matter of learning a few minor 
+differences! 
+
+The big differences in this example is that HTML's `class` property
+is replaced by `className` to avoid collisions with JS' native 
+class syntax. 
+
+> JSX? Yuck!: If like teach one comes from a web standards background
+and a strinct de-coupling of concerns, this may feel very icky. With
+more use, one will realize that the coupling of UI logic with rendering
+output presents many compelling advantages that may become more 
+favorable to oneself over time!
+
+We will begin by customizing our app by removing most of the boilerplate
+code and reduce it to a simple "Hello World!":
+
+```
+import React from 'react';
+import './App.css';
+
+function App() {
+  return (
+    # HERE -- p. 105!
+  )
+}
+```
 */
