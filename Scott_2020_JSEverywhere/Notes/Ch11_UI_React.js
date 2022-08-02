@@ -193,12 +193,29 @@ function App() {
 }
 ```
 
-One of hte most powerful things about React is that one can use
+One of the most powerful things about React is that one can use
 JS directly within our JSX by enclosing it within curly brackets,
 `{}`. Let's up date our `App` function to make use of some 
 variables:
 
+```
+function App() {
+  const name = 'Adam';
+  const now = String(new Date());
+  return (
+    <div className="App">
+      <p>Hello {name}!</p>
+      <p>The current time is {now}</p>
+      <p>Two plus two is {2+2}</p>
+    </div>
+  );
+}
+```
 
+In the preceding example, one can see that we are 
+making use of JS directly in our interface. How cool
+is that?!
 
+# HERE -- p. 106!
 
 */
