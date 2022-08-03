@@ -216,6 +216,52 @@ In the preceding example, one can see that we are
 making use of JS directly in our interface. How cool
 is that?!
 
-# HERE -- p. 106!
+Another useful feature of React is the ability to turn
+each UI feature into its own component. A good rule of 
+thumb is if an aspect of the UI behaves in an independent
+manner, it should be separated out into its own component.
+Let's create a new component. To begin, we create a new
+file at '/src/Sparkle.js' and declare a new function:
+
+```
+import React from 'react';
+
+function Sparkle() {
+  return (
+    <div>
+    
+    </div>
+  )
+}
+
+export default Sparkle;
+```
+
+Now let's add some functionality. Whenever a user clicks a 
+button it will add a sparkel emoji to our page. In order to do 
+this, we'll import React's `useState` component and define some
+initial state for our component, which will be an empty string
+(in other words, no sparkle):
+
+```
+import React, { useState } from 'react';
+
+function Sparkle() {
+  // declare our initial component state
+  // this a variable of 'sparkle' which is an empty string
+  
+  # HERE -- p. 106!
+  
+  return (
+    <div>
+      
+    </div>
+  )
+}
+
+export default Sparkle;
+```
+
+
 
 */
