@@ -249,12 +249,12 @@ import React, { useState } from 'react';
 function Sparkle() {
   // declare our initial component state
   // this a variable of 'sparkle' which is an empty string
-  
-  # HERE -- p. 106!
-  
+  // we've also defined an 'addSparkle' function, which
+  // we'll call in our click handler
+  const [sparkle, addSparkle] = useState('')
   return (
     <div>
-      
+      <p>{sparkle}</p>
     </div>
   )
 }
@@ -262,6 +262,42 @@ function Sparkle() {
 export default Sparkle;
 ```
 
+// sidebar: What is State?
 
+State is covered in more detail in Chapter 15, but for now it may
+be helpful to know that the _state_ of a component represents
+the current status of any information that may change within
+the component. For example, if a UI component has a checkbox,
+it has a state of `true` when checked and `false` when not checked.
+
+// BACK TO SPARKLE COMPONENT!
+
+Now we can complete our component by adding a button with
+`onClick` functionality. Note the camel casing, which is required
+within JSX:
+
+```
+import React, { useState } from 'react';
+
+function Sparkle() {
+  // declare our initial component state
+  // this a variable of 'sparkle' which is an empty string
+  // we've also defined an 'addSparkle' function, which
+  // we'll call in our click handler
+  const [sparkle, addSparkle] = useState('')
+  return (
+    <div>
+      <button onClick={() => addSparkle(sparkle + '\u2728')}>
+        Add some sparkle
+      </button>
+      <p>{sparkle}</p>
+    </div>
+  )
+}
+
+export default Sparkle;
+```
+
+# HERE p. 107!
 
 */
