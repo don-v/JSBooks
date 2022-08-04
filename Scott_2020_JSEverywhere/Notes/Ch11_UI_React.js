@@ -298,6 +298,33 @@ function Sparkle() {
 export default Sparkle;
 ```
 
-# HERE p. 107!
+To use our component we can import it into our
+'src/App.js' file and declare it as a JSX element
+as follows:
+
+```
+import React from 'react';
+import './App.css';
+
+// import our Sparkle component
+import Sparkle from './Sparkle'
+
+function App() {
+  const name = 'Adam';
+  let now = String(new Date());
+  return (
+    <div className="App">
+      <p>Hello {name}!</p>
+      <p>The current time is {now}</p>
+      <p>Two plus two is {2+2}</p>
+      <Sparkle />
+    </div>
+  );
+}
+
+export default App;
+```
+
+# HERE -- p. 108!
 
 */
