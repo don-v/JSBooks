@@ -325,6 +325,36 @@ function App() {
 export default App;
 ```
 
-# HERE -- p. 108!
+Now when we visit our application in the browser, 
+we see the 'Add some sparkle' button on the page;
+and when we click the button, 'sparkle' emojis
+appear on the page!
+
+This example demonstrates one of the true super-
+powers of react! We're able to re-render individual
+componenets, or elements of components, in isolation
+from the rest of our application!
+
+We have now created a new application using 
+`create-react-app`, updated our `App` component's
+JSX, created a new component `Sparkle`, and 
+dynamically updated a component. With a basic 
+understanding of these fundamentals, we are now prepared
+to develop declarative UIs in JS using React!
+
+// CONCLUSION
+
+We are surrounded by user interface across a wide variety
+of devices. JS and web technologies present an unparalleled
+opportunity to develop these interfaces across the multitude
+of platforms, using a single set of technologies. Meanwhile,
+React and other declarative view libraries allow us to build
+powerful, dynamic applications. 
+
+The combination of these technologies enables developers to
+build amazing things without requiring specialized knowledge
+for each platform. In the coming chapters, we'll put
+this into practice by utilizing a GraphQL API to build 
+interfaces for web, desktop, and nativem mobile applications!
 
 */
