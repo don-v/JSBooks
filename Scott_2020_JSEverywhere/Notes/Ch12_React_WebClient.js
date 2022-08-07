@@ -31,7 +31,45 @@ In our web application, users will be able to:
 
 * create notes, as well as read, update, and delete notes they've created!
 
-* view a feed...
+* view a feed of notes created by users, and read individual notes created
+by others, though they will not be able to update or delete them!
 
-# HERE p. 109!
+* craete an account, log in, and log out
+
+* favorite the notes of other users as well as retrieve a list of
+their favorites
+
+These features will cover a lot of ground, but teach will deliver them through
+small chunks throghout this portion of the book. One one has learned to
+build a React application with all of these features, one'll be able to apply
+the tools and techniques toward building all sorts of rich web applications.
+
+// HOW WE WILL BUILD THIS
+
+Teach will use React as a client-side JS library. Additionally, data will
+be queried from our GraphQL API. To aide in qquerying, mutating, and caching
+data, we'll make use of the 'Apollo Client':
+
+https://www.apollographql.com/docs/react/
+
+Apollo client comprises a collection of open source tools for working with
+GraphQL. We'll be using the React version of the library, but the team at
+Apollo has also developed Angular, Vue, Scala.js, Native iOS, and
+Native Android integrations.
+
+> WISDOM: While we'll be using Apollo in this book, it is far from the only
+GraphQL client option available. Facebook's 'Relay':
+https://relay.dev/
+
+and Formiddable's urql:
+https://formidable.com/open-source/urql/docs/api/urql/
+
+are two popular alternatives!
+
+Additionally, we'll be using 'Parcel':
+https://parceljs.org/
+
+as our code bundler. A code bundler allows...
+
+# HERE -- p. 110!
 */
