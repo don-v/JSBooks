@@ -69,7 +69,24 @@ are two popular alternatives!
 Additionally, we'll be using 'Parcel':
 https://parceljs.org/
 
-as our code bundler. A code bundler allows...
+as our code bundler. A code bundler allows allows us to write
+JS using features that may not be available in a web browser
+(e.g., new language features, code modules, minificaiton) and
+packages them for use in the browser environment. Parcel is a 
+configuration-free alternative to application build tools like
+Webpack:
 
-# HERE -- p. 110!
+https://webpack.js.org
+
+It offers a lof of nice features such as code splitting and
+automatically updating the browser during development (aka 
+_hot module replacement_), but without the need to set up a
+build chain. As teach demonstrated in the previous chapter,
+`create-react-app` also offers a zero-configuration initial
+setup, using Webpack behind the scenes, but Parcel allows
+one to build one's application from the ground up, in a wasy
+that teach feels is idea lfor learning. 
+
+// GETTING STARTED
+
 */
