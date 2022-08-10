@@ -89,4 +89,50 @@ that teach feels is idea lfor learning.
 
 // GETTING STARTED
 
+the code for this section of the book is located at:
+`
+https://github.com/javascripteverywhere/web
+`
+
+The repo contains all of the scripts and refs to 3rd-party
+libraries that will be needt to develop our application. 
+
+Teach creates and installs the app inside of a 'notedly'
+directory:
+
+```
+cd notedly
+git clone git@github.com:javascripteverywhere/web.git
+cd web
+npm install
+```
+
+> INSTALLING THIRD-PARTY DEPENDENCIES: By making a copy of the book's
+starter code and running `npm install` in the directory, one avoids
+having to run `npm install` again to install any of the individual
+third-party dependencies.
+
+code structure:
+
+'/src/': this is the directory inside which we will perfor our dev
+as we follow learn from teach!
+
+'/solutions': this dir contains the solutions for each chapter. If 
+one gets stuck, these are available for consultation.
+
+'/final': now that the code is on our local machine, one'll need to
+make a copy of the project's '.env' file. This file is a place to keep
+the variables unique to the environment we are working in. 
+
+For example, when working locally, we'll be pointing to a local instance
+ofo ur API, but when we deploy our app we'll point to our remotely
+deployed API. To make a copy of the sample .env file, type the following
+into the temrinal, from withn the 'web' directory:
+
+```
+cp .env.example .env
+```
+
+# HERE -- p.112!
+
 */
