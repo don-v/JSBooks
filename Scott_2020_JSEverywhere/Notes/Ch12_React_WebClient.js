@@ -133,6 +133,69 @@ into the temrinal, from withn the 'web' directory:
 cp .env.example .env
 ```
 
-# HERE -- p.112!
+One will now see the '.env' file in our project's root directory!
+One doesn't need to do anything with this file, but w'ell be adding
+information ot it as we progress through the development of our API
+backend. The .gitignore file inlcuded with the project will ensure 
+that one does not inadvertently commit one's '.env' file!
+
+> WARNING: 'Help, I don't see the '.env' file!' -- By default, 
+OS hide files that start with a period, as these are typically
+used by the system, not end users. If one doesn't seethe '.env'
+file, try opening the diectory in one's text editor. The file should
+be visible in teh file explorer of your editor. Alternatively,
+for macOS/Linus terminals, one can use the command `'ls -a` into
+one's terminal window which will list the files in the current
+wd.
+
+// BUILDING OUT THE WEB APPLICATION
+
+With our starter code cloned locally, we're ready to build our
+our React web application. Let's first take a look at our 
+'/src/index.html' file. This looks like the a standard, yet 
+completely empty, HTML file: 
+
+```
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+    <title>Notedly</title>
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script src="./App.js"></script>
+  </body>
+</html>
+```
+
+, but note the following 2 lines:
+
+```
+    <div id="root"></div>
+    <script src="./App.js"></script>
+```
+
+These 2 lines are incredibly important to our React 
+application. The 'div' element with a `root` 'id'
+attribute will provide the container for our entire
+application. Meanwhile, the 'App.js' file will be 
+the entry-point to our JS application. 
+
+Now, we can begin to dev our React application in our
+'src/App.js' file. If one followed along with the React
+introduction in the previous chapter, this may all feel
+familiar. In '/src/App.js' we begin by importing the 
+`react` and `react-dom` libraries:
+
+```
+import React from 'react';
+import ReactDOM from 'react-dom';
+```
+
+# HERE -- p. 112!
 
 */
