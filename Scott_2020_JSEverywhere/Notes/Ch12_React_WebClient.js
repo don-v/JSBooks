@@ -196,6 +196,41 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 ```
 
-# HERE -- p. 112!
+Now we will create a function, named `App`, that will
+return the contents of our application. For now, this
+will simply be two lines of HTML contained within
+a 'div' element:
+
+```
+const App = () => {
+  return (
+    <div>
+    <h1>Hello Notedly!</h1>
+    <p>Welcome to the Notedly application</p>
+    </div>
+  );
+};
+```
+
+> WISDOM: What's with all the divs?: If one is just
+starting out with 'React', one may wonder about the
+tendency to surround components with 'div' tags. 
+'React' components must be contained within a parent
+element, which often is a 'div' tag,, but could also
+be any other appropriate HTML tag such as 'section',
+'header', or 'nav'. If a containing HTML tag feels
+extraneous, we can instead use `<React.Fragment>` or
+empty `<>` tags to contain the component in our JS 
+code!
+
+Finally, we instruct 'React' to render our application
+within the element with an ID of `root` by adding the
+following:
+
+# HERE -- p. 113!
+
+```
+ReactDom.render()
+```
 
 */
