@@ -249,6 +249,37 @@ const App = () => {
 ReactDOM.render(<App />, document.getElementById('root'));
 ```
 
-# HERE -- p. 113
+With this complete, let's take a look in our web browser. We
+start the local dev server with the following command:
+
+```
+npm run dev
+```
+
+in ther terminal application. Once the code is bundled, we
+visit `http://loclhost:1234` to view the page. 
+
+// ROUTING
+
+One of the defining features of the web is being able to link
+documents together. Similarly, for our app we'll want to be able
+to navigate between screens or pages. In an HtML rendered
+applicaiton, this would involve creating multple HTML documents. 
+Whenever a user navigates to a new document, the entire document
+will reload, even if there are shared aspects, such as a header
+or footer, on the two pages. 
+
+In JS applictions one can make use of client-side routing. In 
+manyways, this will be similar to HTML linking. A user will
+click a link, the URL will update, and they will navigate to a
+new screen.  The difference is that our application will only
+update the page with the content that has changed. The experience
+will be smooth and "app-like," meaning that there will not be 
+a visible refresh of the page. 
+
+In React, the most commonly used routing library is a React
+Router...
+
+# HERE p. 114!
 
 */
