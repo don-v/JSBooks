@@ -227,10 +227,28 @@ Finally, we instruct 'React' to render our application
 within the element with an ID of `root` by adding the
 following:
 
-# HERE -- p. 113!
+```
+ReactDom.render(<App />, document.getElementById('root'));
+```
+
+The full content of our '/src/App.js' file should now be:
 
 ```
-ReactDom.render()
+import React from 'react';
+import { ReactDOM } from 'react-dom';
+
+const App = () => {
+    return (
+      <div>
+        <h1>Hello Notedly!</h1>
+        <p>Welcome to the Notedly application</p>
+      </div>
+    );
+};
+
+ReactDOM.render(<App />, document.getElementById('root'));
 ```
+
+# HERE -- p. 113
 
 */
