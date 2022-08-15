@@ -278,8 +278,40 @@ will be smooth and "app-like," meaning that there will not be
 a visible refresh of the page. 
 
 In React, the most commonly used routing library is a React
-Router...
+Router. This library enables us to add routing capabilities to
+React web applications. To introduce routing to our application,
+let's first create a '/src/pages' directory and add the following
+files:
 
-# HERE p. 114!
+'/src/pages/index.js'
+'/src/pages/home.js'
+'/src/pages/mynotes.js'
+'/src/pages/favorites.js'
+
+Our '/src/pages/home.js', '/src/pages/mynotes.js', and 
+'/src/pages/favorites.js' files will be our individual page
+components. We can create each of them with some initial 
+content and an `effect` hook, which will update the document
+title when a user navigates to the page!
+
+in our '/src/pages/home.js', we populate the following:
+
+```
+import React from 'react';
+
+const Home = () => {
+  return (
+    <div>
+      <h1>Notedly</h1>
+      <p>This is the home page</p>
+    </div>
+  )
+}
+
+export default Home;
+```
+
+# HERE -- p. 115!
+
 
 */
