@@ -17,3 +17,9 @@
     <h1>Notedly</h1>
     <p>This is the home page</p>
 </div>
+
+<Router>
+    <Route exact path="/" component={Home} />
+    <Route path="/mynotes" component={MyNotes} />
+    <Route path="/favorites" component={Favorites}/>
+</Router>

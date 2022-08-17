@@ -360,8 +360,73 @@ export default Favorites;
 > WISDOM: 'useEffect' -- In the preceding examples we're using
 'React''s `useEffect` hook to set the title of the page. Effect
 hooks allow us to include side effects in our components, updating
-something that is not related to the component. 
+something that is not related to the component itself. If one is 
+interested, React's docs provides a deep dive into effect
+hooks:
+https://reactjs.org/docs/hooks-effect.html
 
-# HERE -- p. 116!
+Now, in '/src/pages/index.js', we'll import 'React Router' and
+the methods necessary for web browser routing with the
+'react-router-dom' package:
+
+```
+import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+```
+
+Next, we bring in the page components we just created!
+
+```
+import Home from './home';
+import MyNotes from './mynotes';
+import Favorites from './favorites';
+```
+
+Finally, we'll designate each of the page components that we created
+as routes with a specific URL. Note the use of `exact` for our "Home"
+route, which will ensure the home component is rendered only for the
+root URL.
+
+```
+const Pages = () => {
+  return (
+    <Router>
+      <Route exact path="/" component={Home} />
+      <Route path="/mynotes" component={MyNotes} />
+      <Route path="/favorites" component={Favorites}/>
+    </Router>
+  );
+};
+
+export default Pages;
+```
+
+the complete file now looks as follows:
+
+```
+// import React and routing dependencies
+import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+
+// import routes
+import Home from './home';
+import MyNotes from './mynotes';
+import Favorites from './favorites';
+
+// define routes
+const Pages = () => {
+    return (
+      <Router>
+        <Route exact path="/" component={Home} />
+        <Route path="/mynotes" component={MyNotes} />
+        <Route path="/favorites" component={Favorites}/>
+      </Router>
+    );
+  };
+  
+  export default Pages;
+```
+
+# HERE -- p. 117!
 
 */
