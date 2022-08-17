@@ -305,13 +305,63 @@ const Home = () => {
       <h1>Notedly</h1>
       <p>This is the home page</p>
     </div>
-  )
-}
+  );
+};
 
 export default Home;
 ```
 
-# HERE -- p. 115!
+now we will update our '/src/pages/mynotes.js' file:
 
+```
+import React, { useEffect } from 'react';
+
+const MyNotes = () => {
+  useEffect(() => {
+    // update the document title
+    document.title = 'My Notes - Notedly';
+  });
+
+    return (
+    <div>
+      <h1>Notedly</h1>
+      <p>These are my notes</p>
+    </div>
+  );
+
+};
+
+export default MyNotes;
+```
+
+In '/src/pages/favorites.js':
+
+```
+import React, { useEffect } from 'react';
+
+const Favorites = () => {
+  useEffect(() => {
+    // update the document title
+    document.title = 'Favorites - Notedly';
+  });
+
+    return (
+    <div>
+      <h1>Notedly</h1>
+      <p>These are my favorites</p>
+    </div>
+  );
+
+};
+
+export default Favorites;
+```
+
+> WISDOM: 'useEffect' -- In the preceding examples we're using
+'React''s `useEffect` hook to set the title of the page. Effect
+hooks allow us to include side effects in our components, updating
+something that is not related to the component. 
+
+# HERE -- p. 116!
 
 */

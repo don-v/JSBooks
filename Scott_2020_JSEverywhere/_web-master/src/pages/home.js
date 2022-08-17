@@ -6,7 +6,7 @@ const Home = () => {
       <h1>Notedly</h1>
       <p>This is the home page</p>
     </div>
-  )
-}
+  );
+};
 
 export default Home;
