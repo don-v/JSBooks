@@ -427,6 +427,25 @@ const Pages = () => {
   export default Pages;
 ```
 
-# HERE -- p. 117!
+Finallyl, we can update the '/src/App.js'file to use our routes
+by importing the routes and rendering the components
+
+```
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+// import routes
+import Pages from '/pages';
+
+const App = () => {
+  return (
+    <div>
+      <Pages />
+    </div>
+  );
+};
+
+ReactDOM.render(<App />, document.getElementByID('root'));
+```
 
 */
