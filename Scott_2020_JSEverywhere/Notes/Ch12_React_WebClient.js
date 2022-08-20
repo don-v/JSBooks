@@ -445,7 +445,45 @@ const App = () => {
   );
 };
 
-ReactDOM.render(<App />, document.getElementByID('root'));
+ReactDOM.render(<App />, document.getElementById('root'));
+```
+
+Now if one manually updates the URL in your web browser, one should
+be able to view each component. For example, type 
+`http://localhost:1234/favorites to render the 'favorites' pages.
+
+// LINKING
+
+We've created our pages, but we're missing the key component of linking
+them together. So let's add some links to the other pages from our home
+page. To do so, we'll use 'React Router's `Link` component.
+
+in '/src/pages/home.js' we update the code as follows:
+
+```
+import React from 'react';
+// import the `Link` component from react-router
+import { Link } from 'react-router-dom';
+
+const Home = () => {
+  return (
+    <div>
+      <h1>Notedly</h1>
+      <p>This is the home page</p>
+    /* adda list of links *
+      <ul>
+          <li>
+              <Link to="/mynotes">My Notes</Link>
+          </li>
+          <li>
+              <Link to="/favorites">Favorites</Link>
+          </li>
+      </ul>
+    </div>
+  );
+};
+
+export default Home;
 ```
 
 */
