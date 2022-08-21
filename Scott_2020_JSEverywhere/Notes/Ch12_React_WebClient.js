@@ -486,4 +486,29 @@ const Home = () => {
 export default Home;
 ```
 
+With this we're able to navigate our application. Clicking one of the
+links on the home page will navigate to the corresponding page 
+component. Core browser navigation functions, such as teh back
+and forward buttons, will continue to work as well!
+
+// UI COMPONENTS
+
+So far we've successfully created individual page components and 
+can navigate between them. As we build our our pages, they will have
+several shared user interface elements, such as a header and 
+sitewide navigation. Rewriting these each time they are used 
+wouldn't be very efficient (and would get quite annoying). Instead,
+we can write resusable interface components and import them into our
+interface wherever we need them. In fact, thinking of our UI as
+composed of tiny components is one of the core tenants of 'React',
+and was my breakthrough in grasping the framework.
+
+We'll start by creating header and navigation components for our
+application. First let's create a new directory within our _src_
+directory called _components_. within the '/src/components/' 
+directory, we'll create two new files called 'Header.js' and 
+'Navigation.js'.
+
+
+# HERE -- p. 118!
 */
