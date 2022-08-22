@@ -559,6 +559,33 @@ const Navigation = () => {
 export default Navigation;
 ```
 
-# HERE -- p. 119!
+In screenshots, one'll see that teach has also included emoji
+characters as navigation icons. If one would like to do the same,
+the accessible markup for including emjoi characters is as
+follows:
+
+```
+<span aria-hidden="true" role="img">
+    <!-- emoji character -->
+</span>
+```
+
+With out header and navigation components complete, we can now
+use them within our application. Let's update our 'src/pages/home.js'
+file to include the components. We will first import them and then
+include the component within our JSX markup:
+
+so in our '/src/pages/home.js' file:
+
+```
+import React from 'react';
+
+import Header from '../components/Header';
+import Navigation from '../components/Navigation';
+
+const Home = () => {
+  # HERE -- p. 120!
+};
+```
 
 */

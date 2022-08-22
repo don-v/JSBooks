@@ -6,13 +6,28 @@ const Navigation = () => {
     <nav>
       <ul>
           <li>
-              <Link to="/">Home</Link>
+              <Link to="/">
+                <span aria-hidden="true" role="img">
+                  🏠
+                </span>
+                Home
+              </Link>
           </li>
           <li>
-              <Link to="/mynotes">My Notes</Link>
+              <Link to="/mynotes">
+                <span aria-hidden="true" role="img">
+                  📓
+                </span>
+                My Notes
+              </Link>
           </li>
           <li>
-              <Link to="/favorites">Favorites</Link>
+              <Link to="/favorites">
+                <span aria-hidden="true" role="img">
+                  🌟
+                </span>  
+                Favorites
+              </Link>
           </li>
       </ul>
     </nav>
