@@ -507,8 +507,58 @@ We'll start by creating header and navigation components for our
 application. First let's create a new directory within our _src_
 directory called _components_. within the '/src/components/' 
 directory, we'll create two new files called 'Header.js' and 
-'Navigation.js'.
+'Navigation.js'. 'React' components must be capitalized, so we'll
+follow the common convention of capitalizing the filename as well.
 
+Let's begin by writing the header component in 
+'/src/components/Header.js'. To do so, we'll import our 'logo.svg'
+file and add the corresponding markup for our compoennt:
 
-# HERE -- p. 118!
+```
+import React from 'react';
+import logo from '../img/logo.svg';
+
+const Header = () => {
+  return (
+    <header>
+      <img src={logo} alt="Notedly Logo" height="40" />
+      <h1>Notedly</h1>
+    </header>
+  );
+};
+
+export default Header;
+```
+
+For our navigation component we'll import 'React Router''s
+`Link` functionality and mark up an unordered list of links.
+We input the following in '/src/components/Navigation.js':
+
+```
+import React from 'react';
+import { Link } from 'react-router-dom';
+
+const Navigation = () => {
+  return (
+    <nav>
+      <ul>
+          <li>
+              <Link to="/">Home</Link>
+          </li>
+          <li>
+              <Link to="/mynotes">My Notes</Link>
+          </li>
+          <li>
+              <Link to="/favorites">Favorites</Link>
+          </li>
+      </ul>
+    </nav>
+  );
+};
+
+export default Navigation;
+```
+
+# HERE -- p. 119!
+
 */
