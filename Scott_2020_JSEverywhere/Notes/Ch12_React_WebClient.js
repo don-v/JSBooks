@@ -584,8 +584,31 @@ import Header from '../components/Header';
 import Navigation from '../components/Navigation';
 
 const Home = () => {
-  # HERE -- p. 120!
+  return (
+    <div>
+      <Header />
+      <Navigation />
+      <p>This is the home page</p>
+    </div>
+  );
 };
+
+export default Home;
 ```
+
+Teach says this is everything we need to be able to create
+shareable components across our application. For more on 
+using components within a UI, teach recommends reading the
+'React' documentation page 'Thinking in React':
+https://reactjs.org/docs/thinking-in-react.html
+
+// CONCLUSION
+
+The web remains an unparalleled medium for distributing
+applicaionts. it couples universal acces with a developer's
+ability to deploy real-time updates. In this chapter we built
+out the foundation of our JS web application in React. In the
+next chapter we will add layout and style to the app, using
+'React' components and 'CSS-in-JS'!
 
 */
