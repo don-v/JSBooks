@@ -19,8 +19,38 @@ within a maintainable, component-based, code structure.
 Many, or in our case all, pages of an application will share a common
 layout. for example, all the pages of our application will have a header,
 a sidebar, and a content area (Figure 13-1). Rather than import the
-shared layout 
+shared layout elements within each page component, we can instead create a
+component specifically for our layout and wrap each of our page components
+within it.
 
-# HERE -- p.121!
+To create our component, we'll begin by creating a new file at 
+'/src/components/Layout.js'. Within this file we'll import our
+shared components and aly out our content. Our 'React' component
+function will receive a property of `children`, which will allow
+us to specify where child content will appear in the layout. We'll
+also make use of the empty `<React.Fragment>` JSX element to help
+avoid extraneous markup.
+
+Let's create our component in '/src/components/Layout.js'
+
+```
+import React from 'react';
+
+imort Header from './Header';
+import Navigation from '.Navigation';
+
+const Layout = ({ children }) => {
+    return (
+        <React.Fragment>
+            <Header />
+            <div className="wrapper">
+                <Navigation />
+                <main>{children}</main>    
+            </div>
+        </React.Fragment>
+    );
+};
+```
+
 
 */
