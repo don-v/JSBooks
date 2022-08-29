@@ -54,6 +54,46 @@ const Layout = ({ children }) => {
 export default Layout;
 ```
 
-# HERE -- p. 122!
+Now within our '/src/pages/index.js' file, we can wrap our
+page components within the newly created `Layout` component
+to apply the shared layout to each page:
+
+```
+// import React and routing dependencies
+import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+
+// import shared layout component
+import Layout from '../components/Layout';
+
+// import routes
+import Home from './home';
+import MyNotes from './mynotes';
+import Favorites from './favorites';
+
+// define routes
+const Pages = () => {
+    return (
+      <Router>
+      // Wrap out routes within Layout component  
+      <Layout>
+        <Route exact path="/" component={Home} />
+        <Route path="/mynotes" component={MyNotes} />
+        <Route path="/favorites" component={Favorites}/>
+      </Layout>  
+      </Router>
+    );
+  };
+  
+  export default Pages;
+```
+
+The final step is to remove any instance of `<Header>` or `<Navigation>`
+within our page components. For example, our '/src/pages/Home.js' file
+will now have hte following reduced code:
+
+```
+# HERE -- p. 123
+```
 
 */
