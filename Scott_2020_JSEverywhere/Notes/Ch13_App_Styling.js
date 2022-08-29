@@ -36,8 +36,8 @@ Let's create our component in '/src/components/Layout.js'
 ```
 import React from 'react';
 
-imort Header from './Header';
-import Navigation from '.Navigation';
+import Header from './Header';
+import Navigation from './Navigation';
 
 const Layout = ({ children }) => {
     return (
@@ -50,7 +50,10 @@ const Layout = ({ children }) => {
         </React.Fragment>
     );
 };
+
+export default Layout;
 ```
 
+# HERE -- p. 122!
 
 */
