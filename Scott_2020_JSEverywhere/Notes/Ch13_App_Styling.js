@@ -89,11 +89,96 @@ const Pages = () => {
 ```
 
 The final step is to remove any instance of `<Header>` or `<Navigation>`
-within our page components. For example, our '/src/pages/Home.js' file
+within our page components. For example, our '/src/pages/home.js' file
 will now have hte following reduced code:
 
 ```
-# HERE -- p. 123
+import React from 'react';
+
+const Home = () => {
+  return (
+    <div>
+      <p>This is the home page</p>
+    </div>
+  );
+};
+
+export default Home;
 ```
+
+the updated '/src/pages/mynotes.js' looks as 
+follows (removed the 'h1' tag with content 'Notedly'):
+
+```
+import React, { useEffect } from 'react';
+
+const MyNotes = () => {
+  useEffect(() => {
+    // update the document title
+    document.title = 'My Notes - Notedly';
+  });
+
+    return (
+    <div>
+      <p>These are my notes</p>
+    </div>
+  );
+
+};
+
+export default MyNotes;
+```
+
+the updated '/src/pages/favorites.js' looks as 
+follows (removed the 'h1' tag with content 'Notedly'):
+
+```
+import React, { useEffect } from 'react';
+
+const Favorites = () => {
+  useEffect(() => {
+    // update the document title
+    document.title = 'Favorites - Notedly';
+  });
+
+    return (
+    <div>
+      <p>These are my favorites</p>
+    </div>
+  );
+
+};
+
+export default Favorites;
+```
+
+With this complete, one can view the application in the
+browser. As one navigates between the routes, one'll see
+our header and navigation links appear on each page. For
+now, they are not styled and our page does not have a
+visual layout. Let's explore adding styles in the next 
+section!
+
+// CSS
+
+Cascading Style Sheets (CSS) are precisely named: they are
+a set of rules that sllow us to write styles for the web. The
+styles 'cascade,' meaning that the last or most specifically
+defined style will be rendered. For example:
+
+```
+p {
+  color: green
+}
+
+p {
+  color: red
+}
+```
+
+This CSS will render all paragraphs red, making the `color: green`
+rule obsolete. 
+
+# HERE -- p. 124!
 
 */
