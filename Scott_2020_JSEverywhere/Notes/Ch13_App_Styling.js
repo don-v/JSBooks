@@ -177,7 +177,40 @@ p {
 ```
 
 This CSS will render all paragraphs red, making the `color: green`
-rule obsolete. 
+rule obsolete. This is such a simple idea, but it has resulted in
+dozens of patterns and techniques to aid in avoiding its pitfalls.
+
+CSS structural techniques such as BEM (block element modifier),
+OOCSS (object-oriented CSS), and Atomic CSS use prescriptive class
+naming to help scope styles.  Preprocessors such as SASS (syntactically
+awesome stylesheets) and 'Less' (leaner stylesheets) provide tooling 
+simplifies the CSS syntax and enables modular files. Though these 
+each have their merits, CSS-in-JavaScript provides a compelling use
+case for developing 'React' or other 'JavaScript'-driven
+applications.
+
+> sidebar: WHAT ABOUT CSS FRAMEWORKS? -- CSS and UI frameworks are a 
+popular option for developing an application, with good reason. They
+present a solid style baseline and reduce the amount of code that a
+developer needs to write by providing styles and functionality for 
+common application patterns. The tradeoffs are that applications using
+these frameworks may become visually similar and can increase the file
+bundle size.  That tradeoff may be worthwhile to you, however. Some
+of teach's personal favorite UI frameworks for working with 'React'
+are:
+'Ant Design': https://ant.design/
+
+'Bootstrap': https://getbootstrap.com/
+
+'Grommet': https://v2.grommet.io/
+
+'Rebass': https://rebassjs.org/
+
+// CSS-in-JSS
+
+When teach first encountered CSS-in-JS, teach's initial reaction was
+horror! Teach spent the formative years of his web dev career in the 
+web standards era. 
 
 # HERE -- p. 124!
 
