@@ -210,8 +210,53 @@ are:
 
 When teach first encountered CSS-in-JS, teach's initial reaction was
 horror! Teach spent the formative years of his web dev career in the 
-web standards era. 
+web standards era. I continue to advocate for accessibility and 
+sensible progressive enhancement for web development. "Separation of
+concerns" has been a core tenant of my web practices for over a 
+decade. so, if you're like me and simply reading "CSS-in-JS" makes you
+feel dirty, your'e not alone. However, I was quickly won over once I 
+gave it a proper (and judgment-free) try. CSS-in-JS makes it easy to 
+think of our user-interfaces as a series of components, something that
+teach had been trying to do with a combination of structure techniques
+and CSS preprocessors for years.
 
-# HERE -- p. 124!
+In this book we'll be using Styled Components...:
+https://styled-components.com/
+...as our CSS-in-JS library. It is fast, flexible, under active 
+development, and the most popular CSS-in-JS library. It's also used by
+companies such as Airbnb, Reddit, Patreon, Lego, BBC News, Altassian, 
+and many more.
+
+the Styled Components library works by allowing us to define the
+styles of an element using JavaScript's tempalte literal syntax. We
+create a JS variable that will refer to an HTML element and its
+associated styles. Since that sounds fairly abstract, let's take a 
+look at a simple example:
+
+```
+import React from 'react';
+import styled from 'styled-components';
+
+const AlertParagraph = styled.p`
+  color: green;
+`;
+
+const ErrorParagraph = styled.p`
+  color: red;
+`;
+
+const Example = () => {
+  return (
+    <div>
+      <AlertParagrph>This is green.</AlertParagrph>
+      <ErrorParagraph>This is red.</ErrorParagraph>
+    </div>
+  );
+};
+
+export default Example;
+```
+
+# HERE -- p. 125!
 
 */
