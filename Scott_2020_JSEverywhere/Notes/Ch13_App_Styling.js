@@ -257,6 +257,55 @@ const Example = () => {
 export default Example;
 ```
 
-# HERE -- p. 125!
+As one can see, we can easily scope styles. Additionally, we
+are scoping our style to that specific component. This helps
+us to avoid class name collisions across different parts of 
+our application.
+
+// Creating a Button Component
+
+Now that we have a basic understanding of styled components,
+let's integrate them into our application. To being with, 
+we'll write some styles for a 'button' element, which will 
+allow us to reuse the component throughout our application. In
+the previous example, we integrated our styles alongside
+our 'React/JSX' code, but we can also write standalone styled
+components. To begin, create a new file at 
+'src/components/Button.js', import the `styled` library from
+`styled-components`, and set up the exportable component as a 
+template literal like so:
+
+With the component in place, we can fill it in with some styles.
+Add some baseline button styles as well as hover and active state
+styles as follows:
+
+```
+import styled from 'styled-components';
+
+const Button = styled.button`
+    display: block;
+    padding: 10px;
+    border: none;
+    broder-radius: 5px;
+    font-size: 18px;
+    color: #fff;
+    background-color: #0077cc;
+    cursor: pointer;
+
+    :hover {
+        opacity: 0.8;
+    }
+
+    :active {
+        background-color: #005fa3;
+    }
+`;
+
+export default Button;
+```
+
+Now we can useo your button throughout our application.
+
+# HERE -- p. 126!
 
 */
