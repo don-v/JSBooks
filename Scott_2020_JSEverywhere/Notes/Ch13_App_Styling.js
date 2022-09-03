@@ -306,6 +306,45 @@ export default Button;
 
 Now we can useo your button throughout our application.
 
-# HERE -- p. 126!
+Now we can use our button throughout our application. For
+example, to us it on the application's home page, we could 
+import the component and use the 'Button' tag anywhere we
+would otherwise use 'button'.
+
+We can update our '/src/pages/home.js' as follows:
+
+```
+import React from 'react';
+
+import Button from '../components/Button';
+
+const Home = () => {
+  return (
+    <div>
+      <p>This is the home page</p>
+      <Button>Click me!</Button>
+    </div>
+  );
+};
+
+export default Home;
+```
+
+With this, we've written a styled component that we
+can use anywhere in our application. This is great for 
+maintainability, as we can easily find our styles and 
+change them across our codebase. Additionally, we can 
+couple styled components with markup, allowing us to
+create small, resusable, and maintainable components. 
+
+// ADDING GLOBAL STYLES
+
+Though many of our styles will be contained within individual 
+components, every site or application also has a set of
+global styles (things like CSS resets, fonts, and baseline
+colors) We can create a `GlobalStyle.js` component to house
+these styles.
+
+# HERE -- p. 127!
 
 */
