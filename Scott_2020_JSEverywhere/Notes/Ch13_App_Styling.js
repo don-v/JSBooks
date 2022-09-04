@@ -345,6 +345,65 @@ global styles (things like CSS resets, fonts, and baseline
 colors) We can create a `GlobalStyle.js` component to house
 these styles.
 
-# HERE -- p. 127!
+This will look a bit different from our previous example,
+as we'll be creating a stylesheet rather than styles attached
+to a specific HTML element. To accomplish this, we'll import
+the `createGlobalStyle` module from `styled-components`. 
+We'll also import the `normalize.css` library...:
+https://necolas.github.io/normalize.css/
+
+... to ensure consistent rendering of HTML elements across
+browsers. Finally, we'll add some global rules for the HTML
+body of our application and default link styles.
+
+In '/src/components/GlobalStyle.js':
+
+```
+// import createGlobalStyle and normalize
+import { createGlobalStyle } from 'style-components';
+import normalize from 'normalize.css';
+
+// we can write our CSS as a JS template literal
+export default createGlobalStyle`
+    ${normalize}
+
+    *, *:before, *:after {
+        box-sizing: border-box;
+    }
+
+    body,
+    html {
+        height: 100%;
+        margin: 0;
+    }
+
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+            Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+        background-color: #fff;
+        line-height: 1.4;
+    }
+
+    a:link,
+    a:visited {
+        color: #0077cc;
+    }
+
+    a:hover,
+    a:focus {
+        color: #004499;
+    }
+
+    code,
+    pre {
+        max-width: 100%;
+    }
+`;
+```
+
+To apply these styles, we'll import them into our 'App.js' file and add
+a 'GlobalStyle' tag or our application:
+
+# HERE -- p. 128!
 
 */
