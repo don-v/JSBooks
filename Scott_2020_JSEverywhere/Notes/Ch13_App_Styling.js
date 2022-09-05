@@ -404,6 +404,34 @@ export default createGlobalStyle`
 To apply these styles, we'll import them into our 'App.js' file and add
 a 'GlobalStyle' tag or our application:
 
-# HERE -- p. 128!
+```
+// index.js
+// This is the main entry point of our application
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+// import global styles
+import GlobalStyle from '/components/GlobalStyle';
+
+// import routes
+import Pages from '/pages';
+
+const App = () => {
+  return (
+    <div>
+      <GlobalStyle/>
+      <Pages />
+    </div>
+  );
+};
+
+ReactDOM.render(<App />, document.getElementById('root'));
+```
+
+With this, our global styles will be applied to the application. When
+one previews the app in the browser, one'll see that the typeface
+has changed, the links have new style, and the margins have been
+removed!
+
 
 */
