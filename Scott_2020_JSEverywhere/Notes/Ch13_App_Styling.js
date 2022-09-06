@@ -433,5 +433,80 @@ one previews the app in the browser, one'll see that the typeface
 has changed, the links have new style, and the margins have been
 removed!
 
+// COMPONENT STYLES
+
+Now that we've applied global styles to our application, we can begin
+styling the individual components. In doing this, we'll also introduce
+the overall layout of our application. For each component we style, 
+we'll first import the `styled` library from `styled-components`. We'll
+then define some element styles a variables. Lastly, we'll use those
+elements within the JSX of our React component.
+
+> WISDOM: 'Styled Component Naming': To avoid collisions with HTMl
+elements, it's mandatory to capitalize the names of our styled 
+components.
+
+We can begin in '/src/components/Layout.js', where we'll add style to the
+structural 'div' and 'main' tags of our application's layout!
+
+```
+import React from 'react';
+// bring in `styled-components` library
+import styled from 'styled-components';
+
+import Header from './Header';
+import Navigation from './Navigation';
+
+// component styles
+
+const Wrapper = styled.div`
+    // We can apply media query styles within the styled component 
+    // This will only apply the layout for screens above 700 px wide 
+    @media (min-width: 700px) {
+      display: flex;
+      top: 64px;
+      position: relative;
+      height: calc(100% - 64px);
+      width: 100%;
+      flex: auto;
+      flex-direction: column;
+  }
+`;
+
+const Main = styled.main`
+  position: fixed;
+  height: calc(100% - 185px);
+  width: 100%;
+  padding: 1em;
+  overflow-y: scroll;
+  // Again apply media query style to screens above 700px 
+  @media (min-width: 700px) {
+      flex: 1;
+      margin-left: 220px;
+      height: calc(100% - 64px);
+      width: calc(100% - 220px);
+  }
+`;
+
+const Layout = ({ children }) => {
+  return (
+      <React.Fragment>
+          <Header />
+          <Wrapper>
+              <Navigation />
+              <Main>{children}</Main>    
+          </Wrapper>
+      </React.Fragment>
+  );
+};
+
+export default Layout;
+```
+
+
+With our '/src/components/Layout.js' complete, we can add some styles to
+our 'Header.js' and 'Navigation.js' files:
+
+# HERE -- p. 130!
 
 */
