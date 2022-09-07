@@ -507,6 +507,127 @@ export default Layout;
 With our '/src/components/Layout.js' complete, we can add some styles to
 our 'Header.js' and 'Navigation.js' files:
 
-# HERE -- p. 130!
+In our '/src/components/Header.js' file:
+
+```
+import React from 'react';
+import styled from 'styled-components';
+import logo from '../img/logo.svg';
+
+const HeaderBar = styled.header`
+  width: 100%;
+  padding: 0.5em 1em;
+  display: flex;
+  height: 64px;
+  position: fixed;
+  align-items: center;
+  background-color: #fff;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.25);
+  z-index: 1;
+`;
+
+const LogoText = styled.h1`
+  margin: 0;
+  padding: 0;
+  display: inline;
+`;
+
+const Header = () => {
+  return (
+    <HeaderBar>
+      <img src={logo} alt="Notedly Logo" height="40" />
+      <LogoText>Notedly</LogoText>
+    </HeaderBar>
+  );
+};
+
+export default Header;
+```
+
+Finally, in our '/src/components/Navigation.js' file:
+
+```
+import React from 'react';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+
+const Nav = styled.nav`
+  padding: 1em;
+  background: #f5f4f0;
+
+  @media (max-width: 700px) {
+    padding-top: 64px;
+  }
+
+  @media (min-width: 700px) {
+    position: fixed;
+    width: 220px;
+    height: calc(100% - 64px);
+    overflow-y: scroll;
+  }
+`;
+
+const NavList = styled.ul`
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  line-height: 2;
+
+  // We can next styles in styled-components
+  // The following styles will applyl to links within the NavList component
+  a {
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1em;
+    color: #333;
+  }
+
+  a:visited {
+    color: #333;
+  }
+
+  a:hover,
+  a:focus {
+    color: #0077cc;
+  }
+`;
+
+const Navigation = () => {
+  return (
+    <Nav>
+      <NavList>
+          <li>
+              <Link to="/">
+                <span aria-hidden="true" role="img">
+                  🏠
+                </span>
+                Home
+              </Link>
+          </li>
+          <li>
+              <Link to="/mynotes">
+                <span aria-hidden="true" role="img">
+                  📓
+                </span>
+                My Notes
+              </Link>
+          </li>
+          <li>
+              <Link to="/favorites">
+                <span aria-hidden="true" role="img">
+                  🌟
+                </span>  
+                Favorites
+              </Link>
+          </li>
+      </NavList>
+    </Nav>
+  );
+};
+
+export default Navigation;
+```
+
+# HERE -- p. 131!
 
 */
