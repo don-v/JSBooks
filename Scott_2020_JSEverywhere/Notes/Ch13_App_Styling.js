@@ -627,7 +627,15 @@ const Navigation = () => {
 
 export default Navigation;
 ```
+// CONCLUSION
 
-# HERE -- p. 131!
+In this chapter, teach introduced layout and style to the 
+application! Using the 'CSS-in-JS' library, 'Styled Components'
+allowed use to write concise and properly scoped CSS styles.
+
+These styles can then be applied to individual components
+or globally across our application. In the next chapter, we'll
+work toward a fully featured application by implementing our 
+GraphQL client and aking calls to our API!
 
 */
