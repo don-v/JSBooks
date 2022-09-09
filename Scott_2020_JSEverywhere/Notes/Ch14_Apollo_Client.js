@@ -19,6 +19,17 @@ API. Once connected, we'll write a GraphQL query, which will be
 used to display data on a page. We'll also introduce pagination, 
 both within the API query and in our interface components!
 
-# HERE -- p. 136!
+> WISDOM: Running the API locally -- The devlopment of our web
+client application will require access to a local instance of our
+API. If you've been following along with the book, one may already
+have the Notedly API and its database up and running on machine!
+
+If not, teach has added instructions to Appendix A on how to get
+a copy of the API up and running along with some sample data.
+If one already has the API running, but would like some additional
+data to work with, run execute `npm run seed` from the root of
+the API project directory!
+
+# HERE p. 136!
 
 */
