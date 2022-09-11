@@ -30,8 +30,10 @@ If one already has the API running, but would like some additional
 data to work with, run execute `npm run seed` from the root of
 the API project directory!
 
-# HERE -- copied seed to src folder from final; adjust
-package.json; update DB_HOST uri, set content without 
+# Finished 09/11/2022 -- copied seed to src folder from final; 
+adjust package.json; update DB_HOST uri, set content without 
 accessing url for lorem ipsum 
+
+# HERE -- updated bcrypt - bcryptjs; test npm run seed next!
 
 */
