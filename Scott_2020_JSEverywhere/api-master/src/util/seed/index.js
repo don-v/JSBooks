@@ -9,7 +9,7 @@ require('dotenv').config();
 // const DB_HOST = process.env.DB_HOST;
 
 const fs = require('fs');
-const { user, pw } = JSON.parse(fs.readFileSync('.\\..\\..\\..\\to_ignore.txt'));
+const { user, pw } = JSON.parse(fs.readFileSync('to_ignore.txt'));
 const mongo_url = `mongodb+srv://${user}:${pw}@notes-graphql.6z3u3.mongodb.net/notedly?retryWrites=true&w=majority`;
 const DB_HOST = mongo_url;
 

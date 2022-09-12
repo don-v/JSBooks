@@ -3,7 +3,7 @@
 
 const faker = require('faker');
 const mongoose = require('mongoose');
-const fetch = require('node-fetch');
+// const fetch = require('node-fetch');
 
 const seedNotes = async users => {
   console.log('Seeding notes...');
