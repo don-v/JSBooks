@@ -36,6 +36,37 @@ accessing url for lorem ipsum
 
 # HERE -- updated bcrypt - bcryptjs; test npm run seed next!
 
+checked the seed, it worked!
+
+// SETTING UP APOLLO CLIENT
+
+Much like Apollo Server, Apollo Client offers a number of helpful 
+features to simplify working with GraphQL within JS UI applications.
+Apollo Client provides libraries for connecting a web client to an
+an API, local caching, GraphQL syntax, local state management, and 
+more. We'll also be using Apollo Client with a 'React' application,
+but Apollo also offers libraries for Vue, Angular, Meteor, Ember,
+and Web Components
+
+First, we'll want to ensure that our '.env' file contains a reference
+to our local API URI. This will allow us to use our local API instance
+in development, while pointing to our product API when we release our
+applicaiton to a public web server. in our '.env' file, we should have 
+`API_URI` variable with our local API server's address. 
+
+```
+API_URI=http://localhost:4000/api
+```
+
+Our code bundler, Parcel, is configured to automatically work with
+'.env' files. Any time we want to reference and '.env' variable
+in our code, we can use `process.env.VARIABLE_NAME`. This will allow
+us to use unique values in lcoal development, production, and any other
+environment that we may need (such as staging or continuous 
+integration).
+
+# HERE -- p. 136! 
+
 
 
 */
