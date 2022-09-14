@@ -65,8 +65,48 @@ us to use unique values in lcoal development, production, and any other
 environment that we may need (such as staging or continuous 
 integration).
 
-# HERE -- p. 136! 
+With the address stored in an environment variable, we are ready to
+connect our web client to our API server. Working in our '/src/App.js'
+file, first we need to import the Apollo packages that we'll be using:
 
+```
+// import Apollo Client libraries
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
+```
 
+With these imported, we can configure a new Apllo Client instance, passing
+it the API URI, initiating the cache, and enabling the use of the local 
+Apollo developer tools:
+
+```
+// configure our API URI & cache
+const uri = process.env.API_URI;
+const cache = new InMemoryCache();
+
+// configure Apollo Client
+const client = new ApolloClient({
+    uri,
+    cache,
+    connectToDevTools: true
+});
+```
+
+Finally, we can connect our 'React' appliction to our
+Apollo Client by wrapping it in an `ApolloProvider`. 
+We'll replace our empty 'div' tags with `<ApolloProvider>`
+and include our client as a connection:
+
+```
+const App = () => {
+    return (
+        <ApolloProvider client={client}>
+            <GlobalStyle />
+            <Pages />
+        </Apolloprovider>
+    );
+};
+```
+
+# HERE -- p. 137, update '/src/App.js' with above!
 
 */
