@@ -107,6 +107,65 @@ const App = () => {
 };
 ```
 
-# HERE -- p. 137, update '/src/App.js' with above!
+afte we update our '/src/App.js' file, it should read as 
+follows:
+
+```
+// index.js
+// This is the main entry point of our application
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+// import Apollo Client libraries
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client'; 
+
+// import global styles
+import GlobalStyle from '/components/GlobalStyle';
+// import routes
+import Pages from '/pages';
+
+// configure our API URI & cache
+const uri = process.env.API_URI;
+const cache = new InMemoryCache();
+
+// configure Apollo Client
+const client = new ApolloClient({
+  uri,
+  cache,
+  connectToDevTools: true  
+});
+
+const App = () => {
+  return (
+    <ApolloProvider client={client}>
+      <GlobalStyle/>
+      <Pages />
+    </ApolloProvider>
+  );
+};
+
+ReactDOM.render(<App />, document.getElementById('root'));
+```
+
+With our client connected to our API server, we can now integrate
+GraphQL queries and mutations into our application.
+
+// QUERYING AN API
+
+When we query an API, we are requesting data. In a UI client, we
+want to be able to query that data and display it to the user. Apollo
+enables us to compose queries to fetch data. We can then update React
+components to display the data to the end user. 
+
+We can explore the use of queries by writing a `noteFeed` query, which
+will return a feed of the latest notes to the user and display it on
+the application's home page.
+
+When teach is first writing a query, he finds the following process
+useful:
+
+1. 
+
+# HERE -- p. 138!
 
 */
