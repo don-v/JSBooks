@@ -164,8 +164,45 @@ the application's home page.
 When teach is first writing a query, he finds the following process
 useful:
 
-1. 
+1. Consider what data the query needs to return.
+2. Write the query in the GraphQL Playground.
+3. Integrate the query into the client application.
 
-# HERE -- p. 138!
+Let's follow this process in drafting our query. If you followed along 
+in the API portion of the book, you may recall that the `noteFeed` query
+returns a list of 10 notes along with a `cursor`, which indicates the
+position of the last note returned, and has `NextPage` boolean, which
+allows us to determine if there are additional notesto load.  We can view
+our schema within the GraphQL Playground, allowing us to see all of the
+data options avilable. For the query, we'll most likely require the 
+following informaiton:
+
+```
+{
+  cursor
+  hasNextPage
+  notes {
+    id
+    createdAt
+    content
+    favoriteCount
+    author {
+      id
+      username
+      avatar
+    }
+  }
+}
+```
+
+Now, in our GraphQL Playground we can flesh this out into a GraphQL
+query. We'll be writing this a bit more verbosely than the queries 
+from a server chapter, by naming the query and providing an optional
+variable named `cursor`. To use the GraphQL Playground, first ensure
+that the API server is running, and then visit 
+'http://localhost:4000/api'. In the GraphQL Playground, add the 
+following query:
+
+# HERE -- p. 139!
 
 */
