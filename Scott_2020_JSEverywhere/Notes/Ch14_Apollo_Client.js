@@ -203,6 +203,161 @@ that the API server is running, and then visit
 'http://localhost:4000/api'. In the GraphQL Playground, add the 
 following query:
 
-# HERE -- p. 139!
+```
+query noteFeed($cursor: String) {
+  noteFeed(cursor: $cursor) {
+    cursor
+    hasNextPage
+    notes {
+      id
+      createdAt
+      content
+      favoriteCount
+      author {
+        username
+        id
+        avatar
+      }
+    }
+  }
+}
+```
 
+In the GraphQL Playground, also add a "query variable" to test out
+the use of the variable:
+```
+{
+  "cursor": ""
+}
+```
+
+which returns the following output:
+
+```
+{
+  "data": {
+    "noteFeed": {
+      "cursor": "631f5520c3c3e73c749bcc57",
+      "hasNextPage": true,
+      "notes": [
+        {
+          "id": "631f5520c3c3e73c749bcc60",
+          "createdAt": "2022-09-12T15:49:52.939Z",
+          "content": "Non error nemo minus omnis iure. Magni placeat distinctio porro ut quasi sunt dolor et possimus. Officia aut aut quis sequi laudantium sit ut inventore ipsam.",
+          "favoriteCount": 0,
+          "author": {
+            "username": "Sabina.Macejkovic",
+            "id": "631f5520c3c3e73c749bcc41",
+            "avatar": "https://www.gravatar.com/avatar/8203f1eeac90b384f0a4a8ffafa8dd18.jpg?d=identicon"
+          }
+        },
+        {
+          "id": "631f5520c3c3e73c749bcc5f",
+          "createdAt": "2022-09-12T15:49:52.939Z",
+          "content": "Quia deleniti velit nostrum recusandae enim rerum. Aliquid porro modi voluptatum et qui. Aut voluptas dolor accusantium doloribus qui deserunt voluptate quia. Possimus exercitationem assumenda nulla dolorem.",
+          "favoriteCount": 0,
+          "author": {
+            "username": "Adolf98",
+            "id": "631f5520c3c3e73c749bcc46",
+            "avatar": "https://www.gravatar.com/avatar/8ac2fd7461d929c87607f0820480d4ba.jpg?d=identicon"
+          }
+        },
+        {
+          "id": "631f5520c3c3e73c749bcc5e",
+          "createdAt": "2022-09-12T15:49:52.939Z",
+          "content": "Voluptate non consequuntur. Nihil corporis qui aut numquam. Provident eos vitae. Voluptas esse animi. Veniam quia modi quis sunt consequatur quos architecto.",
+          "favoriteCount": 0,
+          "author": {
+            "username": "Brittany.Nicolas",
+            "id": "631f5520c3c3e73c749bcc40",
+            "avatar": "https://www.gravatar.com/avatar/d04c1d335eb466917cddfbb9f14dd0c5.jpg?d=identicon"
+          }
+        },
+        {
+          "id": "631f5520c3c3e73c749bcc5d",
+          "createdAt": "2022-09-12T15:49:52.939Z",
+          "content": "Voluptas corrupti esse sit est nam molestiae recusandae culpa. Exercitationem nam hic corrupti ipsa. Et ea et illum molestiae voluptatem iste aliquam.",
+          "favoriteCount": 0,
+          "author": {
+            "username": "Bert56",
+            "id": "631f5520c3c3e73c749bcc3e",
+            "avatar": "https://www.gravatar.com/avatar/c2abbc98cbcbe8311280e65ce423b674.jpg?d=identicon"
+          }
+        },
+        {
+          "id": "631f5520c3c3e73c749bcc5c",
+          "createdAt": "2022-09-12T15:49:52.939Z",
+          "content": "Consectetur autem ut omnis illo rerum autem. Officia voluptatibus suscipit iure dolores non minus optio et id. Dolor perspiciatis amet ea. Autem iusto eum voluptatem nisi. Minima tenetur minima modi sunt.",
+          "favoriteCount": 0,
+          "author": {
+            "username": "Buster_Flatley37",
+            "id": "631f5520c3c3e73c749bcc42",
+            "avatar": "https://www.gravatar.com/avatar/b0cb01d0a98cbfc219d3684578191dae.jpg?d=identicon"
+          }
+        },
+        {
+          "id": "631f5520c3c3e73c749bcc5b",
+          "createdAt": "2022-09-12T15:49:52.939Z",
+          "content": "Est libero sit est aut alias sint ut praesentium qui. Assumenda est reiciendis unde est vero aut aliquid molestias. Dicta nobis quia qui id est. Id sint qui voluptatibus tempore.",
+          "favoriteCount": 0,
+          "author": {
+            "username": "Buster_Flatley37",
+            "id": "631f5520c3c3e73c749bcc42",
+            "avatar": "https://www.gravatar.com/avatar/b0cb01d0a98cbfc219d3684578191dae.jpg?d=identicon"
+          }
+        },
+        {
+          "id": "631f5520c3c3e73c749bcc5a",
+          "createdAt": "2022-09-12T15:49:52.939Z",
+          "content": "Beatae necessitatibus quo ut debitis molestiae velit natus. Tempora eveniet doloremque quos in labore et. Rerum eius assumenda sint ullam aliquam non odit corrupti eaque. Similique nihil voluptatem. Ex laudantium dolore molestiae mollitia autem assumenda.",
+          "favoriteCount": 0,
+          "author": {
+            "username": "Adolf98",
+            "id": "631f5520c3c3e73c749bcc46",
+            "avatar": "https://www.gravatar.com/avatar/8ac2fd7461d929c87607f0820480d4ba.jpg?d=identicon"
+          }
+        },
+        {
+          "id": "631f5520c3c3e73c749bcc59",
+          "createdAt": "2022-09-12T15:49:52.939Z",
+          "content": "Et neque ducimus. Quaerat sed temporibus quam. Dolore vel molestiae corrupti qui et sed perspiciatis distinctio eos. Quis aut iusto et molestiae consequatur odit vel officia et. Et similique voluptatem.",
+          "favoriteCount": 0,
+          "author": {
+            "username": "Lesly57",
+            "id": "631f5520c3c3e73c749bcc3f",
+            "avatar": "https://www.gravatar.com/avatar/22067513c09d87c3df7839078d5feb5d.jpg?d=identicon"
+          }
+        },
+        {
+          "id": "631f5520c3c3e73c749bcc58",
+          "createdAt": "2022-09-12T15:49:52.939Z",
+          "content": "Consectetur temporibus ut placeat deleniti facilis ut fugiat voluptatum. Enim occaecati eos non qui porro. Illum odio vel ullam id vero nisi velit sit.",
+          "favoriteCount": 0,
+          "author": {
+            "username": "Elinore55",
+            "id": "631f5520c3c3e73c749bcc44",
+            "avatar": "https://www.gravatar.com/avatar/7e763dc11af5f30da443b4d958e89d89.jpg?d=identicon"
+          }
+        },
+        {
+          "id": "631f5520c3c3e73c749bcc57",
+          "createdAt": "2022-09-12T15:49:52.939Z",
+          "content": "Molestiae labore eveniet sint similique cum veniam repudiandae. Rerum in incidunt et rerum. Modi aut voluptas in maiores beatae facere mollitia repudiandae. Consequatur in est qui animi doloribus iste similique.",
+          "favoriteCount": 0,
+          "author": {
+            "username": "Buster_Flatley37",
+            "id": "631f5520c3c3e73c749bcc42",
+            "avatar": "https://www.gravatar.com/avatar/b0cb01d0a98cbfc219d3684578191dae.jpg?d=identicon"
+          }
+        }
+      ]
+    }
+  }
+}
+```
+
+Now that we knwo that our query is properly written, we can confidently
+integrate it into our web application...
+
+# HERE -- p. 140!
 */
