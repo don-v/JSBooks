@@ -357,7 +357,63 @@ which returns the following output:
 ```
 
 Now that we knwo that our query is properly written, we can confidently
-integrate it into our web application...
+integrate it into our web application. in the '/src/pages/home.js' file, 
+import the `useQuery` library as well as the GraphQL syntax via the `gql`
+library from `@apollo/client`:
 
-# HERE -- p. 140!
+``
+// import the required libraries
+import { useQuery, gql } from '@apollo/client';
+
+// our GraphQL query, stored as a variable
+const GET_NOTES = gql`
+  query NoteFeed($cursor: String) {
+    noteFeed(cursor: $cursor) {
+      cursor
+      hasNextPage
+      notes {
+        id
+        createdAt
+        content
+        favoriteCount
+        author {
+          username
+          id
+          avatar
+        }
+      }
+    }
+  }
+`;
+```
+
+Now we can integrate the query into our 'React' application. To
+do this, we'll pass our GraphQL query string to Apollo's `useQuery`
+'React' hook. Our hook will return an object containing one of the
+following values:
+
+`data`
+  The data returned by the query, if successful.
+
+`loading`
+  the loading state, which is set to `true` when the data is being
+  fetched. This allows us to display a loading indicator to our users.
+
+`error`
+  If our data fails to fetch, an error is returned to the application.
+
+We can update our `Home` component to include our query:
+
+const Home = () => {
+  // query hook
+  const { data, loading, error, fetchMore } = useQuery(GET_NOTES);
+
+  // if the data is loading, display a loading message
+  if (loading) return <p>Loading...</p>;
+
+  // if there is an error fetching the data, display an `error message`:
+
+# HERE -- p. 141!
+
+};
 */
