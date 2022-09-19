@@ -356,12 +356,12 @@ which returns the following output:
 }
 ```
 
-Now that we knwo that our query is properly written, we can confidently
+Now that we know that our query is properly written, we can confidently
 integrate it into our web application. in the '/src/pages/home.js' file, 
 import the `useQuery` library as well as the GraphQL syntax via the `gql`
 library from `@apollo/client`:
 
-``
+```
 // import the required libraries
 import { useQuery, gql } from '@apollo/client';
 
@@ -404,6 +404,7 @@ following values:
 
 We can update our `Home` component to include our query:
 
+```
 const Home = () => {
   // query hook
   const { data, loading, error, fetchMore } = useQuery(GET_NOTES);
@@ -412,8 +413,24 @@ const Home = () => {
   if (loading) return <p>Loading...</p>;
 
   // if there is an error fetching the data, display an `error message`:
+  if (error) return <p>Error!</p>;
 
-# HERE -- p. 141!
-
+  // if the data is successful, display the data in our UI:
+  return (
+    <div>
+      {console.log(data)}
+      The data loaded!
+    </div>
+  );
 };
+```
+
+
+If one has done everything correctly, one should see a "The data loaded!" 
+message on the home page of our application (Figure 14-2). We've also 
+included a `console.log` statement, which will print our data to the 
+borrower console. Taking a look at the structure of data results can be 
+a helpful guidepost whne integrating data into our application!
+
+# HERE -- p. 141 -- test tomorrow!
 */
