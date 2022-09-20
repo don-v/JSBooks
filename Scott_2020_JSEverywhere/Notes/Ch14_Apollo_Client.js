@@ -432,5 +432,5 @@ included a `console.log` statement, which will print our data to the
 borrower console. Taking a look at the structure of data results can be 
 a helpful guidepost whne integrating data into our application!
 
-# HERE -- p. 141 -- test tomorrow!
+# HERE -- p. 142; it worked!
 */
