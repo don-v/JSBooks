@@ -432,5 +432,70 @@ included a `console.log` statement, which will print our data to the
 borrower console. Taking a look at the structure of data results can be 
 a helpful guidepost whne integrating data into our application!
 
-# HERE -- p. 142; it worked!
+Now, let's integrate the data we receive into the application. To do this,
+we will `map` over the array of notes returned whithin our `data` object.
+'React' requires that each result be assigned a unique key, for which we'll
+use the individual note's ID. To begin, we'll display the username of the
+author for each note:
+
+```
+import React from 'react';
+
+import Button from '../components/Button';
+
+// import the required libraries
+import { useQuery, gql } from '@apollo/client';
+
+// our GraphQL query, stored as a variable
+const GET_NOTES = gql`
+  query NoteFeed($cursor: String) {
+    noteFeed(cursor: $cursor) {
+      cursor
+      hasNextPage
+      notes {
+        id
+        createdAt
+        content
+        favoriteCount
+        author {
+          username
+          id
+          avatar
+        }
+      }
+    }
+  }
+`;
+
+const Home = () => {
+  // query hook
+  const { data, loading, error, fetchMore } = useQuery(GET_NOTES);
+
+  // if the data is loading, display a loading message
+  if (loading) return <p>Loading...</p>;
+
+  // if there is an error fetching the data, display an `error message`:
+  if (error) return <p>Error!</p>;
+
+  // if the data is successful, display the data in our UI:
+  return (
+    <div>
+      {data.noteFeed.notes.map(note => (
+        <div key={note.id}>{note.author.username}</div>
+      ))}
+      <p>This is the home page</p>
+      <Button>Click me!</Button>
+    </div>
+  );
+};
+
+
+export default Home;
+```
+
+> TECHNICAL: 'Using JS' `map` method': If one hasn't wokred with JS
+`map` method before...
+
+# HERE  -- p. 142!
+
 */
