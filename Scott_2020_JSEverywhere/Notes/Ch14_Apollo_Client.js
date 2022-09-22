@@ -494,8 +494,47 @@ export default Home;
 ```
 
 > TECHNICAL: 'Using JS' `map` method': If one hasn't wokred with JS
-`map` method before...
+`map` method before the syntax can be a bit intimidating at first. The
+`map` method allows one to perform an action for items within an array.
+This can be incredibly useful when one is working with data returned 
+from an API, allowing you to perform actions such as displaying each
+item in a certain way within the template. To learn more about `map`,
+teach recommends reading the MDN web docs guide:
 
-# HERE  -- p. 142!
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map
+
+Now that we have successfully mapped over our data, we can write the rest
+of our component. Since our notes are written in Markdown, let's import a
+library that will allow us to render Markdown to the page:
+
+in our '/src/pages/homes.js' we can update it as follows:
+
+```
+import ReactMarkdown from 'react-markdown';
+```
+
+Now we can upate our UI to include the author's avatar, the author's username,
+the date the note was created, the number of favorites that a note has, and
+finally the content of the note itself. In '/src/pages/homes.js':
+
+```
+// if the data is successful, display the data in our UI
+return (
+  <div>
+    {data.noteFeed.notes.map(note => (
+      <article key={note.id}>
+      <img
+        src={note.author.avatar}
+        alt={`${note.author.username} avatar`}
+        height="50px"
+      />{' '}
+      
+      # HERE -- p. 143!
+
+    ))}
+  </div>
+);
+```
+
 
 */
