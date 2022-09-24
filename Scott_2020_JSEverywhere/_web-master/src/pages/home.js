@@ -5,6 +5,8 @@ import Button from '../components/Button';
 // import the required libraries
 import { useQuery, gql } from '@apollo/client';
 
+import ReactMarkdown from 'react-markdown';
+
 // our GraphQL query, stored as a variable
 const GET_NOTES = gql`
   query NoteFeed($cursor: String) {
@@ -40,7 +42,15 @@ const Home = () => {
   return (
     <div>
       {data.noteFeed.notes.map(note => (
-        <div key={note.id}>{note.author.username}</div>
+        <article key={note.id}>
+        <img
+          src={note.author.avatar}
+          alt={`${note.author.username} avatar`}
+          height="50px"
+        />{' '}
+        {note.author.username} {note.createdAt} {note.favoriteCount}{' '}
+        <ReactMarkdown source={note.content} />
+        </article>
       ))}
       <p>This is the home page</p>
       <Button>Click me!</Button>

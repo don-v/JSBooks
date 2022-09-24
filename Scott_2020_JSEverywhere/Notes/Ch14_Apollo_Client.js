@@ -528,13 +528,18 @@ return (
         alt={`${note.author.username} avatar`}
         height="50px"
       />{' '}
-      
-      # HERE -- p. 143!
-
+      {note.author.username} {note.createdAt} {note.favoriteCount}{' '}
+      <ReactMarkdown source={note.content} />
+      </article>
     ))}
   </div>
 );
 ```
 
+> WISDOM: Whitespace in 'React' -- 'React' strips the whitespace between
+elements on new lines. Using `{' '}` in our markup is a way of manually
+adding whitespace.
+
+# HERE -- p. 144!
 
 */
