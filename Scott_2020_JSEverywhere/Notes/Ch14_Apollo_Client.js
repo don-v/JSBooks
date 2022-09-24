@@ -540,6 +540,36 @@ return (
 elements on new lines. Using `{' '}` in our markup is a way of manually
 adding whitespace.
 
-# HERE -- p. 144!
+You should now see a complete list of notes in your browser. Before we 
+move on to styling them, however, there is an opportunity for a small 
+refactor. This is our first page displaying notes, but we know that we
+will be making several more. On other pages we will need to display
+individuals notes, as well as feeds of other note types (such as "my
+notes" and "favorites"). Let's go ahead and create two new components:
+'/src/components/Note.js' and '/src/components/NoteFeed.js'
+
+In '/src/components/Note.js', we'll include the markup for an individual
+note. To accomplish this, we'll pass each of our component functions a
+property containing the appropriate content.
+
+```
+import React from 'react';
+import ReactMarkdown from 'react-markdown';
+
+const Note = ({ note }) => {
+  return (
+    <article>
+      <img
+      src={note.author.avatar}
+      alt="{note.author.username} avatar"
+      alt={`${note.author.username} avatar`}
+      height="50px"
+
+      # HERE -- p. 144!
+
+      />{' '}
+  );
+};
+```
 
 */
