@@ -562,14 +562,39 @@ const Note = ({ note }) => {
       <img
       src={note.author.avatar}
       alt="{note.author.username} avatar"
-      alt={`${note.author.username} avatar`}
+      // alt={`${note.author.username} avatar`}
       height="50px"
-
-      # HERE -- p. 144!
-
       />{' '}
+      {note.author.username} {note.createdAt} {note.favoriteCount}{' '}
+      <ReactMarkdown source={note.content} />
+    </article>
   );
 };
+
+export default Note;
 ```
+
+now for hte 'src/components/NoteFeed.js':
+
+```
+import React from "react";
+import Note from "./Note";
+
+const NoteFeed = ({ notes }) => {
+    return (
+        <div>
+            {notes.map(note => (
+                <div key={note.id}>
+                    <Note note={note} />
+                </div>
+            ))}
+        </div>
+    );
+};
+
+export default NoteFeed;
+```
+
+# HERE -- p. 145!
 
 */
