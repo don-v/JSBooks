@@ -1,3 +1,8 @@
+// import the format utility from `date-fns`
+import { format } from 'date-fns';
+
+// update the date markup
+
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 
