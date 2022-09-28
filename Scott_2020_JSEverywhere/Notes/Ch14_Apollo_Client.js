@@ -723,10 +723,12 @@ use the `date-fns` library,:
 
 http://date-fns.org
 
-which provides small components for working iwth dates in JS. In
+which provides small components for working with dates in JS. In
 '/src/components/Note.js', import the library and update the date
 markups to apply the conversion as follows:
 
-# HERE -- p. 146!
+```
+// HERE! p. 146
+```
 
 */
