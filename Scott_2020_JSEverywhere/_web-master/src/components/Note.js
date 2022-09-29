@@ -2,7 +2,7 @@
 import { format } from 'date-fns';
 
 // update the date markup to format it as Month, Day, and Year
-{format(note.createdAt, 'MMM Do YYYY')} Favorites: {' '}
+// {format(note.createdAt, 'MMM Do YYYY')} Favorites: {' '}
 
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
@@ -23,20 +23,38 @@ const MetaData = styled.div`
   }
 `;
 
-// HERE! p. 146
+// add some space between the avatar and meta info
+const MetaInfo = styled.div`
+  padding-right: 1em;
+`;
+
+// align 'UserActions' to the right on larger screens
+const UserActions = styled.div`
+  margin-left: auto;
+`;
 
 const Note = ({ note }) => {
   return (
-    <article>
-      <img
-      src={note.author.avatar}
-      alt="{note.author.username} avatar"
-      // alt={`${note.author.username} avatar`}
-      height="50px"
-      />{' '}
-      {note.author.username} {note.createdAt} {note.favoriteCount}{' '}
+    <StyledNote>
+      <MetaData>
+        <MetaInfo>
+          <img
+          src={note.author.avatar}
+          alt="{note.author.username} avatar"
+          // alt={`${note.author.username} avatar`}
+          height="50px"
+          />  
+        </MetaInfo>
+        <MetaInfo> 
+          <em>by</em>{note.author.username} <br />  
+          {format(note.createdAt, 'MMM Do YYYY')}
+        </MetaInfo>
+        <UserActions>
+        <em>Favorites:</em> {note.favoriteCount}
+        </UserActions>  
+      </MetaData>
       <ReactMarkdown source={note.content} />
-    </article>
+    </StyledNote>
   );
 };
 
