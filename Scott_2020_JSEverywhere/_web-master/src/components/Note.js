@@ -1,5 +1,5 @@
 // import the format utility from `date-fns`
-import { format } from 'date-fns';
+// import { format } from 'date-fns';
 
 // update the date markup to format it as Month, Day, and Year
 // {format(note.createdAt, 'MMM Do YYYY')} Favorites: {' '}
@@ -46,7 +46,7 @@ const Note = ({ note }) => {
           />  
         </MetaInfo>
         <MetaInfo> 
-          <em>by</em>{note.author.username} <br />  
+          <em>by</em> {note.author.username} <br />  
           {format(note.createdAt, 'MMM Do YYYY')}
         </MetaInfo>
         <UserActions>
