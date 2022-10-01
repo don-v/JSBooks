@@ -831,6 +831,29 @@ let's test it out! ok it worked!!
 
 // DYNAMIC QUERIES
 
+Currently, our application consists of three routes, each of
+which is static. These routes are located at a static URL and
+will always make the same data request. However, applications
+commonly need dynamic routes and queries based upon those 
+routes. As an example, every twee on Twitter.com is assigned
+a unique URL at at `twitter.com/<username>/status/<tweet_id>`
+This allows users to link and share individual tweets both
+within the Twitter ecosystem as well as anywhere on the web.
+
+Currently, in our application notes can only be accessed
+within a feed, but we want to allow users to view and link
+to individual notes. To acccomplish this we'll set up dynamic
+routing in our 'React' application as well as an individual
+note GraphQL query. Our goal is for users to be able to access
+routes at /note/<note_id>
+
+To begin, we'll create a new page component at 
+'src/pages/note.js'. We will pass our `props` (property) to
+the component, which includes the `match` property via
+'React' Router. This property contains information about how
+the route path matches the URL. This will give us access to
+the URL parameters through `match.params`.
+
 # HERE -- p. 148!
 
 */
