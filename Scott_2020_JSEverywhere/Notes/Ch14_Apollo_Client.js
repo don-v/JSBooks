@@ -854,6 +854,29 @@ the component, which includes the `match` property via
 the route path matches the URL. This will give us access to
 the URL parameters through `match.params`.
 
-# HERE -- p. 148!
+```
+import React from 'react';
+
+const NotePate = props => {
+  return (
+    <div>
+      <p>ID: {props.match.params.id}</p>
+    </div>
+  );
+};
+
+export default NotePage;
+```
+
+Now we can add a corresponding route to our 'src/pages/index.js'
+file. This route will include an 'ID' paremter indicated with `:id`:
+
+```
+// import React and routing dependencies
+import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+
+// HERE -- p. 148!
+```
 
 */
