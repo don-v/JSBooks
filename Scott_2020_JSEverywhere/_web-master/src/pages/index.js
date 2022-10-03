@@ -9,19 +9,20 @@ import Layout from '../components/Layout';
 import Home from './home';
 import MyNotes from './mynotes';
 import Favorites from './favorites';
+import NotePage from './note';
 
 // define routes
 const Pages = () => {
-    return (
-      <Router>
-      {/* Wrap out routes within Layout component */}
+  return (
+    <Router>
       <Layout>
-        <Route exact path="/" component={Home} />
-        <Route path="/mynotes" component={MyNotes} />
-        <Route path="/favorites" component={Favorites}/>
-      </Layout>  
-      </Router>
-    );
-  };
-  
-  export default Pages;
+          <Route exact path="/" component={Home} />
+          <Route path="/mynotes" component={MyNotes} />
+          <Route path="/favorites" component={Favorites} />
+          <Route path="/note/:id" component={NotePage} />
+      </Layout>
+    </Router>
+  );
+};
+
+export default Pages;

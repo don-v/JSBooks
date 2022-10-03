@@ -876,7 +876,36 @@ file. This route will include an 'ID' paremter indicated with `:id`:
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-// HERE -- p. 148!
+// import shared layout component
+import Layout from '../components/Layout';
+
+// import routes
+import Home from './home';
+import MyNotes from './mynotes';
+import Favorites from './favorites';
+import NotePage from './note';
+
+// define routes
+const Pages = () => {
+  return (
+    <Router>
+      <Layout>
+          <Route exact path="/" component={Home} />
+          <Route path="/mynotes" component={MyNotes} />
+          <Route path="/favorites" component={Favorites} />
+          <Route path="/note/:id" component={NotePage} />
+      </Layout>
+    </Router>
+  );
+};
+
+export default Pages;
 ```
+
+Now, visiting `http://localhost:1234/note/123 will print `ID: 123` 
+to our page. To test it out, replace the `id` parameter with
+anything of your choosing...
+
+# HERE -- p. 149!
 
 */
