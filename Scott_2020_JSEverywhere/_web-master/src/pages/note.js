@@ -1,6 +1,6 @@
 import React from 'react';
 
-const NotePate = props => {
+const NotePage = props => {
   return (
     <div>
       <p>ID: {props.match.params.id}</p>

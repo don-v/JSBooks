@@ -904,8 +904,46 @@ export default Pages;
 
 Now, visiting `http://localhost:1234/note/123 will print `ID: 123` 
 to our page. To test it out, replace the `id` parameter with
-anything of your choosing...
+anything of your choosing, such as `/note/pizza` or 
+`/note/GONNAPARTYLIKE1999`. This is pretty cool, but not very useful.
 
-# HERE -- p. 149!
+so tested this functionality and it worked!
+
+Let's update our '/src/pages/note.js' component ot make 'GraphQL' 
+for the note with the 'id' found in the URL. To do this, we'll use 
+the note query from our API as well as our 'Note' 'React' component.
+
+```
+import React from 'react';
+// import GraphQL dependencies
+import { useQuery, gql } from '@apollo/client';
+
+// import the Note component
+import Note from '../components/Note';
+
+// the note query, which accepts an ID variable
+const GET_NOTE = gql`
+  query note($id: ID!) {
+    note(id: $id) {
+      id
+      createdAt
+      content
+      favoriteCount
+      author {
+        username
+        id
+        avatar
+      }
+    }
+  }
+`;
+
+const NotePage = props => {
+  // store the id found in the url a a variable
+
+  # HERE -- p. 149!
+
+}
+```
 
 */
