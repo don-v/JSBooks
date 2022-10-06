@@ -959,8 +959,28 @@ export default NotePage;
 ```
 
 Now navigating to a URL with an id parameter will render either
-the corresponding note or an error message. 
+the corresponding note or an error message. Finally, let's update 
+our '/src/components/NoteFeed.js' component to displayl a link to 
+the individual note in the UI.
 
-# HERE  -- p. 150!
+// First, at the top of the file, import `{Link}` from 'React Router'
+import { Link } from 'react-router-dom';
+
+// Then update the JSX to include a link to the note page as follows:
+
+```
+    <NoteWrapper key={note.id}>
+      <Note note={note} />
+      <Link to={`note/${note.id}`}>Permalink</Link>
+    </NoteWrapper>
+```
+
+With this, we are using dynamic routes in our application and enabling
+users to view individual notes. 
+
+Test link!
+
+# HERE -- p. 150!
+
 
 */

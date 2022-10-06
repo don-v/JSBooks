@@ -1,5 +1,7 @@
 import React from "react";
 
+import { Link } from 'react-router-dom';
+
 import styled from "styled-components";
 
 const NoteWrapper = styled.div`
@@ -18,7 +20,8 @@ const NoteFeed = ({ notes }) => {
             {notes.map(note => (
                 <NoteWrapper key={note.id}>
                     <Note note={note} />
-                </NoteWrapper>
+                    <Link to={`note/${note.id}`}>Permalink</Link>
+              </NoteWrapper>
             ))}
         </div>
     );
