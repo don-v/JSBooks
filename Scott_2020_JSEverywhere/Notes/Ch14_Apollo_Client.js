@@ -978,9 +978,27 @@ import { Link } from 'react-router-dom';
 With this, we are using dynamic routes in our application and enabling
 users to view individual notes. 
 
-Test link!
+tested and it worked! (10/07/2022)
 
-# HERE -- p. 150!
+// PAGINATION
+
+Currently, we are only retrieving 10 most recent notes within our application
+home page. If we want to display additional notes, we need to enable pagination.
+One may recall from the beginning of this chapter and the development of the
+API server that our API returns a `cursor`, which is the `ID` of the last note
+returned in a page of results. Additionally, the API returns the `hasNextPage`
+boolean, which is `true` if there are additional notes found in our database. 
+When making a request to our API, we can pass it a cursor argument, which will 
+return the next 10 items.
+
+In other words, if we have a list of 25 objects (with corresponding IDs of 1-25),
+when we make an initial request it will return items 1-10 as well as `cursor`
+value of 10 and a `hasNextPage` value of `true`. If we make a request, passing a
+`cursor` value of 10, we will receive items 11-20, with a cursor value of 20 and 
+a `hasNextPage` value of `true`. Finally, if we make a third request, passing it 
+a `cursor` value of 20, we will receive items 21-25.
+
+# HERE -- p. 150
 
 
 */
