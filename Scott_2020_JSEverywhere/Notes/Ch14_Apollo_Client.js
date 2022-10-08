@@ -996,9 +996,22 @@ when we make an initial request it will return items 1-10 as well as `cursor`
 value of 10 and a `hasNextPage` value of `true`. If we make a request, passing a
 `cursor` value of 10, we will receive items 11-20, with a cursor value of 20 and 
 a `hasNextPage` value of `true`. Finally, if we make a third request, passing it 
-a `cursor` value of 20, we will receive items 21-25.
+a `cursor` value of 20, we will receive items 21-25, with a `cursor` value of 25
+and a `hasNextPage` value of `false`. This is exactly the logic we'll be 
+implementing within our `noteFeed` query.
 
-# HERE -- p. 150
+To do this, we will upate our '/src/pages/home.js' file to make paginated 
+ueries. In our UI, when a user clicks a 'See More' button, the next 10 notes
+should load on the page. We'll want this to happen without any page refreshes.
+To do this we need to inlude the `fetchMore` argument within our query 
+component and display the `Button` component only when `hasNextPage` is true.
+For now we'll write this directly into our home page component, but it could 
+easily be isolated into its own component or become part of the `NoteFeed` 
+component. 
+
+# HERE -- p. 151!
+
+
 
 
 */
