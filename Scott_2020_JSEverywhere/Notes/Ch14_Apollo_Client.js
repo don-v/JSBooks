@@ -1009,8 +1009,31 @@ For now we'll write this directly into our home page component, but it could
 easily be isolated into its own component or become part of the `NoteFeed` 
 component. 
 
-# HERE -- p. 151!
+```
+// if the data is successful, display the data in our UI
+return (
+  // add a <React.Fragment> element to provide a parent elmeent
+  <React.Fragment>
+    <NoteFeed notes={data.noteFeed.notes} />
+    {/<asterisk> Only display the Load More button if hasNextPage is true <asterisk>/}
+    {data.noteFeed.hasNextPage && (
+      <Button>Load more</Button>
+    )}
+    </React.Fragment>
+);
+```
 
+> CONDITIONALS IN REACT: In the previous example we are conditionally displaying the
+"Load more" button using an inline `if` statment with the `&&` operator. If `hasNextPage`
+is true, the button is displayed. One can read more about conditional rendering in
+the official React docs:
+https://reactjs.org/docs/conditional-rendering.html
+
+Now we can update the `Button` component using an `onClick` handler.
+When a user clicks the button, we'll want to use the `fetchMore` method 
+to make an additional query and append the returned data to our page
+
+# HERE  -- p. 151!
 
 
 
