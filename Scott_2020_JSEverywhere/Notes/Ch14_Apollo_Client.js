@@ -1033,7 +1033,38 @@ Now we can update the `Button` component using an `onClick` handler.
 When a user clicks the button, we'll want to use the `fetchMore` method 
 to make an additional query and append the returned data to our page
 
-# HERE  -- p. 151!
+```
+{data.noteFeed.hasNextPage && (
+  // onClick perform a query, passing the current cursor as a variable
+  <Button
+    onClick={() =>
+      fetchMore({
+        variables: {
+          cursor: data.noteFeed.cursor
+        },
+        updateQuery: (previousResult, { fetchMoreResult }) => {
+          return {
+            noteFeed: {
+              cursor: fetchMoreResult.noteFeed.cursor,
+              hasNextPage: fetchMoreResult.noteFeed.hasNextPage,
+              // combine the new results and the old
+              notes: [
+                ...previousResult.noteFeed.notes,
+                ...fetchMoreResult.noteFeed.notes
+              ],
+              __typename: 'noteFeed'
+            }
+          };
+        }
+      })
+    }
+  >
+    Load more
+  </Button>
+)}
+```
+
+# HERE -- p. 152!
 
 
 
