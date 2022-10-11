@@ -1001,7 +1001,7 @@ and a `hasNextPage` value of `false`. This is exactly the logic we'll be
 implementing within our `noteFeed` query.
 
 To do this, we will upate our '/src/pages/home.js' file to make paginated 
-ueries. In our UI, when a user clicks a 'See More' button, the next 10 notes
+queries. In our UI, when a user clicks a 'See More' button, the next 10 notes
 should load on the page. We'll want this to happen without any page refreshes.
 To do this we need to inlude the `fetchMore` argument within our query 
 component and display the `Button` component only when `hasNextPage` is true.
@@ -1064,8 +1064,9 @@ to make an additional query and append the returned data to our page
 )}
 ```
 
+tested notefeed button, but still displaying, error
+in query, returning null for non-nullable! Note.author?
 # HERE -- p. 152!
-
 
 
 */
