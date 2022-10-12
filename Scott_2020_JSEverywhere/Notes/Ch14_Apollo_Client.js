@@ -1066,7 +1066,8 @@ to make an additional query and append the returned data to our page
 
 tested notefeed button, but still displaying, error
 in query, returning null for non-nullable! Note.author?
-# HERE -- p. 152!
+# HERE -- p. 152!, perhaps some notes were created prior to
+having registered a user!
 
 
 */
