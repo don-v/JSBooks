@@ -1069,5 +1069,35 @@ in query, returning null for non-nullable! Note.author?
 # HERE -- p. 152!, perhaps some notes were created prior to
 having registered a user!
 
+The previous code might look a little gnarly, so let's break it down.
+Our `Button` component include an `onClick` handler. When the button
+is clicked, a new query is executed using the `fetchMore` method,
+passing the `cursor` value returned in the previous query. Once 
+returned, `updateQuery` is executed, which updates our `cursor`
+and `hasNextPage` values and combines the results into a single array.
+The `__typename` is the name of the query, which is inlcuded in 
+Apollo's results.
+
+With this change, we are able to view all of the notes form our note
+feed. Try it out yourself by scrolling to the bottom of your note 
+feed. If yoru database contains more than 10 notes, the button will
+be visible. Clicking 'Load more' will add the next `noteFeed` result
+to the page.
+
+// CONCLUSION
+
+We've covered a lot of ground in this chapter. We've set up Apollo
+Client to work with our 'React' applicaton and integrated multiple
+GraphQL queries into our UI. The power of GraphQL is demonstrated
+in the ability to write single queries that return precisely the data
+that a UI requires. In the next chapter we'll integrate user 
+authentication into our application, allowing users to log in and 
+view their notes and favorites. 
+
+fetchMore method: 
+https://www.apollographql.com/docs/react/data/queries/
+
+# HERE -- p. 152!
+
 
 */
