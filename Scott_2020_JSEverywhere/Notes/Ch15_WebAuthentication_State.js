@@ -18,8 +18,42 @@ To get started with our application's client authentication, we can
 create a user sign-up 'React' component. Before doing so, let's map out
 how the component will work.
 
-first, a user will navigate to '/signup' route within our application.
+First, a user will navigate to '/signup' route within our application.
+On this page they will be presented with a form where they can enter
+their email address, desired username, and password. Submitting the 
+form will perform out API `signUp` mutation. If the mutation is
+successful, a new user account will be created and the API will return
+a JWT. If there is an error, we can inform the user. We'll be displaying
+a genetic error message, but we could update our API to return specific
+error messages, such as a pre-existing username or a duplicate email
+address. 
 
-# HERE -- p. 153!
+Le's get started by creating our new route. First, we'll create a new 
+'React' component at '/src/pages/signup.js':
+
+```
+import React, { userEffect } from 'react';
+
+// include the props passed to the component for later use
+const SignUp = props => {
+    useEffect(() => {
+        // update the document title
+        document.title = 'Sign up - Notedly';
+    });
+
+    return (
+        <div>
+            <p>Sign Up</p>
+        </div>
+    );
+};
+
+export default SignUp;
+```
+
+Now we'll update our route list in '/src/pages/index.js' to 
+include the `signup` route:
+
+# HERE -- p. 154!
 
 */
