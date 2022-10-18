@@ -163,6 +163,84 @@ In this case we are using the JSX `htmlFor` in place of HTML's
 `for` attribute to avoid any JS collisions. You can see a full,
 though short, list of these attributes in the React DOM Elements
 documentation:
+https://reactjs.org/docs/dom-elements.html
+
+Now we can add some style by importing our `Button` component and 
+styling the form as a styled component:
+
+```
+import React, { useEffect } from 'react';
+import styled from 'styled-components';
+
+import Button from '../components/Button';
+
+const Wrapper = styled.div`
+    border: 1px solid #f5f4f0;
+    max-width: 500px;
+    padding: 1em;
+    margin: 0 auto;
+`;
+
+const Form = styled.form`
+    label,
+    input {
+        display: block;
+        line-height: 2em;
+    }
+
+    input {
+        width: 100%,
+        margin-bottom: 1em;
+    }
+`;
+
+const SignUp = props => {
+    useEffect(() => {
+        // update the document title
+        document.title = 'Sign Up - Notedly';
+    });
+
+    return (
+        <div>
+            <form>
+                <label htmlFor="username">Username:</label>
+                <input 
+                    required
+                    type="text"
+                    id="username"
+                    name="username"
+                    placeholder="username"
+                />
+                <label htmlFor="email">Email:</label>
+                <input 
+                    required
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Email"
+                />
+                <label htmlFor="password">Password:</label>
+                <input 
+                    required
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Password"
+                />
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    );
+};
+
+export default SignUp;
+```
+
+# HERE -- update /src/pages/signup.js', p. 156!
+
+
+
+
 
 
 
