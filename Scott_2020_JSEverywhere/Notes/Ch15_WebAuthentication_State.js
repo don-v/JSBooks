@@ -314,10 +314,44 @@ ok, so we were able to style our form! it worked!
 // REACT FORMS AND STATE
 
 In an application, things change. Data is entered 
-into a form, a user toggles a slider
+into a form, a user toggles a slider open, a message is sent. In 
+'React', we can track these changes at the component level by 
+assigning _state_. In our form, we'll need to track the state of 
+each form element, so that it can be submitted. 
+
+> `ReactHooks`: In this book we're using functional components and
+'React''s new Hooks API. If you've used other learning resources 
+that make use of 'React''s `class` components, this may look a 
+little different. You can read more about Hooks in the 'React'
+documentation:
+https://reactjs.org/docs/hooks-intro.html
+
+To get started with state, we'll first update the 'React' import
+at the top of our '/src/pages/signup.js' file to include
+`useState`:
+
+```
+import React, { useEffect, useState } from 'react';
+```
+
+Next, within our `SignUp` component, we'll set the default form
+value state:
+
+```
+const SignUp = props => {
+    // set the default state of the form
+    const [values, setValues] = useState();
+
+    // rest of component goes here
+};
+```
+
+Now we'll update our components to change the state when a form
+field is entered and perform an operation when a user submits the
+form. First, we'll create an `onChange` function, which will update
+our components ... 
 
 # HERE -- p. 157!
-
 
 
 

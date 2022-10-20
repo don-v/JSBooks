@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import Button from '../components/Button';
@@ -26,6 +26,10 @@ const Form = styled.form`
 
 // include the props passed to the component for later use
 const SignUp = props => {
+    // set the default state of the form
+    const [values, setValues] = useState();
+
+    // rest of component goes here
     useEffect(() => {
         // update the document title
         document.title = 'Sign up - Notedly';
