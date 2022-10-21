@@ -349,11 +349,41 @@ const SignUp = props => {
 Now we'll update our components to change the state when a form
 field is entered and perform an operation when a user submits the
 form. First, we'll create an `onChange` function, which will update
-our components ... 
+our component's state whenever the form is updated. We'll also
+update the markup of each form element to all this function when a
+user makes a change, using the `onChange` property. Then we'll 
+update our `form` element to include an `onSubmit` handler. For
+now, we'll simply log our form data to the console.
 
-# HERE -- p. 157!
+In '/src/pages/signup.js':
 
+```
+const SignUp = () => {
+    // set the default state of the form
+    const [values, setValues] = useState();
 
+    // update the state when a user types in the form
+    const onChange = event => {
+        setValues({
+            ...values,
+            [event.target.name]: event.target.value
+        });
+        useEffect(() => {
+            // update the document title
+            document.title = 'Sign Up - Notedly';
+        });
+
+        return (
+            <Wrapper>
+                <h2>Sign Up</h2>
+                <Form
+                    onSubmit={event => {
+                        # HERE -- p. 158!
+                    }}
+        );
+    };
+}
+```
 
 
 
