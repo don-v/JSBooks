@@ -364,10 +364,11 @@ const SignUp = () => {
 
     // update the state when a user types in the form
     const onChange = event => {
-        setValues({
-            ...values,
-            [event.target.name]: event.target.value
-        });
+            setValues({
+                ...values,
+                [event.target.name]: event.target.value
+            });
+        };
         useEffect(() => {
             // update the document title
             document.title = 'Sign Up - Notedly';
@@ -378,14 +379,44 @@ const SignUp = () => {
                 <h2>Sign Up</h2>
                 <Form
                     onSubmit={event => {
-                        # HERE -- p. 158!
+                        event.preventDefault();
+                        console.log(values);
                     }}
+                    >
+                    <label htmlFor="username">Username:</label>
+                    <input
+                        required
+                        type="text"
+                        name="username"
+                        placeholder="username"
+                        onChange={onChange}
+                    />
+                    <label htmlFor="email">Email:</label>
+                    <input
+                        required
+                        type="email"
+                        name="email"
+                        placeholder="Email"
+                        onChange={onChange}
+                    />
+                    <label htmlFor="password">Password:</label>
+                    <input
+                        required
+                        type="password"
+                        name="password"
+                        placeholder="Password"
+                        onChange={onChange}
+                    />
+                    <Button type="submit">Submit</Button>
+                </Form>
+            </Wrapper>
         );
     };
 }
 ```
 
-
+# HERE -- p. 158 (need to update '/src/pages/signup.js' with 
+above!)
 
 
 
