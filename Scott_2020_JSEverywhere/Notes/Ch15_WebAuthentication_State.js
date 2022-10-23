@@ -412,12 +412,30 @@ const SignUp = () => {
             </Wrapper>
         );
     };
-}
 ```
 
-# HERE -- p. 158 (need to update '/src/pages/signup.js' with 
-above!)
+// `signUp` Mutation
 
+To sign up a user, we'll be using our API's `signUp` mutation.
+This mutation will accept an email, username, and password as
+variables and return a JWT if the signup is succesful. Let's
+write our mutation and integrate it into our signup form.
+
+First, we'll need to import our Apollo libraries. We'll be making
+use (using?) of the `useMutation`and `useApolloClient` hooks, 
+as well as the `gql` syntax, from Apollo Client. In 
+'/src/pages/signup.js(Signup?)', we add the following to the
+library import statements:
+
+```
+import { useMutation, useApolloClient } from '@apollo/client';
+```
+
+now we write the GraphQL mutation as follows:
+
+const SIGNUP_USER ... 
+
+# HERE -- p. 159!
 
 
 
