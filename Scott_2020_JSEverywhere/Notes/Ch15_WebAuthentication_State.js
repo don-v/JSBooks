@@ -433,11 +433,57 @@ import { useMutation, useApolloClient } from '@apollo/client';
 
 now we write the GraphQL mutation as follows:
 
-const SIGNUP_USER ... 
+const SIGNUP_USER  = gql`
+    mutation signUp($email: String!, $username: String!, $password: String!) {
+        signUp(email: $email, username: $username, password: $password)
+    }
+`;
 
-# HERE -- p. 159!
+With the mutation written, we can update our 'React' component markup to
+perform the mutation when a user submits the form, passing the form elements
+as variables. For now, we'll log our response (which, if successful, should be
+a JWT) to the console:
 
+```
+const SignUp = props => {
+    // useState, onChange, and useEffect all remain the same
 
+    // add the mutation hook
+    const [signUp, { loading, error }] = useMutation(SIGNUP_USER, {
+        onCompleted: data => {
+            // console.log the JSON Web Token when the mutation is complete
+            console.log(data.signUp)
+        }
+    });
+
+    // render our form
+    return (
+        <Wrapper>
+            <h2>Sign Up</h2>
+            // pass the form data to the mutation when a user submits the form 
+            <Form
+                onSubmit={event => {
+                    event.preventDefault();
+                    signUp({
+                        variables: {
+                            ...values
+                        }
+                    });
+                }}
+            >
+            // rest of the form remains unchagned ...
+            </Form>
+        </Wrapper>
+    );   
+};
+```
+
+Now if you complete and submit the form, you should see a JWT
+logged to your console (Figure 15-1). Additionally, if you perform
+a `users` query in the GraphQL Playground (http://localhost:4000/api),
+one'll see the new account (Figure 15-2)
+
+# HERE -- p. 160, need to update '/src/pages/signup.js'
 
 
 
