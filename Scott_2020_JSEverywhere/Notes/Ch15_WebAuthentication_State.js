@@ -483,9 +483,7 @@ logged to your console (Figure 15-1). Additionally, if you perform
 a `users` query in the GraphQL Playground (http://localhost:4000/api),
 one'll see the new account (Figure 15-2)
 
-# HERE -- p. 160, need to update '/src/pages/signup.js'
-
-
+# HERE -- rendered, now need to test functionality!, p. 160!
 
 
 */
