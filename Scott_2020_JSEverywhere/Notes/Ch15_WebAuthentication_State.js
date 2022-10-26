@@ -483,7 +483,32 @@ logged to your console (Figure 15-1). Additionally, if you perform
 a `users` query in the GraphQL Playground (http://localhost:4000/api),
 one'll see the new account (Figure 15-2)
 
-# HERE -- rendered, now need to test functionality!, p. 160!
+so added new user:
 
+{
+    username: 'world_lover',
+    email: 'world_lover@example.com',
+    password: 'password1234'    
+}
+
+returned the following to the console:
+
+```
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNTk1ZDQ3ODRjOTY2Mjk4NGRiZDg1OSIsImlhdCI6MTY2NjgwMDk2N30.tEf_8CeYg1j5U6nkNUfhlhdYEmy8dwDsN7qWkjFGcrI
+```
+
+With out mutation in place and returning the expected data, next we 
+want to store the response that we receive.
+
+// JSON WEB TOKENS AND LOCAL STORAGE
+
+When our `signUp` mutation is successful, it returns a JSON Web Token (JWT).
+One may recall from the API section that a `JWT`:
+https://jwt.io/
+
+allows us to securely store a user's ID on the user's device. To achieve
+this in our user's web vrowser, we'll 
+
+# HERE -- p. 161!
 
 */
