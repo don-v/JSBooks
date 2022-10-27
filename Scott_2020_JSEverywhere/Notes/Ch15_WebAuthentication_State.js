@@ -507,7 +507,32 @@ One may recall from the API section that a `JWT`:
 https://jwt.io/
 
 allows us to securely store a user's ID on the user's device. To achieve
-this in our user's web vrowser, we'll 
+this in our user's web browser, we'll store the token in the browser's
+`localStorage`. `localStorage` is a simple key-value store that persists 
+across browser sessions until the storage is upated or cleared. Let's 
+update our mutation to store the token in `localStorage`:
+
+In '/src/pages/signup.js', update the `useMutation` hook to store the 
+token in `localStorage` (see Figur 15-3):
+
+```
+const [signUp, { loading, error }] = useMutation(SIGNUP_USER, {
+    onCompleted: data => {
+        // store the JWT in localstorage
+        localStorage.setItem('token', data.signUp);
+    }
+});
+```
+
+> JWTs and Security -- When a token is stored in localStorage,
+any JS that can be run on the page has access to the token, making
+it susceptible to cross-site scripting (XSS) attacks. For this reason,
+when using `localStorage` to store token credientials, one needs to
+take extra care to limit (or avoid) CDN hosted scripts. If a 3rd-party
+script is compromised, it would have access to the JWT.
+
+with out JWT stored locally, we're prepared to use it in our
+GraphQL mutations and queries. 
 
 # HERE -- p. 161!
 
