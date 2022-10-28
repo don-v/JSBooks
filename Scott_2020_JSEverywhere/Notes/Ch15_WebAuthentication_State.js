@@ -534,6 +534,43 @@ script is compromised, it would have access to the JWT.
 with out JWT stored locally, we're prepared to use it in our
 GraphQL mutations and queries. 
 
-# HERE -- p. 161!
+// REDIRECTS
+
+Currently when a user completes the sign-up form, the form re-renders
+as an empty form. this doesn't lave the user with much of a visual cue
+that their account registration was successful. Instead, let's redirect
+the user to the home page of our application.  Another option would
+be to creat a "Success" page that thanks the user for registering and
+onboards them to the application.
+
+As you may recall from earlier in the chapter, we're passing the 
+properties into the component. We can redirect a route using 'React'
+Router's `history`, which will be available to us through 
+`props.history.push`. To implement this, we'll update our mutation's 
+`onCompleted` event to include a redirect like so:
+
+```
+const [signUp, { loading, error }] = userMutation(SIGNUP_UP, {
+    onCompleted: data => {
+        // store the token
+        localStorage.setItem('token', data.signUp);
+        // redirect the user to hte homepage
+        props.history.push('/');
+    }
+});
+```
+
+with this change, users will now be redirected to our application's home page 
+after registering for an account.
+
+// ATTACHING HEADERS TO REQUESTS
+
+Though we are storing our token in `localStorage`, our API does not yet
+have access to it. This means that even if a user has created an account,
+the API has no way of identifying the user. If one recalls from our API
+deployment, each API call receives a token in the header of the request.
+We'll modify...
+
+# HERE -- p. 162!
 
 */

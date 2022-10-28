@@ -55,6 +55,10 @@ const SignUp = () => {
             onCompleted: data => {
                 // console.log the JSON Web Token when the mutation is complete
                 console.log(data.signUp)
+                // store the JWT in localstorage
+                localStorage.setItem('token', data.signUp);
+                // redirect the user to hte homepage
+                props.history.push('/');
             }
         });
 
