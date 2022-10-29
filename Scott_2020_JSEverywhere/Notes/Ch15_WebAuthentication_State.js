@@ -569,8 +569,13 @@ Though we are storing our token in `localStorage`, our API does not yet
 have access to it. This means that even if a user has created an account,
 the API has no way of identifying the user. If one recalls from our API
 deployment, each API call receives a token in the header of the request.
-We'll modify...
+We'll modify our client to sent the JWT as a header with each request.
 
-# HERE -- p. 162!
+In '/src/App.js', we'll update our dependencies to include `createHttpLink`
+from Apollo Client as well as `setContext` from Apollo's Link Context
+package. We'll then update update Apollo's configuration to send the token
+in the header of each request:
+
+updating '/src/App.js' file -- p. 163!
 
 */
