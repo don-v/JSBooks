@@ -33,11 +33,11 @@ const authLink = setContext((_, { headers }) => {
   };
 });
 
-// configure Apollo Client
+// configure/create Apollo Client
 const client = new ApolloClient({
-  // HERE -- p. 163!
-  uri,
+  link: authLink.concat(httpLink),
   cache,
+  resolvers: {},
   connectToDevTools: true  
 });
 

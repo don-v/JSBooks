@@ -576,6 +576,86 @@ from Apollo Client as well as `setContext` from Apollo's Link Context
 package. We'll then update update Apollo's configuration to send the token
 in the header of each request:
 
-updating '/src/App.js' file -- p. 163!
+our updated '/src/App.js' will now look as this:
+
+```
+// index.js
+// This is the main entry point of our application
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+// import Apollo Client libraries
+import { 
+  ApolloClient, 
+  ApolloProvider, 
+  createHttpLink,
+  InMemoryCache 
+} from '@apollo/client'; 
+
+import { setContext } from 'apollo-link-context';
+
+// import global styles
+import GlobalStyle from '/components/GlobalStyle';
+// import routes
+import Pages from '/pages';
+
+// configure our API URI & cache
+const uri = process.env.API_URI;
+const httpLink = createHttpLink({ uri });
+const cache = new InMemoryCache();
+
+// check for a token and return the headers to the context
+const authLink = setContext((_, { headers }) => {
+  return {
+    headers: {
+      ...headers,
+      authorization: localStorage.getItem('token') || ''
+    }
+  };
+});
+
+// configure/create Apollo Client
+const client = new ApolloClient({
+  link: authLink.concat(httpLink),
+  cache,
+  resolvers: {},
+  connectToDevTools: true  
+});
+
+const App = () => {
+  return (
+    <ApolloProvider client={client}>
+      <GlobalStyle/>
+      <Pages />
+    </ApolloProvider>
+  );
+};
+
+ReactDOM.render(<App />, document.getElementById('root'));
+```
+
+With this change, we'll now be able to pass the information of
+the logged-in user to out API.
+
+// LOCAL STATE MANAGEMENT
+
+We've looked at managing state within a component, but what about
+across our applicaiton? There are times where it's useful to have
+some information shared among many components. We could pass `props`
+from a base component across our application, but as soon as we get 
+past a couple of levels of subcomponents, this can get messy. 
+Libraries such as Redux...:
+https://redux.js.org/
+...
+and MobX...:
+https://mobx.js.org/README.html
+...
+have sought to solve the challenges of state management and have
+proven useful for many developers and teams. In our case, we're
+arleady making use of the Apollo Client library, which includes
+the ability to use GraphQL queries for local state management. 
+
+# HERE -- p. 163!
+
 
 */
