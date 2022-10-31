@@ -654,8 +654,53 @@ have sought to solve the challenges of state management and have
 proven useful for many developers and teams. In our case, we're
 arleady making use of the Apollo Client library, which includes
 the ability to use GraphQL queries for local state management. 
+Rather than introducing another dependency, let's implement a
+local state property that will store whether the user is logged
+in.
 
-# HERE -- p. 163!
+The Apollo React library puts the `ApolloClient` instance within
+'React's context, but at times, we may need to access it directly.
+We can do so with the `useApolloClient` hook, which will allow us
+to perofrm actions such as directly updating or resetting the 
+cache store or writing local data.
+
+Currently, we have two ways to determine if a user is logged
+in to our application. First, we know they are a current user
+if they've successfully submitted the sign-up form. Second,
+we know that if a visistor accesses the site with a token
+stores in `localStorage`, then they are already logged in. Let's
+begin by adding to our state when a user completes the sign-up
+form. To achieve this, we'll write directly to our Apollo
+Client's local store, using `client.writeData` and the
+`useApolloClient` hook.
+
+In '/src/pages/signup.js', we first need to upate the 
+`apollo/cleint` library import to include `useApolloClient`:
+
+```
+import { useMutation, useApolloClient } from `@apollo/client`;
+```
+
+In '/src/pages.signup.js' we'll call the `useApolloClient`
+function and update the mutation to add to the local store,
+using `writeable`, when it is complete.
+
+```
+// Apollo Client
+const client =  useApolloClient();
+// Mutation Hook
+const [singUp, { loading, error }] = useMutation(SIGNUP_USER, {
+    onCompleted: data => {
+        // store the token
+        localStorage.setItem('token', data.signup);
+        // update the local cache
+        client.writeData({data: { isLoggedIn: true } });
+        // redirect the user to the `homepage`
+        props.history.push('/');
+        // # HERE -- p. 164!
+    }
+});
+```
 
 
 */
