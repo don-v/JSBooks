@@ -697,10 +697,22 @@ const [singUp, { loading, error }] = useMutation(SIGNUP_USER, {
         client.writeData({data: { isLoggedIn: true } });
         // redirect the user to the `homepage`
         props.history.push('/');
-        // # HERE -- p. 164!
     }
 });
 ```
+
+# HERE -- p. 164!
+
+```
+// check for a local token
+const data = {
+  isLoggedIn: !!localStorage.getItem('token')
+};
+
+// write the cache data on initial load
+cache.writeData({ data });
+```
+
 
 
 */
