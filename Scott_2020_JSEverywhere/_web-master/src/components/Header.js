@@ -2,6 +2,18 @@ import React from 'react';
 import styled from 'styled-components';
 import logo from '../img/logo.svg';
 
+// new dependencies
+import { useQuery, gql } from '@apollo/client';
+import { Link } from 'react-router-dom';
+
+// local query
+const IS_LOGGED_IN = gql`
+    {
+        isLoggedIn @client
+    }
+`;
+
+
 const HeaderBar = styled.header`
   width: 100%;
   padding: 0.5em 1em;

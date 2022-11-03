@@ -719,4 +719,32 @@ To demonstrate this, let's update the header of our application to
 display a "Sign Up" and "Sign In" link if `isLoggedIn` is `false`
 and a "Log Out" link `isLoggedIn` is `true`
 
+In '/src/components/Header.js', import the necessary dependencies and 
+write the query like so:
+
+```
+// new dependencies
+import { useQuery, gql } from '@apollo/client';
+import { Link } from 'react-router-dom';
+
+// local query
+const IS_LOGGED_IN = gql`
+    {
+        isLoggedIn @client
+    }
+`;
+```
+Now, within our React component we can include a simple
+query to retrieve the state along with a tertiary operator
+that displays options either to log out our sign in:
+
+```
+cont UserState = styled.div`
+    margin-left: auto;
+`;
+```
+
+# HERE -- p. 165!
+
+
 */
