@@ -713,6 +713,10 @@ const data = {
 cache.writeData({ data });
 ```
 
-
+Here comes the cool part: we can now access `isLoggedIn` as a GraphQL 
+query anywhere within out application by using the @client directive. 
+To demonstrate this, let's update the header of our application to 
+display a "Sign Up" and "Sign In" link if `isLoggedIn` is `false`
+and a "Log Out" link `isLoggedIn` is `true`
 
 */
