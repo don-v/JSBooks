@@ -701,8 +701,6 @@ const [singUp, { loading, error }] = useMutation(SIGNUP_USER, {
 });
 ```
 
-# HERE -- p. 164!
-
 ```
 // check for a local token
 const data = {
@@ -742,6 +740,19 @@ that displays options either to log out our sign in:
 cont UserState = styled.div`
     margin-left: auto;
 `;
+
+const Header = props => {
+    // query hook for user logged in state
+    const { data } = useQuery(IS_LOGGED_IN);
+
+    return (
+    <HeaderBar>
+      <img src={logo} alt="Notedly Logo" height="40" />
+      <LogoText>Notedly</LogoText>
+      // # HERE -- p. 165!
+    </HeaderBar>
+  );
+};
 ```
 
 # HERE -- p. 165!

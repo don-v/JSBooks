@@ -13,6 +13,9 @@ const IS_LOGGED_IN = gql`
     }
 `;
 
+const UserState = styled.div`
+    margin-left: auto;
+`;
 
 const HeaderBar = styled.header`
   width: 100%;
