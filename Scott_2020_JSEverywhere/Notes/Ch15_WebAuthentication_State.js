@@ -749,13 +749,34 @@ const Header = props => {
     <HeaderBar>
       <img src={logo} alt="Notedly Logo" height="40" />
       <LogoText>Notedly</LogoText>
-      // # HERE -- p. 165!
+    //   if logged in display a logout link, else display sign-in options
+        <UserState>
+            {data.isLoggedIn ? (
+                <p>Log Out</p>
+            ) : (
+                <p>
+                    <Link to={'/signin'}>Sign In</Link> or{' '}
+                    <Link to={'/signup'}>Sign Up</Link>
+                </p>
+            )}
+        </UserState>
     </HeaderBar>
   );
 };
 ```
 
-# HERE -- p. 165!
+With this, when a use is logged in they'll see a "Log Out"
+option: otherwise, they'll be presetned with options to sign up or
+in, all thanks to local state. We're not limited to simple boolean
+logic, either. Apollo enables us to write local resolvers and 
+type definitions, allowing us ot take advantage of eveything 
+GraphQL has to offer within our local state.
+
+// LOGGING OUT
+
+Currently once a user is signed in, they have no way 
+
+# HERE -- p. 166!
 
 
 */
