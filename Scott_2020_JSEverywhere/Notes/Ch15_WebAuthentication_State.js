@@ -774,9 +774,39 @@ GraphQL has to offer within our local state.
 
 // LOGGING OUT
 
-Currently once a user is signed in, they have no way 
+Currently once a user is signed in, they have no way to log out of 
+our application. Let's turn the "Log Out" language in our header 
+into a button that, when clicked, will log out the user. To do this,
+when the button is clicked we will remove the token that has been
+stored in `localStorage`. We'll use a `button` tag for its built-in
+accessibility, as it both serves as a semantic represenatation of 
+user action and receives focus, like a link, when a user is 
+navigating the application with their keyboard.
 
-# HERE -- p. 166!
+Before writing our code, let's write a styled component that will
+render a button like a link. Create a new file at 
+'/src/Components/ButtonAsLink.js' and add the following:
+
+```
+import styled from 'styled-components';
+
+const ButtonAsLink = styled.button`
+    background : none;
+    color: #0077cc;
+    border: none;
+    padding: 0;
+    font: inherit;
+    text-decoration: underline
+    cursor: pointer;
+
+    :hover,
+    :active {
+        color: #004499;
+    }
+`;  
+```
+
+
 
 
 */
