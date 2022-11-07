@@ -2,6 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import logo from '../img/logo.svg';
 
+// import both Link and withRouter from React Router
+import { Link, withRouter } from 'react-router-dom'
+// import the `ButtonAslink` component
+import ButtonAsLink from './ButtonAsLink';
+
 // new dependencies
 import { useQuery, gql } from '@apollo/client';
 import { Link } from 'react-router-dom';

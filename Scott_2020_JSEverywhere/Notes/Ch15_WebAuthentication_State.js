@@ -803,7 +803,31 @@ const ButtonAsLink = styled.button`
     :active {
         color: #004499;
     }
-`;  
+`;
+
+export default ButtonAsLink;
+```
+
+Now in '/src/components/Header.js', we can implement our logout
+funcitonality. We need to use 'React Router's `withRouter` 
+higher-order component to handle the redirect since our 'Header.js'
+file is a UI component and not a defined route. Let's begin by 
+importing the `ButtonAsLink` component as well as `withRouter`:
+
+```
+// import both Link and withRouter from React Router
+import { Link, withRouter } from 'react-router-dom'
+// import the `ButtonAslink` component
+import ButtonAsLink from './ButtonAsLink';
+```
+
+Now, within our JSX we'll update our component to include the 
+`props` parameter and update the logout markup to be a button:
+
+```
+const Header = props => {
+    // #HERE -- p. 166!
+}
 ```
 
 
