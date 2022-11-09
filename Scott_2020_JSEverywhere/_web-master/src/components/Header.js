@@ -7,8 +7,9 @@ import { Link, withRouter } from 'react-router-dom'
 // import the `ButtonAslink` component
 import ButtonAsLink from './ButtonAsLink';
 
-// new dependencies
-import { useQuery, gql } from '@apollo/client';
+  // query hook for user logged-in state,
+    // including the client for referencing the Apollo store
+    const { data, client } = userQuery(IS_LOGGED_IN);
 import { Link } from 'react-router-dom';
 
 // local query
@@ -41,8 +42,9 @@ const LogoText = styled.h1`
 `;
 
 const Header = props => {
-  // query hook for user logged in state
-  const { data } = useQuery(IS_LOGGED_IN);
+    // query hook for user logged-in state,
+    // including the client for referencing the Apollo store
+    const { data, client } = userQuery(IS_LOGGED_IN);
 
   return (
     <HeaderBar>
@@ -51,11 +53,13 @@ const Header = props => {
       {/* if logged in display a logout link, else display sign-in options */}
         <UserState>
             {data.isLoggedIn ? (
-                <p>Log Out</p>
+                <ButtonAsLink>
+                  Logout
+                </ButtonAsLink>
             ) : (
                 <p>
-                    <Link to={'/signin'}>Sign In</Link> or{' '}
-                    <Link to={'/signup'}>Sign Up</Link>
+                  <Link to={'/signin'}>Sign In</Link> or{' '}
+                  <Link to={'/signup'}>Sign Up</Link>
                 </p>
             )}
         </UserState>
@@ -63,4 +67,5 @@ const Header = props => {
   );
 };
 
-export default Header;
+// we wrap our component in the `withRouter` higher-order component:
+export default withRouter(Header);

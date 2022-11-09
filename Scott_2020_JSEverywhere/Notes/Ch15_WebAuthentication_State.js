@@ -832,22 +832,32 @@ const Header = props => {
 
     return (
         <HeaderBar>
-        <img src={logo} alt="Notedly Logo" height="40" />
-        LogoText<Notedly</LogoText>
-        // If logged in display a logout link, else displyay a sign-in options 
-        <UserState>
-            // {data.isLoggedIn ? (
-                <ButtonAsLink>
-                    Logout
-                </ButtonAsLink>
-        ) : (
-            // Here -- need to fix p.167!
-        )
-            )}
+            <img src={logo} alt="Notedly Logo" height="40" />
+            <LogoText>Notedly</LogoText>
+            // If logged in display a logout link, else display sign-in options
+            <UserState>
+                {data.isLoggedIn ? (
+                    <ButtonAsLink>
+                        Logout
+                    </ButtonAsLink>
+                ) : (
+                   <p>
+                    <Link to={'/signin'}>Sign In</Link> or{' '}
+                    <Link to={'/signup'}>Sign Up</Link>
+                   </p> 
+                )}
+            </UserState>
+        </HeaderBar>
     );
-}
+};
+
+// we wrap our component in the `withRouter` higher-order component:
+export default withRouter(Header);
 ```
 
+> `withRouter`: When we want to ...
+
+# HERE -- p. 167!
 
 
 
