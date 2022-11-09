@@ -826,7 +826,25 @@ Now, within our JSX we'll update our component to include the
 
 ```
 const Header = props => {
-    // #HERE -- p. 166!
+    // query hook for user logged-in state,
+    // including the client for referencing the Apollo store
+    const { data, client } = userQuery(IS_LOGGED_IN);
+
+    return (
+        <HeaderBar>
+        <img src={logo} alt="Notedly Logo" height="40" />
+        LogoText<Notedly</LogoText>
+        // If logged in display a logout link, else displyay a sign-in options 
+        <UserState>
+            // {data.isLoggedIn ? (
+                <ButtonAsLink>
+                    Logout
+                </ButtonAsLink>
+        ) : (
+            // Here -- need to fix p.167!
+        )
+            )}
+    );
 }
 ```
 
