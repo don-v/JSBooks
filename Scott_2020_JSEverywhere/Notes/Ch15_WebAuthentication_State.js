@@ -855,7 +855,51 @@ const Header = props => {
 export default withRouter(Header);
 ```
 
-> `withRouter`: When we want to ...
+> `withRouter`: When we want to include routing in a component that is
+not itself directly routable, we need to use React Router's `withRouter`
+higher-order component.
+
+When a user logs out of our applicaiton, we want to reset the cache store
+to prevent any unwanted data from appearing outside of the session. Apollo
+offers the ability to call the `resetStore` function, which will fully 
+clear the cache. Let's add an `onClick` handler to our component's button
+to remove the user's toekn, reset the Apollo Store, update the local state,
+and redirect the user to the home page. To accomplish this, we'll update 
+our `useQuery` hook to include a reference to the client and wrap our
+component in the `withRouter` higher-order component in our `export`
+statement.
+
+```
+const Header = props => {
+    // query hook for user logged-in state,
+    // including the client for referencing the Apollo store
+    const { data, client } = useQuery(IS_LOGGED_IN);
+
+    return (
+        <HeaderBar>
+        <img src={logo} alt="Notedly Logo" height="40" />
+        <LogoText>Notedly</LogoText>
+        // if logged in display a logout link, else display sign-in options 
+            <UserState>
+                {data.isLoggedIn ? (
+                    <ButtonAsLink>
+                        onClick={()=> {
+                            // remove the token
+                            # HERE -- p. 167!
+                        }}
+                    Logout
+                    </ButtonAsLink>
+                ) : (
+                    <p>
+                    <Link to={'/signin'}>Sign In</Link> or{' '}
+                    <Link to={'/signup'}>Sign Up</Link>
+                    </p>
+                )}
+            </UserState>
+        </HeaderBar>
+    );
+};
+```
 
 # HERE -- p. 167!
 

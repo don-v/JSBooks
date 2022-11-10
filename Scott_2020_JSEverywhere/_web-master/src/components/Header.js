@@ -44,7 +44,7 @@ const LogoText = styled.h1`
 const Header = props => {
     // query hook for user logged-in state,
     // including the client for referencing the Apollo store
-    const { data, client } = userQuery(IS_LOGGED_IN);
+    const { data, client } = useQuery(IS_LOGGED_IN);
 
   return (
     <HeaderBar>
