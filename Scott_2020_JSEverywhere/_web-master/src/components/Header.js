@@ -42,28 +42,39 @@ const LogoText = styled.h1`
 `;
 
 const Header = props => {
-    // query hook for user logged-in state,
-    // including the client for referencing the Apollo store
-    const { data, client } = useQuery(IS_LOGGED_IN);
+  // query hook for user logged-in state,
+  // including the client for referencing the Apollo store
+  const { data, client } = useQuery(IS_LOGGED_IN);
 
   return (
-    <HeaderBar>
+      <HeaderBar>
       <img src={logo} alt="Notedly Logo" height="40" />
       <LogoText>Notedly</LogoText>
-      {/* if logged in display a logout link, else display sign-in options */}
-        <UserState>
-            {data.isLoggedIn ? (
-                <ButtonAsLink>
+      {/* if logged in display a logout link, else display sign-in options  */}
+          <UserState>
+              {data.isLoggedIn ? (
+                  <ButtonAsLink
+                      onClick={()=> {
+                          // remove the token
+                          localStorage.removeItem('token');
+                          // clear the application's cache
+                          client.resetStore();
+                          // update local state
+                          client.writeData({ data: { isLoggedIn: false } });
+                          // redirect the user to the home page
+                          props.history.push('/');
+                      }}
+                  >
                   Logout
-                </ButtonAsLink>
-            ) : (
-                <p>
+                  </ButtonAsLink>
+              ) : (
+                  <p>
                   <Link to={'/signin'}>Sign In</Link> or{' '}
                   <Link to={'/signup'}>Sign Up</Link>
-                </p>
-            )}
-        </UserState>
-    </HeaderBar>
+                  </p>
+              )}
+          </UserState>
+      </HeaderBar>
   );
 };
 

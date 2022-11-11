@@ -882,11 +882,18 @@ const Header = props => {
         // if logged in display a logout link, else display sign-in options 
             <UserState>
                 {data.isLoggedIn ? (
-                    <ButtonAsLink>
+                    <ButtonAsLink
                         onClick={()=> {
                             // remove the token
-                            # HERE -- p. 167!
+                            localStorage.removeItem('token');
+                            // clear the application's cache
+                            client.resetStore();
+                            // update local state
+                            client.writeData({ data: { isLoggedIn: false } });
+                            // redirect the user to the home page
+                            props.history.push('/');
                         }}
+                    >
                     Logout
                     </ButtonAsLink>
                 ) : (
@@ -899,9 +906,22 @@ const Header = props => {
         </HeaderBar>
     );
 };
+
+export default withRouter(Header);
 ```
 
-# HERE -- p. 167!
+Finally, we will need Apollo to add the user state back to our
+cached state when the store is reset. In '/src/App.js' update the
+cache settings to include `onResetStore'
+
+```
+// check for a local token
+const data = {
+    isLoggedIn: !!localStorage.getItem('token')
+};
+
+# HERE -- p. 168!
+```
 
 
 
