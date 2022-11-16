@@ -920,6 +920,25 @@ const data = {
     isLoggedIn: !!localStorage.getItem('token')
 };
 
+// write the cache data on initial load
+cache.writeData({ data });
+// write the cache data afte cache is reset
+client.onResetStore(() => cache.writeData({ data }));
+```
+
+// CREATING A SIGN-IN FORM:
+
+Currently our users are able to sign up and log out of our
+application, but they have no way to sign back in. Let's 
+create a sign-in form and do a bit of refactoring along 
+the way so that we can resue much of hte code found in our
+signup component.
+
+Our first step will be to create a new page component that
+will live at `/signin`. In a new file at '/src/pages/signin.js',
+add the following:
+
+```
 # HERE -- p. 168!
 ```
 
