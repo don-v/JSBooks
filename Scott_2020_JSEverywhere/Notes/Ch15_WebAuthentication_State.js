@@ -939,8 +939,25 @@ will live at `/signin`. In a new file at '/src/pages/signin.js',
 add the following:
 
 ```
-# HERE -- p. 168!
+import React, { useEffect } from 'react';
+
+const SignIn = props => {
+    useEffect(() => {
+        // update the document title
+        document.title = 'Sign In - Notedly';
+    });
+
+    return (
+        <div>
+            <p>Sign up page</p>
+        </div>
+    );
+};
+
+export default SignIn;
 ```
+
+# HERE -- p. 169!
 
 
 
