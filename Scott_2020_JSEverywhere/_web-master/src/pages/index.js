@@ -7,7 +7,7 @@ import Layout from '../components/Layout';
 
 // import the sign-in page component
 import SignIn from './signin';
-// HERE -- p. 169!
+
 
 // import routes
 import Home from './home';
@@ -29,6 +29,8 @@ const Pages = () => {
           <Route path="/note/:id" component={NotePage} />
           {/* within the Pages component add the route */}
           <Route path="/signup" component={SignUp} />
+          {/* add a signin route to our routes list */}
+          <Route path="/signin" component={SignIn} />
       </Layout>
     </Router>
   );
