@@ -957,8 +957,27 @@ const SignIn = props => {
 export default SignIn;
 ```
 
+Now we can make our page routable, so that users can navigate to 
+it. In '/src/pages/index.js' import the routepage and add a new
+route path:
+
+```
+// import the sign-in page component
+import SignIn from './signin';
+
+const Pages = () => {
+    return (
+        <Router>
+            <Layout>
+                // ... our other routes
+                // add a signin route to our routes list
+                <Route path="/signin" component={SignIn} />
+            </Layout>
+        </Router>
+    );
+};
+```
+
 # HERE -- p. 169!
-
-
 
 */

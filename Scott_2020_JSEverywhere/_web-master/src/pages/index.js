@@ -5,6 +5,10 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 // import shared layout component
 import Layout from '../components/Layout';
 
+// import the sign-in page component
+import SignIn from './signin';
+// HERE -- p. 169!
+
 // import routes
 import Home from './home';
 import MyNotes from './mynotes';
