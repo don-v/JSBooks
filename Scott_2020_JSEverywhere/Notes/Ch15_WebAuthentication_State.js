@@ -1025,8 +1025,23 @@ export default Pages;
 
 Let's pause here, before we implement our sign-in form, to consider
 our options. We could reimplement a form, much like we wrote for our
-Sign Up page, but that feels tedious. 
+Sign Up page, but that feels tedious and would require us to maintain
+two similar forms. When one changes, we would need to be sure to
+update the other. Another option is to isolate the form into its 
+own component, which would allow us to reuse common code and make
+updates in a single location. Let's go forward and with the shared
+form component approach. 
 
-# HERE -- p. 169!
+We'll first create a new component at `/src/components/UserForm.js',
+bringing over our `<form>` markup and styles. We will be making a 
+few minor, but notable changes to this form to use the properties
+that it receives from the parent component. First, we'll rename our
+`onSubmit` mutation to `props.action1, which will  allow us to pass
+the mutation ot our form through the component's properties. Second,
+we'll add some conditional statements where wer know that our two 
+forms will differ. We'll make use of a second property named 
+`formType`, ... 
+
+// #HERE -- p. 169!
 
 */
