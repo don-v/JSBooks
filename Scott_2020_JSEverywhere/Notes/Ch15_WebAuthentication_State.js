@@ -1040,8 +1040,9 @@ that it receives from the parent component. First, we'll rename our
 the mutation ot our form through the component's properties. Second,
 we'll add some conditional statements where wer know that our two 
 forms will differ. We'll make use of a second property named 
-`formType`, ... 
+`formType`, which we'll pass a string. We can change our template's
+rendering based on the value of the string. 
 
-// #HERE -- p. 169!
+
 
 */
