@@ -1043,6 +1043,46 @@ forms will differ. We'll make use of a second property named
 `formType`, which we'll pass a string. We can change our template's
 rendering based on the value of the string. 
 
+We'll write these either as an inline `if` statement with a logical
+`&&` operator or as a conditonal ternary operator:
 
+```
+import React, { useState } from 'react';
+import styled from 'styled-components';
+
+import Button from '.Button';
+
+const Wrapper = styled.div`
+    border: 1px solid #f5f4f0;
+    max-width: 500px;
+    padding: 1em;
+    margin: 0 auto;
+`;
+
+const Form = styled.form`
+    label,
+    input {
+        display: block;
+        line-height: 2em;
+    }
+
+    input {
+        width: 100%;
+        margin-bottom: 1em;
+    }
+`;
+
+const UserForm = props => {
+    // set the default sstate of the form
+    const [valued, setValues] = useState();
+
+    // update the state when a user types in the form
+    const onChange = event => {
+        setValues({
+            # HERE -- p. 170!
+        })
+    }
+}
+```
 
 */
