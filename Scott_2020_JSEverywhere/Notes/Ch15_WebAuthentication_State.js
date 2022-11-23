@@ -1079,10 +1079,33 @@ const UserForm = props => {
     // update the state when a user types in the form
     const onChange = event => {
         setValues({
-            # HERE -- p. 170!
-        })
-    }
-}
+           ...values,
+           [event.target.name] : event.target.value 
+        });
+    };
+
+    return(
+        <Wrapper>
+        // Display the appropriate form header
+        {props.formType === 'signup' ? <h2>Sign Up</h2> : <h2>Sign In</h2>}
+        // perform the mutation when a user submits the form
+        <Form
+            onSubmit={e => {
+                e.preventDefault();
+                props.action({
+                    variables: {
+                        ...values
+                    }
+                });
+            }}
+        >
+            {props.formType === 'signup' && (
+                <React.Fragment>
+                    <label htmlFor="username">Username:</label>
+                    # HERE -- p. 171!
+            )}
+    )
+};
 ```
 
 */
