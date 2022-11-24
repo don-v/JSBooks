@@ -1086,26 +1086,59 @@ const UserForm = props => {
 
     return(
         <Wrapper>
-        // Display the appropriate form header
-        {props.formType === 'signup' ? <h2>Sign Up</h2> : <h2>Sign In</h2>}
-        // perform the mutation when a user submits the form
-        <Form
-            onSubmit={e => {
-                e.preventDefault();
-                props.action({
-                    variables: {
-                        ...values
-                    }
-                });
-            }}
-        >
-            {props.formType === 'signup' && (
-                <React.Fragment>
-                    <label htmlFor="username">Username:</label>
-                    # HERE -- p. 171!
-            )}
-    )
+            // Display the appropriate form header
+            {props.formType === 'signup' ? <h2>Sign Up</h2> : <h2>Sign In</h2>}
+            // perform the mutation when a user submits the form
+            <Form
+                onSubmit={e => {
+                    e.preventDefault();
+                    props.action({
+                        variables: {
+                            ...values
+                        }
+                    });
+                }}
+            >
+                {props.formType === 'signup' && (
+                    <React.Fragment>
+                        <label htmlFor="username">Username:</label>
+                        <input
+                            required
+                            type="text"
+                            id="username"
+                            name="username"
+                            placeholder="username"
+                            onChange={onChange}
+                        />
+                    </React.Fragment>
+                )}
+                <label htmlFor="email">Email:</label>
+                <input
+                    required
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Email"
+                    onChange={onChange}
+                />
+                <label htmlFor="password">Password:</label>
+                <input
+                    required
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Password"
+                    onChange={onChange}
+                />
+                <Button type="submit">Submit</Button>
+            </Form>
+        </Wrapper>
+    );
 };
+
+export default UserForm;
 ```
+
+# HEE -- p. 171!
 
 */
