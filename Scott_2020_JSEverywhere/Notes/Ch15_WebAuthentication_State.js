@@ -1139,6 +1139,18 @@ const UserForm = props => {
 export default UserForm;
 ```
 
-# HEE -- p. 171!
+Now with our '/src/components/UserForm.js' in place
+and populated with source, we can simplify our
+'/src/pages/signup.js' component to make use of the
+shared form component:
+
+```
+import React, { useEffect } from 'react';
+import { useMutation, useApolloClient, gql } from '@apollo/client';
+
+import UserForm from '../components/UserForm';
+
+# HERE -- p. 171!
+```
 
 */
