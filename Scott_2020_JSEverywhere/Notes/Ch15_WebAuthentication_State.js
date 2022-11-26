@@ -1150,7 +1150,25 @@ import { useMutation, useApolloClient, gql } from '@apollo/client';
 
 import UserForm from '../components/UserForm';
 
-# HERE -- p. 171!
+const SIGNUP_USER = gql`
+    mutation signUp($email: String!, $username: String!, $password: String!) {
+        signUp(email: $email, username: $username, password: $password)
+    }
+`;
+
+const SignUp = props => {
+    useEffect(() => {
+        // update the document title
+        document.title = 'Sign Up -- Notedly';
+    });
+
+    const client = useApolloClient();
+    const [signUp, { loading, error }] = useMutation(SIGNUP_USER, {
+        onCompleted: data => {
+         # HERE -- p. 172!   
+        }
+    })
+};
 ```
 
 */
