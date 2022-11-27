@@ -1165,7 +1165,7 @@ const SignUp = props => {
     const client = useApolloClient();
     const [signUp, { loading, error }] = useMutation(SIGNUP_USER, {
         onCompleted: data => {
-         # HERE -- p. 172!   
+         # HERE -- p. 172! -- again! skipped ahead to signin!  
         }
     })
 };
