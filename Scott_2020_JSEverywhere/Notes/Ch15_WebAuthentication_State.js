@@ -1165,10 +1165,32 @@ const SignUp = props => {
     const client = useApolloClient();
     const [signUp, { loading, error }] = useMutation(SIGNUP_USER, {
         onCompleted: data => {
-         # HERE -- p. 172! -- again! skipped ahead to signin!  
+        // store the token
+        localStorage.setItem('token', data.signUp);
+        // upate the local cache 
+        client.writeData({ data: { isLoggedIn: true } });
+        // redirect the uset to the homepage
+        props.history.push('/');
         }
-    })
+    });
+
+    return (
+        <React.Fragment>
+            <UserForm action={signUp} formType="signup" />
+            // if the data is loading, display a loading message
+            {loading && <p>Loading...</p>}
+            // if there is an error, display an error message
+            {error && <p>Error creating an account </p>}
+        </React.Fragment>
+    );
 };
+
+export default SignUp;
 ```
+
+Finally, we can write out `SignIn` component ...
+
+HERE -- p. 172! move source to src/pages/signup.js, then 
+do src/pages/signin.js
 
 */
