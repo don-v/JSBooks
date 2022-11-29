@@ -1188,9 +1188,10 @@ const SignUp = props => {
 export default SignUp;
 ```
 
-Finally, we can write out `SignIn` component ...
+Finally, we can write out `SignUp` component ...
 
 HERE -- p. 172! move source to src/pages/signup.js, then 
-do src/pages/signin.js
+do src/pages/signin.js; trying to figure out why signup 
+and signin work with UserForm component. 
 
 */
