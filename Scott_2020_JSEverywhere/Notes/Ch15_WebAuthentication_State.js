@@ -1188,10 +1188,17 @@ const SignUp = props => {
 export default SignUp;
 ```
 
-Finally, we can write out `SignUp` component ...
+Finally, we can write out `SignIn` component, making use of
+of our `signIn` mutation and `UserForm` component. In 
+'/scr/pages/signin.js':
 
-HERE -- p. 172! move source to src/pages/signup.js, then 
-do src/pages/signin.js; trying to figure out why signup 
-and signin work with UserForm component. 
+```
+import React, { useEffect } from 'react';
+import { useMutation, useApolloClient, gql } from '@apollo/client';
+
+import 
+
+// HERE -- p.172!
+```
 
 */
