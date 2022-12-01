@@ -1196,9 +1196,27 @@ of our `signIn` mutation and `UserForm` component. In
 import React, { useEffect } from 'react';
 import { useMutation, useApolloClient, gql } from '@apollo/client';
 
-import 
+import UserForm from '../components/UserForm';
 
-// HERE -- p.172!
+const SIGNIN_USER = gql`
+    mutation signIn($email: String, $password: String!) {
+        signIn(email: $ email, password: $password)
+    }
+`;
+
+const SignIn = props => {
+    useEffect(() => {
+        // update the document title
+        document.title = 'Sign In -- Notedly';
+    });
+};
+
+const client = useApolloClient();
+const [signIn, { loading, error }] = useMutation(SIGNIN_USER, {
+    # HERE -- p. 173!
+});
+
+export default SignIn;
 ```
 
 */
