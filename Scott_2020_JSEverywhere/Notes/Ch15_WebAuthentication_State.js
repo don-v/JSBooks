@@ -1209,12 +1209,26 @@ const SignIn = props => {
         // update the document title
         document.title = 'Sign In -- Notedly';
     });
+
+    const client = useApolloClient();
+    const [signIn, { loading, error }] = useMutation(SIGNIN_USER, {
+        onCompleted: data => {
+            // store the token
+            localStorage.setItem('token', data.signIn);
+            // update the local cache
+            client.writeData({ data: { isLoggedIn: true } });
+            // redirect the user to the homepage
+            props.history.push('/');
+        }
+    });
+
+    return (
+        <React.Fragment>
+            <UserForm action={signIn} formType="signin" />
+            // HERE -- p. 173!
+    );
 };
 
-const client = useApolloClient();
-const [signIn, { loading, error }] = useMutation(SIGNIN_USER, {
-    # HERE -- p. 173!
-});
 
 export default SignIn;
 ```
