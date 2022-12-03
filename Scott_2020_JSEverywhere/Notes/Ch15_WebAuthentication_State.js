@@ -1225,12 +1225,20 @@ const SignIn = props => {
     return (
         <React.Fragment>
             <UserForm action={signIn} formType="signin" />
-            // HERE -- p. 173!
+            // if the data is loading, display a loading message
+            {loading && <p>Loading...</p>}
+            // if there is a error, display a error message
+            {error && <p>Error signing in!</p>}
+        </React.Fragment>
     );
 };
 
 
 export default SignIn;
 ```
+
+With this, we now ...
+
+// HERE -- p. 173!
 
 */
