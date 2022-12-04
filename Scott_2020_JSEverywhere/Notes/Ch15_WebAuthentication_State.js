@@ -1240,4 +1240,16 @@ export default SignIn;
 p. 173 -- page is rendering, but signin 
 (world_lover@example.com; password1234) is not working!
 
+test signup:
+
+{
+    username: 'world_lover2',
+    email: 'world_lover2@example.com',
+    password: 'password12345'    
+}
+
+so signup, worked, was able to communicate with graphql db, 
+and once signed up fresh, can sign in; but in all cases, 
+can't log out!
+
 */
