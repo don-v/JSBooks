@@ -7,9 +7,11 @@ import { Link, withRouter } from 'react-router-dom'
 // import the `ButtonAslink` component
 import ButtonAsLink from './ButtonAsLink';
 
+import { useQuery, gql } from '@apollo/client';
+
   // query hook for user logged-in state,
     // including the client for referencing the Apollo store
-    const { data, client } = userQuery(IS_LOGGED_IN);
+    // const { data, client } = userQuery(IS_LOGGED_IN);
 // import { Link } from 'react-router-dom';
 
 // local query

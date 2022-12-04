@@ -1237,10 +1237,7 @@ const SignIn = props => {
 export default SignIn;
 ```
 
-tested, but it's not working!
-
-With this, we now ...
-
-// HERE -- p. 173!
+p. 173 -- page is rendering, but signin 
+(world_lover@example.com; password1234) is not working!
 
 */
