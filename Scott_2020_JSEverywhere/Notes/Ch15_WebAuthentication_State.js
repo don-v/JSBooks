@@ -1248,8 +1248,9 @@ test signup:
     password: 'password12345'    
 }
 
-so signup, worked, was able to communicate with graphql db, 
-and once signed up fresh, can sign in; but in all cases, 
-can't log out!
+
+ok, now was able to sign up, sign up, log out, for
+`world_lover2`, but not `world_lover`!
+
 
 */

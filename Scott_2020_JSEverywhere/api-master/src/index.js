@@ -63,7 +63,7 @@ app.get('/', (req, res) => res.send('Hello World!!!! You the man!'));
 // Connect to the database
 db.connect(DB_HOST);
 
-// db.close();
+db.close();
 
 
 // Apollo server setup
