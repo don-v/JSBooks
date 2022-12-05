@@ -1252,5 +1252,32 @@ test signup:
 ok, now was able to sign up, sign up, log out, for
 `world_lover2`, but not `world_lover`!
 
+p. 173: With this, we now have a manageable form component
+and have enabled users to both signup and sign in to our
+application.
+
+// PROTECTED ROUTES
+
+A common application pattern is to limit specific pages or
+portions of the site to authenticated users. In our case, 
+non-authenticated users would have no use for the 'My
+Notes' or 'Favorites' pages. We can implement this pattern
+in our router, automatically routing unauthenticated users
+to the application's 'Sign In' page when they attempt to
+visit those routes. 
+
+In '/src/pages/index.js', we'll start by importing the 
+necessary dependencies and adding our `isLoggedIn` query:
+
+```
+import { useQuery, gql } from '@apollo/client';
+
+const IS_LOGGED_IN = gql`
+    {
+        isLoggedIn @client
+    }
+`;
+```
+HERE -- p. 173!
 
 */
