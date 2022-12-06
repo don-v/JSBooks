@@ -1278,6 +1278,17 @@ const IS_LOGGED_IN = gql`
     }
 `;
 ```
-HERE -- p. 173!
+
+Now we'll import 'React' Router's `Redirect` library and write
+a `PrivateRoute` component, which will redirect the user if
+they are not logged in:
+
+```
+// update our react-router import to include `Redirect`
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+
+```
+
+HERE -- p. 174!
 
 */

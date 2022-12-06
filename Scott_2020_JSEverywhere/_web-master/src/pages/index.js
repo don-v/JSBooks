@@ -1,6 +1,7 @@
 // import React and routing dependencies
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+// update our react-router import to include `Redirect`
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 
 // import shared layout component
 import Layout from '../components/Layout';
@@ -17,6 +18,14 @@ import NotePage from './note';
 
 // import the signup route
 import SignUp from './signup';
+
+import { useQuery, gql } from '@apollo/client';
+
+const IS_LOGGED_IN = gql`
+  {
+    isLoggedIn @client
+  }
+`;
 
 // define routes
 const Pages = () => {
