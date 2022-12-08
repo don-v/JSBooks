@@ -1337,6 +1337,8 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
   if (loading) return <p>Loading...</p>;
   // if there is an error fetching the data, display an error message
   if (error) return <p>Error!</p>;
+  // if the user is logged in, route them to the requested component
+  // else redirect them to the sign-in page
   return (
     <Route
       {...rest}
@@ -1359,7 +1361,10 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 export default Pages;
 ```
 
-HERE -- p. 174
+updated comments for `PrivateRoute` component!
+
+HERE -- p. 174!
+
 
 
 */
