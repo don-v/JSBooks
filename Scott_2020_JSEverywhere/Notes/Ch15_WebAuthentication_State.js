@@ -1361,9 +1361,25 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 export default Pages;
 ```
 
-updated comments for `PrivateRoute` component!
+> REDIRECT STATE: When we redirect a private route, we are also storing
+the referring URL as state. This allows us to redirect users back to the
+page they were originally attempting to navigate to. We could update our
+redirect on the 'Sign In' page to optionally use `props.state.location.from`
+to enable this feature.
 
-HERE -- p. 174!
+Now when a user attempts to navigate to a page intended for logged-in
+users, they will be redirected to our 'Sign In' page.
+
+// CONSLUION
+
+In this chapter we've covered two critical concepts for building 
+client-side JS applications: authentication and state. By building
+a full authentication flow, one gained insight into how user 
+accounts work with a client application. From here, teach encourages
+one to explore alternate options such as Oauth and authentication
+services like 'Auth0', 'Okta', and 'Firebase.' Additionally, ...
+
+# HERE -- p. 175!
 
 
 
