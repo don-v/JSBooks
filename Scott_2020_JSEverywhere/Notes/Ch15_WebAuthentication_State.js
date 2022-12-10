@@ -1377,9 +1377,11 @@ client-side JS applications: authentication and state. By building
 a full authentication flow, one gained insight into how user 
 accounts work with a client application. From here, teach encourages
 one to explore alternate options such as Oauth and authentication
-services like 'Auth0', 'Okta', and 'Firebase.' Additionally, ...
-
-# HERE -- p. 175!
+services like 'Auth0', 'Okta', and 'Firebase.' Additionally, you've 
+learned to manage state in an application, both at the component
+level, using the React Hooks API, as well as across the application,
+using Apollo's local state.  With these key concepts behind you, 
+you can now build robust user interface applications.
 
 
 
