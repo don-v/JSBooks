@@ -17,7 +17,27 @@ a `textarea` form in which users can write the note. When the user
 submits the form, we'll perform a GraphQL mutation to create the note
 in our database.
 
-# HERE -- p. 177!
+To begin, we create a `NewNote` component at '/src/pages/news.js':
+
+here is the updated source for our '/src/pages/new.js' page:
+
+```
+import React, { useEffect } from 'react';
+import { useMutation, gql } from '@apollo/client';
+
+const NewNote = props => {
+    useEffect(() => {
+        // update the document title
+        document.title = 'New Note -- Notedly';
+    });
+
+    return <div>NewNote</div>;
+};
+
+export default NewNote;
+```
+
+# HERE -- p. 178!
 
 
 */
