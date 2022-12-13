@@ -37,7 +37,28 @@ const NewNote = props => {
 export default NewNote;
 ```
 
-# HERE -- p. 178!
+Next, let's set up the new route in our '/src/pages/index.js' file:
 
+```
+// import the NewNote route component
+import NewNote from './new';
+
+// add a private route to our list of routes, within the
+<PrivateRoute path="/new" component={NewNote} />
+```
+
+We know that we'll be both creating new notes as well as updating 
+existing notes. To accomodate this behavior, let's create a new
+component called `NoteForm`, which will serve as the markup and 
+'React' state for note form editing.
+
+We'll creat a new file '/src/components/NoteForm.js'. The component
+will consist of a form element containing a text area along with
+some minimal styles. The functionality will be much like our 
+`UserForm` component:
+
+```
+# HERE -- p. 178!
+```
 
 */
