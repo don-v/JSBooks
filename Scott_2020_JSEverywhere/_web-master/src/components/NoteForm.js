@@ -23,7 +23,35 @@ const NoteForm = props => {
     // update the state when a user types in the form
     const onChange = event => {
         setValue({
-            // HERE -- p. 178!
-        })
-    }
-}
+            ...value,
+            [event.target.name]: event.target.value
+        });
+    };
+
+    return (
+        <Wrapper>
+            <Form
+                onSubmit={e => {
+                    e.preventDefault();
+                    props.action({
+                        variables: {
+                            ...values
+                        }
+                    });
+                }}
+            >
+                <TextArea
+                    required
+                    type="text"
+                    name="content"
+                    placeholder="Note content"
+                    value={value.content}
+                    onChange={onChange}
+                />
+                <Button type="submit">Save</Button>
+            </Form>
+        </Wrapper>
+    );
+};
+
+export default NoteForm;
