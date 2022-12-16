@@ -58,7 +58,89 @@ some minimal styles. The functionality will be much like our
 `UserForm` component:
 
 ```
-# HERE -- p. 178!
+import React, {  useState } from 'react';
+import styled from 'styled-components';
+
+import Button from './Button';
+
+const Wrapper = styled .div`
+    height: 100%;
+`;
+
+const Form = styled.form`
+    height: 100%;
+`;
+
+const TextArea = styled.textarea`
+    width: 100%;
+    height: 90%;
+`;
+
+const NoteForm = props => {
+    // set the default state of the form
+    const [value, setValue] = useState({ content: props.content || '' });
+
+    // update the state when a user types in the form
+    const onChange = event => {
+        setValue({
+            ...value,
+            [event.target.name]: event.target.value
+        });
+    };
+
+    return (
+        <Wrapper>
+            <Form
+                onSubmit={e => {
+                    e.preventDefault();
+                    props.action({
+                        variables: {
+                            ...values
+                        }
+                    });
+                }}
+            >
+                <TextArea
+                    required
+                    type="text"
+                    name="content"
+                    placeholder="Note content"
+                    value={value.content}
+                    onChange={onChange}
+                />
+                <Button type="submit">Save</Button>
+            </Form>
+        </Wrapper>
+    );
+};
+
+export default NoteForm;
 ```
+
+Next, we will need to reference our `NoteForm` component in our `NewNote`page
+component. So in our '/src/pages/new.js' file:
+
+```
+import React, { useEffect } from 'react';
+import { useMutation, gql } from '@apollo/client';
+// import the `NoteForm` component
+import NoteForm from '../components/NoteForm';
+
+const NewNote = props => {
+    useEffect(() => {
+        // update the document title
+        document.title = 'New Note -- Notedly';
+    });
+
+    return <NoteForm />;
+};
+
+export default NewNote;
+```
+
+With these updates, if we navigate to `http://localhost:1234/new`, 
+we our NoteForm will be displayed!
+
+# HERE -- p. 180!
 
 */
