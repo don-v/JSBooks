@@ -19,6 +19,9 @@ import NotePage from './note';
 // import the signup route
 import SignUp from './signup';
 
+// import the NewNote route component
+import NewNote from './new';
+
 import { useQuery, gql } from '@apollo/client';
 
 const IS_LOGGED_IN = gql`
@@ -35,6 +38,8 @@ const Pages = () => {
           <Route exact path="/" component={Home} />
           <PrivateRoute path="/mynotes" component={MyNotes} />
           <PrivateRoute path="/favorites" component={Favorites} />
+          {/* add a private route to our list  of routes, within the */}
+          <PrivateRoute path="/new" component={NewNote} />
           <Route path="/note/:id" component={NotePage} />
           {/* within the Pages component add the route */}
           <Route path="/signup" component={SignUp} />

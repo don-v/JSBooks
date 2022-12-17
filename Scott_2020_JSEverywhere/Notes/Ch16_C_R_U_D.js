@@ -141,6 +141,7 @@ export default NewNote;
 With these updates, if we navigate to `http://localhost:1234/new`, 
 we our NoteForm will be displayed!
 
-# HERE -- p. 180!
+# HERE -- p. 180!, test didn't work, added private route to
+'/src/pages/index.js'
 
 */
