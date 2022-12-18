@@ -144,4 +144,6 @@ we our NoteForm will be displayed!
 # HERE -- p. 180!, test didn't work, added private route to
 '/src/pages/index.js'
 
+was able to log in, but not able to logout!
+
 */

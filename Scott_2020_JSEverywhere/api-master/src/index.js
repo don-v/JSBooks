@@ -84,16 +84,6 @@ const server = new ApolloServer({
 });
 
 
-
-
-
-
-
-
-
-
-
-
 // Apply the Apollo GraphQL middleware and set teh path to '/api'
 server.applyMiddleware({ app, path: '/api' });
 

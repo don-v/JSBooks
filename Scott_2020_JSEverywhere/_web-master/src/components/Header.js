@@ -56,7 +56,7 @@ const Header = props => {
           <UserState>
               {data.isLoggedIn ? (
                   <ButtonAsLink
-                      onClick={()=> {
+                      onClick={() => {
                           // remove the token
                           localStorage.removeItem('token');
                           // clear the application's cache
