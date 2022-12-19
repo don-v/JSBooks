@@ -146,4 +146,11 @@ we our NoteForm will be displayed!
 
 was able to log in, but not able to logout!
 
+With the form complete, we can go about writing our mutation to
+create the new note. In '/src/pages/new.js':
+
+```
+# HERE -- p. 181!
+```
+
 */
