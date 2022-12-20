@@ -31,12 +31,21 @@ const NewNote = props => {
 
     const [data, { loading, error }] = useMutation(NEW_NOTE, {
         onCompleted: data => {
-            // when complete
-            // HERE -- p. 181!
-        }
+            // when complete, redirect user to the note page
+            props.history.push(`note/${data.newNote.id}`);
+            }
     });
 
-    return <NoteForm />;
+    return (
+        <React.Fragment>
+            {/* as the mutation is loading, dispaly a loading message */}
+            {loading && <p>Loading...</p>}
+            {/* if there is an error, display an error message */}
+            {error && <p>Error saving the note</p>}
+            {/* the form component, passing the mutation data as a propr */}
+            <NoteForm action={data}/>;
+        </React.Fragment>
+    );
 };
 
 export default NewNote;
