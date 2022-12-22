@@ -203,6 +203,9 @@ const NewNote = props => {
 export default NewNote;
 ```
 
-# HERE -- p. 181!
+logout not working properly!
+but we were able to save a note for a new logged in user!
+
+// HERE -- p. 181!
 
 */
