@@ -207,6 +207,8 @@ logout not working properly!
 but we were able to save a note for a new logged in user!
 
 examin logout in 'final'!; still working, p. 181!, studying
-header!; p. 181!
+header!; p. 181! everything looks good, keep looking!
+
+# HERE -- p. 181!
 
 */

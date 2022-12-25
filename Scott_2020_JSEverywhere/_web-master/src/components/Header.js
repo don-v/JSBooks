@@ -16,9 +16,9 @@ import { useQuery, gql } from '@apollo/client';
 
 // local query
 const IS_LOGGED_IN = gql`
-    {
-        isLoggedIn @client
-    }
+  {
+    isLoggedIn @client
+  }
 `;
 
 const UserState = styled.div`
