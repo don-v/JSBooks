@@ -206,6 +206,7 @@ export default NewNote;
 logout not working properly!
 but we were able to save a note for a new logged in user!
 
-examin logout in 'final'!; still working, p. 181!
+examin logout in 'final'!; still working, p. 181!, studying
+header!; p. 181!
 
 */
