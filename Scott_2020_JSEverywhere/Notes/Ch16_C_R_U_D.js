@@ -209,6 +209,27 @@ but we were able to save a note for a new logged in user!
 examin logout in 'final'!; still working, p. 181!, studying
 header!; p. 181! everything looks good, keep looking!
 
+12/26/2022 -- continue with book for now.
+
+In the previous code, we perform a `newNote` mutation when
+the form is submitted. If the mutation is successful, the use
+is redirected to the individual note page. One may notice
+that the `newNote` mutation requests quite a bit of data. This
+matches the data requested by the `note` mutation, ideally
+updating Apollo's cache for quick navigation to the individual
+note component.
+
+As mentioned earlier, Apollo aggressively caches our queries,
+which is helpful for speeding up our application's navigation.
+Unfortunately, this also means a user could visit a page and
+not see an update they've made. We can manually update Apollo's
+cache, but an easier way to accomplish this is to use Apollo's
+refetchQueries feature to intentionallly update the cache 
+when performing a mutation. To do this, we'll need access to our
+prewritten queries. Up until now, we've been including them at
+the top of a component file, but let's move them to their own
+...
+
 # HERE -- p. 181!
 
 */
