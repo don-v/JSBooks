@@ -227,9 +227,61 @@ cache, but an easier way to accomplish this is to use Apollo's
 refetchQueries feature to intentionallly update the cache 
 when performing a mutation. To do this, we'll need access to our
 prewritten queries. Up until now, we've been including them at
-the top of a component file, but let's move them to their own
-...
+the top of a component file, but let's move them to their own 
+'query.js' file. Create a new file at '/src/gql/query.js' and
+add each of our note queries as well as our `IS_LOGGED_IN` 
+query:
 
-# HERE -- p. 181!
+```
+import { gql } from '@apollo/client';
+
+const GET_NOTES = gql`
+    query noteFeed($cursor: String) {
+        noteFeed(cursor: $cursor) {
+            cursor
+            hasNextPage
+            notes {
+                id
+                createdAt
+                content
+                favoriteCount
+                author {
+                    username
+                    id
+                    avatar
+                }
+            }
+        }
+    }
+`;
+
+const GET_NOTE = gql`
+    query note($id: ID!) {
+        note(id: $id) {
+            id
+            createdAt
+            content
+            favoriteCount
+            author {
+                username
+                id
+                avatar
+            }
+        }
+    }
+`;
+
+const IS_LOGGED_IN = gql`
+    {
+        isLoggedIn @client
+    }
+`;
+
+export { GET_NOTES, GET_NOTE, IS_LOGGED_IN};
+```
+
+# HERE -- p. 182!
+
+
 
 */
