@@ -280,7 +280,73 @@ const IS_LOGGED_IN = gql`
 export { GET_NOTES, GET_NOTE, IS_LOGGED_IN};
 ```
 
-# HERE -- p. 182!
+> TRICKS/TIPS: Reusable Queries and Mutations -- Moving forward, we will keep
+all of our mutations separate from our components. This will allow us to 
+easily reuse them in our application and is also useful for mocking
+during testing!
+
+Now in '/src/pages/new.js', we can request that our mutation refetch 
+the `GET_NOTES` query by importing the query and adding the `refetchQueries`
+option:
+
+```
+import React, { useEffect } from 'react';
+import { useMutation, gql } from '@apollo/client';
+// import the `NoteForm` component
+import NoteForm from '../components/NoteForm';
+
+// import the query
+import { GET_NOTES } from '../gql/query';
+
+// our new note query
+const NEW_NOTE = gql`
+    mutation newNote($content: String!) {
+        newNote(content: $content) {
+            id
+            content
+            createdAt
+            favoriteCount
+            favoritedBy {
+                id
+                username
+            }
+            author {
+                username
+                id
+            }
+        }
+    }
+`;
+
+const NewNote = props => {
+    useEffect(() => {
+        // update the document title
+        document.title = 'New Note -- Notedly';
+    });
+
+    const [data, { loading, error }] = useMutation(NEW_NOTE, {
+        // refetch the GET_NOTES query to update the cache
+        refetchQueries: [{ query: GET_NOTES}],
+        onCompleted: data => {
+            // when complete, redirect user to the note page
+            props.history.push(`note/${data.newNote.id}`);
+            }
+    });
+
+    return (
+        <React.Fragment>
+            // as the mutation is loading, dispaly a loading message 
+            {loading && <p>Loading...</p>}
+            // if there is an error, display an error message 
+            {error && <p>Error saving the note</p>}
+            // the form component, passing the mutation data as a propr 
+            <NoteForm action={data}/>;
+        </React.Fragment>
+    );
+};
+
+export default NewNote;
+```
 
 
 
