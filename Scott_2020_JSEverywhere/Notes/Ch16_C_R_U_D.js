@@ -348,6 +348,20 @@ const NewNote = props => {
 export default NewNote;
 ```
 
+Our final step will be to add a link to our `/new` page, so that users
+can easily navigate to it. In the '/src/components/Navigation.js' file,
+add a new link items as follows:
+
+```
+<li>
+    <Link to="/new">New</Link>
+</li>
+```
+
+With this, our users are able to navigate to the new note page, type
+a note, and save the note to the database.
+
+# HERE -- p. 183!
 
 
 */
