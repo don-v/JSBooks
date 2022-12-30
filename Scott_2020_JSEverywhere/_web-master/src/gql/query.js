@@ -42,4 +42,6 @@ const IS_LOGGED_IN = gql`
     }
 `;
 
+// add the GET_MY_NOTES query:
+
 export { GET_NOTES, GET_NOTE, IS_LOGGED_IN};

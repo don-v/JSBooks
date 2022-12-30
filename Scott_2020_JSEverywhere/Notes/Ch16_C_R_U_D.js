@@ -361,7 +361,19 @@ add a new link items as follows:
 With this, our users are able to navigate to the new note page, type
 a note, and save the note to the database.
 
-# HERE -- p. 183!
+// READING USER NOTES
 
+Our application is currently capable of reading our note feed as well 
+as individual notes, but we are not yet querying the notes of authenticated
+users. Let's write two GraphQL queries to create a feed of notes by the user
+as well as their favorites.
 
+in '/src/gql/query.js', add a `GET_MY_NOTES` query and update the exports
+like so:
+
+```
+
+```
+
+# HERE -- P. 184!
 */
