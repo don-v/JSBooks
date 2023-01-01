@@ -4,7 +4,6 @@ import { useQuery, gql } from '@apollo/client';
 import NoteFeed from '../components/NoteFeed';
 import { GET_MY_NOTES } from '../gql/query';
 
-// HERE -- p. 184!
 
 const MyNotes = () => {
   useEffect(() => {
@@ -12,12 +11,16 @@ const MyNotes = () => {
     document.title = 'My Notes - Notedly';
   });
 
-    return (
-    <div>
-      <p>These are my notes</p>
-    </div>
-  );
-
+  // if the data is loading, our app will display a loading message
+  if (loading) return 'Loading...';
+  // if there is an error fetching the data, display an error message
+  if (error) return `Error! ${error.message}`;
+  // if the query is successful and there aren't notes, display a message
+  if (data.me.notes.length !==0) {
+    return <NoteFeed notes={data.me.notes}/>
+  } else {
+    return <p>No notes yet</p>
+  }
 };
 
 export default MyNotes;

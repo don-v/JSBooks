@@ -443,7 +443,39 @@ export { GET_NOTES, GET_NOTE, IS_LOGGED_IN, GET_MY_NOTES };
 Now, in '/src/pages/mynotes.js', we import the query and display
 the notes using the `NoteFeed` component:
 
-# HERE -- p. 184!
+so, after udating the page, the source is as follows:
+
+```
+import React, { useEffect } from 'react';
+import { useQuery, gql } from '@apollo/client';
+
+import NoteFeed from '../components/NoteFeed';
+import { GET_MY_NOTES } from '../gql/query';
+
+
+const MyNotes = () => {
+  useEffect(() => {
+    // update the document title
+    document.title = 'My Notes - Notedly';
+  });
+
+  // if the data is loading, our app will display a loading message
+  if (loading) return 'Loading...';
+  // if there is an error fetching the data, display an error message
+  if (error) return `Error! ${error.message}`;
+  // if the query is successful and there aren't notes, display a message
+  if (data.me.notes.length !==0) {
+    return <NoteFeed notes={data.me.notes}/>
+  } else {
+    return <p>No notes yet</p>
+  }
+};
+
+export default MyNotes;
+
+```
+
+# HERE -- p. 185!
 
 
 */
