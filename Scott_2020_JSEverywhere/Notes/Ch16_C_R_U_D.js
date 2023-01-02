@@ -475,7 +475,102 @@ export default MyNotes;
 
 ```
 
-# HERE -- p. 185!
+We repeat this process for create the "favorites" page. First, in
+'/src/gql/query.js', we update the source as follows:
 
+```
+import { gql } from '@apollo/client';
+
+const GET_NOTES = gql`
+    query noteFeed($cursor: String) {
+        noteFeed(cursor: $cursor) {
+            cursor
+            hasNextPage
+            notes {
+                id
+                createdAt
+                content
+                favoriteCount
+                author {
+                    username
+                    id
+                    avatar
+                }
+            }
+        }
+    }
+`;
+
+const GET_NOTE = gql`
+    query note($id: ID!) {
+        note(id: $id) {
+            id
+            createdAt
+            content
+            favoriteCount
+            author {
+                username
+                id
+                avatar
+            }
+        }
+    }
+`;
+
+const IS_LOGGED_IN = gql`
+    {
+        isLoggedIn @client
+    }
+`;
+
+// add the GET_MY_NOTES query:
+const GET_MY_NOTES = gql`
+    query me {
+        me {
+            id
+            username
+            notes {
+                id
+                createdAt
+                content
+                favoriteCount
+                author {
+                    username
+                    id
+                    avatar
+                }
+            }
+        }
+    }
+`;
+
+// add the GET_MY_FAVORITES query:
+const GET_MY_FAVORITES = gql`
+    query me {
+        me {
+            id
+            username
+            favorites {
+                id
+                createdAt
+                content
+                favoriteCount
+                author {
+                    username
+                    id
+                    avatar
+                }
+            }
+        }
+    }
+`;
+
+// update to include GET_MY_FAVORITES
+export { GET_NOTES, GET_NOTE, IS_LOGGED_IN, GET_MY_NOTES, GET_MY_FAVORITES };
+```
+
+Now, in '/src/pages/favorites.js':
+
+# HERE -- p. 185!
 
 */
