@@ -606,6 +606,73 @@ export default Favorites;
 
 ```
 
-# HERE -- P. 186!
+Finally, let's update our '/src/pages/new.js' file to refetch the GET_MY_NOTES 
+query, to ensure that a cached list of user notes is updated when the note
+is created. In '/src/pages/new.js', first update the GraphQL query import 
+statement:
+
+```
+import React, { useEffect } from 'react';
+import { useMutation, gql } from '@apollo/client';
+// import the `NoteForm` component
+import NoteForm from '../components/NoteForm';
+
+// import the query
+import { GET_MY_NOTES, GET_NOTES } from '../gql/query';
+
+// our new note query
+const NEW_NOTE = gql`
+    mutation newNote($content: String!) {
+        newNote(content: $content) {
+            id
+            content
+            createdAt
+            favoriteCount
+            favoritedBy {
+                id
+                username
+            }
+            author {
+                username
+                id
+            }
+        }
+    }
+`;
+
+const NewNote = props => {
+    useEffect(() => {
+        // update the document title
+        document.title = 'New Note -- Notedly';
+    });
+
+    const [data, { loading, error }] = useMutation(NEW_NOTE, {
+        // refetch the GET_NOTES  and GET_MY_NOTES query to update the cache
+        refetchQueries: [{ query: GET_MY_NOTES }, { query: GET_NOTES }],
+        onCompleted: data => {
+            // when complete, redirect user to the note page
+            props.history.push(`note/${data.newNote.id}`);
+            }
+    });
+
+    return (
+        <React.Fragment>
+            // as the mutation is loading, dispaly a loading message 
+            {loading && <p>Loading...</p>}
+            // if there is an error, display an error message 
+            {error && <p>Error saving the note</p>}
+            // the form component, passing the mutation data as a propr 
+            <NoteForm action={data}/>;
+        </React.Fragment>
+    );
+};
+
+export default NewNote;
+```
+
+With these changes, we now can perform all the read operations within
+our application. 
+
+# HERE -- p. 186!
 
 */
