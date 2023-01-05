@@ -673,6 +673,16 @@ export default NewNote;
 With these changes, we now can perform all the read operations within
 our application. 
 
+so had an error accessing in page/mynotes.js, line 15 -- loading,
+never made the query!
+
 # HERE -- p. 186!
+
+
+{
+    username: 'world_lover2',
+    email: 'world_lover2@example.com',
+    password: 'password12345'    
+}
 
 */
