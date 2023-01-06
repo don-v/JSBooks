@@ -676,7 +676,14 @@ our application.
 so had an error accessing in page/mynotes.js, line 15 -- loading,
 never made the query!
 
-# HERE -- p. 186!
+ok, so 'mynotes' works!
+
+when i sign in, then logout, we get signout. but sometimes,
+we can still click mynotes, without signing in?!
+
+need to figure that out!
+
+# HERE -- 186!
 
 
 {

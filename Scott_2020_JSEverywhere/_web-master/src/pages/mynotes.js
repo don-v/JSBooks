@@ -11,6 +11,8 @@ const MyNotes = () => {
     document.title = 'My Notes - Notedly';
   });
 
+  const { loading, error, data } = useQuery(GET_MY_NOTES);
+
   // if the data is loading, our app will display a loading message
   if (loading) return 'Loading...';
   // if there is an error fetching the data, display an error message
