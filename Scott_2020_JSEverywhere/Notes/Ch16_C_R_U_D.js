@@ -683,8 +683,26 @@ we can still click mynotes, without signing in?!
 
 need to figure that out!
 
-# HERE -- 186!
+// UPDATING NOTES
 
+Currently once a user writes a note, they have no way to make
+an update to it. To address this, we want to enable note editing
+in our application. Our GraphQL API has an `updateNote` mutation, 
+which accepts a note ID and content as parameters. If the note
+exists in the database, the mutation will update the stored 
+content with the content sent in the mutation.
+
+In our application, we can create a route at `/edit/<NOTE_ID>`
+that will place the existing note content in a form `textarea`.
+When a user clicks 'Save', we'll submit the form and perform
+the `updateNote` mutation.
+
+Let's create a new route where our notes will be edited. To 
+begin, we can make a duplicate of our 'src/pages/notes.js' page
+and name it 'edit.js'. For now, this page will simply display
+the note.
+
+# HERE -- p. 186!
 
 {
     username: 'world_lover2',
