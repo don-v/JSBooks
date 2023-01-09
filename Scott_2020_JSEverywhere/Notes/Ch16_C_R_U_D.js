@@ -717,15 +717,31 @@ const EditNote = props => {
   // store the id found in the url as a variable
   const id = props.match.params.id;
   // define our note query
-  const { loading, error, data } = useQery(GET_NOTE, { variables: { id }});
+  const { loading, error, data } = useQuery(GET_NOTE, { variables: { id }});
 
   // if the data is loading, display a loading message
   if (loading) return 'Loading...';
   // if there is an error fetching the data, display an error message
   if (error) return <p>Error! Note not found</p>;
-  // HERE -- p. 187!
-}
+  // if successful, pass the data to the note coomponent
+  return <Note note={data.note} />;
+};
+
+export default EditNote;
 ```
+
+Now, we can make the page navigable by adding it to our routes in
+'/src/pages/index.js':
+
+```
+// import the edit page component:
+import EditNote from './edit';
+
+// add a new private route that accepts an `:id` parameter
+<PrivateRoute path="/edit/:id" component={EditNote} />
+```
+
+# HERE -- p. 187, update '/src/page/index.js'
 
 {
     username: 'world_lover2',
