@@ -831,7 +831,24 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 export default Pages;
 ```
 
+With this, if one navigates to a note page at '/note/<note-id>' and swap
+it for /edit/<note-id>', ( so identical note ids ), one will see a render
+of the note itself. Let's change this so that it instead displays the note
+content presented in a form's `textarea`:
+
+In '/src/pages/edit.js', remove the import statement of the `Note` 
+component and replace it with the `NoteForm` component:
+
+```
+// import the NoteForm component
+import NoteForm from '../components/NoteForm';
+```
+
 # HERE -- p. 187!
+
+Now we can udpate our `EditNote` component to use our editing form. We can
+pass the content of the note to our form component by using the `content`
+property...
 
 
 {
