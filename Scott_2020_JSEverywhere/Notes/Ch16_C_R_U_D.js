@@ -848,7 +848,15 @@ import NoteForm from '../components/NoteForm';
 
 Now we can udpate our `EditNote` component to use our editing form. We can
 pass the content of the note to our form component by using the `content`
-property...
+property. Through our GraphQL mutation will accept updates only from the 
+original author, we can also limit displaying the form to the note's author, 
+to aviod confusing other users.
+
+First, add a new query to the '/src/gql/query.js' file to get the current
+user, their user ID, and a list of favorited note IDs:
+
+# HERE -- p. 187 -- need to look at edit.js in final, to see
+if we can, pass what to `NoteForm`?
 
 
 {
