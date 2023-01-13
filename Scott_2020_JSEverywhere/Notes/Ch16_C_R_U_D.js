@@ -855,8 +855,8 @@ to aviod confusing other users.
 First, add a new query to the '/src/gql/query.js' file to get the current
 user, their user ID, and a list of favorited note IDs:
 
-# HERE -- p. 187 -- need to look at edit.js in final, to see
-if we can, pass what to `NoteForm`?
+# HERE -- p. 187 -- Ok, looks like the mechanics have not yet been implemented!!
+
 
 
 {
