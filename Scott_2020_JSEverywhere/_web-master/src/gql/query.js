@@ -1,5 +1,17 @@
 import { gql } from '@apollo/client';
 
+// add GET_ME to our queries
+const GET_ME = gql`
+    query me {
+        me {
+            id
+            favorites {
+                id
+            }
+        }
+    }
+`;
+
 const GET_NOTES = gql`
     query noteFeed($cursor: String) {
         noteFeed(cursor: $cursor) {
@@ -84,5 +96,12 @@ const GET_MY_FAVORITES = gql`
     }
 `;
 
-// update to include GET_MY_FAVORITES
-export { GET_NOTES, GET_NOTE, IS_LOGGED_IN, GET_MY_NOTES, GET_MY_FAVORITES };
+// update to include GET_ME
+export { 
+    GET_NOTES, 
+    GET_NOTE, 
+    GET_MY_NOTES, 
+    GET_MY_FAVORITES,
+    GET_ME, 
+    IS_LOGGED_IN
+};

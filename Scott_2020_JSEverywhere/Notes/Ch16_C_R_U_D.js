@@ -855,7 +855,123 @@ to aviod confusing other users.
 First, add a new query to the '/src/gql/query.js' file to get the current
 user, their user ID, and a list of favorited note IDs:
 
-# HERE -- p. 187 -- Ok, looks like the mechanics have not yet been implemented!!
+so after updating our '/src/gql/query.js` file, our source
+looks as follows:
+
+```
+import { gql } from '@apollo/client';
+
+// add GET_ME to our queries
+const GET_ME = gql`
+    query me {
+        me {
+            id
+            favorites {
+                id
+            }
+        }
+    }
+`;
+
+const GET_NOTES = gql`
+    query noteFeed($cursor: String) {
+        noteFeed(cursor: $cursor) {
+            cursor
+            hasNextPage
+            notes {
+                id
+                createdAt
+                content
+                favoriteCount
+                author {
+                    username
+                    id
+                    avatar
+                }
+            }
+        }
+    }
+`;
+
+const GET_NOTE = gql`
+    query note($id: ID!) {
+        note(id: $id) {
+            id
+            createdAt
+            content
+            favoriteCount
+            author {
+                username
+                id
+                avatar
+            }
+        }
+    }
+`;
+
+const IS_LOGGED_IN = gql`
+    {
+        isLoggedIn @client
+    }
+`;
+
+// add the GET_MY_NOTES query:
+const GET_MY_NOTES = gql`
+    query me {
+        me {
+            id
+            username
+            notes {
+                id
+                createdAt
+                content
+                favoriteCount
+                author {
+                    username
+                    id
+                    avatar
+                }
+            }
+        }
+    }
+`;
+
+// add the GET_MY_FAVORITES query:
+const GET_MY_FAVORITES = gql`
+    query me {
+        me {
+            id
+            username
+            favorites {
+                id
+                createdAt
+                content
+                favoriteCount
+                author {
+                    username
+                    id
+                    avatar
+                }
+            }
+        }
+    }
+`;
+
+// update to include GET_ME
+export { 
+    GET_NOTES, 
+    GET_NOTE, 
+    GET_MY_NOTES, 
+    GET_MY_FAVORITES,
+    GET_ME, 
+    IS_LOGGED_IN
+};
+```
+
+Now, in '/src/pages/edit.js', we import the `GET_ME` query
+we just implemented and include a user check:
+
+# HERE -- p. 188!
 
 
 
