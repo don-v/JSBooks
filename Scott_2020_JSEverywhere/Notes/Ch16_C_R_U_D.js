@@ -1011,7 +1011,40 @@ const EditNote = props => {
 export default EditNote;
 ```
 
-// HERE -- p. 188!
+We are now able to edit a note in the form, but clicking
+the button does not yet save our changes. Let's write our
+GraphQL `updateNote` mutation. Similar to our file of queries,
+let's create a file to hold our mutations. In '/src/gql/mutation.js',
+add the following:
+
+once the file is updated, it has the following source:
+
+```
+import { gql } from '@apollo/client';
+
+const EDIT_NOTE = gql`
+    mutation updateNote($id: ID!, $content: String!) {
+        updateNote(id: $id, content: $content) {
+            id
+            content
+            createdAt
+            favoriteCount
+            favoritedBy {
+                id
+                username
+            }
+            author {
+                username
+                id
+            }
+        }
+    }
+`;
+
+export { EDIT_NOTE };
+```
+
+HERE -- P. 189!
 
 {
     username: 'world_lover2',
