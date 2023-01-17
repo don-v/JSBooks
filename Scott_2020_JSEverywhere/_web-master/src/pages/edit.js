@@ -18,6 +18,15 @@ const EditNote = props => {
   const { loading, error, data } = useQuery(GET_NOTE, { variables: { id }});
   // fetch the current user's data
   const { data: userdata } = useQuery(GET_ME);
+  // define our mutation
+  const [editNote] = useMutation(EDIT_NOTE, {
+    variables: {
+      id
+    },
+    onCompleted: () => {
+      props.history.push(`/note/$(id)`);
+    }
+  });
   // if the data is loading, display a loading message
   if (loading) return 'Loading...';
   // if there is an error fetching the data, display an error message
@@ -27,7 +36,7 @@ const EditNote = props => {
     return <p>You do not have access to edit this note</p>;
   }
   // pass the data to the form component
-  return <NoteForm content={data.note.content} />;
+  return <NoteForm content={data.note.content} action={editNote} />;
 };
 
 export default EditNote;
