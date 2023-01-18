@@ -1098,7 +1098,22 @@ const EditNote = props => {
 export default EditNote;
 ```
 
-HERE -- p. 190!
+Finally, we want to display an 'Edit' link to users, but only if they
+are the author of the note. In our application, we will need to check
+to ensure that the ID of the current user matches the id of the note
+author. To implement this behavior, we'll be touching several components.
+
+Now we could implement our functionality direclty within the `Note` 
+component, but let's instead create a component specifically for 
+logged-in user interactions at '/src/components/NoteUser.js'. In this 
+'React' component we will perform a GraphQL query for the current user
+ID and provide a routable link to the edit page. With this information, 
+we can begin by including our required libraries and setting up a new
+'React' component. Within the 'React' component, we will include an 
+'Edit' link, which will route the user to the edit page for the note.
+For now, the user will see this link regardless of who owns the note.
+
+# HERE -- P. 190, test NoteForm edit route!
 
 {
     username: 'world_lover2',
