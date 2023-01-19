@@ -24,7 +24,7 @@ const EditNote = props => {
       id
     },
     onCompleted: () => {
-      props.history.push(`/note/$(id)`);
+      props.history.push(`/note/${id}`);
     }
   });
   // if the data is loading, display a loading message

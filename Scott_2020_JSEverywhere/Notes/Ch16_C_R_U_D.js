@@ -1113,7 +1113,7 @@ we can begin by including our required libraries and setting up a new
 'Edit' link, which will route the user to the edit page for the note.
 For now, the user will see this link regardless of who owns the note.
 
-# HERE -- P. 190, test NoteForm edit route!
+# HERE -- P. 190, tested edit note, fixed id!
 
 {
     username: 'world_lover2',
