@@ -1113,7 +1113,29 @@ we can begin by including our required libraries and setting up a new
 'Edit' link, which will route the user to the edit page for the note.
 For now, the user will see this link regardless of who owns the note.
 
-# HERE -- P. 190, tested edit note, fixed id!
+Update '/src/components/NoteUser.js' as follows:
+
+```
+import React from 'react';
+import { useQuery, gql } from '@apollo/client';
+import { Link } from 'react-router-dom';
+
+const NoteUser = props => {
+    return <Link to={`/edit/${props.note.id}`}>Edit</Link>;
+};
+
+export default NoteUser;
+```
+
+Next, we will update our `Note` component to perform a local
+`isLoggedIn` state query. We can then conditionally redner 
+our `NoteUser` component based on teh logged-in state of the
+user. 
+
+Let's first import the GraphQL libraries to perform the query
+along with our `NoteUser` component...
+
+// HERE -- p. 190!
 
 {
     username: 'world_lover2',
