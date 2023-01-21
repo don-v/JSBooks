@@ -1133,9 +1133,29 @@ our `NoteUser` component based on teh logged-in state of the
 user. 
 
 Let's first import the GraphQL libraries to perform the query
-along with our `NoteUser` component...
+along with our `NoteUser` component. In '/src/components/Note.js',
+add teh following to the top of the file:
 
-// HERE -- p. 190!
+```
+import { useQuery } from '@apollo/client';
+
+// import logged in user UI components
+import NoteUser from './NoteUser';
+// import the IS_LOGGED_IN local query
+import { IS_LOGGED_IN } from '../gql/query';
+```
+
+Now, we can update our JSX component to check the logged-in
+state. If the user is logged in, we'll display the `NoteUser`
+component; otherwise, we'll display the favorite count.
+
+```
+const Note = ({ note }) => {
+    const { loading, error, data } = useQuery(IS_LOGGED_IN);
+    // if the data is loading, display a loading message
+    // HERE -- p. 191!
+}
+```
 
 {
     username: 'world_lover2',
