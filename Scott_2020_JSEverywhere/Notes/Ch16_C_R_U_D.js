@@ -1150,12 +1150,10 @@ state. If the user is logged in, we'll display the `NoteUser`
 component; otherwise, we'll display the favorite count.
 
 ```
-const Note = ({ note }) => {
-    const { loading, error, data } = useQuery(IS_LOGGED_IN);
-    // if the data is loading, display a loading message
-    // HERE -- p. 191!
-}
+updating Note component, p. 191!
 ```
+
+
 
 {
     username: 'world_lover2',

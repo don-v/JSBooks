@@ -41,18 +41,25 @@ const UserActions = styled.div`
 `;
 
 const Note = ({ note }) => {
+  const { loading, error, data } = useQuery(IS_LOGGED_IN);
+  // if the data is loading, display a loading message
+  if (loading) return <p>Loading...</p>
+  // if there is an error fetching the data, display an error message
+  if (error) return <p>Error!</p>
+
   return (
     <StyledNote>
       <MetaData>
         <MetaInfo>
           <img
           src={note.author.avatar}
-          alt="{note.author.username} avatar"
-          // alt={`${note.author.username} avatar`}
+          // alt="{note.author.username} avatar"
+          alt={`${note.author.username} avatar`}
           height="50px"
           />  
         </MetaInfo>
         <MetaInfo> 
+        {/* HERE -- p. 191! */}
           <em>by</em> {note.author.username} <br />  
           {format(note.createdAt, 'MMM Do YYYY')}
         </MetaInfo>
