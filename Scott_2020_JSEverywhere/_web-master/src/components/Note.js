@@ -59,13 +59,18 @@ const Note = ({ note }) => {
           />  
         </MetaInfo>
         <MetaInfo> 
-        {/* HERE -- p. 191! */}
           <em>by</em> {note.author.username} <br />  
           {format(note.createdAt, 'MMM Do YYYY')}
         </MetaInfo>
-        <UserActions>
-        <em>Favorites:</em> {note.favoriteCount}
-        </UserActions>  
+        {data.isLoggedIn ? (
+          <UserActions>
+            <NoteUser note={note} />
+          </UserActions>
+        ) : (
+          <UserActions>
+            <em>Favorites:</em> {note.favoriteCount}
+          </UserActions>  
+        )}        
       </MetaData>
       <ReactMarkdown source={note.content} />
     </StyledNote>
