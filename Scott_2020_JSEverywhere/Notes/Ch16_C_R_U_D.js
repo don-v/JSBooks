@@ -1247,7 +1247,16 @@ Though we won't be doing it in this book, a good additional step
 would be to update the 'src/page/edit.js' component to redirect a 
 if they are not the note owner!
 
-// HERE -- p. 191!
+With this change, logged-in users are able to see an edit link at
+the top of each note. Clicking the link will navigate to an edit
+form, regardless of who is the owner of the note. Let's address this
+by updating our `NoteUser` component to query for the current user's
+ID and display the edit link only if it matches the ID of the note
+author.
+
+First in '/src/components/NoteUser.js' add the following:
+
+HERE -- p. 192!
 
 
 {
