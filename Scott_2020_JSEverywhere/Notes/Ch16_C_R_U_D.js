@@ -1286,12 +1286,21 @@ const NoteUser = props => {
 export default NoteUser;
 ```
 
-With this chagne, only the note's original author will see the edit
+With this change, only the note's original author will see the edit
 link in the UI!
 
-// HERE -- p. 192!
+Tested, this, and it worked. saw edit link when logged in for 
+the note, but when logged out, clicked on same note, edit link
+was not visible!
 
+### DELETING NOTES
 
+Our CRUD application is still missing the ability to delete a note.
+We can write a button UI component that, when clicked, will perform
+a GraphQL mutation, deleting the note. Let's start by creating a new
+component at 'src/components/DeleteNote.js':
+
+// HERE -- p. 193!
 
 {
     username: 'world_lover2',
