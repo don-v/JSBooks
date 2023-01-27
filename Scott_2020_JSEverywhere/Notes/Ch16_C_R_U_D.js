@@ -1298,7 +1298,26 @@ was not visible!
 Our CRUD application is still missing the ability to delete a note.
 We can write a button UI component that, when clicked, will perform
 a GraphQL mutation, deleting the note. Let's start by creating a new
-component at 'src/components/DeleteNote.js':
+component at 'src/components/DeleteNote.js'; Since we will be performing
+a redirect within a nonroutable component, we will use 'React Router's
+`withRouter` higher-order component:
+
+```
+import React from 'react';
+import { userMutation } from '@apollo/client';
+import { withRouter } from 'react-router-dom';
+
+import ButtonAsLink from './ButtonAsLink';
+
+const DeleteNote = props => {
+    return <ButtonAsLink>Delete Note</ButtonAsLink>;
+};
+
+export default withRouter(DeleteNote)
+```
+
+Now, we can write our mutation. Our GraphQL API has a `deleteNote`
+mutation, which returns a boolean of `true`...
 
 // HERE -- p. 193!
 
