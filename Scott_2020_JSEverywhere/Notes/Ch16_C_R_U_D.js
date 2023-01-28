@@ -1317,9 +1317,50 @@ export default withRouter(DeleteNote)
 ```
 
 Now, we can write our mutation. Our GraphQL API has a `deleteNote`
-mutation, which returns a boolean of `true`...
+mutation, which returns a boolean of `true` if the note is deleted.
+When a mutation completes, we'll redirect the user to the 
+'/mynotes' page of our application.
+
+First, in '/src/gql/mutation.js', write the mutation, and then the
+file source will look like this:
+
+```
+import { gql } from '@apollo/client';
+
+const EDIT_NOTE = gql`
+    mutation updateNote($id: ID!, $content: String!) {
+        updateNote(id: $id, content: $content) {
+            id
+            content
+            createdAt
+            favoriteCount
+            favoritedBy {
+                id
+                username
+            }
+            author {
+                username
+                id
+            }
+        }
+    }
+`;
+
+const DELETE_NOTE = gql`
+    mutation deleteNote($id: ID!) {
+        deleteNote(id: $id)
+    }
+`;
+
+// update to include DELETE_NOTE
+export { EDIT_NOTE, DELETE_NOTE };
+```
+
+Now in '/src/components/DeleteNote.js', add the following:
 
 // HERE -- p. 193!
+
+
 
 {
     username: 'world_lover2',
