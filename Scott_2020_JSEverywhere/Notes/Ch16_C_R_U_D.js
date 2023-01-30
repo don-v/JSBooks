@@ -1390,7 +1390,49 @@ const DeleteNote = props => {
 export default withRouter(DeleteNote)
 ```
 
-// HERE -- p. 194!
+Now, we can import the new `DeleteNote` component within our 
+'/src/components/NoteUser.js' file, displaying it only to a note's author:
+
+here's the updated source:
+
+```
+import React from 'react';
+import { useQuery, gql } from '@apollo/client';
+import { Link } from 'react-router-dom';
+
+// import our `GET_ME` query
+import { GET_ME } from '../gql/query';
+// import the `DeleteNote` component
+import DeleteNote from'./DeleteNote';
+
+const NoteUser = props => {
+    const { loading, error, data } = useQuery(GET_ME);
+    // if the data is loading, display a loading message
+    if (loading) return <p>Loading...</p>;
+    // if there's an error fetching the data, dislpay an error message
+    if (error) return <p>Error!</p>;
+    
+    return (
+        <React.Fragment>
+            Favorites: {props.note.favoriteCount}
+            <br />
+            {data.me.id === props.note.author.id && (
+                <React.Fragment>
+                    <Link to={`/edit/${props.note.id}`}>Edit</Link> <br />
+                    <DeleteNote noteId={props.note.id} />
+                </React.Fragment>
+            )}
+        </React.Fragment>
+    );
+};
+
+export default NoteUser;
+```
+
+With this mutation written, logged-in users are now able to delete a 
+note with a click of a button.
+
+// DeleteNote updated, HERE -- p. 194!
 
 
 

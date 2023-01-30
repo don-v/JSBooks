@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 
 // import our `GET_ME` query
 import { GET_ME } from '../gql/query';
+// import the `DeleteNote` component
+import DeleteNote from'./DeleteNote';
 
 const NoteUser = props => {
     const { loading, error, data } = useQuery(GET_ME);
@@ -11,13 +13,15 @@ const NoteUser = props => {
     if (loading) return <p>Loading...</p>;
     // if there's an error fetching the data, dislpay an error message
     if (error) return <p>Error!</p>;
+    
     return (
         <React.Fragment>
             Favorites: {props.note.favoriteCount}
             <br />
             {data.me.id === props.note.author.id && (
                 <React.Fragment>
-                    <Link to={`/edit/${props.note.id}`}>Edit</Link>
+                    <Link to={`/edit/${props.note.id}`}>Edit</Link> <br />
+                    <DeleteNote noteId={props.note.id} />
                 </React.Fragment>
             )}
         </React.Fragment>
