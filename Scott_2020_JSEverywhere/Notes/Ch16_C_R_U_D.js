@@ -1432,9 +1432,9 @@ export default NoteUser;
 With this mutation written, logged-in users are now able to delete a 
 note with a click of a button.
 
-// DeleteNote updated, HERE -- p. 194!
+So `DeleteNote` link showed up, though it was not clickable!
 
-
+// HERE -- p. 194!
 
 {
     username: 'world_lover2',
