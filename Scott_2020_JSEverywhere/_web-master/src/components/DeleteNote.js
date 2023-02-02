@@ -1,5 +1,5 @@
 import React from 'react';
-import { useMutation, useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import { withRouter } from 'react-router-dom';
 
 import ButtonAsLink from './ButtonAsLink';

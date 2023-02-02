@@ -1432,7 +1432,9 @@ export default NoteUser;
 With this mutation written, logged-in users are now able to delete a 
 note with a click of a button.
 
-// HERE -- P. 194, test DeleteNote again!
+now application not loading!
+
+// HERE -- p. 194!, not loading! argh!
 
 
 {
