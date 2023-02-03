@@ -1434,7 +1434,8 @@ note with a click of a button.
 
 now application not loading!
 
-// HERE -- p. 194!, not loading! argh!
+// HERE -- p. 194!, ok it worked today, but 'DeleteNote' link
+is not underlined!
 
 
 {
