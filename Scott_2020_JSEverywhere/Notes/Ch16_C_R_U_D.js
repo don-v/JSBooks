@@ -1434,8 +1434,31 @@ note with a click of a button.
 
 now application not loading!
 
-// HERE -- p. 194!, ok it worked today, but 'DeleteNote' link
-is not underlined!
+// TOGGLING FAVORITES
+
+The last piece of user functionality missing from our application is the
+ability to add and remove "favorite" notes. Let's follow our pattern of 
+creating a component for this feature and integrating it into our application.
+First, create a new component at '/src/components/FavoriteNote.js' and update
+the source as follows:
+
+```
+import React, { useState } from 'react';
+import { useMutation } from '@apollo/client';
+
+import ButtonAsLink from './ButtonAsLink';
+
+const FavoriteNote = props => {
+    return <ButtonAsLink>Add to favorites</ButtonAsLink>;
+}
+
+export default FavoriteNote;
+```
+
+Before we add any functionality, let's go ahead and incorporate this component
+into our '/src/components/NoteUser.js' component. First, import the component:
+
+// HERE -- p. 195!
 
 
 {
