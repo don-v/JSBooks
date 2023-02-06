@@ -1458,6 +1458,90 @@ export default FavoriteNote;
 Before we add any functionality, let's go ahead and incorporate this component
 into our '/src/components/NoteUser.js' component. First, import the component:
 
+after doing so, the updated source in our '/src/components/NoteUser.js' component
+becomes:
+
+```
+import React from 'react';
+import { useQuery, gql } from '@apollo/client';
+import { Link } from 'react-router-dom';
+
+// import our `GET_ME` query
+import { GET_ME } from '../gql/query';
+// import the `DeleteNote` component
+import DeleteNote from'./DeleteNote';
+// import the FavoriteNote component
+import FavoriteNote from './FavoriteNote';
+
+const NoteUser = props => {
+    const { loading, error, data } = useQuery(GET_ME);
+    // if the data is loading, display a loading message
+    if (loading) return <p>Loading...</p>;
+    // if there's an error fetching the data, dislpay an error message
+    if (error) return <p>Error!</p>;
+    
+    return (
+        <React.Fragment>
+            Favorites: {props.note.favoriteCount}
+            <br />
+            {data.me.id === props.note.author.id && (
+                <React.Fragment>
+                    <Link to={`/edit/${props.note.id}`}>Edit</Link> <br />
+                    <DeleteNote noteId={props.note.id} />
+                </React.Fragment>
+            )}
+        </React.Fragment>
+    );
+};
+
+export default NoteUser;
+```
+
+Now, within our JSX, include a reference to the component. One may recall
+that when we wrote our `GET_ME` query, we included a list of favorited note
+IDs, which we'll make use of here; after updating, our updated 
+'/src/components/NoteUser.js' component is as follows:
+
+```
+import React from 'react';
+import { useQuery, gql } from '@apollo/client';
+import { Link } from 'react-router-dom';
+
+// import our `GET_ME` query
+import { GET_ME } from '../gql/query';
+// import the `DeleteNote` component
+import DeleteNote from'./DeleteNote';
+// import the FavoriteNote component
+import FavoriteNote from './FavoriteNote';
+
+const NoteUser = props => {
+    const { loading, error, data } = useQuery(GET_ME);
+    // if the data is loading, display a loading message
+    if (loading) return <p>Loading...</p>;
+    // if there's an error fetching the data, dislpay an error message
+    if (error) return <p>Error!</p>;
+    
+    return (
+        <React.Fragment>
+            <FavoriteNote
+                me={data.me}
+                noteId={props.note.id}
+                favoriteCount={props.note.favoriteCount}    
+            />
+            <br />
+            {data.me.id === props.note.author.id && (
+                <React.Fragment>
+                    <Link to={`/edit/${props.note.id}`}>Edit</Link> <br />
+                    <DeleteNote noteId={props.note.id} />
+                </React.Fragment>
+            )}
+        </React.Fragment>
+    );
+};
+
+export default NoteUser;
+```
+
 // HERE -- p. 195!
 
 
