@@ -1542,7 +1542,24 @@ const NoteUser = props => {
 export default NoteUser;
 ```
 
-// HERE -- p. 195!
+One will notice that we're passing three properties to our 
+`FavoriteNote` component. First is our `me` data, which will
+include the current user's ID as well as a list of notes 
+favorited by the user. Second, the `noteId` of the current
+note. And finally is the `favoriteCount`, which is the current
+total number of user favorites.
+
+Now we can return to our '/src/components/FavoriteNote.js'.
+In this file, we'll store the current number of favorites 
+as state and check to see if the current note ID is in the
+existing list of user favorites. We'll change the text that
+the user sees based on the stat of the user's favorite. When
+the user clicks the button, it will call our `toggleFavorite`
+mutation, which will either add or remove the favorite from
+the user's list. Let's begin by updating the component to 
+use state to control the click functionality...
+
+// HERE -- p. 196!
 
 
 {
