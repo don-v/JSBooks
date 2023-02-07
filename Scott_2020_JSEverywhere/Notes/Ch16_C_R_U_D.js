@@ -1557,10 +1557,56 @@ the user sees based on the stat of the user's favorite. When
 the user clicks the button, it will call our `toggleFavorite`
 mutation, which will either add or remove the favorite from
 the user's list. Let's begin by updating the component to 
-use state to control the click functionality...
+use state to control the click functionality
+
+here is the updated source for '/src/components/FavoriteNote.js':
+
+```
+import React, { useState } from 'react';
+import { useMutation } from '@apollo/client';
+
+import ButtonAsLink from './ButtonAsLink';
+
+const FavoriteNote = props => {
+    // store the note's favorite count as state
+    const [count, setCount]  = useState(props.favoriteCount);
+
+    // store if the user has favorited the note as state
+    const [favorited, setFavorited] = useState(
+        // check if the note exists in the user favorites list
+        props.me.favorites.filter(note => note.id === props.noteId).length > 0
+    );
+
+    return (
+        <React.Fragment>
+            {favorited ? (
+                <ButtonAsLink
+                    onClick={() => {
+                        setFavorited(false);
+                        setCount(count - 1);
+                    }}                
+                >
+                    Remove Favorite
+                </ButtonAsLink>
+            ) : (
+                <ButtonAsLink
+                    onClick={() => {
+                        setFavorited(true);
+                        setCount(count + 1);
+                    }}
+                >
+                    Add Favorite
+                </ButtonAsLink>
+            )}
+            : {count}
+        </React.Fragment>
+    );
+};
+
+export default FavoriteNote;
+```
 
 // HERE -- p. 196!
-
 
 {
     username: 'world_lover2',
