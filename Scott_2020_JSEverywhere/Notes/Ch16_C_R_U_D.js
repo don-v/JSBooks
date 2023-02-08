@@ -1606,7 +1606,61 @@ const FavoriteNote = props => {
 export default FavoriteNote;
 ```
 
-// HERE -- p. 196!
+With the preceding changes we're updating the state when a user
+clicks, but we're not yet calling our GraphQL mutation. Let's 
+complete this component by writing the mutation and adding it
+to the component. The result is shown in Figure 16-3.
+
+Let's update '/src/gql/mutation.js' as follows:
+
+```
+import { gql } from '@apollo/client';
+
+const EDIT_NOTE = gql`
+    mutation updateNote($id: ID!, $content: String!) {
+        updateNote(id: $id, content: $content) {
+            id
+            content
+            createdAt
+            favoriteCount
+            favoritedBy {
+                id
+                username
+            }
+            author {
+                username
+                id
+            }
+        }
+    }
+`;
+
+const DELETE_NOTE = gql`
+    mutation deleteNote($id: ID!) {
+        deleteNote(id: $id)
+    }
+`;
+
+// add the TOGGLE_FAVORITE mutation
+const TOGGLE_FAVORITE = gql`
+    mutation toggleFavorite($id: ID!) {
+        toggleFavorite(id: $id) {
+            id
+            favoriteCount
+        }
+    }
+`;
+
+// update to include TOGGLE_FAVORITE
+export { EDIT_NOTE, DELETE_NOTE, TOGGLE_FAVORITE };
+```
+
+Then we go back and update our 'FavoriteNote' compoentns
+in the file '/src/components/FavoriteNote.js' as follows:
+
+```
+// HERE -- p. 197!
+```
 
 {
     username: 'world_lover2',
