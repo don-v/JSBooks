@@ -33,6 +33,7 @@ const FavoriteNote = props => {
             {favorited ? (
                 <ButtonAsLink
                     onClick={() => {
+                        toggleFavorite();
                         setFavorited(false);
                         setCount(count - 1);
                     }}                
@@ -42,6 +43,7 @@ const FavoriteNote = props => {
             ) : (
                 <ButtonAsLink
                     onClick={() => {
+                        toggleFavorite();
                         setFavorited(true);
                         setCount(count + 1);
                     }}

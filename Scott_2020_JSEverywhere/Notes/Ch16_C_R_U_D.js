@@ -1694,6 +1694,7 @@ const FavoriteNote = props => {
             {favorited ? (
                 <ButtonAsLink
                     onClick={() => {
+                        toggleFavorite();
                         setFavorited(false);
                         setCount(count - 1);
                     }}                
@@ -1703,6 +1704,7 @@ const FavoriteNote = props => {
             ) : (
                 <ButtonAsLink
                     onClick={() => {
+                        toggleFavorite();
                         setFavorited(true);
                         setCount(count + 1);
                     }}
@@ -1718,7 +1720,12 @@ const FavoriteNote = props => {
 export default FavoriteNote;
 ```
 
-// HERE -- p. 198!
+we should now be able to test our application to 
+see what a logged in user sees!
+
+# CONCLUSION
+
+// HERE -- p. 199!
 
 {
     username: 'world_lover2',
