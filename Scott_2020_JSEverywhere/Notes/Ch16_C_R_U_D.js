@@ -1725,7 +1725,15 @@ see what a logged in user sees!
 
 # CONCLUSION
 
-// HERE -- p. 199!
+In this chapter we turned our site into a fully functioning 
+CRUD (create, read, update, delete) application. We are now able
+to implement GraphQL queries and mutations based on the state of 
+a signed-in user. The ability to build user interfaces that 
+integrate CRUD user interactions will provide a solid foundation
+for building all sorts of web applications. With this functionality,
+We've completed the the MVP (minimum viable product) of our app.
+In the next chapter, we'll deploy the application to a web 
+server!
 
 {
     username: 'world_lover2',
