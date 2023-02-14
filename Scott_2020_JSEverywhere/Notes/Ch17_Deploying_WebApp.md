@@ -37,7 +37,29 @@ three file types.
 Our application, 'Notedly', is a static web application. It 
 contains some markup, CSS, and JS. Our build tool, Parcel...:
 `https://parceljs.org` ...,
-compliles the components...
+compliles the components that we write into files usable by 
+the browser. In local development, we run a web server and 
+these files are updated on the using 'Parcel''s hot module
+replacement feature. If we look at our 'package.json' file, 
+you'll see that I've included two `deploy` scripts:
 
-<!-- HERE -- p. 202! -->
+```
+"scripts": {
+    "deploy:src": "parcel build src/index.html --public-url ./",
+    "deploy:final": "parcel build final/index.html --public-url ./"
+}
+```
+
+To build the application, open your terminal application, `cd` 
+into the root of your _web_ directory, which contains the project,
+and then run the `build` command:
+
+```
+# if you're not already in the web directory, be sure to cd into it
+$ cd Project/notedly/web
+# build the files form the src directory
+$ npm run deploy:src
+```
+
+# HERE -- p. 202!
 
