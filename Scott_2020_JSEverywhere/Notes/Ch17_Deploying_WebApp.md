@@ -61,5 +61,13 @@ $ cd Project/notedly/web
 $ npm run deploy:src
 ```
 
-# HERE -- p. 202!
+If one has been following along with the book and developing the
+application in the `src` directory, running `npm run deploy:src`
+in the terminal, as just described, will generate the built application
+from one's code.  If one would prefer to use the final version of
+the application that is bundled with the sample code, using `npm
+run deploy:final` will build the cod eform teh final application 
+directory.
+
+<!-- HERE -- p. 202! -->
 
