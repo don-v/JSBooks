@@ -66,8 +66,29 @@ application in the `src` directory, running `npm run deploy:src`
 in the terminal, as just described, will generate the built application
 from one's code.  If one would prefer to use the final version of
 the application that is bundled with the sample code, using `npm
-run deploy:final` will build the cod eform teh final application 
+run deploy:final` will build the code eform teh final application 
 directory.
 
-<!-- HERE -- p. 202! -->
+In the rest of the chapter, teach will demonstrate one way to deploy
+a statically built application, but these files could be hosted 
+anywhere that can server HTML-- form a web hosting provider to a 
+Raspberry Pi left runnong on one's desk. While there are many 
+tangible benefits to the type of process teach will walk us
+through, one's deployment could be as simple as updating the 
+_.env_ file to point to the remote API, running the build script, 
+and uploading the files. 
+
+> NOTE: SERVER-SIDE RENDERED REACT: Though we're building our React
+application as a static web application, it is also possible to 
+render JSX on the server. This technique is often referred to as
+"universal JS" and can have many benefits, including performance
+gains, client-side JS fallbacks, and SEO improvements. Frameworks like
+'Next.js' (`https://nextjs.org`) have sought to simplify the setup.
+Though we're not covering server-side rendered JS applications in
+this book, teach highly recommends exploring this approach once 
+once is comfortable with client-side JS app development. 
+
+## OUR DEPLOYMENT PIPELINE
+
+<!-- HERE -- p. 203! -->
 
