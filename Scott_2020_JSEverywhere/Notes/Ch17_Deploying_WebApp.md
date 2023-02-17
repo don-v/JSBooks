@@ -90,5 +90,28 @@ once is comfortable with client-side JS app development.
 
 ## OUR DEPLOYMENT PIPELINE
 
-<!-- HERE -- p. 203! -->
+For our application's deployment, we'll make use of a simple pipeline,
+which will allow us to automatically deploy changes to our codebase. 
+For our pipeline we'll be using 2 services. The first will be our 
+github repository, Github (`https://github.com`). The second will be our
+host, 'Netlify' (`https://www.netlify.com`). Teach chose 'Netlify' for 
+its extensive, but easy-to-use, feature set for deployments as well as
+its focus on static and serverless applications.
 
+The goal is for any commit to the `master` branch of our application
+to be automatically deployed to our webhost. We could visualize the 
+process as shown in Figure 17-1:
+
+Nodes: {0:'Personal Computer', 1: 'Github', 2: 'Netlify'}
+Edges: {
+    (0,1): 'git commit + push', 
+    (1,2): '', 
+    (2,): [
+        'Netlify runs build scripts', 
+        'Built code published to web server'
+        ]
+    }
+
+### HOSTING SOURCE CODE WITH GIT
+
+<!-- HERE -- p. 203! -->
