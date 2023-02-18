@@ -114,4 +114,25 @@ Edges: {
 
 ### HOSTING SOURCE CODE WITH GIT
 
-<!-- HERE -- p. 203! -->
+The first step in our deployment process is to  set up our source
+code repository. One may have already done this, in which case, 
+feel free to skip ahead.  As noted before we'll be using GitHub
+(`https://github.com`), but this process could be configurd with 
+other public Git hosts, such as GitLab (`https://about.gitlab.com`)
+or Bitbucket (`https://butbucket.org`).
+
+> GitHub Repositories: We'll be creating a new GitHub repository, 
+but if you prefer, you can use the official code sample at 
+`https://github.com/javascripteverywhere/web by creating a fork to
+one's own GitHub account.
+
+First, navigate to Github and create an account and sign in to 
+one's existing account. Then click the New Repository button. Provide
+a name and click the Create Repository button (Figure 17-2).
+
+Now, in your terminal application, navigate to one's web application
+direcotry, set the 'Git' origin to the new gitHub repository, and
+push the code. Because we are updating an existing Git repo, our
+instructions will differ slightly from Github's:
+
+<!-- HERE -- p. 204! -->
