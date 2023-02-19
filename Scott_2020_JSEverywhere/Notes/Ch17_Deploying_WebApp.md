@@ -135,4 +135,32 @@ direcotry, set the 'Git' origin to the new gitHub repository, and
 push the code. Because we are updating an existing Git repo, our
 instructions will differ slightly from Github's:
 
-<!-- HERE -- p. 204! -->
+```sh
+# first navigate to the directory if you're not already there
+cd Projects/notedly/web
+# update the Github remote origin to match your repository
+git remote set-url origin git://YOUR.GIT.URL
+# push the code to the new Github repository
+git push -u origin master
+```
+
+Now, if one navigates to 
+`https://github.com/<your-username>/<your-repo-name>`, one will
+see the source code of the application.
+
+#### DEPLOY WITH 'Netlify'
+
+With our source code in a remoteee Git repo, we can now configure
+our web host, 'Netlify', to build and deploy our code. First, go
+to `netlify.com` and register for an account. Once one has created
+an account, click the "New site from Git" button. This will walk
+one through setting up one's site deployment:
+
+1. Choose your Git provider by selecting 'Github', which will connect
+and authorize your GitHub account
+
+2. Next, select the repo that contains the source code
+
+3. Finally, set up your build settings
+
+<!-- HERE -- p. 205! -->
