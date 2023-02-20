@@ -163,4 +163,27 @@ and authorize your GitHub account
 
 3. Finally, set up your build settings
 
-<!-- HERE -- p. 205! -->
+For our build settings, add the following (Figure 17-3):
+
+1. Build command: `npm run deploy:src` (or `npm run deploy:final`, if deploying
+the 'final' example code)
+
+2. Publish directory: `dist`
+
+3. Under "Advanced settings," click "New variable" and add a variable
+name of `API_URI` with a variable value of 
+`https://<your-api-name>.herokuapp.com/api` (this is the URL of the API
+application, which we deployed to Heroku)
+
+Once you've configured the application, click the "Deploy site" button.
+After a few minutes your application will be running at the 
+'Netlify'-supplied URL. Now, anytime we push a change to our GitHub
+repo, our site will be automatically deployed!
+
+> SLOW INITIAL LOAD: Our deployed we application will be loading data
+from our deployed Heroku API. With Heroku's free plan, application 
+containers sleep after one hour of inactivity. If one hasn't 
+used our API in a while, the initial data load will be slow while
+the container spins back up!
+
+<!-- HERE -- p. 206! -->
