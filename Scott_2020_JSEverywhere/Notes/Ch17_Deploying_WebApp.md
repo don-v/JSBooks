@@ -186,4 +186,29 @@ containers sleep after one hour of inactivity. If one hasn't
 used our API in a while, the initial data load will be slow while
 the container spins back up!
 
-<!-- HERE -- p. 206! -->
+#### Figure 17-3: Netlify -- build process configuration and env vars
+
+```
+{
+    'owner': 'Adam Scott\'s team',
+    'branch to deploy': 'master',
+    'Basic build settings': {
+        'Build command': `npm run deploy:src`,
+        'Publish directory': 'dist',        
+    },
+    'Advanced build settings': {
+        'Purpose': 'define environment variables',
+        'var1': {
+            'Key': 'API_URI',
+            'Value': 'server-notedly-test.herokuapp.com/api'
+        },        
+    },
+}
+```
+
+## CONCLUSION
+
+In this chapter we've deployed a static web application. To do this, 
+we've used 'Netlify''s deployment pipeline...
+
+<!-- HERE -- p. 206!s -->
