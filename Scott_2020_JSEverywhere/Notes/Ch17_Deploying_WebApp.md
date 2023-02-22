@@ -209,6 +209,7 @@ the container spins back up!
 ## CONCLUSION
 
 In this chapter we've deployed a static web application. To do this, 
-we've used 'Netlify''s deployment pipeline...
-
-<!-- HERE -- p. 206!s -->
+we've used 'Netlify''s deployment pipeline features to watch for 
+changes to our Git repository, run out build processes, and store
+environment variables. With this foundaton, we have everything
+we need to publicly release web applications!
