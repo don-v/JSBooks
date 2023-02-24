@@ -22,4 +22,25 @@ for desktop users at a later date.
 
 ## HOW WE'RE GOING TO BUILD THIS
 
-<!-- HERE -- p. 208!s -->
+To build our application, we'll be using 'Electron' 
+(`https://electronjs.org`), an open source framework for building
+cross-platform desktop applications with web technologies. It works
+by utilizing Node.js and Chrome's underlying browser engine, Chromium.
+The means that developers that as devs, we have access to the 
+world of the browser, Node.js, and operating-system specific abilities
+which are typically unavailable in a web environment. Electron was 
+originally developed by Github for the Atom text editor, 
+(`https://atom.io`), but has been used as a platform for applications
+both big and small, including Slack, VS Code, Discord, and WordPress
+Desktop!
+
+## GETTING STARTED
+
+Before we can start development, we need to make a copy of the project
+starter files to our machine. The project's source code at
+()`https://github.com/javascripteverywhere/desktop`) contains all of the
+script an dreferences to third-party libraries that we will need to 
+develop our application. To clone the code to our local machine, open
+the terminal, navigate to the directory ...
+
+<!-- HERE -- p. 208! -->
