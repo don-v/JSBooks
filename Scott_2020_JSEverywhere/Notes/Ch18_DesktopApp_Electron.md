@@ -41,6 +41,23 @@ starter files to our machine. The project's source code at
 ()`https://github.com/javascripteverywhere/desktop`) contains all of the
 script an dreferences to third-party libraries that we will need to 
 develop our application. To clone the code to our local machine, open
-the terminal, navigate to the directory ...
+the terminal, navigate to the directory where you keep your projects, and
+`git clone` teh  project repository. If one has worked with the 'API',
+and 'web' chapters, one may also have already created a _notedly_
+directly to keep the project code organized:
+
+```sh
+$ cd Projects
+# type the `mkdir notedly` command if you don't yet have a 
+# notedly directory
+$ cd notedly
+$ git clone git@github.com:javascripteverywhere/desktop.git
+$ cd desktop
+$ npm install
+```
+
+> WISDOM: Installing Third-Party Dependencies -- By making a copy of the book's
+starter code and running `npm install` in the directory, one avoids to again 
+`run npm install` for any of the individual third-party dependencies.
 
 <!-- HERE -- p. 208! -->
