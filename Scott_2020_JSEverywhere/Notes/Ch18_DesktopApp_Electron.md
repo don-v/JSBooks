@@ -60,4 +60,4 @@ $ npm install
 starter code and running `npm install` in the directory, one avoids to again 
 `run npm install` for any of the individual third-party dependencies.
 
-<!-- HERE -- p. 208! -->
+<!-- HERE -- p. 208! added desktop source!-->
