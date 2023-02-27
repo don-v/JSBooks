@@ -60,4 +60,7 @@ $ npm install
 starter code and running `npm install` in the directory, one avoids to again 
 `run npm install` for any of the individual third-party dependencies.
 
-<!-- HERE -- p. 208! added desktop source!-->
+will have to see if i should install dependencies on outer folder, or just in 
+src?
+
+<!-- HERE -- p. 208! -->
