@@ -63,4 +63,4 @@ starter code and running `npm install` in the directory, one avoids to again
 will have to see if i should install dependencies on outer folder, or just in 
 src?
 
-<!-- HERE -- p. 208! -->
+<!-- HERE -- p. 208! --> did npm install today!
