@@ -60,7 +60,14 @@ $ npm install
 starter code and running `npm install` in the directory, one avoids to again 
 `run npm install` for any of the individual third-party dependencies.
 
-will have to see if i should install dependencies on outer folder, or just in 
-src?
+The code is structured as follows:
 
-<!-- HERE -- p. 208! --> did npm install today!
+* '/src': This is the directory where one should perform one's development
+as one follows along with this book.
+
+* '/solutions': This directory contains the solutions for each chapter. If
+one gets stucks, these are available for you to consult.
+
+* '/final': This directory contains the final project
+
+<!-- HERE -- p. 209! -->
