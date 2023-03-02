@@ -70,4 +70,36 @@ one gets stucks, these are available for you to consult.
 
 * '/final': This directory contains the final project
 
+With our project directory created and dependencies installed, we are ready
+to begin our development.
+
+## OUR FIRST ELECTRON APP
+
+With our repository cloned to our machine, let's develop our first Electron 
+app. If one looks within one's _src_ directory, one'll see that there are a
+few files. The _index.html_ file contains bare-bones HTML markup. For now, 
+this file will serve as Electron's "renderer process," meaning that it will 
+be the web page displayed as a window by our Electron applications:
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Notedly Desktop</title>
+  </head>
+  <body>
+    <h1>Hello World!</h1>
+  </body>
+</html>
+```
+
+The _index.js_ file is where we will set up our Electron application. In
+our application, this file will contain what Electron calls the "main
+process," which defines the application shell. The main process works
+by creating a `BrowserWndow` instance in Electron, which serves as the 
+application shell.
+
+> _index.js versus main.js: 
+
 <!-- HERE -- p. 209! -->
