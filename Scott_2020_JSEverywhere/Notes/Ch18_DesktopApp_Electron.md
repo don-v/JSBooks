@@ -100,6 +100,35 @@ process," which defines the application shell. The main process works
 by creating a `BrowserWndow` instance in Electron, which serves as the 
 application shell.
 
-> _index.js versus main.js: 
+> **index.js versus main.js**: Though teach has named the file _index.js_,
+to follow the pattern found in the rest of our sample applications, it
+is common in Electron development to name the "main process" file 
+_main.js_
+
+Let's set up our main process to display a browser window containing 
+our HTML page. First, import Electron's `app` and `browserflow` 
+functionality in '/src/index.js':
+
+```JavaScript
+const { app, BrowserWindow } = require('electron');
+```
+
+Now we can define our application's `browserWindow` and define the 
+file that our application will load. In '/src/index.js', add the 
+following:
+
+```JavaScript
+const { app, BrowserWindow } = require('electron');
+
+// to avoid garbage collection, declare the window as a 
+// variable
+
+let window;
+
+// 
+```
 
 <!-- HERE -- p. 209! -->
+
+
+
