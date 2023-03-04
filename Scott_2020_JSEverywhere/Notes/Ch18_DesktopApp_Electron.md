@@ -125,10 +125,29 @@ const { app, BrowserWindow } = require('electron');
 
 let window;
 
-// 
+// specify the details of the browser window
+function createWindow() {
+  window = new BrowserWindow({
+    width: 800,
+    height: 600,
+    webPreferences: {
+      nodeIntegration: true
+    }
+  });
+
+  // load the HTML file
+  window.loadFile('index.html');
+
+  // when the window is closed, reset the window object
+  window.on('closed', () => {
+    window = null;
+  });
+}
+
+// when electron is ready, create the application window
+app.on('ready', createWindow);
 ```
 
-<!-- HERE -- p. 209! -->
-
+<!-- HERE -- p. 210, test tomorrow! -->
 
 
