@@ -148,6 +148,26 @@ function createWindow() {
 app.on('ready', createWindow);
 ```
 
-<!-- HERE -- p. 210, test tomorrow! -->
+with this in place, we are ready to run our desktop application
+locally. In our terminal, from our project's directory, we
+need to run:
+
+```
+npm start
+```
+
+it worked!, the command ran `electron src/index.js`, launching
+a development environment version of our application!
+
+## macOS Application Window Details
+
+macOS handles application windows differently from Windows. When
+a user clicks the "close window" button, the application window
+cloases, but the application itself does not quit. Clicking the 
+application's icon in the macOS dock will re-open the application 
+window...
+
+<!-- HERE -- p. 211! -->
+
 
 
