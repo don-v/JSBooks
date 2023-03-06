@@ -26,3 +26,18 @@ function createWindow() {
 
 // when electron is ready, create the application window
 app.on('ready', createWindow);
+
+// quit when all windows are closed.
+app.on('window-all-closed', () => {
+  // on macOS only quit when a user explicitly quits the application
+  if (process.platform !== 'darwin') {
+    app.quit()
+  }
+});
+
+app.on('activate', () => {
+  // on macOS, re-create the window when the icon is clicked in the dock
+  if (window === null) {
+    createWindow();
+  }
+});

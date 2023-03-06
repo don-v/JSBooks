@@ -165,7 +165,38 @@ macOS handles application windows differently from Windows. When
 a user clicks the "close window" button, the application window
 cloases, but the application itself does not quit. Clicking the 
 application's icon in the macOS dock will re-open the application 
-window...
+window. Electron allows us to implement this functionality. 
+Add the following to the bottom of the `src/index.js` file:
+
+```JavaScript
+
+// quit when all windows are closed.
+app.on('window-all-closed', () => {
+  // on macOS only quit when a user explicitly quits the application
+  if (process.platform !== 'darwin') {
+    app.quit()
+  }
+});
+
+app.on('activate', () => {
+  // on macOS, re-create the window when the icon is clicked in the dock
+  if (window === null) {
+    createWindow();
+  }
+});
+
+```
+
+With this added, one can see these changes by quitting the application
+and rerunning it with the `npm start` command. Now, if a user is 
+accessing our application with 'macOS', they will see the expected
+behavior when closing a window.
+
+### DEVELOPER TOOLS
+
+Since Electron is based on the Chromium browser engine (the engine behind
+Chorme, Microsoft Edge, Opera, and many other browsers), it also give us
+access to Chromium's Developer Toos. This allows ...
 
 <!-- HERE -- p. 211! -->
 
