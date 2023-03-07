@@ -196,9 +196,31 @@ behavior when closing a window.
 
 Since Electron is based on the Chromium browser engine (the engine behind
 Chorme, Microsoft Edge, Opera, and many other browsers), it also give us
-access to Chromium's Developer Toos. This allows ...
+access to Chromium's Developer Toos. This allows us to perform all of the
+same JS debugging that we might do in a browser environment. Let's check if
+our application is in development mode, and if so, automatically open dev
+tools when the app launches. 
 
-<!-- HERE -- p. 211! -->
+To perform this check, we'll use the 
+`electron-util` library
+(`https://www.electronjs.org/docs/latest/api/utility-process`); This is 
+a small collection of utilities that will allow us to easily check 
+system conditions and simlifies boilerplate code for common Electron
+pattterns. For now, we'll be making use of the `is` module, which will
+allow use to check if our application is in development mode:
+
+At the top of our `/src/index.js` file, import the module:
+
+```JavaScript
+
+const { is }  = require('electron-util');
+
+```
+
+Now, in our application code, we can add the following ...
+
+<!-- HERE -- p. 212! -->
+
 
 
 

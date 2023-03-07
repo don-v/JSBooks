@@ -1,3 +1,4 @@
+const { is }  = require('electron-util');
 const { app, BrowserWindow } = require('electron');
 
 // to avoid garbage collection, declare the window as a 
