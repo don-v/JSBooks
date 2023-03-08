@@ -217,10 +217,27 @@ const { is }  = require('electron-util');
 
 ```
 
-Now, in our application code, we can add the following ...
+Now, in our application code, we can add the following the following
+on the line below `window.loadFile(index.html)`, where we load our HTML
+file, which will open the development tools when the application is 
+in a development environment.
 
-<!-- HERE -- p. 212! -->
+```JavaScript
 
+// if in development mode, open the browser dev tools
+if (is.development) {
+  window.webContents.openDevTools();
+}
 
+```
 
+> **8ELECTRON SECURITY WARNING**: One may notice that our Electron app
+currently displays a security warning related to an insecure Content
+Security Policy (CSP). We will address this warning in the next chapter.
 
+With easy access to the browser dev toosl, we are well prepared to 
+develop a client application!
+
+### THE ELECTRON API
+
+<!-- HERE -- p. 213! -->

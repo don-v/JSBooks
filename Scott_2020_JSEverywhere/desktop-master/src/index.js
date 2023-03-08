@@ -19,6 +19,12 @@ function createWindow() {
   // load the HTML file
   window.loadFile('index.html');
 
+  // if in development mode, open the browser dev tools
+  if (is.development) {
+    window.webContents.openDevTools();
+  }
+  
+
   // when the window is closed, reset the window object
   window.on('closed', () => {
     window = null;
