@@ -240,4 +240,28 @@ develop a client application!
 
 ### THE ELECTRON API
 
+One of the advantages of desktop development is that, through the 
+Electron API, we gain access to operating system-level features that
+are rightfully unavailable in a web browser environment, including:
+
+* Notifications
+* Native file drag an drop
+* macOS Dark Mode
+* Custom menus
+* Robust keyboard shortcuts
+* System dialogs
+* The application tray
+* System information
+
+As one can imagine, these options allow us to add some unique features
+and improved user experiences to our desktop clients. We don't be using
+these in our simple sample application, but it is worth familiarizing 
+yourself with them. Electorn's documentation 
+(`https://electronjs.org/docs`) provides detailed examples of each of 
+Electron's APIs. Additionally, the Electron team has created 
+`electron-api-demos`, a full functioning Electron application that 
+demonstrates many of the unique features of the Electron API.
+
+### CONSLUSION
+
 <!-- HERE -- p. 213! -->
