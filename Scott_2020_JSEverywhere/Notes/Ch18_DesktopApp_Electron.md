@@ -264,4 +264,12 @@ demonstrates many of the unique features of the Electron API.
 
 ### CONSLUSION
 
-<!-- HERE -- p. 213! -->
+In this chapter, we've explored the basics of using Electron to build
+desktop applications with web technologies. The Electron environment 
+offers us, as developers, an opportunity to provide  cross-platform
+desktop experience to users without learning the intracacies of 
+multiple programming languages and operating systems. Armed with the
+simple setup we've explored in this chapter and knowledge of web
+development, we are well prepared to build robust desktop applications.
+In next chapter, we'll look at how we can incorporate an existing
+web application into an Electron shell!
