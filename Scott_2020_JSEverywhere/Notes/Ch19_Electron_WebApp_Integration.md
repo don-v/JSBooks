@@ -21,6 +21,21 @@ webPreferences: {
 }
 ```
 
-Now, replace...
+Now, replace. the `window.loadFile('index.html');` line with the following:
+
+```JavaScript
+window.loadURL('http://localhost:1234');
+```
+
+> **RUNNING THE WEB APPLICATION**: A local instance of our web application will need
+to be running on the `1234` port. If one has been following along with the book, 
+simply run `npm start` from the root of the `web application` server to start the
+development server!
+
+This will instruct 'Electron' to load a URL, rather than a file. Now if one
+runs the app with `npm start`, one will see it loaded in a Electron window, with
+some caveats! (it worked!)
+
+## WARNINGS AND ERRORS:
 
 <!-- HERE -- p. 216! -->

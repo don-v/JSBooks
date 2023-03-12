@@ -17,7 +17,8 @@ function createWindow() {
   });
 
   // load the HTML file
-  window.loadFile('index.html');
+  // window.loadFile('index.html');
+  window.loadURL('http://localhost:1234');
 
   // if in development mode, open the browser dev tools
   if (is.development) {
