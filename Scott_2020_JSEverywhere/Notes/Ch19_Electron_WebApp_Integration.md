@@ -38,4 +38,20 @@ some caveats! (it worked!)
 
 ## WARNINGS AND ERRORS:
 
-<!-- HERE -- p. 216! -->
+The Electron browser developer tools and our terminal currently display a 
+large number of warnings and errors. Let's look at each of these 
+
+First, our terminal displays a large number of 
+`SyntaxError: Unexpected Token` errors.  Additionally, our developer tools 
+show several corresponding warnings stating 
+`DevTools failed to parse SourceMap`. These two errors are related to the
+way in which `Parcel` generates source maps and Electron reads them. 
+Unfortunately, with the combination of technologies that we are using, there
+does not seems to be a reasonable fix for this issue. Our best option is to
+disable JS source maps. In the application window's developer tools, click
+"Settings" and then uncheck "Enable JS source maps".
+
+Now if one quits and restarts the application one will no longer see the 
+source map-related issues. ...
+
+<!-- HERE -- p. 217! -->
