@@ -52,6 +52,30 @@ disable JS source maps. In the application window's developer tools, click
 "Settings" and then uncheck "Enable JS source maps".
 
 Now if one quits and restarts the application one will no longer see the 
-source map-related issues. ...
+source map-related issues. This does come with the tradeoff that debugging 
+our client-side JavaScript within Electron may be more difficult, but 
+thankfully we can still access this feature and our application in our
+web browser.
 
-<!-- HERE -- p. 217! -->
+The final two warnings are related to Electron's security. We will address
+these before bundling our application for production, but it's worth 
+exploring now what these warnings are.
+
+## `Electron Security Warning (Insecure Resources)` 
+
+This warning notifies us that we are loading web resources over an 
+_http_ connection. In production, we should always load resources
+over _https_ to ensure privacy and security. In development, loading
+our localhost over _http_ is not a problem, as we will be referencing
+our hosted website, which uses _https_ in the bundled application.
+
+## `Electron Security Warning (Insecure Content-Security-Policy)`
+
+This wwarning informs us that we ahve not yet set a Content Security
+Policy (CSP). A CSP allows us to specify which domains our application
+is permitted to load resources from, greatly reducing the risk of a
+cross-site scripting (XSS) attack...
+
+<!-- HERE -- p. 218! -->
+
+
