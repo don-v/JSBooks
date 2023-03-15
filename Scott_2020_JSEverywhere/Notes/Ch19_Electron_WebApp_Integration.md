@@ -36,7 +36,7 @@ This will instruct 'Electron' to load a URL, rather than a file. Now if one
 runs the app with `npm start`, one will see it loaded in a Electron window, with
 some caveats! (it worked!)
 
-## WARNINGS AND ERRORS:
+### WARNINGS AND ERRORS:
 
 The Electron browser developer tools and our terminal currently display a 
 large number of warnings and errors. Let's look at each of these 
@@ -74,8 +74,33 @@ our hosted website, which uses _https_ in the bundled application.
 This wwarning informs us that we ahve not yet set a Content Security
 Policy (CSP). A CSP allows us to specify which domains our application
 is permitted to load resources from, greatly reducing the risk of a
-cross-site scripting (XSS) attack...
+cross-site scripting (XSS) attack. Again, this is not a concern during
+local development, but it's important in production. We'll 
+be implementing CSP later.
 
-<!-- HERE -- p. 218! -->
+With our errors addressed, we're ready to set up our application's 
+configuration file
+
+## CONFIGURATION
+
+When developing locally, we want to be able to run the local version of
+our web application, but when bundling the app to be used by others, we
+want it to reference the publicly available URL. We can set up a simple
+configuration file to handle this.
+
+In our _./src_ directory, we will add a _config.js_ file where we can
+store application-specific properties. Teach has included a
+_config.exmaple.js_ file, which one can easily copy from the terminal
+with the following command:
+
+```sh
+cp src/config.example.js src/config.js
+```
+
+Now we can fill in teh properties of our application:
+
+```JavaScript
+// HERE -- p. 218!
+```
 
 
