@@ -97,10 +97,47 @@ with the following command:
 cp src/config.example.js src/config.js
 ```
 
-Now we can fill in teh properties of our application:
+Now we can fill in the properties of our application:
 
 ```JavaScript
-// HERE -- p. 218!
+const config = {
+  LOCAL_WEB_URL: 'http://localhost:1234/',
+  PRODUCTION_WEB_URL: 'https://YOUR_DEPLOYED_WEB_APP_URL',
+  PRODUCTION_API_URL: 'https://YOUR_DEPLOYED_API_URL'
+};
+
+module.exports = config;
 ```
 
+> **WHY NOT `.env`?**: In our previous environments, we've used
+_.env_ files to manage envrionment-specific settings. In this 
+instance, we're using a JS configuraiton file because of the way
+that Electorn apps bundle their depenencies.
 
+Now in our Electron application's main process, we can use the 
+configuration file to specify which URL we would like to load in 
+development and production.  In _src/index.js_, first import the 
+_config.js_ file:
+
+```JavaScript
+const config = require('./config');
+```
+
+Now we can update the `loadURL` functionality to load different
+URIs for each environment:
+
+```JavaScript
+// load the URL
+if (is.development) {
+    window.loadURL(config.LOCAL_WEB_URL);
+} else {
+    window.loadURL(config.PRODUCTION_WEB_URL);
+}
+```
+
+By using a configuration file, we can easily provide Electron
+with environment specific settings. 
+
+### CONTENT SECURITY POLICY
+
+<!-- HERE -- p. 219! -->

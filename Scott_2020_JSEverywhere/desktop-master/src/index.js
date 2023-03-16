@@ -1,6 +1,8 @@
 const { is }  = require('electron-util');
 const { app, BrowserWindow } = require('electron');
 
+const config = require('./config');
+
 // to avoid garbage collection, declare the window as a 
 // variable
 
@@ -16,9 +18,12 @@ function createWindow() {
     }
   });
 
-  // load the HTML file
-  // window.loadFile('index.html');
-  window.loadURL('http://localhost:1234');
+  // load the URL
+if (is.development) {
+  window.loadURL(config.LOCAL_WEB_URL);
+} else {
+  window.loadURL(config.PRODUCTION_WEB_URL);
+}
 
   // if in development mode, open the browser dev tools
   if (is.development) {
