@@ -140,4 +140,9 @@ with environment specific settings.
 
 ### CONTENT SECURITY POLICY
 
+As stated earlier in the chapter, a CSP allows us to limit the domains
+that our application has permission to load resources from. This helps
+to limit potential XSS and data injection attacks. In Electron, we can 
+specify our CSP settings...
+
 <!-- HERE -- p. 219! -->
