@@ -143,6 +143,42 @@ with environment specific settings.
 As stated earlier in the chapter, a CSP allows us to limit the domains
 that our application has permission to load resources from. This helps
 to limit potential XSS and data injection attacks. In Electron, we can 
-specify our CSP settings...
+specify our CSP settings to help improve the security of the application. 
+To leran more about CSP for both one's Electron and web applications, 
+Teach recommends reviewing the MDN article on the subject
+(`https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP`).
 
-<!-- HERE -- p. 219! -->
+Electron provides a built-in API for CSP, but the `electron-util` library
+offers a simpler and cleaner syntax. At the top of our _src/index.js_
+file, update the `electron-util` import statement to include 
+`setContentSecurityPolcy`:
+
+```JavaScript
+
+const { is, setContentSecurityPolicy } = require('electron-util');
+
+```
+
+Now, we can set our CSP for the production version of the application:
+
+```JavaScript
+
+// set the CSP in production mode
+if (!is.development) {
+    setContentSecurityPolicy(`
+    default-src 'none';
+    script-src 'self';
+    img-src 'self' https://www.gravatar.com;
+    style-src 'self' 'unsafe-inline';
+    font-src 'self';
+    connect-src 'self' ${config.PRODUCTION_API_URL};
+    base-uri 'none';
+    form-action 'none';
+    frame-ancestors 'none';
+    `);
+}
+
+```
+
+<!-- HERE -- p. 220! -->
+
