@@ -180,5 +180,10 @@ if (!is.development) {
 
 ```
 
+With out CSP written, we can check for errors using the 
+CSP Evaluator (`https://oreil.ly/1xNK1`). If we are 
+intentionally accessing resources at additional URLs,
+we could add them to our CSP rule set. 
+
 <!-- HERE -- p. 220! -->
 
