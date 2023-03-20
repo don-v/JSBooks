@@ -1,11 +1,9 @@
 const { is, setContentSecurityPolicy } = require('electron-util');
 const { app, BrowserWindow } = require('electron');
-
 const config = require('./config');
 
 // to avoid garbage collection, declare the window as a 
 // variable
-
 let window;
 
 // specify the details of the browser window
@@ -16,19 +14,19 @@ function createWindow() {
     webPreferences: {
       nodeIntegration: false
     }
-  });
+});
 
-  // load the URL
+// load the URL
 if (is.development) {
   window.loadURL(config.LOCAL_WEB_URL);
 } else {
   window.loadURL(config.PRODUCTION_WEB_URL);
 }
 
-  // if in development mode, open the browser dev tools
-  if (is.development) {
+// if in development mode, open the browser dev tools
+if (is.development) {
     window.webContents.openDevTools();
-  }
+}
 
 // set the CSP in production mode
 if (!is.development) {
@@ -46,10 +44,10 @@ if (!is.development) {
 }
 
 
-  // when the window is closed, reset the window object
-  window.on('closed', () => {
-    window = null;
-  });
+// when the window is closed, reset the window object
+window.on('closed', () => {
+        window = null;
+    });
 }
 
 // when electron is ready, create the application window
