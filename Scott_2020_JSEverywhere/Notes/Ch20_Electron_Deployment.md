@@ -30,6 +30,30 @@ boilerplates for
 
 > **Electron Builder Versus Electron Forge**: Electron Forge
 (`https://www.electronforge.io`) is another popular library that offers
-many similar features to Electron Builder....
+many similar features to Electron Builder. A primary advantage of Electron
+forge is that it is based on official Electron libraries, while Electron
+Builder is an independent build tool. This means that users benefit
+from the growth of the Electron ecosystem. The downside is that Electron
+Forge is based on a much more rigid application setup. For the purposes
+of this book, Electron Builder provides the right balance of features
+and learning opportunities, but teach encorages us to take a look at
+Electron Forge as well!
 
+### CONFIGURING ELECTRON BUILDER
+
+All of the configuration of Electron Builder will take place in our 
+application's _package.json_ file. In that file, we can see that 
+`electron-builder` is already listed as a development dependency. Within
+the _package.json_ file, we can include a key called "build", which will
+contain all of the instructions to Electron Builder for packaging our 
+app. To begin, we will include two fields:
+
+* `appId`: This is a unique identifier for our application. macOS calls the 
+concept `CFBundle Identifier` (`https://oreil.ly/OOg1O`) and Windows terms it 
+the `AppUserModelID` (`https://oreil.ly/mr9si`). The standard is to use the 
+reverse DNS format. For example, if we run a company with a domain of 
+_jseverywhere.io_ and build an application named Notedly, the ID would be
+`io.jseverywhere.notedly`.
+
+* `productName`: 
 <!-- HERE -- p. 224! -->
