@@ -55,5 +55,32 @@ reverse DNS format. For example, if we run a company with a domain of
 _jseverywhere.io_ and build an application named Notedly, the ID would be
 `io.jseverywhere.notedly`.
 
-* `productName`: 
-<!-- HERE -- p. 224! -->
+* `productName`:  This is the human-readable version of our product's 
+name, as teh `package.json name` field requrires hyphenated or single-
+word names!
+
+All together, our beginning build configuration will appear as follows:
+
+```json
+"build": {
+    "appId": "io.jseverywhere.notedly",
+    "productName": "Notedly"
+},
+```
+
+Electron Builder provides us with many configuration options, several 
+of which we'll be exploring throughout this chapter. For the complete
+list, visit the Electron Builder docs (`https://oreil.ly/ESAx-`)
+
+### BUILD FOR OUR CURRENT PLATFORM
+
+With our minimal configuration in place, we can create our first 
+application build. By default, Electron Builder will produce a build
+for the system we are developing on. For example, since teach is writing
+this on a MacBook, teach's build will default to `macOS`.
+
+Let's first add two script to our `package.json` file, which will be
+responsible for application builds. first, a `pack` script will generate
+a package directory, without fully packaging the app....
+
+<!-- HERE -- p. 225! -->
