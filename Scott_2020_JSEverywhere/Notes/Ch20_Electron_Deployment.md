@@ -81,6 +81,24 @@ this on a MacBook, teach's build will default to `macOS`.
 
 Let's first add two script to our `package.json` file, which will be
 responsible for application builds. first, a `pack` script will generate
-a package directory, without fully packaging the app....
+a package directory, without fully packaging the app. This can be useful 
+for testing purposes. Second, a `dist` script will package the application
+in distributable format, such as a macOS DMG, Windows Inatller, or
+DEB package:
 
-<!-- HERE -- p. 225! -->
+```json
+"scripts": {
+    // add the `pack` and `dist` scripts to the existing `npm` scripts list:
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+}
+```
+
+With this change, one can run `npm run dist` in one's terminal application, 
+which will package the application in the project's _dist/_ directory. 
+Navigating to the _dist/_ directory, one can see that Electron Builder has
+packaged the application for distribution for your operating system!
+
+### APP ICONS
+
+<!-- HERE -- p.225! -->
