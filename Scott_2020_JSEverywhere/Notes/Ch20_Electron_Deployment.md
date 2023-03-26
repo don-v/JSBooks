@@ -101,4 +101,30 @@ packaged the application for distribution for your operating system!
 
 ### APP ICONS
 
-<!-- HERE -- p.225! -->
+One thing that one has likely noteiced is that our application is using the
+default Electron app icon. This is fine for local development, but for a 
+production application we will want to use our own branding. In our
+project's _/resources_ folder, teach has inlcuded some application icons
+for both macOS and Windows. To generate these icons from a PNG file, teach
+used the 'iConvert Icons application' (`https://iconverticons.com`), which
+is available for both macOS and Windows.
+
+In our _/resources_ folder one will see the following files:
+
+* _icon.icns_: the macOS application icon
+
+* _icon.ico_: the Windows application icon
+
+* _icons/_: directory with a series of different-sized _.png_ files, 
+used by Linux
+
+Optionally, we could also include background images for the macOS DMG
+by adding icons with the names of _background.png_ and 
+_background@2x.png_, for retina screens.
+
+Now within our _package.json_ file, we update the `build` object to 
+specify the name of the build resource directory:
+
+```json
+// HERE -- p. 226!
+```
