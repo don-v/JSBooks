@@ -126,5 +126,33 @@ Now within our _package.json_ file, we update the `build` object to
 specify the name of the build resource directory:
 
 ```json
-// HERE -- p. 226!
+"build": {
+    "appId": "io.jseverywhere.notedly",
+    "productName": "Notedly",
+    "directories": {
+        "buildResources": "resources"
+    }
+},
 ```
+
+Now, when we build the application, Electron Builder will package it with
+our custom applicaiton icons (see Figure 20-1)
+
+## BUILDING FOR MULTIPLE PLATFORMS
+
+Currently, we're only building our application for the operating for the 
+operating sytem that matches our development platform. One of the great
+advantages of Electron as a platform is that it allows us to use the same
+code to target multiple platforms, by updating our `dist` script. To 
+achieve this, Electron Builder makes use of the free and open source 
+`electron-build-service` (`https://oreil.lyIEfW`). We'll be using the 
+public instance of this serivce, but it is possible to self-host it for 
+the organizations seeking additional security and privacy. 
+
+In our `package.json` we update the `dist` script to:
+
+```json
+"dist": "electron-builder -mwl"
+```
+
+<!-- HERE -- p. 226! -->
