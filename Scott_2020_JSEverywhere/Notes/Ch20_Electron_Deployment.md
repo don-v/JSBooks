@@ -155,4 +155,26 @@ In our `package.json` we update the `dist` script to:
 "dist": "electron-builder -mwl"
 ```
 
-<!-- HERE -- p. 226! -->
+This will result in a build that targets macOS, Windows, and Linux. From
+here we can distribute our application by uploading it as a release to 
+Github or anywhere that we can distribute files, such as Amazone S3 or
+our web server
+
+## CODE SIGNING
+
+Both macOS and Windows include the concept of _code signing_. Code 
+signing is a boost for the security and trust of users, as it helps
+signify the trusworthiness of the app. Teach says he won't be walking
+through the code-signing process, as it is operating system specific and 
+comes at a cost to devs. The Electron Builder documentation offers a 
+comprehensive article (`https://oriel.ly/g6wEz`) on code signing for
+various platforms.
+
+Additionally, the Electron documentation (`https://oreil.ly/Yb4JF`)
+offers several resources and links. If one is building a production
+application, teach encourages one to furthe research the code-signing
+options for macOS and Windows.
+
+## CONCLUSION
+
+<!-- HERE -- p. 227! -->
