@@ -177,4 +177,10 @@ options for macOS and Windows.
 
 ## CONCLUSION
 
-<!-- HERE -- p. 227! -->
+We've covered the tip of the iceberg for deploying an Electron application.
+In this chapter we used Electron Builder to build our applications. We can
+then eaisly upload and dsitribute them through any web host. Once we have
+outgrown these needs, we can use Electron Builder to integrate builds into 
+a continuous delivery pipeline; auto-matically push releases to GitHub, S3,
+or other distribution platforms; and integrate automatic updates into the 
+application. If one is interested, these are fantastic next steps to take.
