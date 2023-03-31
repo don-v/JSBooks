@@ -22,4 +22,31 @@ application chapters. Specifically, our application will:
 
 * Work on both iOS and Android operating systems
 
-<!-- HERE -- p. 231! -->
+* Load a note feed and individual user notes from our GraphQL API
+
+* Use CSS and styled components for styling
+
+* Perform standard and dynamic routing
+
+These features will provide a solid overview of the core concepts 
+of developing a mobile application with React Native. Before we
+get started, we will review the technologies we will be using
+to build our mobile application!
+
+## HOW WE'RE GOING TO BUILD THIS
+
+'React Native' is the core technology that we will be using to 
+develop our application. 'React Native' allows us to write 
+applications in JS, using 'React', and render them for the native
+mobile platform. This means that to users, there is no discernable
+difference between a React Native aplication and one written in 
+the platform's programming langugae. This is React Native's key
+advantage over other popular web technology-based mobile frameworks,
+which traditionally wrapped a web view withn an application shell.
+'React Native' has been used to deveoop apps by Facebook, Instagram,
+Bloomberg, Tesla, Skype, Walmart, Pinterest, and many others. 
+
+The second key piece of our application development workflow is
+'Expo'...
+
+<!-- HERE -- p. 230! -->
