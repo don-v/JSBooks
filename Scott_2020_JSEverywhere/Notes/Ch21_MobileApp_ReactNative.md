@@ -47,6 +47,27 @@ which traditionally wrapped a web view withn an application shell.
 Bloomberg, Tesla, Skype, Walmart, Pinterest, and many others. 
 
 The second key piece of our application development workflow is
-'Expo'...
+'Expo', a set of tools and services that simplify React Native
+development through really useful features such as on-device 
+previews, application builds, and extending the core 'React
+Native' library. Before getting with our development, teach
+recommends that one does the following:
 
-<!-- HERE -- p. 230! -->
+1. Visit _expo.io_ and create an Expo account.
+
+2. Install the Expo command-line tools with the following command:
+`npm install expo-cli --global` into your terminal application.
+
+3. Sign in to one's Expo account locally by typing `expo login` in
+your terminal application.
+
+4. Install the Expo Client application for your mobile device. Links
+to the Expo client iOS and Android app can be found at _expo.io/tools_.
+
+5. Sign in to to one's account in the Expo Client application.
+
+Finally, we will again use Apollo Client (`https://oreil.ly/xR622T`)
+to interact with data from our GraphQL API. Apollo Client comprises
+a collection of open source tools for working with GraphQL.
+
+<!-- HERE -- p. 231! -->
