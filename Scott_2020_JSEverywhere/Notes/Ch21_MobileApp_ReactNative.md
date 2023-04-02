@@ -70,4 +70,35 @@ Finally, we will again use Apollo Client (`https://oreil.ly/xR622T`)
 to interact with data from our GraphQL API. Apollo Client comprises
 a collection of open source tools for working with GraphQL.
 
+## GETTNIG STARTED
+
+Before we can start development, one'll need to make copy the 
+project starter files to one's machine. the project's source code
+(`https://github.com/javascripteverywhere/moble`) contains all the 
+scripts and references to third-party libraries that we will need
+to develop our application. To clone the code to your local machine,
+open the terminal, navigate to the directory where one keeps one's
+projects, and `git clone` the project repo. If one has worked through
+the API, web, and /or desktop chapters, one may have already 
+created a `notedly` directory to keep the project code organized:
+
+```sh
+cd Projects
+# type the `mkdir notedly` command if one does not not yet
+# have a notedly directory
+cd notedly
+git clone git@github.com:javascripteverywhere/mobile.git
+cd mobile
+npm install
+```
+
+> **INSTALLING THRID-PARTY DEPENDENCIES**: By making a copy of the 
+book's starter code and running `npm install` in the directory, one 
+avoids having to agin run `npm install` for any of the individual
+third-party dependencies.
+
+The code structure is as follows:
+
+* _/src_: This directory ...
+
 <!-- HERE -- p. 231! -->
