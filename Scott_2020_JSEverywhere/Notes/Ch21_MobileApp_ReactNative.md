@@ -99,6 +99,18 @@ third-party dependencies.
 
 The code structure is as follows:
 
-* _/src_: This directory ...
+* _/src_: This is the directory where one should perform one's development
+as one follows along with the book.
 
-<!-- HERE -- p. 231! -->
+* _/solutions_: This directory contains the solutions for each chapter. 
+If one gts stuck, these are available for you to consult.
+
+* _/final_: This directory contains the final working project.
+
+The remaining files and project setup match the standard output of the 
+`expo-cli` 'React Native' generator, which  one can run by typing 
+`expo init` in one's terminal!
+
+> **App.js**: ...
+
+<!-- HERE -- p. 232! -->
