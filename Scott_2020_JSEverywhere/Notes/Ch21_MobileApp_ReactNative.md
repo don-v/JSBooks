@@ -113,4 +113,29 @@ The remaining files and project setup match the standard output of the
 
 > **App.js**: ...
 
+Because of the way that Expo's build chain works, the _App.js_ file
+in the root of the project directory is typically the application's
+point of entry. To standardize our mobile project with the code found in
+the rest of the book, the _App.js_ file isued only as a reference to a 
+_/src/Main.js_ file.
+
+Now that we have the code on our local machiens and our dependencies 
+installed, let's run the app. To start the application, in one's
+terminal application, type use the `npm start` command.
+
+This will open Expo's "Metro Bundler" web application on a local port in
+one's browser. From here, one can launch a local device simulator by 
+clicking "Run on..."
+
+Options include:
+
+```json
+[
+    'Run on Android device/emulator',
+    'Run on iOS simulator',
+    'Send link with email...',
+    'Publish or republish project...'
+]
+```
+
 <!-- HERE -- p. 232! -->
