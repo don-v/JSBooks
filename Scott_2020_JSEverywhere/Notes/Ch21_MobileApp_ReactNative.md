@@ -138,4 +138,35 @@ Options include:
 ]
 ```
 
-<!-- HERE -- p. 232! -->
+One can also launch the application on any physical device with the
+Expo Client by scanning the QR code!
+
+> **INSTALLING DEVICE SIMULATORS**: To run an iOS device simulator, one will
+need to download and install Xcode(`https://oreil.ly/bgde4`) (macOS only).
+For Android, download android Studio (`https://oreil.ly/bjqkn`) and follow
+Expo's guide (`https://oreil.ly/cUGsr`) on settin up a device simulator. (See
+Figure 21-2 for a comparison). However, if one is just getting started with 
+mobile application development, teach recommends starting with one's own
+physical device.
+
+If one has signed in to Expo from one's computer's terminal application as
+well as within the Expo Client application on one's mobile device, one can 
+open the application by opening the Expo Client application and clicking the
+Projects tab (Figure 21-3)
+
+With the code cloned to one' slocal machine and the ability to preview 
+the application with Expo client, one has everything in place to develop a 
+mobile applicaiton.
+
+## CONCLUSION
+
+This chapter introduced 'React Native' and 'Expo'. We cloned the sample
+project code, ran it locally, and previewed it on a physical device or 
+simulator. 'React Native' empowers web and JS devs to build fully featured
+native mobile applications, using the skills and tools they are familar
+with. Expo simplifies the toolchain and lowers the barrier to entry for
+native mobile development. With these two tools, novices can easily get 
+started with mobile dev and web-savvy teams can quickly introduce a 
+mobile applicaiton development skillset. In the next chapter, we'll take
+a closer look at 'React Native''s capabilities and introduce both routes
+and styles to our app.
