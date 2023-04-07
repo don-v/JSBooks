@@ -34,4 +34,20 @@ const Main = () => {
 export default Main;
 ```
 
-<!-- HERE -- p. 236! -->
+In this markup there are two notable JSX tags: `<View>` and `<Text>`. If
+you're coming from a web background, a `<View>` tag serves much of the 
+purpose as a `<div>` tag. It is a container for the content of our 
+applications. On their own they don't do much, but they contain all of 
+our app's content, can be nested wihtin one another, and are used to 
+apply styles. Each of our components will be contained within a `<View>`
+tag. In 'React Native', one can use a `<View>` anywhere that one might
+use a `<div>` or `<span>` tag on the web. The `<Text>` tag, unsurprisingly,
+is used to contain any text in our app. Unlike on the web, however, this
+single tag is used for all text. 
+
+As one can imagine, we can also add images to our applications, by using
+the `<Image>` JSX element. Let's update our _src/Main.js_ file to include
+an image. To do so, we import the `Image` component form 'React Native'
+and use an `<Image>` tag with a `src` attribute (See Figure 22-1).
+
+<!-- HERE -- 236! -->
