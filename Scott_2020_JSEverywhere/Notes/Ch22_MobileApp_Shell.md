@@ -50,4 +50,22 @@ the `<Image>` JSX element. Let's update our _src/Main.js_ file to include
 an image. To do so, we import the `Image` component form 'React Native'
 and use an `<Image>` tag with a `src` attribute (See Figure 22-1).
 
-<!-- HERE -- 236! -->
+```JavaScript
+import React from 'react';
+import { Text, View, Image } from 'react-native';
+
+const Main = () => {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Test>Hello world!</Text>
+      <Image sourc={require('.../assets/images/hello-world.jpg')} />
+    </View>    
+  );
+};
+
+export default Main;
+```
+
+The preceding code renders some text and image within a view.
+
+<!-- HERE -- p. 236! -->
