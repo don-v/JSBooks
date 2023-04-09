@@ -5,7 +5,7 @@ const Main = () => {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text>Hello world!</Text>
-      <Image sourc={require('.../assets/images/hello-world.jpg')} />
+      <Image source={require('.../assets/images/hello-world.jpg')} />
     </View>    
   );
 };

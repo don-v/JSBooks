@@ -58,7 +58,7 @@ const Main = () => {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Test>Hello world!</Text>
-      <Image sourc={require('.../assets/images/hello-world.jpg')} />
+      <Image source={require('.../assets/images/hello-world.jpg')} />
     </View>    
   );
 };
@@ -66,6 +66,26 @@ const Main = () => {
 export default Main;
 ```
 
-The preceding code renders some text and image within a view.
+The preceding code renders some text and image within a view. One may notice
+that our `<View>` and `<Image>` JSX tags are passed properties that allow us
+to cotnrol specific behavior (in this case the `style` of the `View` tag and the
+`source` of the `Image` tag). Passing properties to an elemetn allows us to 
+extend teh element with all sorts of additional features. 'React Native's API
+documentation (`https://oreil.ly/3fACI`) catalogs the properties that are made
+available to each element.
 
-<!-- HERE -- p. 236! -->
+Our app doesn't do much yet, but in the next section we'll explore how we can
+improve the look and feel using 'React Native's built-in style support and 
+'Styled Components'.
+
+### STYLE AND STYLED COMPONENTS
+
+As app devs and designers, we want to be able to style our applicaitons
+to have a precise look, feel, and user experience. There are a number of
+UI component libraries, such as 'NativeBase', (`https://nativebase.io`) 
+or 'React Native Elements' (`https://oreil.ly/-M8EE`), which offer a wide
+range of predefined and often customizable components. These are well worth
+a look, but for out purposes let's explore how we might compose our own 
+styles and application layouts.
+
+<!-- HERE -- p. 238! -->
