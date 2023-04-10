@@ -88,4 +88,28 @@ range of predefined and often customizable components. These are well worth
 a look, but for out purposes let's explore how we might compose our own 
 styles and application layouts.
 
-<!-- HERE -- p. 238! -->
+As we've already seen, 'React Native' provides a `style` property that 
+allows us to apply custom styles to any JSX element in our application. The
+style names and values match those of CSS, except that the names are written
+in camelCase, such as `lineHeight`, and `backgroundColor`. Let's update our
+_/src/Main.js_ file to include some styles for the `<Text>` element:
+
+```JavaScript
+const Main = () => {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text style={{ coor: '#0077cc', fontSize: 48, fontWeight: 'bold' }}>
+      Hello world!</Text>
+      <Image source={require('.../assets/images/hello-world.jpg')} />
+    </View>    
+  );
+};
+```
+
+One may be thinking, rightfully, that applying styles at the element level
+would quickly become an unmaintainable mess. We can use 'React Native's
+`StyleSheet` library to help organize and reuse our styles.
+
+First, we need to add `StyleSheet` to our list of imports:
+
+<!-- HERE -- p. 239! -->
