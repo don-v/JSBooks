@@ -154,4 +154,29 @@ screen.
 
 ## STYLED COMPONENTS
 
-<!-- HERE -- p. 240! -->
+While 'React Native''s built-in `style` properties and `StyleSheet`
+may offer everything that we need out of the box, they are far from
+our only options for styling our applications. We can also make use of
+popular web CSS-in-JS solutions, such as 'Styled Components' 
+(`https://www.styled-components.com`) and 'Emotion' 
+(`https://emotion.sh`). These offer, in my opinion, a cleaner syntax, 
+are more closely aligned to CSS, and limit the amount of context 
+swtitching needed between the web and mobile application codebases.
+Using teh web-enabled CSS-in-JS libraries also creates the opportunity
+to share stles or components across platforms. 
+
+For our purposes, let's look at how we can adapt the previosu example to
+use the 'Styled Components' library. First, in _src/Main.js_ we will 
+import the `native` version of the library:
+
+```JavaScript
+import styled from 'styled-components/native';
+```
+
+From here we can migrate our styles to the 'Styled Components' syntax. 
+If one followed along in C13, this syntax should look very familiar. The 
+final code of our _/src/Main.js_ files becomes:
+
+```JavaScript
+// HERE -- p. 241!
+```
