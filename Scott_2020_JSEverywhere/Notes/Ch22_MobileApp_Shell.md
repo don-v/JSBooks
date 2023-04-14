@@ -210,4 +210,31 @@ const Main = () => {
 export default Main;
 ```
 
-<!-- HERE -- p. 241! -->
+> * **Styled Components Capitalization**: In the 'Styled Components' library,
+the element names must alwasy be capitalized.
+
+With this, we're now able to apply custom styling to our applications, with 
+the option of using 'React Native's built-in style system, or by using the
+'Styled Components' library.
+
+## ROUTING
+
+On the web, we can use HTML anchor links to link from one HTML document to
+any other, including those on our own site. For JS-driven apps, we use 
+routing to link together JS-rendered tempaltes. Waht about native mobile
+applications? For these, we will route our users between screens. In this
+section, we'll explore two common routing types: tab-based navigation and 
+stack navigation.
+
+### TABBED ROUTING WITH 'React Navigation'
+
+To perform our routing we'll make use of the 'React Navigation' library 
+(`https://reactnaviagation.org`), which is the routing solution recommended
+by both the 'React Native' and 'Expo' teams. Most importantly, it makes it very 
+straightforward to implement common routing patterns with a platform-specific
+look and feel.
+
+To get tarted, let's first create a new directory within our _src_ directory
+named _screens_.
+
+<!-- HERE -- p. 242! -->
