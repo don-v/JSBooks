@@ -234,7 +234,80 @@ by both the 'React Native' and 'Expo' teams. Most importantly, it makes it very
 straightforward to implement common routing patterns with a platform-specific
 look and feel.
 
-To get tarted, let's first create a new directory within our _src_ directory
-named _screens_.
+To get started, let's first create a new directory within our _src_ directory
+named _screens_. Within the _screens_ directory, let's create three new files,
+each containing a very basic 'React' component:
 
-<!-- HERE -- p. 242! -->
+Add the following in _src/screens/favorites.js_:
+
+```JavaScript
+import React from 'react';
+import { Text, View } from 'react-native';
+
+const Favorites = () => {
+    return(
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+            <Text>Favorites</Text>
+        </View>
+    );
+};
+
+export default Favorites;
+```
+
+Add the following to _src/screens/feed.js:
+
+```JavaScript
+import React from 'react';
+import { Text, View } from 'react-native';
+
+const Feed = () => {
+    return(
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+            <Text>Feed</Text>
+        </View>
+    );
+};
+
+export default Feed;
+```
+
+Finally, add this in _scr/screens/mynotes.js_:
+
+```JavaScript
+import React from 'react';
+import { Text, View } from 'react-native';
+
+const MyNotes = () => {
+    return(
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+            <Text>My Notes</Text>
+        </View>
+    );
+};
+
+export default MyNotes;
+```
+
+We can then create a new file at _src/screens_ named 'index.js' 
+to be used as the root of our application's routing. We'll begin
+by importing our initial `react` and `react-navigation` 
+dependencies:
+
+```JavaScript
+import React from 'react';
+import { createAppContainer } from 'react-navigation';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
+
+// import screen components
+import Feed from './feed';
+import Favorites from './favorites';
+import MyNotes from './mynotes';
+```
+
+With these dependencies imported, we can create a tab navigator
+between these three screens using `react-navigation`'s 
+`createBottomTabNavigator` to define which 'React' component screens
+should appear in our navigation:
+
+<!-- HERE -- p. 243! -->
