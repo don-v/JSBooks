@@ -376,5 +376,32 @@ export default createAppContainer(TabNavigator);
 
 Finally, let's update our ...
 
-<!-- HERE -- p. 244! -->
+_src/Main.js_ file to do nothing but import our
+router. It should now be simplified to read as follows:
+
+```JavaScript
+import React from 'react';
+import Screens from './screens';
+
+const Main = () => {
+  return <Screens />
+};
+
+export default Main;
+```
+
+Be sure that one's application is running by entering
+the `npm start` command in the terminal. One should now see tab
+navigation at the bottom of the screen, where tapping a tab
+will route one to the appropriate screen (Figure 22-4).
+
+### STACK NAVIGATION
+
+A second kind of routing type is stack navigation, in which
+screens are conceptually "stacked" on top of one another, 
+allowing user to navigate deeper into and backward through
+the stack. Consider a news application where a user views a 
+feed of articles. ...
+
+<!-- HERE -- p. 245! -->
 
