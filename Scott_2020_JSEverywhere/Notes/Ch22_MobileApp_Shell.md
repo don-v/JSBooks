@@ -401,7 +401,35 @@ A second kind of routing type is stack navigation, in which
 screens are conceptually "stacked" on top of one another, 
 allowing user to navigate deeper into and backward through
 the stack. Consider a news application where a user views a 
-feed of articles. ...
+feed of articles. The user can tap a news article title and
+navigate deeper in the stack to the article contents. They can
+then click a back button, navigating back to the article feed,
+or perhaps a different article title, navigating deeper into
+the stack.
+
+In our application, we want to users to be able to navigate
+form a feed of notes ot the notes themselves an dback. Let's
+look at how we might implement a stack navigation for each of 
+our screens.
+
+First, let's create a new `NoteScreen` component, which will
+contain the second screen in our stack. Create a new file at 
+_src/screens/note.js_ with a minimal 'React Native' component:
+
+```JavaScript
+import React from 'react';
+import { Text, View } from 'react-native';
+
+const NoteScreen = () => {
+  return (
+    <View style={{ padding: 10 }}>
+      <Text>This is a note</Text>
+    </View>
+  );
+};
+
+export default NoteScreen;
+```
 
 <!-- HERE -- p. 245! -->
 
