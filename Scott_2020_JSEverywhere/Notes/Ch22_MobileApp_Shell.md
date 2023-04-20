@@ -431,5 +431,31 @@ const NoteScreen = () => {
 export default NoteScreen;
 ```
 
+Next, we will make the changes to our router to enable stacked
+navigation for the `NoteScreen` component. To do so, we'll 
+import `createStickNavigator` from `react-navigation-stack`
+as well as our component from `note`. In our 
+_/src/screens/index.js_ file, we will update our imports as
+follows:
+
+```JavaScript
+import React from 'react';
+import { Text, View, ScrollView, Button } from 'react-native';
+import { createAppContainer } from 'react-navigation';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
+// add import for createStackNavigator
+import { createStackNavigator } from 'react-navigation-stack';
+
+// import screen components
+import Feed from './feed';
+import Favorites from './favorites';
+import MyNotes from './mynotes';
+import NoteScreen from './note';
+```
+
+With our libraries and files imported, we can implement stack
+navigation capability. In our router file, we must tell React
+Navigation which screens are "stackable". For ...
+
 <!-- HERE -- p. 245! -->
 
