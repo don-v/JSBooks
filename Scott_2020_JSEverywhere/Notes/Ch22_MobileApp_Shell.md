@@ -455,7 +455,53 @@ import NoteScreen from './note';
 
 With our libraries and files imported, we can implement stack
 navigation capability. In our router file, we must tell React
-Navigation which screens are "stackable". For ...
+Navigation which screens are "stackable". For each of our tabbed
+routes, we'll want a user to be able to navigate to a `Note`
+screen. Go ahead and define those stacks as follows:
 
-<!-- HERE -- p. 245! -->
+```JavaScript
+const FeedStack = createStackNavigator({
+  Feed: Feed,
+  Note: NoteScreen
+});
+
+const MyStack = createStackNavigator({
+  MyNotes: MyNotes,
+  Note: NoteScreen
+});
+
+const FavStack = createStackNavigator({
+  Favorites: Favorites,
+  Note: NoteScreen
+});
+```
+
+Now we can update our `TabNavigator` to reference the stack,
+rather than an individual screen. To do this, update the `screen`
+property in each `TabNavigator` object:
+
+```JavaScript
+const TabNavigator = createTabNavigator({
+  FeedScreen: {
+    screen: FeedStack,
+    navigationOptions: {
+      tabBarLabel: 'Feed'
+    }
+  },
+  MyNoteScreen: {
+    screen: MyStack,
+    navigationOptions: {
+      tabBarLabel: 'My Notes'
+    }
+  },
+  FavoriteScreen: {
+    screen: FavStack,
+    navigationOptions: {
+      tabBarLabel: 'Favorites'
+    }
+  }
+});
+```
+
+<!-- HERE -- p. 246! -->
 
