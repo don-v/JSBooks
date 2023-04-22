@@ -11,21 +11,38 @@ import Favorites from './favorites';
 import MyNotes from './mynotes';
 import NoteScreen from './note';
 
+// navigation stack
+const FeedStack = createStackNavigator({
+  Feed: Feed,
+  Note: NoteScreen
+});
+
+const MyStack = createStackNavigator({
+  MyNotes: MyNotes,
+  Note: NoteScreen
+});
+
+const FavStack = createStackNavigator({
+  Favorites: Favorites,
+  Note: NoteScreen
+});
+
+// navigation tabs
 const TabNavigator = createBottomTabNavigator({
     FeedScreen: {
-      screen: Feed,
+      screen: FeedStack,
       navigationOptions: {
         tabBarLabel: 'Feed',
       }
     },
     MyNoteScreen: {
-      screen: MyNotes,
+      screen: MyStack,
       navigationOptoins: {
         tabBarLabel: 'My Notes',
       }
     },
     FavoriteScreen: {
-      screen: Favorites,
+      screen: FavStack,
       navigationOptions: {
         tabBarLabel: 'Favorites',
       }

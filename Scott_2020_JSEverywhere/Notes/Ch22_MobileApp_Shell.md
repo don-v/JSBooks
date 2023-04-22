@@ -501,7 +501,77 @@ const TabNavigator = createTabNavigator({
     }
   }
 });
+
+// create the app container
+export default createAppContainer(TabNavigator);
 ```
 
-<!-- HERE -- p. 246! -->
+All together, our _src/screens/index.js_ file
+should appear as follows:
+
+```JavaScript
+import React from 'react';
+import { Text, View, ScrollView, Button } from 'react-native';
+import { createAppContainer } from 'react-navigation';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
+// add import for createStackNavigator
+import { createStackNavigator } from 'react-navigation-stack';
+
+// import screen components
+import Feed from './feed';
+import Favorites from './favorites';
+import MyNotes from './mynotes';
+import NoteScreen from './note';
+
+// navigation stack
+const FeedStack = createStackNavigator({
+  Feed: Feed,
+  Note: NoteScreen
+});
+
+const MyStack = createStackNavigator({
+  MyNotes: MyNotes,
+  Note: NoteScreen
+});
+
+const FavStack = createStackNavigator({
+  Favorites: Favorites,
+  Note: NoteScreen
+});
+
+// navigation tabs
+const TabNavigator = createBottomTabNavigator({
+    FeedScreen: {
+      screen: FeedStack,
+      navigationOptions: {
+        tabBarLabel: 'Feed',
+      }
+    },
+    MyNoteScreen: {
+      screen: MyStack,
+      navigationOptoins: {
+        tabBarLabel: 'My Notes',
+      }
+    },
+    FavoriteScreen: {
+      screen: FavStack,
+      navigationOptions: {
+        tabBarLabel: 'Favorites',
+      }
+    }
+  });  
+
+// create the app container
+export default createAppContainer(TabNavigator);
+```
+
+If we open our application in a simulator or the Expo
+app or our device, we should see no discernable difference. This
+is because we have yet to add a link to our stacked navigation.
+Let's update our _src/screens/feed.js_ component to include
+a stacked navigation link.
+
+To do so, ...
+
+<!-- HERE -- p. 248! -->
 
