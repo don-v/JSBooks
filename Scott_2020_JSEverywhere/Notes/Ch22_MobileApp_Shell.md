@@ -571,7 +571,31 @@ is because we have yet to add a link to our stacked navigation.
 Let's update our _src/screens/feed.js_ component to include
 a stacked navigation link.
 
-To do so, ...
+To do so, first inlcude the `Button` dependency from 
+'`react-native`';:
 
-<!-- HERE -- p. 248! -->
+```JavaScript
+import { Text, View, Button } from 'react-native';
+```
 
+Now we can include a button that, on press, will navigate to
+the content of our _note.js_ component. We will pass the 
+component `props`, which will contain the navigation information,
+and add a `<Button>` that will include the `title` and 
+`onPress` props:
+
+```JavaScript
+const Feed = props => {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Note Feed</Text>
+      <Button 
+        title="Keep reading"
+        onPress={() => props.navigation.navigate('Note')}
+      />
+    </View>
+  );
+};
+```
+
+<!-- HERE -- p. 248, need to update _src/screen/feed.js_ -->
