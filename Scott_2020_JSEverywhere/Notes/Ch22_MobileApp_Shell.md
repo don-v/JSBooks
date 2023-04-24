@@ -598,4 +598,38 @@ const Feed = props => {
 };
 ```
 
-<!-- HERE -- p. 248, need to update _src/screen/feed.js_ -->
+with these udpates, our _/src/screens/feed.js_ file appears as
+follows:
+
+```JavaScript
+import React from 'react';
+import { Text, View, Button } from 'react-native';
+
+const Feed = props => {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text>Note Feed</Text>
+        <Button 
+          title="Keep reading"
+          onPress={() => props.navigation.navigate('Note')}
+        />
+      </View>
+    );
+  };
+  
+export default Feed;
+```
+
+With this, we should be able to navigate between our screens. Click the
+button from the `Feed` screen to navigate to the `Note` screen, and click
+the arrow to return (Figure 22-5)
+
+### ADDING SCREEN TITLES
+
+Adding the stack navigator automatically adds a title bar to the top of
+our app. We can style or even remove the top bar. For now let's add a 
+title to each screen at the top of our stack. To do this, we will set
+the component `navigationOptions` outside of the component itself. In
+_src/screens/feed.js_:
+
+<!-- HERE -- p. 249! -->
