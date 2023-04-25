@@ -629,7 +629,81 @@ the arrow to return (Figure 22-5)
 Adding the stack navigator automatically adds a title bar to the top of
 our app. We can style or even remove the top bar. For now let's add a 
 title to each screen at the top of our stack. To do this, we will set
-the component `navigationOptions` outside of the component itself. In
-_src/screens/feed.js_:
+the component `navigationOptions` outside of the component itself. We 
+update our _src/screens/feed.js_ so that it will look as follows:
 
-<!-- HERE -- p. 249! -->
+```JavaScript
+import React from 'react';
+import { Text, View, Button } from 'react-native';
+
+const Feed = props => {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text>Note Feed</Text>
+        <Button 
+          title="Keep reading"
+          onPress={() => props.navigation.navigate('Note')}
+        />
+      </View>
+    );
+  };
+
+Feed.navigationOptions = {
+  title: 'Feed'
+};
+
+export default Feed;
+```
+
+We can repeat this process for our other screen components.
+After making the changes, our _src/screens/favorites.js_ 
+file will look as follows:
+
+```JavaScript
+import React from 'react';
+import { Text, View } from 'react-native';
+
+const Favorites = () => {
+    return(
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+            <Text>Favorites</Text>
+        </View>
+    );
+};
+
+Favorites.navigationOptions = {
+    title: 'Favorites'
+};
+
+export default Favorites;
+```
+
+After making the changes, our _src/screens/mynotes.js_ 
+file will look as follows:
+
+```JavaScript
+import React from 'react';
+import { Text, View } from 'react-native';
+
+const MyNotes = () => {
+    return(
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+            <Text>My Notes</Text>
+        </View>
+    );
+};
+
+MyNotes.navigationOptions = {
+    title: 'My Notes'
+};
+
+export default MyNotes;
+```
+
+Now, each of our screens will include a title in the top navigation
+bar!
+
+### ICONS
+
+<!-- HERE -- p. 251! -->
+

@@ -12,5 +12,9 @@ const Feed = props => {
       </View>
     );
   };
-  
+
+Feed.navigationOptions = {
+  title: 'Feed'
+};
+
 export default Feed;
