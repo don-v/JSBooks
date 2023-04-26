@@ -705,5 +705,25 @@ bar!
 
 ### ICONS
 
-<!-- HERE -- p. 251! -->
+Right now our navigation is functionally complete, but lacks a visual
+component to make it easier for users. Thankfully, 'Expo' makes it 
+incredibly easy to include icons in our application. We can search all 
+of the icons that 'Expo' makes available by visiting 
+_expo.github.io/vector-icons_. A number of icon sets are included, such
+as Ant Design, Ionicons, Font Awesome, Entrypo, Foundation, Material
+Icons, and Material Community Icons. This provides us with a tremendous
+amount of variety out of the box.
+
+Let's add some icons to our tabbed navigation. First, we must import the
+icon sts that we'd like to use. In our case, we'll make use of the 
+Material Community Icons by adding the following _src/screens/index.js_:
+
+```JavaScript
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+```
+
+Now anywhere we want to use an icon in a component, we can include it
+as JSX, including setting properties as `size` and `color`:
+
+<!-- HERE -- p. 252! -->
 
