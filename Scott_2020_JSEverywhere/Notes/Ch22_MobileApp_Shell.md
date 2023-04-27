@@ -725,5 +725,46 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 Now anywhere we want to use an icon in a component, we can include it
 as JSX, including setting properties as `size` and `color`:
 
-<!-- HERE -- p. 252! -->
+```JavaScript
+<MaterialCommunityIcons name="star" size={24} color={'blue'} />
+```
+
+We'll be adding our icons to our tab navigation. 'React Navigation'
+includes a property called the `tabBarIcon` property, which allows us to 
+set the icon. We can pass this as a function, which enables us to set the 
+`tintcolor`, so that active tab icons have a different color than those
+that are inactive:
+
+```JavaScript
+const TabNavigator = createBottomTabNavigator({
+  FeedScreen: {
+    screen: FeedStack,
+    navigationOptions: {
+      tabBarLabel: 'Feed',
+      tabBarIcon: ({ tintColor } => (
+        <MaterialCommunityIcons name="home" size={24} color={tintColor} />
+      ))
+    }
+  },
+  // HERE -- P. 252!
+  FeedScreen: {
+    screen: FeedStack,
+    navigationOptions: {
+      tabBarLabel: 'Feed',
+      tabBarIcon: ({ tintColor } => (
+        <MaterialCommunityIcons name="home" size={24} color={tintColor} />
+      ))
+    }
+  },
+  FeedScreen: {
+    screen: FeedStack,
+    navigationOptions: {
+      tabBarLabel: 'Feed',
+      tabBarIcon: ({ tintColor } => (
+        <MaterialCommunityIcons name="home" size={24} color={tintColor} />
+      ))
+    }
+  }
+});
+```
 
