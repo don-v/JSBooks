@@ -746,25 +746,94 @@ const TabNavigator = createBottomTabNavigator({
       ))
     }
   },
-  // HERE -- P. 252!
-  FeedScreen: {
-    screen: FeedStack,
+  MyNoteScreen: {
+    screen: MyStack,
     navigationOptions: {
-      tabBarLabel: 'Feed',
+      tabBarLabel: 'My Notes',
       tabBarIcon: ({ tintColor } => (
-        <MaterialCommunityIcons name="home" size={24} color={tintColor} />
+        <MaterialCommunityIcons name="notebook" size={24} color={tintColor} />
       ))
     }
   },
-  FeedScreen: {
-    screen: FeedStack,
+  FavoriteScreen: {
+    screen: FavStack,
     navigationOptions: {
-      tabBarLabel: 'Feed',
+      tabBarLabel: 'Favorites',
       tabBarIcon: ({ tintColor } => (
-        <MaterialCommunityIcons name="home" size={24} color={tintColor} />
+        <MaterialCommunityIcons name="star" size={24} color={tintColor} />
       ))
     }
   }
 });
 ```
 
+With these updates, our _/src/screens/index.js_ file looks
+as follows:
+
+```JavaScript
+import React from 'react';
+import { Text, View, ScrollView, Button } from 'react-native';
+import { createAppContainer } from 'react-navigation';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
+// add import for createStackNavigator
+import { createStackNavigator } from 'react-navigation-stack';
+
+// add icons from `MaterialCommunityIcons`
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+
+// import screen components
+import Feed from './feed';
+import Favorites from './favorites';
+import MyNotes from './mynotes';
+import NoteScreen from './note';
+
+// navigation stack
+const FeedStack = createStackNavigator({
+  Feed: Feed,
+  Note: NoteScreen
+});
+
+const MyStack = createStackNavigator({
+  MyNotes: MyNotes,
+  Note: NoteScreen
+});
+
+const FavStack = createStackNavigator({
+  Favorites: Favorites,
+  Note: NoteScreen
+});
+
+// navigation tabs
+const TabNavigator = createBottomTabNavigator({
+  FeedScreen: {
+    screen: FeedStack,
+    navigationOptions: {
+      tabBarLabel: 'Feed',
+      tabBarIcon: ({ tintColor }) => (
+        <MaterialCommunityIcons name="home" size={24} color={tintColor} />
+      )
+    }
+  },
+  MyNoteScreen: {
+    screen: MyStack,
+    navigationOptions: {
+      tabBarLabel: 'My Notes',
+      tabBarIcon: ({ tintColor }) => (
+        <MaterialCommunityIcons name="notebook" size={24} color={tintColor} />
+      )
+    }
+  },
+  FavoriteScreen: {
+    screen: FavStack,
+    navigationOptions: {
+      tabBarLabel: 'Favorites',
+      tabBarIcon: ({ tintColor }) => (
+        <MaterialCommunityIcons name="star" size={24} color={tintColor} />
+      )
+    }
+  }
+});
+
+// create the app container
+export default createAppContainer(TabNavigator);
+```

@@ -5,6 +5,9 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 // add import for createStackNavigator
 import { createStackNavigator } from 'react-navigation-stack';
 
+// add icons from `MaterialCommunityIcons`
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+
 // import screen components
 import Feed from './feed';
 import Favorites from './favorites';
@@ -29,25 +32,34 @@ const FavStack = createStackNavigator({
 
 // navigation tabs
 const TabNavigator = createBottomTabNavigator({
-    FeedScreen: {
-      screen: FeedStack,
-      navigationOptions: {
-        tabBarLabel: 'Feed',
-      }
-    },
-    MyNoteScreen: {
-      screen: MyStack,
-      navigationOptoins: {
-        tabBarLabel: 'My Notes',
-      }
-    },
-    FavoriteScreen: {
-      screen: FavStack,
-      navigationOptions: {
-        tabBarLabel: 'Favorites',
-      }
+  FeedScreen: {
+    screen: FeedStack,
+    navigationOptions: {
+      tabBarLabel: 'Feed',
+      tabBarIcon: ({ tintColor }) => (
+        <MaterialCommunityIcons name="home" size={24} color={tintColor} />
+      )
     }
-  });  
+  },
+  MyNoteScreen: {
+    screen: MyStack,
+    navigationOptions: {
+      tabBarLabel: 'My Notes',
+      tabBarIcon: ({ tintColor }) => (
+        <MaterialCommunityIcons name="notebook" size={24} color={tintColor} />
+      )
+    }
+  },
+  FavoriteScreen: {
+    screen: FavStack,
+    navigationOptions: {
+      tabBarLabel: 'Favorites',
+      tabBarIcon: ({ tintColor }) => (
+        <MaterialCommunityIcons name="star" size={24} color={tintColor} />
+      )
+    }
+  }
+});
 
 // create the app container
 export default createAppContainer(TabNavigator);
