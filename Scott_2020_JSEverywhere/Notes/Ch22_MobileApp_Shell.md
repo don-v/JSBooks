@@ -837,3 +837,16 @@ const TabNavigator = createBottomTabNavigator({
 // create the app container
 export default createAppContainer(TabNavigator);
 ```
+
+With this, our tabbed navigation will display icons (Figure 22-7).
+
+## CONCLUSION
+
+In this chapter we covered how to build the basic components of a 
+'React Native' applicaiton. You're now able to create components, add
+style to them, and navigate between them. Hopefully with this basic 
+setup, one can see the incredible potential of 'React Native'. With
+minimal new technologies, one is already able to build the beginnings
+of an impressive and professional mobile application. In the next 
+chapter, we'll use 'GraphQL' to include data form our API within 
+the application.
