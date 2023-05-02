@@ -42,4 +42,35 @@ To begin, let's create a new component at _/src/components/NoteFeed.js_.
 We'll start by importing our dependencies and adding an array of temporary
 data.
 
-<!-- HERE -- p. 256!s -->
+Here is what our `NoteFeed` component looks like initially, from our
+_/src/components/NoteFeed.js_ file:
+
+```JavaScript
+import React from 'react';
+import { FlatList, View, Text } from 'react-native';
+import styled from 'styled-components/native';
+
+// our dummy data
+const notes = [
+    { id: 0, content: 'Giant Steps' },
+    { id: 1, content: 'Tomorrow Is The Question' },
+    { id: 2, content: 'Tonight At Noon' },
+    { id: 3, content: 'Out To Lunch' },
+    { id: 4, content: 'Green Street' },
+    { id: 5, content: 'In A Silent Way' },
+    { id: 6, content: 'Landquidity' },
+    { id: 7, content: 'Nuff Said' },
+    { id: 8, content: 'Nova' },
+    { id: 9, content: 'The Awakening' }
+];
+
+const NoteFeed = () => {
+    // our component code will go here
+};
+
+export default NoteFeed;
+```
+
+Now we can write our component code, which will contain a `FlatList`:
+
+<!-- HERE -- p. 257! -->
