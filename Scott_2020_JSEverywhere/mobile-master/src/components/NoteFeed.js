@@ -16,9 +16,16 @@ const notes = [
     { id: 9, content: 'The Awakening' }
 ];
 
-const NoteFeed = () => {
-    // our component code will go here
-    // HERE -- p. 257!
+const NoteFeed = props => {
+    return (
+        <View>
+            <FlatList 
+                data={notes}
+                keyExtractor={({ id }) => id.toString()}
+                renderItem={({ item }) => <Text>{item.content}</Text>}
+            />
+        </View>
+    );
 };
 
 export default NoteFeed;
