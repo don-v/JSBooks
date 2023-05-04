@@ -116,6 +116,31 @@ over the data:
 `data`: This property points to teh array of data that the list will
 contain
 
-`keyExtractor`: Each item in the list must...
+`keyExtractor`: Each item in the list must have a unique `key` value. 
+We are using `keyExtractor` to use the unique `id` value as the `key`.
+
+`renderItem`: This property defines what should be rendered within 
+the list. For now we are passing an individual `item` form our 
+`notes` array and displaying it as `Text`.
+
+We can view our list by updating our _src/screens/feed.js_ component
+to display the feed: 
+
+```JavaScript
+import React from 'react';
+
+// import NoteFeed
+import NoteFeed from '../components/NoteFeed';
+
+const Feed = props => {
+    return <NoteFeed />;
+};
+
+Feed.navigationOptions = {
+    title: 'Feed'
+};
+
+export default Feed;
+```
 
 <!-- HERE -- p. 257! -->
