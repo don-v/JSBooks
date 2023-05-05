@@ -2,6 +2,13 @@ import React from 'react';
 import { FlatList, View, Text } from 'react-native';
 import styled from 'styled-components/native';
 
+// FeedView styled component definition
+const FeedView = styled.View`
+    height: 100;
+    overflow: hidden;
+    margin-bottom: 10px;
+`;
+
 // our dummy data
 const notes = [
     { id: 0, content: 'Giant Steps' },
@@ -22,7 +29,11 @@ const NoteFeed = props => {
             <FlatList 
                 data={notes}
                 keyExtractor={({ id }) => id.toString()}
-                renderItem={({ item }) => <Text>{item.content}</Text>}
+                renderItem={({ item }) => (
+                    <FeedView>
+                        <Text>{item.content}</Text>
+                    </FeedView>
+                )}
             />
         </View>
     );
