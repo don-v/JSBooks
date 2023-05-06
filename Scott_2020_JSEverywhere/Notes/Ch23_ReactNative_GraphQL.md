@@ -192,6 +192,33 @@ const NoteFeed = props => {
 export default NoteFeed;
 ```
 
-If oen previews our app...
+If one previews our app, one'll see a scrolllable list of data. 
+Finally, we can add a separator between our list items. Rather than 
+adding a bottom border via CSS, 'React Native' enables us to pass
+an `ItemSeparatorComponent` property to our `FlatList`. This gives
+us fine-grained control to place any type of component as a separator
+between list elements. It also avoids placing a separator in unwanted
+places, such as after the last item in the list. For our purposes, 
+we'll add a simple border, created as a styled component `View`:
 
-<!-- HERE -- p. 258! -->
+```JavaScript
+// FeedView styled component definition
+const FeedView = styled.View`
+    height: 100;
+    overflow: hidden;
+    margin-bottom: 10px;
+`;
+
+// add a Separator styled component
+const Separator = styled.View`
+    height: 1;
+    width: 100%;
+    background-color: #ced0ce;
+`;
+
+const NoteFeed = props => {
+    return (
+        // HERE -- p. 258!
+    );
+};
+```
