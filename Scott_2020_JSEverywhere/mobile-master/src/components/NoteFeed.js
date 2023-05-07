@@ -9,6 +9,13 @@ const FeedView = styled.View`
     margin-bottom: 10px;
 `;
 
+// add a Separator styled component
+const Separator = styled.View`
+    height: 1;
+    width: 100%;
+    background-color: #ced0ce;
+`;
+
 // our dummy data
 const notes = [
     { id: 0, content: 'Giant Steps' },
@@ -29,6 +36,7 @@ const NoteFeed = props => {
             <FlatList 
                 data={notes}
                 keyExtractor={({ id }) => id.toString()}
+                ItemSeparatorComponent={() => <Separator />}
                 renderItem={({ item }) => (
                     <FeedView>
                         <Text>{item.content}</Text>
