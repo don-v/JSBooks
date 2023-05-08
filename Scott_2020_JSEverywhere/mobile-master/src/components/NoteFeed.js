@@ -2,19 +2,7 @@ import React from 'react';
 import { FlatList, View, Text } from 'react-native';
 import styled from 'styled-components/native';
 
-// FeedView styled component definition
-const FeedView = styled.View`
-    height: 100;
-    overflow: hidden;
-    margin-bottom: 10px;
-`;
-
-// add a Separator styled component
-const Separator = styled.View`
-    height: 1;
-    width: 100%;
-    background-color: #ced0ce;
-`;
+import Note from './Note';
 
 // our dummy data
 const notes = [
@@ -30,6 +18,20 @@ const notes = [
     { id: 9, content: 'The Awakening' }
 ];
 
+// FeedView styled component definition
+const FeedView = styled.View`
+    height: 100;
+    overflow: hidden;
+    margin-bottom: 10px;
+`;
+
+// add a Separator styled component
+const Separator = styled.View`
+    height: 1;
+    width: 100%;
+    background-color: #ced0ce;
+`;
+
 const NoteFeed = props => {
     return (
         <View>
@@ -39,7 +41,7 @@ const NoteFeed = props => {
                 ItemSeparatorComponent={() => <Separator />}
                 renderItem={({ item }) => (
                     <FeedView>
-                        <Text>{item.content}</Text>
+                        <Note note={item} />
                     </FeedView>
                 )}
             />
