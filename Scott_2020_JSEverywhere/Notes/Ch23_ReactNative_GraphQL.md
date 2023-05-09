@@ -344,6 +344,23 @@ const NoteFeed = props => {
 export default NoteFeed;
 ```
 
-With this, we've laid out a simple `FlatList`...
+With this, we've laid out a simple `FlatList`. Now let's make it possible to route from
+a list item to an individual route.
 
-<!-- HERE -- p. 261! -->
+### MAKING A LIST ROUTABLE
+
+A very common pattern in mobile applications is to tap an item in a list to view
+more information or expanded functionality. If one recalls from the previous 
+chapter, our feed screen sits atop the note screen in our navigation stack. In
+'React Native', we can use the `TouchableOpacity` as a wrapper for making any view
+respond to user touches. This means that we can wrap the content of our `FeedView`
+in `TouchableOpacity` and route the user on press, the same way that we previously
+did with a button. Let's go ahead and update our _src/components/NoteFeed.js_
+component to do just that.
+
+First, we must update our `react-native` import to include `TouchableOpacity` in 
+_src/components/NoteFeed.js_:
+
+```JavaScript
+// HERE -- p. 262!
+```
