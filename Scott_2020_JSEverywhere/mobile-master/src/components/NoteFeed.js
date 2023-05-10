@@ -40,9 +40,17 @@ const NoteFeed = props => {
                 keyExtractor={({ id }) => id.toString()}
                 ItemSeparatorComponent={() => <Separator />}
                 renderItem={({ item }) => (
-                    <FeedView>
-                        <Note note={item} />
-                    </FeedView>
+                    <TouchableOpacity
+                        onPress={() => 
+                            props.navigation.navigate('Note', {
+                                id: item.id
+                            })
+                        }
+                    >
+                        <FeedView>
+                            <Note note={item} />
+                        </FeedView>
+                    </TouchableOpacity>
                 )}
             />
         </View>
