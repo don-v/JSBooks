@@ -428,5 +428,42 @@ We'll also need to update our '`Feed`' component to pass the
 navigation properties to the feed. In _src/screens/feed.js_:
 
 ```JavaScript
-// HERE -- P. 262!
+import React from 'react';
+
+// import NoteFeed
+import NoteFeed from '../components/NoteFeed';
+
+const Feed = props => {
+    return <NoteFeed navigation={props.navigation} />; // change was in this line!
+};
+
+Feed.navigationOptions = {
+    title: 'Feed'
+};
+
+export default Feed;
 ```
+
+With this, we can easily navigate to our generic note screen. Let's
+customize that screen so that it displays the ID of the note. One may
+have noticed that in our `NoteFeed` component navigation, we're passing
+an `id` property. In _screens/note.js_, we can read the value of that
+property:
+
+```JavaScript
+import React from 'react';
+import { Text, View } from 'react-native';
+
+const NoteScreen = props => { // added `props`
+  const id = props.navigation.getParam('id'); //retreived `id`
+  return (
+    <View style={{ padding: 10 }}>
+      <Text>This is note {id}</Text> /*use `id` property */
+    </View>
+  );
+};
+
+export default NoteScreen;
+```
+
+<!-- HERE -- p. 263! -->
