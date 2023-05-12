@@ -466,4 +466,25 @@ const NoteScreen = props => { // added `props`
 export default NoteScreen;
 ```
 
+Now, we're able to navigate from our list view to a detail page. Next,
+let's take a look at how we can integrate data from our API into our
+application.
+
+## 'GraphQL' WITH APOLLO CLIENT
+
+At this point we are ready to read and display data within our application.
+We'll be accessing the GraphQL API that we created in the first portion of
+the book. Conveniently, we'll be making use of Apollo Client, the same 
+'GraphQL' client library form the web portion of the book. Apollo Client
+offers a number of helpful features to simplify working with GraphQL 
+within JavaScript UI applications. Apollo's client features include fetching
+data from a remote API, local caching, GraphQL syntax handling, local state
+management, and more.
+
+To get started we'll first need to set up our configuration file. We'll store
+our environment variables in a file called _config.js_. There are several ways
+to manage envrironment and configuration variables in 'React Native', but
+I've found this style of configuration file to be the most straightforward and
+effective...
+
 <!-- HERE -- p. 263! -->
