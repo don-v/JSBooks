@@ -485,6 +485,33 @@ To get started we'll first need to set up our configuration file. We'll store
 our environment variables in a file called _config.js_. There are several ways
 to manage envrironment and configuration variables in 'React Native', but
 I've found this style of configuration file to be the most straightforward and
-effective...
+effective. To get started, teach included a _config.example.js_ file, which 
+we can copy and edit with our app values. In one's terminal applicaiton, from 
+the root of the project directory:
+
+```sh
+$ cp config.example.js config.js
+```
+
+From here, we can update any `dev` or `prod` environment variables. In our
+case that will only be a production `API_URI` value:
+
+```JavaScript
+// set envrionment variables
+const ENV = {
+    dev: {
+        API_URI: `http://${localhost}:4000/api`
+    },
+    prod: {
+        // update the `API_URI` value with your publicly deployed `API` address
+        API_URI: `https://your-api-uri/api`
+    }
+};
+```
+
+We will now be able to access these two values, based on Expo's 
+environment, using the `getEnvVars` function. We won't dive into the 
+rest of the configuration file, but it is well commented if one
+is interested in exploring the setup further.
 
 <!-- HERE -- p. 263! -->
