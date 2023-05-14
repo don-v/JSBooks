@@ -514,4 +514,41 @@ environment, using the `getEnvVars` function. We won't dive into the
 rest of the configuration file, but it is well commented if one
 is interested in exploring the setup further.
 
-<!-- HERE -- p. 263! -->
+From here we can connect our client to our API. In our _src/Main.js_ file,
+we will set up Apollo by using the Apollo Client library. If one works
+through the web portion of the book, this will look very familiar:
+
+after updating our _/src/Main.js_ file, it will have the following source:
+
+```JavaScript
+import React from 'react';
+import Screens from './screens';
+// import the Apollo libraries
+import { Apolloclient, ApolloProvider, InMemoryCache } from '@apollo/client';
+// import environment from configuration
+import getEnvVars from '../config';
+const { API_URI } = getEnvVars();
+
+// configure our API URI & cache
+const uri = API_URI;
+const cache = InMemoryCache();
+
+// configure Apollo Client
+const client = new Apolloclient({
+  uri,
+  cache
+});
+
+const Main = () => {
+  // wrap our app in the ApolloProvider higher-order component
+  return (
+    <ApolloProvider client={client}>
+      <Screens />
+    </ApolloProvider>
+  );
+};
+
+export default Main;
+```
+
+<!-- HERE -- p. 264! -->
