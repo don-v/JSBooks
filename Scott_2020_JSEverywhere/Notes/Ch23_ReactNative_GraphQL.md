@@ -551,4 +551,23 @@ const Main = () => {
 export default Main;
 ```
 
-<!-- HERE -- p. 264! -->
+With this, there won't be a visible change in our application, but 
+we are now connected to our API. Next, let's look at how we can query
+data form that API.
+
+## WRITING GraphQL QUERIES
+
+Now that we're connected to our API, let's query some of the data. We'll
+start by querying for all of the notes in our database, to be displayed
+in our `NoteFeed` list. We'll then query for individual notes to be displayed
+in our `Note` detail view.
+
+> WISDOM: **The note Query:** -- We'll be using the bullk `note` API query
+rather than the paginated `noteFeed` query for simplicity and to reduce
+repitiion.
+
+Writing a `Query` component works exactly the same way as in a 'React' web
+application. In _src/screens/feeds.js_, we import the `useQuery` and 
+'GraphQL Language' (`gql`) libraries like so:
+
+<!-- HERE -- p. 265! -->
