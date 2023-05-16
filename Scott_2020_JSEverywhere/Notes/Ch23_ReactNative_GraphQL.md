@@ -570,4 +570,50 @@ Writing a `Query` component works exactly the same way as in a 'React' web
 application. In _src/screens/feeds.js_, we import the `useQuery` and 
 'GraphQL Language' (`gql`) libraries like so:
 
+here is our updated _src/screens/feed.js_ file:
+
+```JavaScript
+import React from 'react';
+
+// import NoteFeed
+import NoteFeed from '../components/NoteFeed';
+
+// import our React Native and Apollo dependencies
+import { Text } from 'react-native';
+import { useQuery, gql } from '@apollo/client';
+
+// next we compose our query:
+const GET_NOTES = gql`
+    query notes {
+        id
+        createdAt
+        content
+        favoriteContent
+        author {
+            username
+            id
+            avatar
+        }
+    }
+`;
+
+const Feed = props => {
+    // update our component to call the query:
+    const { loading, error, data } = useQuery(GET_NOTES);
+    // if the data is loading, our app will display a loading indicator
+    if (loading) return <Text>Loading</Text>;
+    // if there is an error fetching the data, display an error message
+    if (error) return <Text>Error loading notes</Text>;
+    // if the query is successful and there are notes, return the feed of notes
+    
+    return <NoteFeed notes={data.notes} navigation={props.navigation} />;
+};
+
+Feed.navigationOptions = {
+    title: 'Feed'
+};
+
+export default Feed;
+```
+
 <!-- HERE -- p. 265! -->
