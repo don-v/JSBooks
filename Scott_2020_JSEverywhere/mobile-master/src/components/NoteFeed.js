@@ -36,7 +36,7 @@ const NoteFeed = props => {
     return (
         <View>
             <FlatList 
-                data={notes}
+                data={props.notes} // updated props here!
                 keyExtractor={({ id }) => id.toString()}
                 ItemSeparatorComponent={() => <Separator />}
                 renderItem={({ item }) => (

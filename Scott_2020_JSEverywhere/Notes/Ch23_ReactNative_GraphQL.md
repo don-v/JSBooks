@@ -616,4 +616,127 @@ Feed.navigationOptions = {
 export default Feed;
 ```
 
-<!-- HERE -- p. 265! -->
+For teach, in his final version, he includes a `Loading` component:
+
+```JavaScript
+import React from 'react';
+import { Text } from 'react-native';
+// import our React Native and Apollo dependencies
+import { useQuery, gql } from '@apollo/client';
+
+
+import NoteFeed from '../components/NoteFeed';
+import Loading from '../components/Loading';
+
+
+// next we compose our query:
+const GET_NOTES = gql`
+    query notes {
+        id
+        createdAt
+        content
+        favoriteContent
+        author {
+            username
+            id
+            avatar
+        }
+    }
+`;
+
+const Feed = props => {
+    // update our component to call the query:
+    const { loading, error, data } = useQuery(GET_NOTES);
+    // if the data is loading, our app will display a loading indicator
+    if (loading) return <Text>Loading</Text>;
+    // if there is an error fetching the data, display an error message
+    if (error) return <Text>Error loading notes</Text>;
+    // if the query is successful and there are notes, return the feed of notes
+    
+    return <NoteFeed notes={data.notes} navigation={props.navigation} />;
+};
+
+Feed.navigationOptions = {
+    title: 'Feed'
+};
+
+export default Feed;
+```
+
+this component referenced by `import Loading from '../components/Loading';`
+does not seem to be used in the file!
+
+With out query written, we can update the _scr/components/NoteFeed.js_
+component to use the data passed to it via `props`:
+
+```JavaScript
+import React from 'react';
+import { FlatList, View, TouchableOpacity } from 'react-native';
+import styled from 'styled-components/native';
+
+import Note from './Note';
+
+// our dummy data
+const notes = [
+    { id: 0, content: 'Giant Steps' },
+    { id: 1, content: 'Tomorrow Is The Question' },
+    { id: 2, content: 'Tonight At Noon' },
+    { id: 3, content: 'Out To Lunch' },
+    { id: 4, content: 'Green Street' },
+    { id: 5, content: 'In A Silent Way' },
+    { id: 6, content: 'Landquidity' },
+    { id: 7, content: 'Nuff Said' },
+    { id: 8, content: 'Nova' },
+    { id: 9, content: 'The Awakening' }
+];
+
+// FeedView styled component definition
+const FeedView = styled.View`
+    height: 100;
+    overflow: hidden;
+    margin-bottom: 10px;
+`;
+
+// add a Separator styled component
+const Separator = styled.View`
+    height: 1;
+    width: 100%;
+    background-color: #ced0ce;
+`;
+
+const NoteFeed = props => {
+    return (
+        <View>
+            <FlatList 
+                data={props.notes} // updated props here!
+                keyExtractor={({ id }) => id.toString()}
+                ItemSeparatorComponent={() => <Separator />}
+                renderItem={({ item }) => (
+                    <TouchableOpacity
+                        onPress={() => 
+                            props.navigation.navigate('Note', {
+                                id: item.id
+                            })
+                        }
+                    >
+                        <FeedView>
+                            <Note note={item} />
+                        </FeedView>
+                    </TouchableOpacity>
+                )}
+            />
+        </View>
+    );
+};
+
+export default NoteFeed;
+```
+
+With this change, with Expo running, we will see the data from our
+local API displayed in a list, as shown in Figure 23-2.
+
+Right now, tapping a note preview in the list will still display a
+generic note page. Let's resolve that by making a `note` query in 
+the _src/screens/note.js_ file:
+
+<!-- HERE -- p. 267! -->
