@@ -666,6 +666,31 @@ export default Feed;
 this component referenced by `import Loading from '../components/Loading';`
 does not seem to be used in the file!
 
+for completeness, here is the contents of the `Loading` component
+taken from the _\mobile-master\final\components_ directory:
+
+```JavaScript
+import React from 'react';
+import { View, ActivityIndicator } from 'react-native';
+import styled from 'styled-components/native';
+
+const LoadingWrap = styled.View`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Loading = () => {
+  return (
+    <LoadingWrap>
+      <ActivityIndicator size="large" />
+    </LoadingWrap>
+  );
+};
+
+export default Loading;
+```
+
 With out query written, we can update the _scr/components/NoteFeed.js_
 component to use the data passed to it via `props`:
 
@@ -739,4 +764,4 @@ Right now, tapping a note preview in the list will still display a
 generic note page. Let's resolve that by making a `note` query in 
 the _src/screens/note.js_ file:
 
-<!-- HERE -- p. 267! -->
+<!-- HERE -- p. 268! -->
