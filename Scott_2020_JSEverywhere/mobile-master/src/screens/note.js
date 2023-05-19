@@ -25,13 +25,12 @@ const NoteScreen = props => {
   const id = props.navigation.getParam('id');
   const { loading, error, data } = useQuery(GET_NOTE, { variables: { id } });
 
-  // HERE -- p. 268!
-
-  return (
-    <View style={{ padding: 10 }}>
-      <Text>This is note {id}</Text>
-    </View>
-  );
+  if (loading) return <Text>Loading</Text>;
+  // if there's an error, display this message to the user
+  if (error) return <Text>Error! Note not found</Text>;
+  // if successful, pass the data to the note component
+  
+  return <Note note={data.note} />
 };
 
 export default NoteScreen;

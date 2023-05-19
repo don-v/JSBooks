@@ -762,6 +762,51 @@ local API displayed in a list, as shown in Figure 23-2.
 
 Right now, tapping a note preview in the list will still display a
 generic note page. Let's resolve that by making a `note` query in 
-the _src/screens/note.js_ file:
+the _src/screens/note.js_ file; after updates to this file, it
+will appear as follows:
+
+```JavaScript
+import React from 'react';
+import { Text } from 'react-native';
+import { useQuery, gql } from '@apollo/client';
+
+import Note from '../components/Note';
+
+// our note query, which accepts an ID variable
+const GET_NOTE = gql`
+  query note($id: ID!) {
+    note(id: $id) {
+      id
+      createdAt
+      content
+      favoriteCount
+      author {
+        username
+        id
+        avatar
+      }
+    }
+  }
+`;
+
+const NoteScreen = props => {
+  const id = props.navigation.getParam('id');
+  const { loading, error, data } = useQuery(GET_NOTE, { variables: { id } });
+
+  if (loading) return <Text>Loading</Text>;
+  // if there's an error, display this message to the user
+  if (error) return <Text>Error! Note not found</Text>;
+  // if successful, pass the data to the note component
+  
+  return <Note note={data.note} />
+};
+
+export default NoteScreen;
+```
+
+Finally, let' supdate our _src/components/Note.js_ component file to display
+the note contents. We'll add two new dependencies, 
+`react-native-markdown-renderer` and `date-fns` to parse the Markdown and
+dates from our AI in a more user-friendly way:
 
 <!-- HERE -- p. 268! -->
