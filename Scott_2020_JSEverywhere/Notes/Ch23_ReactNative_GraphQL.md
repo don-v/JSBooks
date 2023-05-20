@@ -809,4 +809,36 @@ the note contents. We'll add two new dependencies,
 `react-native-markdown-renderer` and `date-fns` to parse the Markdown and
 dates from our AI in a more user-friendly way:
 
-<!-- HERE -- p. 268! -->
+```JavaScript
+import React from "react";
+import { Text, ScrollView } from 'react-native';
+import styled from 'styled-components/native';
+import Markdown from 'react-native-markdown-renderer';
+import { format } from 'date-fns';
+
+const NoteView = styled.ScrollView`
+    padding: 10px;
+`;
+
+const Note = props => {
+    return (
+        <NoteView>
+            <Text>
+                Note by {note.author.username} / Published{' '}
+                {format(new Date(note.createdAt), 'MMM do yyy')}
+            </Text>
+            <Markdown>{note.content}</Markdown>
+        </NoteView>
+    );
+};
+
+export default Note;
+```
+
+With these changes, we'll se a list of notes in the application's
+feed view, Tapping a note preview will take us to the full, scrollable
+content of the note (see Figure 23-3)
+
+### ADDING A LOADING INDICATOR
+
+<!-- HERE -- p. 269! -->
