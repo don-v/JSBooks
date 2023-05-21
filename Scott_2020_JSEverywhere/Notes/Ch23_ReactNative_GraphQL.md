@@ -841,4 +841,40 @@ content of the note (see Figure 23-3)
 
 ### ADDING A LOADING INDICATOR
 
-<!-- HERE -- p. 269! -->
+Currently when data is loading in our application, it flashes the word
+"Loading" on the screen. This may be effective at conveying the message,
+but is also a pretty jarring user experience. 'React Native' supplies us
+with a built-in `ActivityIndicator`, which displays an operating system-
+appropriate loading spinner. Let's write a simple component that we can
+use as a loading indicator across our application.
+
+Create a file at _src/components/Loading.js_ and compose a simple 
+component that displays the activity indicator in the center of the 
+screen:
+
+```JavaScript
+import React from 'react';
+import { View, ActivityIndicator } from 'react-native';
+import styled from 'styled-components/native';
+
+const LoadingWrap = stled.View`
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+`;
+
+const Loading = () => {
+    return (
+        <LoadingWrap>
+            <ActivityIndicator size="large" />
+        </LoadingWrap>
+    );  
+};
+
+export default Loading;
+```
+
+Now, we can replace the "Loading" text in our GraphQL query
+component...
+
+<!-- HERE -- p. 270! -->
