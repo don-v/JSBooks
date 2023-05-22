@@ -875,6 +875,118 @@ export default Loading;
 ```
 
 Now, we can replace the "Loading" text in our GraphQL query
-component...
+components. In both _/src/screens/feeds.js_ and
+_/scr/screens/note.js_, first import the `Loading` component:
 
-<!-- HERE -- p. 270! -->
+```JavaScript
+import Loading from '../components/Loading';
+```
+
+Then, in both files, update the Apollo loading state as follows:
+
+```JavaScript
+if (loading) return <Loading />;
+```
+
+after making these changes,  _/src/screens/feeds.js_ appears as:
+
+```JavaScript
+import React from 'react';
+
+// import NoteFeed
+import NoteFeed from '../components/NoteFeed';
+
+// import our React Native and Apollo dependencies
+import { Text } from 'react-native';
+import { useQuery, gql } from '@apollo/client';
+
+import Loading from '../components/Loading';
+
+// next we compose our query:
+const GET_NOTES = gql`
+    query notes {
+        id
+        createdAt
+        content
+        favoriteContent
+        author {
+            username
+            id
+            avatar
+        }
+    }
+`;
+
+const Feed = props => {
+    // update our component to call the query:
+    const { loading, error, data } = useQuery(GET_NOTES);
+    // if the data is loading, our app will display a loading indicator
+    if (loading) return <Loading />;
+    // if there is an error fetching the data, display an error message
+    if (error) return <Text>Error loading notes</Text>;
+    // if the query is successful and there are notes, return the feed of notes
+    
+    return <NoteFeed notes={data.notes} navigation={props.navigation} />;
+};
+
+Feed.navigationOptions = {
+    title: 'Feed'
+};
+
+export default Feed;
+```
+
+and _/scr/screens/note.js_ appears as:
+
+```JavaScript
+import React from 'react';
+import { Text } from 'react-native';
+import { useQuery, gql } from '@apollo/client';
+
+import Note from '../components/Note';
+
+import Loading from '../components/Loading';
+
+// our note query, which accepts an ID variable
+const GET_NOTE = gql`
+  query note($id: ID!) {
+    note(id: $id) {
+      id
+      createdAt
+      content
+      favoriteCount
+      author {
+        username
+        id
+        avatar
+      }
+    }
+  }
+`;
+
+const NoteScreen = props => {
+  const id = props.navigation.getParam('id');
+  const { loading, error, data } = useQuery(GET_NOTE, { variables: { id } });
+
+  if (loading) return <Loading />;
+  // if there's an error, display this message to the user
+  if (error) return <Text>Error! Note not found</Text>;
+  // if successful, pass the data to the note component
+  
+  return <Note note={data.note} />
+};
+
+export default NoteScreen;
+```
+
+With this, our application will now display a spinning activity 
+indicator when our API data is loading!
+
+### CONCLUSION
+
+In this chapter, we first looked at how we can integrate list views
+into a 'React Native' application, making use of common application
+UI patterns. From there we configured Apollo Client and integrated 
+the data from our API into the application...
+
+<!-- HERE -- p. 271! -->
