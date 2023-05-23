@@ -987,6 +987,8 @@ indicator when our API data is loading!
 In this chapter, we first looked at how we can integrate list views
 into a 'React Native' application, making use of common application
 UI patterns. From there we configured Apollo Client and integrated 
-the data from our API into the application...
-
-<!-- HERE -- p. 271! -->
+the data from our API into the application. With this, we already 
+have everything we need to build many common types of applications,
+such as a news app or integrating blog feed from a website. In 
+the enxt chapter, we'll add authentication to our app and display
+use-specific queries.
