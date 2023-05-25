@@ -33,6 +33,23 @@ the device.
 a button and log out of the application. Once they are logged out, they
 will be routed back to the sign-in screen.
 
-**Using an Existing Account**: We'll be adding ...
+**Using an Existing Account**: We'll be adding the ability to create an
+account through the app later in the chapter. If one hasn't already, it
+wuld be useful to create an account either directly through your API
+instance's GraphQL Playground or the web application interface.
 
-<!-- HERE -- p. 274!~ -->
+For storing and working with tokens, we'll be using Expo's SecurStore
+library `https://oreil.ly/nvqEO`. I've found SecureStore to be a 
+straighforward way to encrypt and store data locally on a device. For 
+iOS devices, SecureStore makes use of the built-in keychain services
+(`https://oreil.ly/iCu8R`), while on Android it uses the OS's Shared
+Preferences, encrypting the data with Keystore (`https://oreil.ly/gIXsp`).
+All of this happens under the hood, allowing us to simplify store and
+retreive data.
+
+To begin wiwth , we'll create our sign-in screen. For now, our sign-in
+screen will consist of a `Button` component that, when pressed, will
+store a token. Let's create a new screen component _src/screens/signin.js_,
+importing our dependencies. 
+
+<!-- HERE -- p. 274! -->
