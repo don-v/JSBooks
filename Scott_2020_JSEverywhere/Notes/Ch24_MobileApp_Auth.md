@@ -52,4 +52,30 @@ screen will consist of a `Button` component that, when pressed, will
 store a token. Let's create a new screen component _src/screens/signin.js_,
 importing our dependencies. 
 
-<!-- HERE -- p. 274! -->
+```JavaScript
+import React from 'react';
+import { View, Button, Text } from 'react-native';
+import * as SecureStore from 'expo-secure-store';
+
+const SignIn = props => {
+    return (
+        <View>
+            <Button title="Sign in!"/>
+        </View>
+    );
+}
+
+SignIn.navigationOptions = {
+    title: 'Sign In'
+};
+
+export default SignIn;
+```
+
+Next, let's create our authentication loading component
+at _src/screens/authloading.js_ which for now will simply
+display a loading indicator:
+
+```JavaScript
+// HERE -- p. 275!
+```
