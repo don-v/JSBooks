@@ -112,6 +112,86 @@ Settings.navigationOptions = {
 export default Settings;
 ```
 
-With these components...
+With these components written, we will update our routing to handle
+the authenticated and unauthenticated states. In _src/screens/index.js_,
+add the new screens to our list of import statements as follows; with 
+these changes, our _src/screens/index.js_ file will appear as follows:
+
+```JavaScript
+import React from 'react';
+import { Text, View, ScrollView, Button } from 'react-native';
+import { createAppContainer } from 'react-navigation';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
+// add import for createStackNavigator
+import { createStackNavigator } from 'react-navigation-stack';
+
+// add icons from `MaterialCommunityIcons`
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+
+// import screen components
+import Feed from './feed';
+import Favorites from './favorites';
+import MyNotes from './mynotes';
+import NoteScreen from './note';
+
+// add the new screens to our list of import statements as follows:
+import AuthLoading from './authloading';
+import SignIn from './signin';
+import Settings from './settings';
+
+// navigation stack
+const FeedStack = createStackNavigator({
+  Feed: Feed,
+  Note: NoteScreen
+});
+
+const MyStack = createStackNavigator({
+  MyNotes: MyNotes,
+  Note: NoteScreen
+});
+
+const FavStack = createStackNavigator({
+  Favorites: Favorites,
+  Note: NoteScreen
+});
+
+// navigation tabs
+const TabNavigator = createBottomTabNavigator({
+  FeedScreen: {
+    screen: FeedStack,
+    navigationOptions: {
+      tabBarLabel: 'Feed',
+      tabBarIcon: ({ tintColor }) => (
+        <MaterialCommunityIcons name="home" size={24} color={tintColor} />
+      )
+    }
+  },
+  MyNoteScreen: {
+    screen: MyStack,
+    navigationOptions: {
+      tabBarLabel: 'My Notes',
+      tabBarIcon: ({ tintColor }) => (
+        <MaterialCommunityIcons name="notebook" size={24} color={tintColor} />
+      )
+    }
+  },
+  FavoriteScreen: {
+    screen: FavStack,
+    navigationOptions: {
+      tabBarLabel: 'Favorites',
+      tabBarIcon: ({ tintColor }) => (
+        <MaterialCommunityIcons name="star" size={24} color={tintColor} />
+      )
+    }
+  }
+});
+
+// create the app container
+export default createAppContainer(TabNavigator);
+```
+
+We'll also need to update our `react-navigation` dependency to
+include `createSwitchNavigator`, which allows us to displays a
+single screen at a time and swtich between them...
 
 <!-- HERE -- p. 275! -->

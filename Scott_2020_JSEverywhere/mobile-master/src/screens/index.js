@@ -14,6 +14,11 @@ import Favorites from './favorites';
 import MyNotes from './mynotes';
 import NoteScreen from './note';
 
+// add the new screens to our list of import statements as follows:
+import AuthLoading from './authloading';
+import SignIn from './signin';
+import Settings from './settings';
+
 // navigation stack
 const FeedStack = createStackNavigator({
   Feed: Feed,
