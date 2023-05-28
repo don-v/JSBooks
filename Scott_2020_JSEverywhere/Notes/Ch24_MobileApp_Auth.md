@@ -77,5 +77,41 @@ at _src/screens/authloading.js_ which for now will simply
 display a loading indicator:
 
 ```JavaScript
-// HERE -- p. 275!
+import React, { useEffect } from 'react';
+import * as SecureStore from 'expo-secure-store';
+
+import Loading from '../components/Loading';
+
+const AuthLoading = props => {
+    return <Loading />;
+};
+
+export default AuthLoading;
 ```
+
+Finally, we can create our settings screen at 
+_src/screens/settings.js_:
+
+```JavaScript
+import React from 'react';
+import { View, Button } from 'react-native';
+import * as SecureStore from 'expo-secure-store';
+
+const Settings = props => {
+    return (
+        <View>
+            <Button title="Sign Out" />
+        </View>
+    );
+};
+
+Settings.navigationOptions = {
+    title: 'Settings'
+};
+
+export default Settings;
+```
+
+With these components...
+
+<!-- HERE -- p. 275! -->
