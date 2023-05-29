@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View, ScrollView, Button } from 'react-native';
-import { createAppContainer } from 'react-navigation';
+import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 // add import for createStackNavigator
 import { createStackNavigator } from 'react-navigation-stack';
@@ -63,8 +63,28 @@ const TabNavigator = createBottomTabNavigator({
         <MaterialCommunityIcons name="star" size={24} color={tintColor} />
       )
     }
+  },
+  Settings: {
+    screen: Settings,
+    navigationOptions: {
+      tabBarLabel: 'Settings',
+      tabBarIcon: ({ tintColor }) => (
+        <MaterialCommunityIcons name="settings" size={24} color={tintColor} />
+      )
+    }
   }
 });
+
+const AuthStack = createStackNavigator({
+  SignIn: Signin
+});
+
+const SettingsStack = createStackNavigator({
+  Settings: Settings
+});
+
+// create SwitchNavigator
+// HERE -- P. 276!
 
 // create the app container
 export default createAppContainer(TabNavigator);

@@ -191,7 +191,13 @@ export default createAppContainer(TabNavigator);
 ```
 
 We'll also need to update our `react-navigation` dependency to
-include `createSwitchNavigator`, which allows us to displays a
-single screen at a time and swtich between them...
+include `createSwitchNavigator`, which allows us to display a
+single screen at a time and swtich between them. The 
+`SwitchNavigator` (`https://oreil.ly/vSURH`) resets routes to
+the default state when a user navigates and does not offer 
+back-navigation options.
 
-<!-- HERE -- p. 275! -->
+```JavaScript
+// ADD SWITCHNAVIGATOR
+// HERE -- p. 276!
+```
