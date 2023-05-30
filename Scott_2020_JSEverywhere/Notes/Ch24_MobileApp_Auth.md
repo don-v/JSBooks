@@ -197,7 +197,123 @@ single screen at a time and swtich between them. The
 the default state when a user navigates and does not offer 
 back-navigation options.
 
+We can create a new `StackNavigator` for our authentication and
+settings screens. This will allow us to add subnavigation screens
+when or if needed in the future:
+
 ```JavaScript
-// ADD SWITCHNAVIGATOR
-// HERE -- p. 276!
+const AuthStack = createStackNavigator({
+  SignIn: Signin
+});
+
+const SettingsStack = createStackNavigator({
+  Settings: Settings
+});
+```
+
+We will then add...
+
+<!-- HERE -- p. 276! -->
+
+```JavaScript
+import React from 'react';
+import { Text, View, ScrollView, Button } from 'react-native';
+import { createAppContainer, createSwitchNavigator } from 'react-navigation';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
+// add import for createStackNavigator
+import { createStackNavigator } from 'react-navigation-stack';
+
+// add icons from `MaterialCommunityIcons`
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+
+// import screen components
+import Feed from './feed';
+import Favorites from './favorites';
+import MyNotes from './mynotes';
+import NoteScreen from './note';
+
+// add the new screens to our list of import statements as follows:
+import AuthLoading from './authloading';
+import SignIn from './signin';
+import Settings from './settings';
+
+// navigation stack
+const FeedStack = createStackNavigator({
+  Feed: Feed,
+  Note: NoteScreen
+});
+
+const MyStack = createStackNavigator({
+  MyNotes: MyNotes,
+  Note: NoteScreen
+});
+
+const FavStack = createStackNavigator({
+  Favorites: Favorites,
+  Note: NoteScreen
+});
+
+// navigation tabs
+const TabNavigator = createBottomTabNavigator({
+  FeedScreen: {
+    screen: FeedStack,
+    navigationOptions: {
+      tabBarLabel: 'Feed',
+      tabBarIcon: ({ tintColor }) => (
+        <MaterialCommunityIcons name="home" size={24} color={tintColor} />
+      )
+    }
+  },
+  MyNoteScreen: {
+    screen: MyStack,
+    navigationOptions: {
+      tabBarLabel: 'My Notes',
+      tabBarIcon: ({ tintColor }) => (
+        <MaterialCommunityIcons name="notebook" size={24} color={tintColor} />
+      )
+    }
+  },
+  FavoriteScreen: {
+    screen: FavStack,
+    navigationOptions: {
+      tabBarLabel: 'Favorites',
+      tabBarIcon: ({ tintColor }) => (
+        <MaterialCommunityIcons name="star" size={24} color={tintColor} />
+      )
+    }
+  },
+  Settings: {
+    screen: Settings,
+    navigationOptions: {
+      tabBarLabel: 'Settings',
+      tabBarIcon: ({ tintColor }) => (
+        <MaterialCommunityIcons name="settings" size={24} color={tintColor} />
+      )
+    }
+  }
+});
+
+const AuthStack = createStackNavigator({
+  SignIn: Signin
+});
+
+const SettingsStack = createStackNavigator({
+  Settings: Settings
+});
+
+// create SwitchNavigator
+const SwitchNavigator = createSwitchNavigator(
+  {
+    AuthLoading: AuthLoading,
+    Auth: AuthStack,
+    App: TabNavigator
+  },
+  {
+    initialRouterName: 'AuthLoading'
+  }
+);
+
+// create the app container
+export default createAppContainer(TabNavigator);
+
 ```

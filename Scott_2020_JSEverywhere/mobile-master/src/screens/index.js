@@ -84,7 +84,16 @@ const SettingsStack = createStackNavigator({
 });
 
 // create SwitchNavigator
-// HERE -- P. 276!
+const SwitchNavigator = createSwitchNavigator(
+  {
+    AuthLoading: AuthLoading,
+    Auth: AuthStack,
+    App: TabNavigator
+  },
+  {
+    initialRouterName: 'AuthLoading'
+  }
+);
 
 // create the app container
 export default createAppContainer(TabNavigator);
