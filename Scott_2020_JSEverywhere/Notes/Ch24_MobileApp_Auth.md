@@ -211,9 +211,75 @@ const SettingsStack = createStackNavigator({
 });
 ```
 
-We will then add...
+We will then add our settings screen to the bottom `TabNavigator`.
+The rest of the tab navigation settings will stay the same:
 
-<!-- HERE -- p. 276! -->
+```JavaScript
+// navigation tabs
+const TabNavigator = createBottomTabNavigator({
+  FeedScreen: {
+    screen: FeedStack,
+    navigationOptions: {
+      tabBarLabel: 'Feed',
+      tabBarIcon: ({ tintColor }) => (
+        <MaterialCommunityIcons name="home" size={24} color={tintColor} />
+      )
+    }
+  },
+  MyNoteScreen: {
+    screen: MyStack,
+    navigationOptions: {
+      tabBarLabel: 'My Notes',
+      tabBarIcon: ({ tintColor }) => (
+        <MaterialCommunityIcons name="notebook" size={24} color={tintColor} />
+      )
+    }
+  },
+  FavoriteScreen: {
+    screen: FavStack,
+    navigationOptions: {
+      tabBarLabel: 'Favorites',
+      tabBarIcon: ({ tintColor }) => (
+        <MaterialCommunityIcons name="star" size={24} color={tintColor} />
+      )
+    }
+  },
+  Settings: {
+    screen: Settings,
+    navigationOptions: {
+      tabBarLabel: 'Settings',
+      tabBarIcon: ({ tintColor }) => (
+        <MaterialCommunityIcons name="settings" size={24} color={tintColor} />
+      )
+    }
+  }
+});
+```
+
+We can now create our `SwitchNavigator` by defining the screens to switch
+between and setting a default screen, the `AuthLoading`. We'll then replace
+our existing `export` statement with one that exports the `SwitchNavigator`:
+
+```JavaScript
+// create SwitchNavigator
+const SwitchNavigator = createSwitchNavigator(
+  {
+    AuthLoading: AuthLoading,
+    Auth: AuthStack,
+    App: TabNavigator
+  },
+  {
+    initialRouterName: 'AuthLoading'
+  }
+);
+
+// create the app container
+export default createAppContainer(TabNavigator);
+```
+
+All together, our _src/screens/index.js_ file will appear as follows:
+
+<!-- HERE -- p. 277! -->
 
 ```JavaScript
 import React from 'react';
@@ -315,5 +381,4 @@ const SwitchNavigator = createSwitchNavigator(
 
 // create the app container
 export default createAppContainer(TabNavigator);
-
 ```
