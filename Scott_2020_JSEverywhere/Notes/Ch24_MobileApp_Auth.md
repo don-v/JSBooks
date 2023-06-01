@@ -279,8 +279,6 @@ export default createAppContainer(TabNavigator);
 
 All together, our _src/screens/index.js_ file will appear as follows:
 
-<!-- HERE -- p. 277! -->
-
 ```JavaScript
 import React from 'react';
 import { Text, View, ScrollView, Button } from 'react-native';
@@ -303,6 +301,10 @@ import AuthLoading from './authloading';
 import SignIn from './signin';
 import Settings from './settings';
 
+const AuthStack = createStackNavigator({
+  SignIn: SignIn
+});
+
 // navigation stack
 const FeedStack = createStackNavigator({
   Feed: Feed,
@@ -317,6 +319,10 @@ const MyStack = createStackNavigator({
 const FavStack = createStackNavigator({
   Favorites: Favorites,
   Note: NoteScreen
+});
+
+const SettingsStack = createStackNavigator({
+  Settings: Settings
 });
 
 // navigation tabs
@@ -349,7 +355,7 @@ const TabNavigator = createBottomTabNavigator({
     }
   },
   Settings: {
-    screen: Settings,
+    screen: SettingsStack,
     navigationOptions: {
       tabBarLabel: 'Settings',
       tabBarIcon: ({ tintColor }) => (
@@ -359,13 +365,6 @@ const TabNavigator = createBottomTabNavigator({
   }
 });
 
-const AuthStack = createStackNavigator({
-  SignIn: Signin
-});
-
-const SettingsStack = createStackNavigator({
-  Settings: Settings
-});
 
 // create SwitchNavigator
 const SwitchNavigator = createSwitchNavigator(
@@ -382,3 +381,10 @@ const SwitchNavigator = createSwitchNavigator(
 // create the app container
 export default createAppContainer(TabNavigator);
 ```
+
+Right now, when we preview our app we'll only see loading spinner, since
+our `AuthLoading` route is the initial screen. Let's update this so that 
+the loading screen checks for the existence of a `token` value in the
+application's `SecureStore`. ...
+
+<!-- HERE -- p. 278! -->

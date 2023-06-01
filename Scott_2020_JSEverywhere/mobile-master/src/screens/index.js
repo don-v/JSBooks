@@ -19,6 +19,10 @@ import AuthLoading from './authloading';
 import SignIn from './signin';
 import Settings from './settings';
 
+const AuthStack = createStackNavigator({
+  SignIn: SignIn
+});
+
 // navigation stack
 const FeedStack = createStackNavigator({
   Feed: Feed,
@@ -33,6 +37,10 @@ const MyStack = createStackNavigator({
 const FavStack = createStackNavigator({
   Favorites: Favorites,
   Note: NoteScreen
+});
+
+const SettingsStack = createStackNavigator({
+  Settings: Settings
 });
 
 // navigation tabs
@@ -65,7 +73,7 @@ const TabNavigator = createBottomTabNavigator({
     }
   },
   Settings: {
-    screen: Settings,
+    screen: SettingsStack,
     navigationOptions: {
       tabBarLabel: 'Settings',
       tabBarIcon: ({ tintColor }) => (
@@ -75,13 +83,6 @@ const TabNavigator = createBottomTabNavigator({
   }
 });
 
-const AuthStack = createStackNavigator({
-  SignIn: Signin
-});
-
-const SettingsStack = createStackNavigator({
-  Settings: Settings
-});
 
 // create SwitchNavigator
 const SwitchNavigator = createSwitchNavigator(
