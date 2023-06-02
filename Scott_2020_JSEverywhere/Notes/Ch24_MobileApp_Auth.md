@@ -385,6 +385,36 @@ export default createAppContainer(TabNavigator);
 Right now, when we preview our app we'll only see loading spinner, since
 our `AuthLoading` route is the initial screen. Let's update this so that 
 the loading screen checks for the existence of a `token` value in the
-application's `SecureStore`. ...
+application's `SecureStore`. If the token is present, we'll navigate to 
+the user to the main application screen. However, if no token is present,
+the user should be routed to the sign-in screen. Let's update
+_src/screens/authloading.js_ to perform this check; here is what our 
+updated _src/screens/authloading.js_ file looks like:
 
-<!-- HERE -- p. 278! -->
+```js
+import React, { useEffect } from 'react';
+import * as SecureStore from 'expo-secure-store';
+
+import Loading from '../components/Loading';
+
+const AuthLoading = props => {
+    const checkLoginState = async () => {
+        // retrieve the value of the token
+        const userToken = await SecureStore.getItemAsync('token');
+        // navigate to the app screen if a token is present
+        // otherwise navigate to the auth screen
+        props.navigation.navigate(userToken ? 'App' : 'Auth');
+    }
+    // call checkLoginState as soon as the component mounts
+    useEffect(() => {
+        checkLoginState();
+    });
+    
+    return <Loading />;
+};
+
+export default AuthLoading;
+```
+
+<!-- HERE -- p. 279! -->
+
