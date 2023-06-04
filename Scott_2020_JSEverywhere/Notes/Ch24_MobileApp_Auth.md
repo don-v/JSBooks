@@ -451,5 +451,46 @@ SignIn.navigationOptions = {
 export default SignIn;
 ```
 
-<!-- HERE -- p. 280! -->
+Now, when a user presses the button, a token is stored via `SecureStore`.
+With the sign-in functionality in place, let's add the ability for users to 
+sign out of the application. To do so, we'll add a button on our settings 
+screen that, when pressed, will remove the _token_ from `SecureStore`. In
+_src/screens/settings.js_:
 
+```js
+import React from 'react';
+import { View, Button } from 'react-native';
+import * as SecureStore from 'expo-secure-store';
+
+const Settings = props => {
+    // delete the token then navigate to the auth screen
+    const signOut = () => {
+        SecureStore.deleteItemAsync('token').then(
+            props.navigation.navigate('Auth')
+        );
+    };
+
+    return (
+        <View>
+            <Button title="Sign Out" onPress={signOut} />
+        </View>
+    );
+};
+
+Settings.navigationOptions = {
+    title: 'Settings'
+};
+
+export default Settings;
+```
+
+With these pieces in place, we have everything we need to create
+an application authentication flow.
+
+> **BE SURE TO SIGN OUT**: If one hasn't already, tap the 'Sign Out'
+button on one's local app instance. We'll be adding proper sign-in 
+functionality in teh upcoming sections.
+
+## CREATING A SIGN-IN FORM
+
+<!-- HERE -- p. 282! -->
