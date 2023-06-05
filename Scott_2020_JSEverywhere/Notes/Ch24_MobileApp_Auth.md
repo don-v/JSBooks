@@ -493,4 +493,31 @@ functionality in teh upcoming sections.
 
 ## CREATING A SIGN-IN FORM
 
+While we can now click a button and store a token on the user's device, 
+we'lre not yet allowing a user to sign in to an account by entering 
+their own information. Let's begin to remedy this by creating a form
+where a user can enter their email address and password. To do this, 
+we'll create a new component at _src/components/UserForm.js_ with a 
+form using 'React Native''s `TextInput` component:
+
+```js
+import React, { useState } from 'react';
+import { View, Text, TextInput, Button, TouchableOpacity } from 'react-native';
+import styled from 'styled-components/native';
+
+const UserForm = props => {
+    return (
+        <View>
+            <Text>Email</Text>
+            <TextInput />
+            <Text>Password</Text>
+            <TextInput />
+            <Button title='Log In'/>
+        </View>
+    );
+}
+
+export default UserForm;
+```
+
 <!-- HERE -- p. 282! -->
