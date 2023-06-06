@@ -520,4 +520,41 @@ const UserForm = props => {
 export default UserForm;
 ```
 
-<!-- HERE -- p. 282! -->
+Now we can display this form on  our authentication screen. To do so, update
+_src/screens/signin.js_ to import and use the component like so:
+
+```js
+import React from 'react';
+import { View, Button, Text } from 'react-native';
+import * as SecureStore from 'expo-secure-store';
+
+import UserForm from '../components/UserForm';
+
+const SignIn = props => {
+    // store the token with a key value of `token`
+    // after the token is stored navigate to the app's `main` screen
+    const storeToken = () => {
+        SecureStore.setItemAsync('token', 'abc').then(
+            props.navigation.navigate('App')
+        );
+    };
+
+    return (
+        <View>
+            <UserForm />
+        </View>
+    );
+}
+
+SignIn.navigationOptions = {
+    title: 'Sign In'
+};
+
+export default SignIn;
+```
+
+With this, we'll see a basic form display on the authentication screen,
+but it lacks any style or functionality. We can continue implementing the
+form in our _src/components/UserForm.js_:
+
+<!-- HERE -- p. 283! -->

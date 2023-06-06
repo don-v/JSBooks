@@ -2,6 +2,8 @@ import React from 'react';
 import { View, Button, Text } from 'react-native';
 import * as SecureStore from 'expo-secure-store';
 
+import UserForm from '../components/UserForm';
+
 const SignIn = props => {
     // store the token with a key value of `token`
     // after the token is stored navigate to the app's `main` screen
@@ -13,7 +15,7 @@ const SignIn = props => {
 
     return (
         <View>
-            <Button title="Sign in!" onPress={storeToken} />
+            <UserForm />
         </View>
     );
 }
