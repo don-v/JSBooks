@@ -555,6 +555,39 @@ export default SignIn;
 
 With this, we'll see a basic form display on the authentication screen,
 but it lacks any style or functionality. We can continue implementing the
-form in our _src/components/UserForm.js_:
+form in our _src/components/UserForm.js_. We'll be using 'React''s 
+`useState` hook to read and set the values of our fomr elements:
 
-<!-- HERE -- p. 283! -->
+```js
+import React, { useState } from 'react';
+import { View, Text, TextInput, Button, TouchableOpacity } from 'react-native';
+import styled from 'styled-components/native';
+
+const UserForm = props => {
+    // form element state
+    const [email, setEmail] = useState();
+    const [password, setPassword] = useState();
+
+    return (
+        <View>
+            <Text>Email</Text>
+            <TextInput onChangeText={text => setEmail(text)} value={email} />
+            <Text>Password</Text>
+            <TextInput onChangeText={text => setPassword(text)} value={password} />
+            <Button title='Log In'/>
+        </View>
+    );
+}
+
+export default UserForm;
+```
+
+Now we can add a few more additional properties to our form elements to provide
+user with the expected functionality when working with our email addresses or
+passwords. Full documentation of the `TextINput` API can be found in the 
+'React Native' docs (`https://oreil.ly/yvgyU`). We'll also call a funciton when
+the button is pressed, though the functionality will be limited.
+
+```js
+// HERE -- p. 283!
+```
