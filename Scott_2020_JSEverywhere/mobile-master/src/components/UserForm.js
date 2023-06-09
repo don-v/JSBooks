@@ -2,6 +2,22 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, Button, TouchableOpacity } from 'react-native';
 import styled from 'styled-components/native';
 
+const FormView = styled.View`
+    padding: 10px;
+`;
+
+const StyledInput = styled.TextInput`
+    border: 1px solid gray;
+    font-size: 18px;
+    padding: 8px;
+    margin-bottom: 24px;
+`;
+
+const FormLabel = styled.Text`
+    font-size: 18px;
+    font-weight: bold;
+`;
+
 const UserForm = props => {
     // form element state
     const [email, setEmail] = useState();
@@ -12,9 +28,9 @@ const UserForm = props => {
     }
 
     return (
-        <View>
-            <Text>Email</Text>
-            <TextInput 
+        <FormView>
+            <FormLabel>Email</FormLabel>
+            <StyledInput
                 onChangeText={text => setEmail(text)} 
                 value={email} 
                 textContentType="emailAddress"
@@ -22,8 +38,8 @@ const UserForm = props => {
                 autoFocus={true}
                 autoCapitalize="none"
             />
-            <Text>Password</Text>
-            <TextInput 
+            <FormLabel>Password</FormLabel>
+            <StyledInput
                 onChangeText={text => setPassword(text)} 
                 value={password}
                 textContentType='password' 
@@ -33,7 +49,7 @@ const UserForm = props => {
                 title='Log In'
                 onPress={handleSubmit}    
             />
-        </View>
+        </FormView>
     );
 }
 
