@@ -18,6 +18,19 @@ const FormLabel = styled.Text`
     font-weight: bold;
 `;
 
+const FormButton = styled.TouchableOpacity`
+    background: #0077cc;
+    width: 100%;
+    padding: 8px;
+`;
+
+const ButtonText = styled.Text`
+    text-align: center;
+    color: #fff;
+    font-weight: bold;
+    font-size: 18px;
+`;
+
 const UserForm = props => {
     // form element state
     const [email, setEmail] = useState();
@@ -45,10 +58,9 @@ const UserForm = props => {
                 textContentType='password' 
                 secureTextEntry={true}
             />
-            <Button 
-                title='Log In'
-                onPress={handleSubmit}    
-            />
+            <FormButton onPress={handleSubmit}>
+                <ButtonText>Submit</ButtonText>
+            </FormButton>
         </FormView>
     );
 }
