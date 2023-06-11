@@ -773,4 +773,21 @@ export default UserForm;
 With this, we've implemented a sign-in form and applied custom styles.
 Let's now implement the form's functionality.
 
-<!-- HERE -- p. 286! -->
+### AUTHENTICATION WITH 'GraphQL' MUTATIONS
+
+One may recall the authentication flow we've developed form the API and
+web application chapters, but before moving forward let's do a quick 
+refresher. We will send a GraphQL mutation to our API that includes the 
+user's email address and password. If the email address exists in the
+database, and the password is correct, the API will resopond with a JWT
+(JavaScript WebToken). We can then store the token on the user's device. 
+This will allow us to identify the user on every API request, without 
+requiriting them to constantly re-enter their password (log-in info).
+
+With our form in place, we can write our GraphQL mutation in 
+_src/screens/signin.js_. First, we'll add the Apollo libraries as well as
+our `Loading` component to our list of imports:
+
+```js
+// HERE -- p. 288!
+```
