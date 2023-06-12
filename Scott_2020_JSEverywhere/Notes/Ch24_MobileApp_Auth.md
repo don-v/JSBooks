@@ -789,5 +789,5 @@ _src/screens/signin.js_. First, we'll add the Apollo libraries as well as
 our `Loading` component to our list of imports:
 
 ```js
-// HERE -- p. 288!
+// HERE -- p. 288!+
 ```

@@ -6,16 +6,32 @@ import { useMutation, gql } from '@apollo/client';
 import UserForm from '../components/UserForm';
 import Loading from '../components/Loading';
 
-// HERE -- p. 288!
+// add our GraphQL query
+const SIGNIN_USER = gql`
+    mutation signIn($email: String, $password, String!) {
+        signIn(email: $email, password: $password)
+    }
+`;
+
+// update `storeToken` function to store a token string passed as a
+// parameter
 
 const SignIn = props => {
     // store the token with a key value of `token`
     // after the token is stored navigate to the app's `main` screen
-    const storeToken = () => {
-        SecureStore.setItemAsync('token', 'abc').then(
+    const storeToken = token => {
+        SecureStore.setItemAsync('token', token).then(
             props.navigation.navigate('App')
         );
     };
+
+    const [signIn, { loading, error }] = useMutation(SIGNIN_USER, {
+        onCompleted: data => {
+            storeToken(data.signIn)
+        }
+    })
+
+    // HERE -- p. 288!
 
     return (
         <View>
