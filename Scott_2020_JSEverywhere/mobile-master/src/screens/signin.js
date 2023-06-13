@@ -31,12 +31,17 @@ const SignIn = props => {
         }
     })
 
-    // HERE -- p. 288!
-
+    // if loading, return a loading indicator
+    if (loading) return <Loading />;
     return (
-        <View>
-            <UserForm />
-        </View>
+        <React.Fragment>
+            {error && <Text>Error signing in!</Text>}
+            <UserForm 
+                action={signIn}
+                formType="signIn"
+                navigation={props.navigation}
+            />
+        </React.Fragment>
     );
 }
 
