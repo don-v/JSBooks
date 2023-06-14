@@ -38,8 +38,13 @@ const UserForm = props => {
 
     const handleSubmit = () => {
         // this function is called when the user presses the form button
-        // HERE -- p. 289!
-    }
+        props.action({
+            variables: {
+                email: email,
+                password: password
+            }
+        });
+    };
 
     return (
         <FormView>
