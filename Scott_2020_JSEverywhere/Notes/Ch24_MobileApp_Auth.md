@@ -948,6 +948,14 @@ export default UserForm;
 Now that our users can sign-in to their account, we'll need to use the
 stored token to authenticate each request. This will allow us to request
 user-specific data, such as a list of notes by the current user or a list
-of notes the user has marked as "favorites." To accomplish this,...
+of notes the user has marked as "favorites." To accomplish this, we'll 
+update teh Apollo configuration to check for the existence of a token
+and, when one is present, send that token's value with each API call.
 
-<!-- HERE -- p. 289! -->
+In _src/Main.js_, first add `SecureStore` to the list of imports and 
+update the Apollo Client dependencies to include `creatHttpLink` and
+`setContext`:
+
+```js
+// HERE -- p. 289!
+```
