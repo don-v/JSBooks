@@ -19,11 +19,19 @@ const uri = API_URI;
 const cache = InMemoryCache();
 const httpLink = createHttpLink({ uri });
 
-// HERE -- p.289!
+// return the headers to teh context
+const authLink = setContext(async (_, { headers}) => {
+return {
+      headers: {
+      ...headers,
+      authorization: (await SecureStore.getItemSync('token')) || ''
+    }
+  };
+});
 
 // configure Apollo Client
 const client = new Apolloclient({
-  uri,
+  link: authLink.concat(httpLink),
   cache
 });
 
