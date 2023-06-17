@@ -1011,6 +1011,10 @@ the `mynotes` and `favorites` screens to request user-specific data.
 If one followed along through the web chapters, these queries should 
 look very familiar.
 
-In _src/screens/mynotes.js:
+In _src/screens/mynotes.js_:
+
+```js
+// HERE -- p. 291!
+```
 
 <!-- HERE -- p 290! -->
