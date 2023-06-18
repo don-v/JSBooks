@@ -1,5 +1,14 @@
 import React from 'react';
 import { Text, View } from 'react-native';
+import { useQuery, gql } from '@apollo/client';
+
+import NoteFeed from '../components/NoteFeed';
+import Loading from '../components/Loading';
+
+// our GraphQL query
+const GET_MY_FAVORITES = gql`
+    // HERE -- p. 291!
+`;
 
 const Favorites = () => {
     return(

@@ -33,12 +33,13 @@ const MyNotes = props => {
     if (loading) return <Loading />;
     // if there is an error fetching the data, display a error message
     if (error) return <Text>Error loaidng notes</Text>;
-    // HERE -- p. 291!
-    return(
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-            <Text>My Notes</Text>
-        </View>
-    );
+    // if the query is successful and there are notes, return the feed of notes
+    // else if the query is successful and there aren't any notes, display a message
+    if (data.me.notes.length != 0) {
+        return <NoteFeed notes={data.me.notes} navigation={props.navigation}/>
+    } else {
+        return <Text>No notes yet</Text>
+    }
 };
 
 MyNotes.navigationOptions = {
