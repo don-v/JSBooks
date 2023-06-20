@@ -1120,8 +1120,24 @@ export default Favorites;
 ```
 
 We are now retrieving user-specific data based on the token value stored
-on the user's device ...
+on the user's device.
+
+## ADDING A SIGN-UP FORM
+
+Right now, a user can sign in to an existing account, but they have no way
+to create an accoutn if one doesn't exist. A common UI pattern is to add a
+link to a registration form below the sign-in link (or vice versa). Let's
+add a sign-up screen to allow users to create a new account from within our
+application.
+
+To begin, let's create a new screen component at _src/screens/signup.js_.
+This component will be nearly identical to our sign-in screen, but we'll 
+call our `signUp` GraphQL mutations and pass a `formtype="signUp"` property
+to our `UserForm` component:
+
+```js
+
+```
 
 <!-- HERE -- p. 293! -->
 
-<!-- HERE -- p 290! -->
