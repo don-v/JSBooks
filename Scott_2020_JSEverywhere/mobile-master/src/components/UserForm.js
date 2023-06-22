@@ -35,17 +35,20 @@ const UserForm = props => {
     // form element state
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
+    const [username, setUsername] = useState();
 
     const handleSubmit = () => {
         // this function is called when the user presses the form button
         props.action({
             variables: {
                 email: email,
-                password: password
+                password: password,
+                username: username
             }
         });
     };
 
+    // HERE -- p. 294!
     return (
         <FormView>
             <FormLabel>Email</FormLabel>
