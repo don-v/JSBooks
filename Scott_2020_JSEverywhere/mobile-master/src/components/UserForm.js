@@ -60,6 +60,17 @@ const UserForm = props => {
                 autoFocus={true}
                 autoCapitalize="none"
             />
+            {props.formType === 'signUp' && (
+                <View>
+                    <FormLabel>Username</FormLabel>
+                    <StyledInput 
+                        onChangeText={text => setUsername(text)}
+                        value={username}
+                        textContentType="username"
+                        autoCapitalize="none"
+                    />
+                </View>
+            )}
             <FormLabel>Password</FormLabel>
             <StyledInput
                 onChangeText={text => setPassword(text)} 
@@ -70,6 +81,7 @@ const UserForm = props => {
             <FormButton onPress={handleSubmit}>
                 <ButtonText>Submit</ButtonText>
             </FormButton>
+            {/* HERE -- p. 295! */}
         </FormView>
     );
 }
