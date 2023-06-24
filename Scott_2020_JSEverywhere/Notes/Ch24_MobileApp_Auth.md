@@ -1311,6 +1311,13 @@ In our _src/components/UserForm.js_ file, let's first update the form to
 include a username field when the `formType` equals `signUp`:
 
 ```js
-// HERE -- p. 295!
+            {props.formType !== 'signUp' && (
+                <TouchableOpacity onPress={() => props.navigation.navigate('SignUp')}>
+                    <Text>Sign up</Text>
+                </TouchableOpacity>
+            )}
 ```
 
+```js
+// HERE -- p .296, update code above!
+```

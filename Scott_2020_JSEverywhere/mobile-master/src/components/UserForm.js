@@ -31,6 +31,15 @@ const ButtonText = styled.Text`
     font-size: 18px;
 `;
 
+const SignUp = styled.TouchableOpacity`
+    margin-top: 20px;
+`;
+
+const Link=styled.Text`
+    color: #0077cc;
+    font-weight: bold;
+`;
+
 const UserForm = props => {
     // form element state
     const [email, setEmail] = useState();
@@ -48,7 +57,7 @@ const UserForm = props => {
         });
     };
 
-    // HERE -- p. 294!
+    
     return (
         <FormView>
             <FormLabel>Email</FormLabel>
@@ -81,7 +90,12 @@ const UserForm = props => {
             <FormButton onPress={handleSubmit}>
                 <ButtonText>Submit</ButtonText>
             </FormButton>
-            {/* HERE -- p. 295! */}
+            {/* HERE -- p. 296! */}
+            {props.formType !== 'signUp' && (
+                <TouchableOpacity onPress={() => props.navigation.navigate('SignUp')}>
+                    <Text>Sign up</Text>
+                </TouchableOpacity>
+            )}
         </FormView>
     );
 }
