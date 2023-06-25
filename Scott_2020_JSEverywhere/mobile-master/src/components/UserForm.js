@@ -92,9 +92,11 @@ const UserForm = props => {
             </FormButton>
             {/* HERE -- p. 296! */}
             {props.formType !== 'signUp' && (
-                <TouchableOpacity onPress={() => props.navigation.navigate('SignUp')}>
-                    <Text>Sign up</Text>
-                </TouchableOpacity>
+                <SignUp onPress={() => props.navigation.navigate('SignUp')}>
+                    <Text>
+                        Need an account? <Link>Sign up.</Link>
+                    </Text>
+                </SignUp>
             )}
         </FormView>
     );

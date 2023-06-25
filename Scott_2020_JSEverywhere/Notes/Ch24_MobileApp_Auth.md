@@ -1311,6 +1311,23 @@ In our _src/components/UserForm.js_ file, let's first update the form to
 include a username field when the `formType` equals `signUp`:
 
 ```js
+            {props.formType === 'signUp' && (
+                <View>
+                    <FormLabel>Username</FormLabel>
+                    <StyledInput 
+                        onChangeText={text => setUsername(text)}
+                        value={username}
+                        textContentType="username"
+                        autoCapitalize="none"
+                    />
+                </View>
+            )}
+```
+
+Next, let's add a link at the bottom of the sign-in form that will allow
+a user to route to the sign-up form when pressed!
+
+```js
             {props.formType !== 'signUp' && (
                 <TouchableOpacity onPress={() => props.navigation.navigate('SignUp')}>
                     <Text>Sign up</Text>
@@ -1318,6 +1335,141 @@ include a username field when the `formType` equals `signUp`:
             )}
 ```
 
+We can then use styled components to update the lookf of the link:
+
 ```js
-// HERE -- p .296, update code above!
+
+const SignUp = styled.TouchableOpacity`
+    margin-top: 20px;
+`;
+
+const Link=styled.Text`
+    color: #0077cc;
+    font-weight: bold;
+`;
 ```
+
+And the apply the style to our JSX component:s
+
+```js
+
+                <SignUp onPress={() => props.navigation.navigate('SignUp')}>
+                    <Text>
+                        Need an account? <Link>Sign up.</Link>
+                    </Text>
+                </SignUp>
+
+```
+
+All together, our _src/components/UserForm.js file will now have the 
+following source:
+
+```js
+import React, { useState } from 'react';
+import { View, Text, TextInput, Button, TouchableOpacity } from 'react-native';
+import styled from 'styled-components/native';
+
+const FormView = styled.View`
+    padding: 10px;
+`;
+
+const StyledInput = styled.TextInput`
+    border: 1px solid gray;
+    font-size: 18px;
+    padding: 8px;
+    margin-bottom: 24px;
+`;
+
+const FormLabel = styled.Text`
+    font-size: 18px;
+    font-weight: bold;
+`;
+
+const FormButton = styled.TouchableOpacity`
+    background: #0077cc;
+    width: 100%;
+    padding: 8px;
+`;
+
+const ButtonText = styled.Text`
+    text-align: center;
+    color: #fff;
+    font-weight: bold;
+    font-size: 18px;
+`;
+
+const SignUp = styled.TouchableOpacity`
+    margin-top: 20px;
+`;
+
+const Link=styled.Text`
+    color: #0077cc;
+    font-weight: bold;
+`;
+
+const UserForm = props => {
+    // form element state
+    const [email, setEmail] = useState();
+    const [password, setPassword] = useState();
+    const [username, setUsername] = useState();
+
+    const handleSubmit = () => {
+        // this function is called when the user presses the form button
+        props.action({
+            variables: {
+                email: email,
+                password: password,
+                username: username
+            }
+        });
+    };
+
+    
+    return (
+        <FormView>
+            <FormLabel>Email</FormLabel>
+            <StyledInput
+                onChangeText={text => setEmail(text)} 
+                value={email} 
+                textContentType="emailAddress"
+                autoCompleteType="email"
+                autoFocus={true}
+                autoCapitalize="none"
+            />
+            {props.formType === 'signUp' && (
+                <View>
+                    <FormLabel>Username</FormLabel>
+                    <StyledInput 
+                        onChangeText={text => setUsername(text)}
+                        value={username}
+                        textContentType="username"
+                        autoCapitalize="none"
+                    />
+                </View>
+            )}
+            <FormLabel>Password</FormLabel>
+            <StyledInput
+                onChangeText={text => setPassword(text)} 
+                value={password}
+                textContentType='password' 
+                secureTextEntry={true}
+            />
+            <FormButton onPress={handleSubmit}>
+                <ButtonText>Submit</ButtonText>
+            </FormButton>
+            {/* HERE -- p. 296! */}
+            {props.formType !== 'signUp' && (
+                <SignUp onPress={() => props.navigation.navigate('SignUp')}>
+                    <Text>
+                        Need an account? <Link>Sign up.</Link>
+                    </Text>
+                </SignUp>
+            )}
+        </FormView>
+    );
+}
+
+export default UserForm;
+```
+
+<!-- HERE -- p. 296, review code! -->
