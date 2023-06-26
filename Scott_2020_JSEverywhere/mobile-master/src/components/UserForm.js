@@ -90,7 +90,6 @@ const UserForm = props => {
             <FormButton onPress={handleSubmit}>
                 <ButtonText>Submit</ButtonText>
             </FormButton>
-            {/* HERE -- p. 296! */}
             {props.formType !== 'signUp' && (
                 <SignUp onPress={() => props.navigation.navigate('SignUp')}>
                     <Text>

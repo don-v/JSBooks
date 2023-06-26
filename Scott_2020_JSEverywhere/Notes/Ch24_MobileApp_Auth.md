@@ -1457,7 +1457,6 @@ const UserForm = props => {
             <FormButton onPress={handleSubmit}>
                 <ButtonText>Submit</ButtonText>
             </FormButton>
-            {/* HERE -- p. 296! */}
             {props.formType !== 'signUp' && (
                 <SignUp onPress={() => props.navigation.navigate('SignUp')}>
                     <Text>
@@ -1472,4 +1471,18 @@ const UserForm = props => {
 export default UserForm;
 ```
 
-<!-- HERE -- p. 296, review code! -->
+With these changes, a user can both sign in and register for an 
+account iwth our application.
+
+## CONCLUSION
+
+In this chapter, we look at how to bring authentication to an 
+applicaiton. Through a combination of 'React Native's text form 
+elmeents, 'React Navigation''s routing capabilities, 'Expo's
+`SecureStore` library, and GraphQL mutations, we can create a 
+user-friendly authentication flow. Having a solid understanding
+of this type of authentication also enables us to explore 
+additional 'React Native' authentication methods, such as 'Expo''s
+`AppAuth` (`https://oreil.ly/RaxNo`) or `GoogleSignIn`
+(`https://oreil.lyIc6BW`). In this next chapter, we'll look at how
+we can publish and distribute a 'React Native' application!
