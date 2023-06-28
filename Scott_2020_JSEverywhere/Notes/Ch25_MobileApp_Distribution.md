@@ -1,0 +1,27 @@
+# CHAPTER 25: MOBILE APPLICATION DISTRIBUTION
+
+In the old days, calculator game distribution...
+
+<!-- HERE -- p. 301! -->
+
+## `app.json` CONFIGURATION
+
+## ICONS AND APP LOADING SCREENS
+
+### APP ICONS
+
+### SPLASH SCREENS
+
+### 'EXPO' PUBLISH
+
+## CREATING NATIVE BUILDS
+
+### 'iOS'
+
+### 'Android'
+
+## DISTRIBUTING TO APP STORES
+
+## CONCLUSION
+
+# AFTERWORD
