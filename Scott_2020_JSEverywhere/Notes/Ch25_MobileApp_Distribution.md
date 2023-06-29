@@ -21,9 +21,40 @@ Finally, we generate application packages that can be submitted to the 'Apple' o
 application-specific settings.
 
 When we generate a new 'Expo' application, an _app.json_ file is automatically
-created for us.
+created for us. Let's take a look at the generated fle for our application:
 
-<!-- HERE -- p. 301! -->
+```json
+{
+    "expo" : {
+        "name": "Notedly",
+        "slug": "notedly-mobile",
+        "description": "An example React Native app",
+        "privacy": "public",
+        "sdkVersion": "33.0.0",
+        "platforms": ["ios", "android"],
+        "version": "1.0.0",
+        "orientation": "portrait",
+        "icon": "./assets/icon.png",
+        "splash": {
+            "image": "./assets/splash.png",
+            "resizeMode": "contain",
+            "backgroundColor": "#ffffff"
+        },
+        "updates": {
+            "fallbackToCacheTimeout": 1500
+        },
+        "assetBundlePatterns": ["**/*"],
+        "ios": {
+            "supportsTablet": true
+        },
+        "android": {}
+    }
+}
+```
+
+It is likely that most of these are self-explanatory.
+
+<!-- HERE -- p. 302! -->
 
 ## ICONS AND APP LOADING SCREENS
 
