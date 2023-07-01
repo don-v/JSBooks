@@ -84,12 +84,25 @@ _updates_: A configuration for how our application should check for over the air
 (OTA) updates when the app is loaded. The `fallbackToCacheTimeout` parameter allows
 us to specify a length of time in millisconds.
 
-_assetBundlePatterns_: 
-<!-- HERE -- p. 303! -->
+_assetBundlePatterns_: Allows us to specify the location of assets that should be
+bundled with our application.
 
-<!-- HERE -- p. 302! -->
+_ios_ and _android_: enable platform-specific settings.
+
+This default configuration provides us with a solid basis for our application. There
+are a number of additional settings, which can be found in the 'Expo' documentation
+(`https://oreil.ly/XXT4k`).
 
 ## ICONS AND APP LOADING SCREENS
+
+The small squarish icons found on our devices have become one of the most recognizable
+designs in modern society. If one were to close one's eyes, one might be able to imagine
+a dozen of them, down to a logo, or a specific background color. Additionally, when a 
+user taps an icon there is an initial static "splash screen", which is displayed while 
+the application loads. Up until now, we've ued the default empty 'Expo' icons and splash
+screen. We can replace those with custom designs in our application!
+
+<!-- HERE -- p. 303! -->
 
 ### APP ICONS
 
