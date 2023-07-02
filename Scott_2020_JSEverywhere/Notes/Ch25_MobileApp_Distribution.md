@@ -102,9 +102,30 @@ user taps an icon there is an initial static "splash screen", which is displayed
 the application loads. Up until now, we've ued the default empty 'Expo' icons and splash
 screen. We can replace those with custom designs in our application!
 
-<!-- HERE -- p. 303! -->
+Teach included a 'Notedly' icon and splash screen in the _assets/custom_ folder. We can
+make use of these by replacing the images in the _assets_ directory with them or updating
+our _app.json_ configuration to point to the files in the _custom_ subdirectory.
 
 ### APP ICONS
+
+The _icon.png_ file is a square 1024 x 1024px PNG file. If we point to this file with our 
+_app.json_ `icon` property, 'Expo' will generate the appropriate icons sizes for various
+pplatforms and devices. The image should be exactly square and without any transparent
+pixels. This is the simplest and most straightforward way to include an application icon:
+
+```json
+{
+    "expo" : {
+        // more properties
+        "icon": "./assets/icon.png",
+        // more properties
+    }
+}
+```
+
+In addition to the single cross-platform icon...
+
+<!-- HERE -- p. 304! -->
 
 ### SPLASH SCREENS
 
