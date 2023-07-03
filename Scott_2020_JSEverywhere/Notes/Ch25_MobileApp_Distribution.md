@@ -123,7 +123,37 @@ pixels. This is the simplest and most straightforward way to include an applicat
 }
 ```
 
-In addition to the single cross-platform icon...
+In addition to the single cross-platform icon, we have the option to include platform-
+specific icons. The main draw of this approach would be to include separate icons styles
+for Android and iOS, particularly if one is interested in using 'Android's adaptive'
+icons (`https://oreil.ly/vLC3f`).
+
+For iOS, we would continue to use a single 1024x1024 png, in the _app.json_ file:
+
+```json
+{
+    "ios" : {
+        "icon" : "<IMAGE_PATH>"
+    }
+}
+```
+
+To make use of Android's adaptive icon, we would specify a `foregroudImage`, 
+a `backgroundColor`, (or `backgroundImage`), and a fallback static `icon`:
+
+```json
+{
+    "android" : {
+        "adaptiveIcon" : {
+            "foregroundImage": "<IMAGE_PATH>",
+            "backgroundColor": "<HEX_CODE>",
+            "icon": "<IMAGE_PATH>"
+        }
+    }
+}
+```
+
+for our use case, we can continue to use the single static icon.
 
 <!-- HERE -- p. 304! -->
 
