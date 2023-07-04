@@ -155,9 +155,43 @@ a `backgroundColor`, (or `backgroundImage`), and a fallback static `icon`:
 
 for our use case, we can continue to use the single static icon.
 
-<!-- HERE -- p. 304! -->
-
 ### SPLASH SCREENS
+
+The splash screen is a full screen image that will breifly display while
+our application is booting on the device. We can replace the default 'Expo'
+image with one found in _assets/custom_. Though device sizes vary within 
+and across platforms, teach has chosen to use a size of 1242 X 2436, as 
+recommended by the 'Expo' documentation (`https://oreil.ly/7a-5J`). 'Expo'
+will then resize teh image to work across device screens and aspect ratios.
+
+We can configure our splash screen in the _app.json_ file like so:
+
+```json
+{
+    "splash": {
+        "image": "./assets/splash.png",
+        "backgroundColor": "#ffffff",
+        "resizeMode": "contains"
+    }
+}
+```
+
+By default, we are setting a white background color, which may be 
+visible as teh image loads, or, depending on our selected `resizeMode`, 
+as a border around the splash screen image. We can update this to match
+the color of our screen:
+
+```json
+{
+    "splash": {
+        // other attributes
+        "backgroundColor": "#4A90E2",
+        // other attributes...
+    }
+}
+```
+
+# HERE -- p. 304!
 
 ### 'EXPO' PUBLISH
 
