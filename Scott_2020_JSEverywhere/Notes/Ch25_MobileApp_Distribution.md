@@ -191,9 +191,35 @@ the color of our screen:
 }
 ```
 
-# HERE -- p. 304!
+The `resizeMode` dictates how the image should be resized for various screen
+sizes. By setting this to `contain`, we preserve the aspect ratio of the
+original image. When one uses `contain`, some screen sizes or resolutions will
+see the `backgroundColor` as a border around the splash screen image. 
+Alternately, we could set `resizeMode` to `cover`, the gradient, let's set our
+`resizeMode` to `cover`:
+
+```json
+{
+    "splash": {
+        // other attributes
+        "resizeMode": "cover",
+        // other attributes...
+    }
+}
+```
+
+With this, our icon and splash screen images are configured (see Figure 25-1).
+We are now ready to look at how to distribute our application to make it
+accessible to others.
 
 ### 'EXPO' PUBLISH
+
+during development, our application is accessible to us in the 'Expo Client'
+application on a physical device, over our local area network. This means that 
+we can access teh application as long as our development machine and phone are
+on the same network. 
+
+<!-- HERE -- p. 306! -->
 
 ## CREATING NATIVE BUILDS
 
