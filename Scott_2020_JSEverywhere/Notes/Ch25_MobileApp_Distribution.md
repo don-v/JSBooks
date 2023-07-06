@@ -219,9 +219,45 @@ application on a physical device, over our local area network. This means that
 we can access teh application as long as our development machine and phone are
 on the same network. 
 
-<!-- HERE -- p. 306! -->
+'Expo' enables us to publish our project, which uploads the application to an 
+'Expo' CDN and gives us a publicly accessible URL. With this, anyone can run our
+application through the 'Expo Client'. This can be useful for testing or quick 
+application distribution.
+
+To publish our porject, we can click the "Publish or republish project" link in 
+the browsers' "Expo Dev Tool" (See Fig 25-2), or type 'expo publish' in our
+terminal
+
+Items available in Fig 25-2:
+
+```json
+{
+    "title": "logged in as ascott1",
+    "Name": "notedly",
+    "URL slug": "notedly-mobile",
+    "github source url (optional)": " ",
+    "Description": "The example 'React Native' application for 'JavaScript Everywhere by
+                    Adam Scott, published by O'Reilly Media",
+    "optimize assets": "true",
+    "note": "Once one publishes one's project, one will be able to view it at 
+            'https://expo.io/@ascott1/notedly-mobile'"
+
+}
+```
+
+Onece the packaging has been completed, anyone can visit 
+`https://expo.io/<user-name>/<slug>`
 
 ## CREATING NATIVE BUILDS
+
+While distirbuting directly through 'Expo' is a great option for testing or
+quick use cases, we will most likely want to release our application through 
+the 'Apple App Store' or 'Google Play Store'. To do so, we will build the files 
+that can be uploaded to the respective store.
+
+> TIP/WISDOM: **Windows Users**: 
+
+<!-- HERE -- p. 307! -->
 
 ### 'iOS'
 
