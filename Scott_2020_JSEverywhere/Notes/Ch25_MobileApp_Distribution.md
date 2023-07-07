@@ -257,9 +257,40 @@ that can be uploaded to the respective store.
 
 > TIP/WISDOM: **Windows Users**: 
 
-<!-- HERE -- p. 307! -->
+According to the 'Expo' documentation, 'Windows' users need to enable Windows
+Substystem for Linux (WSL). To accomplish this, follow the installation guide
+for Windows 10 (`https://oreil.ly/B8_nd`) provided by Microsoft.
 
 ### 'iOS'
+
+Generating an iOS build requires a membership to the Apple Developers Program
+(`https://oreil.ly/E0NuU`), which costs $99 a year. With an account, we can then
+add a `bundleIdentifier` for iOS in our _app.json_ file. This identifier should 
+follow reverse DNS notation:
+
+```json
+{
+    "expo": {
+        "ios": {
+            "bundleIdentifier": "com.yourdomain.notedly"
+        }
+    }
+}
+```
+
+With our _app.json_ file updated, we can generate the build. In one's terminal
+application, from the root of the project directory, enter:
+
+```sh
+$ expo build:ios
+```
+
+After running the build one'll be prompted to sign in with one's Apple ID. Once one 
+is signed in, one'll be asked several questions about how one would like to handle 
+credentials. 'Expo' is able to manage all credentials and certificates for us, which
+one can permit by selecting the first option at each of the following prompts:
+
+<!-- HERE -- p. 307! -->
 
 ### 'Android'
 
