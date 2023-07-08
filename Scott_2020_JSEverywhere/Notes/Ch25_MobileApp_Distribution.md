@@ -290,9 +290,25 @@ is signed in, one'll be asked several questions about how one would like to hand
 credentials. 'Expo' is able to manage all credentials and certificates for us, which
 one can permit by selecting the first option at each of the following prompts:
 
-<!-- HERE -- p. 307! -->
+* How would you like to upload your credentials? (Use arrow keys)
+    * 'Expo' handles all credentials, one can still provide overrides <-- selected by each
+    * I will provide all the credentials and files needed, 'Expo' does 
+    `limited validation`
+
+* Will you proivde your own Apple Distribution Certificate? (Use arrow keys)
+    * Let 'Expo' handle the process <-- selected by teach
+    * I want to upload my own file
+
+* Will you provide your own Apple Push Notifications service key? (Use arrow keys)
+    * Let 'Expo' handle the process <-- selected by teach
+    * I want to upload my own file
+
+If one has an active Apple Developer Program account, 'Expo' will then generate
+teh file, which can be subitted to the 'Apple App Store'!
 
 ### 'Android'
+
+<!-- HERE -- p. 307! -->
 
 ## DISTRIBUTING TO APP STORES
 
