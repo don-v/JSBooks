@@ -308,7 +308,38 @@ teh file, which can be subitted to the 'Apple App Store'!
 
 ### 'Android'
 
-<!-- HERE -- p. 307! -->
+For 'Android' we can generate either an Android Package File (APK) or an
+Android App Bundle (AAB) file. Android App Bundles are the more modern 
+format, so let's go that route. If one is interested, the Android developers
+documentaiton (`https:// oreil.ly/mEAIR`) offers a detailed description  of 
+the benefits of App Bundles.
+
+Before we generate the bundle, let's update our _app.json_ file to include
+an Android `package` identifier. Similarly, to iOS, this should be in 
+reverse DNS notation:
+
+```json
+{
+    "android": {
+        "package": "com.yourdomain.notedly"
+    }
+}
+```
+
+With this, we can generate the app bundle from our terminal application.
+Be sure to `cd` into the root of the project and run the following:
+
+```sh
+$ build:android -t app-bundle
+```
+
+App bundles are required to be signed. Though we can generate a signature
+ourselve, 'Expo' can manage teh keystore for us. After running teh command
+to generate the bundle, one'll see the following prompt:
+
+<!-- HERE -- p. 308! -->
+
+* 
 
 ## DISTRIBUTING TO APP STORES
 
