@@ -334,15 +334,41 @@ $ build:android -t app-bundle
 ```
 
 App bundles are required to be signed. Though we can generate a signature
-ourselve, 'Expo' can manage teh keystore for us. After running teh command
+ourselves, 'Expo' can manage the keystore for us. After running the command
 to generate the bundle, one'll see the following prompt:
 
-<!-- HERE -- p. 308! -->
+* Would you like to upload a keystore or have us generate one for you?
+* If you don't know what this means, let us handle it! :)
 
-* 
+    1. Let 'Expo' handle the process!
+    2. I want to upload my own keystore!
+
+If you select 1, 'Expo' will generate the 'App Bundle' for you. At the end
+of the process, one can download the file, which can be uploaded to the 
+Google Play Store!
 
 ## DISTRIBUTING TO APP STORES
 
+Because of the shifting review guidelines and associated costs, Teach
+won't walk us through the specifics of submitting our applicaiton to the 
+'Apple App Store', or 'Google Play Store. The 'Expo' documentaiton 
+(`https://oreil.ly/OmGB2`) does a nice job of collecting resources and
+guidelines and is a helpful, up-to-date guide on how to navigate the
+app store distribution process!
+
 ## CONCLUSION
 
+In this chapter, we've looked at how to publish and distribute a
+'React Native' application. Expo's tooling allows us to quickly publish
+applicaitons for testing and generate production builds that can be 
+uploaded to app stores. 'Expo' also provides us with options around levels
+of control for managing certificates and dependencies.
+
+With this, we've successfully written and published a backend data API,
+a web application, a desktop applicaiton, and cross-platform mobile 
+application!
+
 # AFTERWORD
+
+contact teach: `adam@jseverywhere.io`
+spectrum community: `https://spectrum.chat/jseverywhere`
