@@ -372,3 +372,57 @@ application!
 
 contact teach: `adam@jseverywhere.io`
 spectrum community: `https://spectrum.chat/jseverywhere`
+
+# APPENDIX A: RUNNING THE API LOCALLY
+
+1. Install MongoDB, per C1. 
+2. With DB up and running, one can clone a copy of the API and copy
+of the API and copy the final code. 
+3. To clone code to one's local macine, open the terminal, navigate
+to the directory where one keesp one'sprojects,
+and `git clone` the project repository. If one hasn't done so already, it may 
+also be helpful to ceate a _notedly_ directory to keep theproject code
+oragnized:
+
+```sh
+$ cd Projects
+# only run the following mkdir command if one doe snot  yet have a notedly
+# directory
+$ cd notedly
+$ git clone git@github.com:javascripteverywhere/api.git
+$ cd api
+```
+
+Lastly, one'll need to update one's environment variable by making a 
+copy of the _.sample.env_ file and populating the information in the newly
+created _.env_ file.
+
+In one's termianl, run:
+
+```sh
+$ cp .env.exmple .env
+```
+
+Now, in your text editor, update the values of the _.env_file:
+
+```.env
+## Database
+DB_HOST=mongodb://localhost:27017/noteldy
+TEST_DB=mongodb://localhost:27017/noteldy-test
+
+## Authentication
+JWT_SECRETE=YOUR_PASSWORD
+```
+
+Finally, one can start the aPI. In one's terminal, run:
+
+```sh
+$ npm start
+```
+
+After working through these instructions, one should have a copy of the Notedly
+API running locally on one's system.
+
+# APPENDIX B: RUNNING THE WEB APP LOCALLY
+
+<!-- HERE -- p. 313! -->
