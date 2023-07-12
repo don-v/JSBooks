@@ -425,4 +425,48 @@ API running locally on one's system.
 
 # APPENDIX B: RUNNING THE WEB APP LOCALLY
 
-<!-- HERE -- p. 313! -->
+If one has chosen to follow along with the Electron portion of the book,
+but not the web development chapters, one will still need a copy of the
+web app running locally.
+
+The first step is to ensure that one has a copy of the API running locally. 
+If one hasn't already, please reference Appendix A for running the API
+locally.
+
+With your API up and running, one can clone a copy of the web app. To 
+clone the code to our local machine, open the terminal, navigate to the
+directory containing our projects, and use `git clone` as follows:
+
+```sh
+$cd Projects
+# if keeping your projects in a notedly folder, a cd into the `notedly` directory
+$ cd notely
+$ git clone git@github.com:javascripteverywhere/web.git
+$ cd web
+```
+
+Next, we update our environment variables by making a copy of the _.sample.env_
+file and populating the information in the newly created _.env_ file.
+
+In your terminal, run:
+
+```sh
+$ cp .env.example .env
+```
+
+Now, in one's text editor, update the values of the _.env_ file to make sure that
+it matches the URL of your locally running API. If everything is kept at the default
+values, one shouldn't need to make any changes.
+
+```
+API_URI=http://localhost:4000/api
+``
+
+Finally, you can run the final web code example. In your terminal applicaiton, run:
+
+```sh
+$ npm run final
+```
+
+After working through these instructions, you should have a copy of the 'Notedly'
+web application running localy on your system. 
