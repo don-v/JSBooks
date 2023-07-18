@@ -64,6 +64,28 @@ the ways in which these parts interconnect and contriute to teh
 operation of the whole!
 
 A computer is a physical machine that acts as a host for these
-immaterial machines!
+immaterial machines! Computers can only perform simple tasks;
+however, they are useful because they can process these simple 
+task at an incredibly high speed. A program coan ingeniously 
+combine an enormous number of these simple actions to do very 
+complictated things.
+
+A program is a building of thought! Without care, a program's
+size and complexity will grow out of control, confusing even
+the persion who created it. Keeping programs under control is
+the main problem of programming. When a program works, it is 
+beautiful. The art of programming is the skill of controlling 
+complexity. The great program is subdued -- made simple in
+its complexity!
+
+A sense of what a good program look like is developed in 
+prax, notn learned from a list of rules.
+
+# WHY LANGUAGE MATTERS
+
+In the beginning, at the birth of computing, there were no 
+programming languages. Programs look at follows:
+
+<!-- HERE -- binary code view! -->
 
 <!-- HERE -- ON PROGRAMMING! -->
