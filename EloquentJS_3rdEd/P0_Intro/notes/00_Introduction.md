@@ -86,6 +86,7 @@ prax, notn learned from a list of rules.
 In the beginning, at the birth of computing, there were no 
 programming languages. Programs look at follows:
 
+[!binary code example]('../../../../to_ignore/00_intro/bin_code.png)
+
 <!-- HERE -- binary code view! -->
 
-<!-- HERE -- ON PROGRAMMING! -->
