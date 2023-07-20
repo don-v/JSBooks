@@ -88,5 +88,32 @@ programming languages. Programs look at follows:
 
 [!binary code example]('../../../../to_ignore/00_intro/bin_code.png)
 
+The image above displays a program that adds numbers form 1 to 10
+together and prints the result: `1 + 2 + ... + 10 = 55`. It could
+run on a simple, hypothetical machine. To program early computers, 
+it was necessary to set large arrays of swtiches in the right 
+position or punch holes in strips of cardboard and feed them to
+the computer. One can probaby imagein how tedious and error-prone
+this procedure was. Even writing simple programs requries much
+cleverness and discipline. Complex ones were nearly inconceivable.
+
+Of course, manually entering these arcane patterns of bits (the ones
+and zeros) did give the programmer a profound sense of being a mighty
+wizard. 
+
+Each line of the previous program contains a single instruciton. It
+could be written in English like this:
+
+1. Store the number `0` in memory location `0`.
+2. Store the number `1` in memory location `1`.
+3. Store the value of memory location `1` in memory location `2`.
+4. Substract the number `11` form the value in memory locaiton `2`.
+5. If the value in memory location `2` is the number `0`, continue
+with instruction 9.
+6. Add the value of memory location `1` to memory locaiton `0`.
+7. Add the number `1` to the value of memory location `1`.
+
+<!-- HERE -- BINARY PROGRAM! -->
+
 <!-- HERE -- binary code view! -->
 
