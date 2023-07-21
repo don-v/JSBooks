@@ -112,8 +112,34 @@ could be written in English like this:
 with instruction 9.
 6. Add the value of memory location `1` to memory locaiton `0`.
 7. Add the number `1` to the value of memory location `1`.
+8. Continue with instruction 3.
+9. Output the value of memory locaiton 0.
 
-<!-- HERE -- BINARY PROGRAM! -->
+Although that is already more readable than the soup of bits,
+it is still rather obscure. Using names instead of numbers for the instructions and memory locaiton helps:
+
+```
+Set "total" to 0.
+Set "count" to 1.
+[loop]
+Set "compare" to "count"
+Subtract 11 from "compare".
+If "compare" is zero, continue at [end].
+Add "count" to "total".
+Add 1 to "count".
+Continue at [loop].
+[end]
+Output "total".
+```
+
+The first two lines give two memory locations their starting values: `total` 
+will be used to build up the result of the computation, and `count` will 
+keep track of the number that we are currently looking at. The lines using 
+`compare` are probably the weirdest ones. The program wants to see whether 
+`count` is equal to `11` to decide whether it can stop running. Because our 
+hypothetical machine is rather primitive, it can only test whether a number 
+is zero an dmakes a decision based on that. So it uses the memory location 
+labeled `compare` to compute the value of `count -11`. ...
 
 <!-- HERE -- binary code view! -->
 
