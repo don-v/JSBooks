@@ -139,7 +139,22 @@ keep track of the number that we are currently looking at. The lines using
 `count` is equal to `11` to decide whether it can stop running. Because our 
 hypothetical machine is rather primitive, it can only test whether a number 
 is zero an dmakes a decision based on that. So it uses the memory location 
-labeled `compare` to compute the value of `count -11`. ...
+labeled `compare` to compute the value of `count -11` and make a decision
+based on that value. The next two lines add the value of `count` to the 
+result and increment `count` by `1` every time the the program has
+determined that `count` is not yet set to `11`.
+
+Here is the same program written in JS:
+
+```js
+let count=0, count=1;
+while (count <= 10) {
+    total += count;
+    count += 1;
+}
+console.log(total);
+// -> 55
+```
 
 <!-- HERE -- binary code view! -->
 
