@@ -147,7 +147,7 @@ determined that `count` is not yet set to `11`.
 Here is the same program written in JS:
 
 ```js
-let count=0, count=1;
+let total=0, count=1;
 while (count <= 10) {
     total += count;
     count += 1;
@@ -155,6 +155,19 @@ while (count <= 10) {
 console.log(total);
 // -> 55
 ```
+
+This version gives us a few more improvements. Most important, there
+is no need to specify the way we want the program to jump back and
+forth anymore. The `while` construct takes care of that. It continues
+executing the block (wrapped in braces) below it as long as the 
+condition it was given holds. That condition is `count <= 10`, 
+which means "_count_ is less than or equal to 10." We no longer have
+to create a temporary value and compare that to zero, which was just
+an uninteresting detial. Part of the power of programming languages 
+is that they can take care of uninterstgin details for us.
+
+At the end of the program, after the `while` contruct finished, 
+the `console.log` operation is used to write the result!
 
 <!-- HERE -- binary code view! -->
 
