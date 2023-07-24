@@ -147,7 +147,7 @@ determined that `count` is not yet set to `11`.
 Here is the same program written in JS:
 
 ```js
-let total=0, count=1;
+let total = 0, count = 1;
 while (count <= 10) {
     total += count;
     count += 1;
@@ -168,6 +168,15 @@ is that they can take care of uninterstgin details for us.
 
 At the end of the program, after the `while` contruct finished, 
 the `console.log` operation is used to write the result!
+
+Finally, here is what the program could look like if we happened to
+have the convenient operations `range` and `sum` avaiable, which 
+respectively create a colleciton of numbers wihtin a range and
+compute the sum of a collection of numbers:
+
+```js
+console.log(sum(range(1,10)));
+```
 
 <!-- HERE -- binary code view! -->
 
