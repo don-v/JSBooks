@@ -176,7 +176,32 @@ compute the sum of a collection of numbers:
 
 ```js
 console.log(sum(range(1,10)));
+// -> 55
 ```
 
-<!-- HERE -- binary code view! -->
+The moral of this story is that the same program can be expressed
+in both long and short, unreadable and readable ways. The first
+version of the program was extremely obscure, whereas this last one
+is almost English: `log` the `sum` of the `range` of numbers from 
+1 to 10. (We will see in later chapters how to define operations like
+`sum` and `range`.)
+
+A good programming language helpes the programmer by allowing them to
+talk about the actions that the computer has to perform on a higher
+level. It helps omit details, provides convenient building blocks
+(such as `while` and `console.log`), allows you to define your own
+building blocks (such as `sum` and `range`), an dmakes those blocks
+easy to compose.
+
+## WHAT IS JAVASCRIPT?
+
+JavaScript was introduced in 1995 as a way to add programs to web
+pages in the Netscape Navigator browser. The language has since been
+adopted by all other major graphical web browsers. It has made modern
+web applications possible -- applications with which you can interact
+directly without doing a page reload for every action. JavaScript is 
+also used in more traditional websites to provide various forms of
+interactively and cleverness.
+
+<!-- HERE -- what is javascript! -->
 
