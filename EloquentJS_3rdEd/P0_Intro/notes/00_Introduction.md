@@ -201,7 +201,33 @@ adopted by all other major graphical web browsers. It has made modern
 web applications possible -- applications with which you can interact
 directly without doing a page reload for every action. JavaScript is 
 also used in more traditional websites to provide various forms of
-interactively and cleverness.
+interactivtiy and cleverness.
+
+It is important to note that JavaScript has almost nothing to do with
+the programming language named Java. The similar name was inspired by
+marketing considertions rather than good judgment. When JavaScript was
+being introduced, the Java language was being heavily marketed and was
+gaining popularity. Someone thought it was a good idea to try ride along
+on this success. Now we are stuck with the name.
+
+After its adoption outside of Netsape, a standard documetn was written 
+to describe teh way the JavaScript language should work so that the various
+pieces of software that claimed to support JavaScript were actually talking
+about the same language. This is called the ECMAScript standard, after
+the Ecma International organization that did the standardization. In
+practice, the terms ECMAScript and JavaScript can be used interchangeably--
+they are two names for the same language.
+
+There are those who will say _terrible_ things about JavaScript. Many of
+these things are true. When I was required to write something in JavaScript
+for the first time, I quickly came to despise it. It would accept almost 
+anything I typed but interpret it in a way that was completely different 
+from what I meant. This had a lot to do with the fact that I did not have 
+a clue what I was doing, of course, but here is a rel issue here: 
+JavaScript is ridiculously liberal in what it allows. The idea behind this
+design was that it would make programming in JavaScript easier for beginners. 
+In actuality, it mostly makes findings problems in your programs harder 
+because the system will not point them out to you.
 
 <!-- HERE -- what is javascript! -->
 
