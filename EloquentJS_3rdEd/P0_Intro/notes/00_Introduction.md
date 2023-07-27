@@ -229,5 +229,22 @@ design was that it would make programming in JavaScript easier for beginners.
 In actuality, it mostly makes findings problems in your programs harder 
 because the system will not point them out to you.
 
+This flexibility also has its advantges, though. It leaves space for a lot
+of techniques that are impossible in more rigid languages, and as one will
+see (for example in C10), it can be used to overcome some of JS'
+shortcomings. 
+
+There have been several JS versions. ECMAScript version 3 was the widely 
+supported version in the time of JS' ascent to dominance, roughly between
+2000 and 2010. Ambitious version 4 was attempted, but politically diffiuclt, 
+so it was abandoned in 2008, which lead to a less ambitious v5 in 2009. v6
+came out in 2016, which included many updated originally planned for v4.
+
+The fact that the language is evolving means that browsers have to constantly
+keep up, and if one is using an older browser, it may not support every. The
+language designers are careful to not make any changes that could break
+existing programs, so new browsers can still run old programs. In this
+book, teach uses the JS version from 2017!
+
 <!-- HERE -- what is javascript! -->
 
