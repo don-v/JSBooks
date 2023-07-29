@@ -246,5 +246,21 @@ language designers are careful to not make any changes that could break
 existing programs, so new browsers can still run old programs. In this
 book, teach uses the JS version from 2017!
 
+Web browsers are not the only platforms on which JS is used. Some database, 
+such as MongoDB and CouchDB, use JS as their scripting and query language.
+Several platforms for dekstop and server programming, most notably the
+Node.js project (the subject of C20), provide an environment for programming
+JS outside of the browser.
+
+## CODE, AND WHAT TO DO WITH IT
+
+_Code_ is the text that makes up programs. Most chapters in this book contain
+quite a lot of code. I believe reading code and writing code are indispensible
+parts of learning to program. Try to not just glance over the examples -- read
+them attentively and understand them. This may be slow and confusing at first,
+but I promise that you'll quickly get the hang of it. The same goes for the
+exercises. Don't assume you understand them until you've actually written a 
+working solution.
+
 <!-- HERE -- what is javascript! -->
 
