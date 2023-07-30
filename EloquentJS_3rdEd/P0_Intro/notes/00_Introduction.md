@@ -262,5 +262,13 @@ but I promise that you'll quickly get the hang of it. The same goes for the
 exercises. Don't assume you understand them until you've actually written a 
 working solution.
 
-<!-- HERE -- what is javascript! -->
+Teach recs prax exercises in a JS interpreter; or run them in the browser
+through the book website! Zip files also available for download if 
+necessary.
 
+## OVERVIEW OF THIS BOOK
+
+Book is divided into 3 parts: First 12 chapters discuss JS language. Next 7
+explores 
+
+<!-- HERE -- overview of this book! -->
