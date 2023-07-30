@@ -269,6 +269,22 @@ necessary.
 ## OVERVIEW OF THIS BOOK
 
 Book is divided into 3 parts: First 12 chapters discuss JS language. Next 7
-explores 
+explores JS in the browser, and final two chapters concern JS in the Node.js
+context. 
+
+Book contains 5 project chapters: 1. "Delivery robot", 2. "
+Programming languge", 3. "Platform game", 4. "Pixel paint program", 5. 
+"Dynamic website".
+
+Langauge part: "control structures (like `while`)", "funcitons", 
+"data structures". C5, C6 -- functions, objects to allow one to 
+write _abstract_ code that helps to reduce program complexity!
+
+After first project, book continues with "error handling",
+"regular expressions", "modularity (another defense against 
+complexity)", and concludes with "Asynchronous programming". Second
+project concludes first part of the book.
+
+Part 2 (C13-C19) relates to JS used in the browser context. 
 
 <!-- HERE -- overview of this book! -->
