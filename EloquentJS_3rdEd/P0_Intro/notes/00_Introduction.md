@@ -285,6 +285,45 @@ After first project, book continues with "error handling",
 complexity)", and concludes with "Asynchronous programming". Second
 project concludes first part of the book.
 
-Part 2 (C13-C19) relates to JS used in the browser context. 
+Part 2 (C13-C19) relates to JS used in the browser context. One will
+learng about displaying things on screen (C14, C17), respond to user
+input (C15), and communicate over the network (C18). There are again
+two project chapters in this part.
 
-<!-- HERE -- overview of this book! -->
+C20 describes Node.js and C21 uses Node.js to build a small website!
+
+## TYPOGRAPHIC CONVENTIONS
+
+`monospace` font represetns elements of programs:
+
+```js
+function factorial(n) {
+    if (n == 0) {
+        return 1;
+    } else {
+        return factorial(n-1)*n;
+    }
+}
+```
+
+Sometimes, to show the output that a program produces, the expected
+output is written after it with two slashes and an arrow in front:
+
+```js
+console.log(factorial(8));
+```
+
+We created the following file:
+
+```js
+function factorial(n) {
+    if (n == 0) {
+        return 1;
+    } else {
+        return factorial(n-1)*n;
+    }
+}
+
+console.log(factorial(8));
+// -> 40320
+```
