@@ -30,6 +30,27 @@ So that's the binary number `00001101`. It's non-zero digits stand for 8,
 
 ## VALUES
 
-Imagine a sea of bits...
+Imagine a sea of bits -- an ocean of them. A typical modern computer has more
+than 30 billion bits in its volatile data storage (working memory). Non-volatile
+storage (the hard disk or equivalent) tends to have yet a few orders of magnitude
+more.
+
+To be able to work with such quantities of bits without getting lost, we must 
+separate them into chunks that represent pieces of information. In a JS 
+environment, those chunks are called _values_. Though all values are made of
+bits, they play different roles. Every value has a type that determines its 
+role. Some values are numbers, some values are pieces of text, some values are 
+functions, and so on.
+
+To create a value, one must merely invoke its name. This is convenient. One
+doesn't have to gather building material for one's values or pay for them. One
+just calls for one, and _whoosh_, one has it! They are not really created from 
+thin air, of course. Every value has to be stored somewhere, and if you want to 
+use a gigantic amountof them at the same time, one might run out of memory. 
+Fortunately, this is a problem only if one nees them all simultaneously. As
+soon as one no longeruses a value, it will dissipate, leaving behind its bits
+to be recycled as building material for the next generation of values. 
+
+This chapter introduces the atomic elements....
 
 <!-- HERE -- values! -->
