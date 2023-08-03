@@ -51,6 +51,35 @@ Fortunately, this is a problem only if one nees them all simultaneously. As
 soon as one no longeruses a value, it will dissipate, leaving behind its bits
 to be recycled as building material for the next generation of values. 
 
-This chapter introduces the atomic elements....
+This chapter introduces the atomic elements of JS programs, tht is, the simple
+value types and the operators that can act on such values!
 
-<!-- HERE -- values! -->
+## NUMBERS
+
+Values of the _number_ type are, unsurprisingly, numeric values. In a JS
+program, they are written as follows:
+
+```js
+13
+```
+
+Use that in a program, and it will cause the bit pattern for the number 13
+to come into existence inside the computer's memory!
+
+JS uses a fixed number of bits, 64, to store a single number value. There 
+are only so many patterns one can make with 64 bits, which means the 
+number of different numbers that can be represented is limited. With _N_
+decimal digits, one can represent $10^N$ numbers. Similalry, given 64
+binary digits, one can represent $2^{64}$ different numbers, which is about
+18 quintillion (an 18 with 18 zeros after it)!
+
+Computer memory used to be much smaller, and people tended to use groups of
+8 or 16 bits to represent their numbers. It was easy to accidently _overflow_
+such small numbers -- to end up with a number that did not fit into the given
+number of bits. Today, evne computers that fit in one's pocket have plenty of
+memory, so one is free to use 64-bit chunks, and one need to worry about 
+overflow when dealing iwth truly astronomical numbers.
+
+Not all whole numbers less than ...
+
+<!-- HERE -- Numbers! -->
