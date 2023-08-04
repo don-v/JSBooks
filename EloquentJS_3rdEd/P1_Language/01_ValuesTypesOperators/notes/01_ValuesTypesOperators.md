@@ -80,6 +80,38 @@ number of bits. Today, evne computers that fit in one's pocket have plenty of
 memory, so one is free to use 64-bit chunks, and one need to worry about 
 overflow when dealing iwth truly astronomical numbers.
 
-Not all whole numbers less than ...
+Not all whole numbers less than 18 quintillion fit ain a JS number, though.
+Those bits also store negative numbers, so one bit indicates he sign of the
+number. A bigger issue is that nonwhole number must also be represented. To
+do this, some of the bits are used to store the position of the decimal 
+point. The actual maximum whole number that can be stored i smore in the
+range of 9 quadrillion (15 zeros) -- which is still quite large.
 
-<!-- HERE -- Numbers! -->
+Fractional number are written using a dot:
+
+```js
+9.81
+```
+
+For very big or very small numbers, on emust also use scientific notation by
+adding an _e_ (for _exponent_), followed by the exponent of the number.
+
+```js
+2.998e8
+```
+
+That is 2.998 x 10^8 = 299,800,000.
+
+Calculations with whole numbers (also called _integers_) samller than the
+aforementioned 9 quadrillion are guaranteed to alwasy be precise. Unfortunately,
+calculations with fractional number are generally not. Just as $\pi$ (pi) 
+cannot be precisely expressed by a finite number of decimal digits, many
+numbers lose some precision when only 64 bits are available to store them. 
+This is a shame, but it causes practical problems only in specific situaitons.
+The important thing is to be aware of it and treat fractional digital numbers
+as approximations, not as precise values.
+
+## ARITHMETIC
+
+
+<!-- HERE -- Arithmetic! -->
