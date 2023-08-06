@@ -147,4 +147,28 @@ appear net to each other, as in `1 - 2 + 1`, they are applied left to right:
 These rules of precedence are not somehting one should worry about. When in doubt, 
 just add parentheses. 
 
-<!-- HERE -- Arithmetic! -->
+There is one more arithmetic operator, which one might not immediately recognize.
+The `%` symbol is used to represent the _remainder_ operation. `X % Y` is the
+remainder of dividing `X` by `Y`.  For example, `314 % 100` produces `14`, and
+`144 % 12` gives `0`. The remainder opertor's precednce is the same as that of
+multiplication and division. ONe'll also see this operator referred to as 
+_modulo_.
+
+## SPECIAL NUMBERS
+
+There are three special values in JS that are considered numbers but don't behave
+like normal numbers.
+
+The first two are `Infinity` and `-Infinity`, which represent the positive and
+negative infinities. `Infinity-1` is still `Infinity`, and so on. Don't put too
+muc trust in infinitybased computatoin, though.  It isn't mathematically sound, 
+will quickly lead to the next special number: `NaN`
+
+`NaN` stands for "not a number", even though it _is_ a vlaue of the number type.
+One'll get this result when you, for example, try to calculate `0 / 0` (zero
+divided by zero), `Infinity - Infinity`, or any number of other numeric 
+operations that don't yield a meaningful result. 
+
+## STRINGS
+
+<!-- HERE -- Strings! -->
