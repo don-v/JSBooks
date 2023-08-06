@@ -113,5 +113,38 @@ as approximations, not as precise values.
 
 ## ARITHMETIC
 
+The main thing to do with numbers is arithmetic. Arithmetic operations such as
+addition or multiplication take two number values an dproduce a new number 
+from them. Here is what they look like in JS:
+
+```js
+100 + 4 * 11
+```
+
+The `+` and `*` sign are called _operators_. The first stands for addition;
+the second for multiplication. Putting an operator between two values will 
+apply it to those values and produce a new value.
+
+But does the example mean "add 4 and 100, and multiply the result by 11,"
+or is the multiplication done before the adding? As one might have guessed,
+the multiplication happens first. But as in mathematics, one can change this
+by wrapping the addition in parentheses.
+
+```js
+(100 + 4) * 11
+```
+
+For subtraction, there is the `-` operator, and division can be done with the
+`/` operator.
+
+When operators appear together without parentheses, the order in which tehy are
+applied is determined by the _precedence_ of the operators. The example shows that
+multiplication comes before addition. The `/` operator has the same precedence as 
+`*`. Likewise for `+` and `-`. When multiple operators with the same precedence 
+appear net to each other, as in `1 - 2 + 1`, they are applied left to right:
+`(1 - 2) + 1`.
+
+These rules of precedence are not somehting one should worry about. When in doubt, 
+just add parentheses. 
 
 <!-- HERE -- Arithmetic! -->
