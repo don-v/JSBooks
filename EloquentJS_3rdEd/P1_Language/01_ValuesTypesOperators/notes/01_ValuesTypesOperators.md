@@ -171,4 +171,43 @@ operations that don't yield a meaningful result.
 
 ## STRINGS
 
+The next basic data type is the _string_. Strings are used to represent text.
+They are written by enclosing their content in quotes.
+
+```js
+`Down on the sea`
+"Lie on the ocean"
+'Float on the ocean'
+```
+
+One can use single quotes, double quotes, or backticks to mark strings, as
+long as the quotes at the start and the end of the string match.
+
+Almost anything can be put between quotes, and JS will make a string value out
+of it. But a few characters are more difficult. One can imagine how putting
+quotes between quotes might be hard. _Newlines_ (the characters one gets when one 
+presses <ENTER>) can be included without escaping only when the string is quotes 
+with backticks (```).
+
+To make it possible to include such characters in a string, the following notation 
+is used: whenever a backslash (`\`) is ofund inside quoted text, it indicates that
+the character after it has a special meaning. This is called _escaping_ the 
+character. A quote that is preceded by a backlash will not end the string but 
+be part of it. When an `n` character occurs after a backslash, it is interpreted
+as a newline. Similarly, a `t` after a backslash means a tab character. Take 
+the following string:
+
+```js
+"This is the first line\nAnd this is the second"
+```
+
+The actual text contained in this:
+
+```
+This is the first line
+And this is the second
+```
+
+There are, of course...
+
 <!-- HERE -- Strings!++++ -->
