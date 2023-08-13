@@ -208,6 +208,25 @@ This is the first line
 And this is the second
 ```
 
-There are, of course...
+There are, of course situations where one wants a backslash in a string to
+be just a backslash, not a special code. If two backslashes follow each other, 
+they will collapse together, and only one will be left in the resulting string
+value. This i show the string _"A newline character is written like "\n"."_
+can be expressed:
+
+```js
+"A newline character is written like \"\\n\"."
+```
+
+Strings, too, have to be modeled as a series of bits to be able to exist inside
+the computer. The way JS does this is based on the _Unicode_ standard. This 
+standard assigns a number to virtually every character one would ever need, 
+including characters from Greek, Arabic, Japanese, Aremenian, and so on. If
+we have a number for every character, a string can be described as a sequence of
+numbers.
+
+And that's what JS does. But there's a complication: JS' representation uses 16
+bits per string per element, which can describe up to 2**16 different characers.
+But Unicode defines more than that -- about twice as many, at this point. ...
 
 <!-- HERE -- Strings!++++ -->
