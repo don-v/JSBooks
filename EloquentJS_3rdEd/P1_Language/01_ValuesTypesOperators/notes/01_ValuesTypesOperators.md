@@ -227,6 +227,33 @@ numbers.
 
 And that's what JS does. But there's a complication: JS' representation uses 16
 bits per string per element, which can describe up to 2**16 different characers.
-But Unicode defines more than that -- about twice as many, at this point. ...
+But Unicode defines more than that -- about twice as many, at this point. So some
+characters, such as many emoji, take up two "character positions" in JS strings. 
+We return to this concept in C5!
 
-<!-- HERE -- Strings!++++ -->
+Strings cannot be divided, multiplied, or subtracted, but the `+` operator _can_
+be used on them. It does not add, but it _concatenates_ -- it glues two strings
+together. The following line will produce the string `"concatenate"`:
+
+```js
+"con" + "cat" + "e" + "nate"
+```
+
+String values have a number of associated functions (_methods_) that can be
+used to perform other operations on them. Teach discusses this further in C4!
+
+Strings written with single or double quote behave very much the same -- the only
+difference is in which type of quote one needs to escape inside of them.
+Backtick-quoted strings, usually called _template literals_, can do a few more tricks.
+Apart from being able to span lines, they can embed other values.
+
+```js
+`half of 100 is ${100 / 2}`
+```
+
+When one writes something inside `${}` in a template literal, it's result will be
+computed, converted to a string, and included in the string at that position!. The
+example produces `"half of 100 is 50"`.
+
+## UNARY OPERATORS
+<!-- HERE -- UNARY! -->
