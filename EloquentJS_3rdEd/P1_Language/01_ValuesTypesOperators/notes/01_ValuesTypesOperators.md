@@ -256,4 +256,30 @@ computed, converted to a string, and included in the string at that position!. T
 example produces `"half of 100 is 50"`.
 
 ## UNARY OPERATORS
+
+Not all operators are symbols. Some are written as words. One example is the 
+`typeof` operator, which produces a string value naming the type of the value
+one gives it.
+
+```js
+console.log(typeof 4.5);
+// -> number
+console.log(typeof "x");
+// -> string
+```
+
+We will use `console.log` in example code to indicate that we want to see
+the result of evaluating something. More about that in the next chapter.
+
+The other operators shown all operated on two values, but `typeof` takes only 
+one. Operators that use two values are called _binary_ operators, while those
+that take one are called _unary_ operators. The minus operator can be used 
+both as a binary operatory and as a unary operator.
+
+```js
+console.log(- (10 - 2));
+```
+
+
+
 <!-- HERE -- UNARY! -->
