@@ -278,8 +278,40 @@ both as a binary operatory and as a unary operator.
 
 ```js
 console.log(- (10 - 2));
+// -> 8
 ```
 
+## BOOLEAN VALUES
 
+It is often useful to have a value that distinguishes between only two 
+possibilities, like "yes" and "no" or "on" and "off". For this purpose,
+JS has a _Boolean_ type, which has just two values, `true` and `false`.
 
-<!-- HERE -- UNARY! -->
+### COMPARISON
+
+Here is one way to produce Boolean values:
+
+```js
+console.log(3 > 2)
+// -> true
+console.log(3 < 2 )
+// -> false
+```
+
+The `>` and `<` signs are the traditional symbols for "is greater than"
+and "is less than", respectively. They are binary operators. Applying
+them results in a Boolean value that indicates they old true in this
+case.
+
+String can be compared in the same way.
+
+```js
+console.log("Aardvard" < "Zoroaster")
+// -> true
+```
+
+The way strings are ordered is roughly alphabetic but not really what
+you'd expect to see in a dictionary: uppercase letters are always "less"
+than lowercase ones, so `"Z"` < `"a"`, and nonalphabetic characters...
+
+<!-- HERE -- BOOLEAN! -->
