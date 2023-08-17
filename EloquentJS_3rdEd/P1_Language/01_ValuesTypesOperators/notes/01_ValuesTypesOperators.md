@@ -312,6 +312,37 @@ console.log("Aardvard" < "Zoroaster")
 
 The way strings are ordered is roughly alphabetic but not really what
 you'd expect to see in a dictionary: uppercase letters are always "less"
-than lowercase ones, so `"Z"` < `"a"`, and nonalphabetic characters...
+than lowercase ones, so `"Z"` < `"a"`, and nonalphabetic characters
+(`"!"`, `"-"`, etc.) are also included in the ordeirng. When comparing
+strings, JS goes over the characters from left to right, comparing
+Unicode codes, one by one.
 
-<!-- HERE -- BOOLEAN! -->
+Othere similar operators are `">="` (greater than or equal to), `"<="`
+(less than or equal to), `"=="` (equal to), and `"!="` (not equal to).
+
+```js
+console.log("Itchy" != "Scratchy");
+// -> true
+console.log("Apple" == "Orange");
+// -> false
+```
+
+There is only one value in JS that is not equal to itself, and that is
+NaN ("not a number").
+
+```js
+console.log(Nan == Nan);
+// -> false
+```
+
+`Nan` is supposed to denote the result of a nonsensical computation, and 
+as such, it isn't equal to the result of any _other_ nonsensical 
+computations.
+
+## LOGICAL OPERATORS
+
+There are also some operations that can be applied to Boolean values 
+themselves. JS supports three logical operators: _and_, _or_, and
+_not_. These can be used to "reason" and Booleans.
+
+<!-- HERE -- LOGICAL OPERATORS! -->
