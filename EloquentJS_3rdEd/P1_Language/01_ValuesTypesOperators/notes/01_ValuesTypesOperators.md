@@ -343,6 +343,36 @@ computations.
 
 There are also some operations that can be applied to Boolean values 
 themselves. JS supports three logical operators: _and_, _or_, and
-_not_. These can be used to "reason" and Booleans.
+_not_. These can be used to "reason" about Booleans.
+
+The `&&` operator represents logical _and_. It is a binary operator, 
+and its result is true only if both values give to it are true:
+
+```js
+console.log(true && false);
+// -> false
+console.log(true && true);
+// -> true
+```
+
+The `||` opertor denotes logical _or_. It produces true if either of the 
+values given to it is true:
+
+```js
+console.log(false || true);
+// -> true
+console.log(false || false);
+// -> false
+```
+
+_Not_ is written as an exclamation mark (`!`). It is a unary operator that
+flips the value given to it -- `!true` produces `false` and `!false` 
+produces true.
+
+When mixing these Boolean operators with arithmetic and other operators, it
+is not always obvious when parentheses are needed. In prax, one can usually
+get by with knowing that of the operators we have seen so far, `||` has the 
+lowest precedence, then comes `&&`, then the comparison operators (`>`, `==`,
+and so on), and then the rest. This ...
 
 <!-- HERE -- LOGICAL OPERATORS! -->
