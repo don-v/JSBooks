@@ -373,6 +373,30 @@ When mixing these Boolean operators with arithmetic and other operators, it
 is not always obvious when parentheses are needed. In prax, one can usually
 get by with knowing that of the operators we have seen so far, `||` has the 
 lowest precedence, then comes `&&`, then the comparison operators (`>`, `==`,
-and so on), and then the rest. This ...
+and so on), and then the rest. This order has been chosen such that, in typical
+expressions like the following one, as few parentheses as possible are necessary:
 
-<!-- HERE -- LOGICAL OPERATORS! -->
+```js
+1 + 1 == 2 && 10 * 10 > 50
+```
+
+The last logical operator I will discuss is not unary, not binary, but _ternary_,
+operating on three values. It is written with a question mark and a colon, like
+this:
+
+```js
+console.log(true ? 1 : 2);
+// -> 1
+console.log(false ? 1 : 2);
+// -> 2
+```
+
+This one is called the _conditional_ operator (or sometimes just the _ternary_
+operator since it is the only such operator in the language). The value on the
+left of the question mark "picks" which of the other two values will come out. 
+When it is true, it chooses the middle value, and when it is false, it chooses
+the value on the right.
+
+## EMPTY VALUES
+
+<!-- HERE -- EMPTY VALUES! -->
