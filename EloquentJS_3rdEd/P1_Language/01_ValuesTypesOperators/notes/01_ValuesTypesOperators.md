@@ -399,4 +399,38 @@ the value on the right.
 
 ## EMPTY VALUES
 
+There are two special values, written `null`, and `undefined`, that are used
+to denote the absence of a _meaningful_ value. They are themselves values,
+but they carry no information.
+
+Many operations in the language that don't produce a meaningful value (you'll
+see some later) yield _undefined_ simply because they have to yield _some_ 
+value.
+
+The difference in meaning between _undefined_ and _null_ is an accident of
+JS' design, and it doesn't matter most of the tie. In case where one actually
+have to concern yourself with these values, I recommend treating them as mostly
+interchangeable.
+
+## AUTOMATIC TYPE CONVERSION
+
+In the Introduction, I mentioned that JS goes out of its way to accept almost 
+any program one gives it, even programs that do odds things. This is nicely
+demonstrated by the following expressions:
+
+```js
+console.log(8 * null);
+// -> 0
+console.log("5" - 1);
+// -> 4
+console.log("5" + 1);
+// -> 51
+console.log("five" * 2);
+// -> Nan
+console.log(false == 0);
+// -> true
+```
+
+When an operator ...
+
 <!-- HERE -- EMPTY VALUES! -->
