@@ -431,6 +431,27 @@ console.log(false == 0);
 // -> true
 ```
 
-When an operator ...
+When an operator is applied to the "wrong" type of value, JS will quietly convert
+that value to the type it needs, using a set of rules that often aren't what one 
+wants to expect. This is called _type coercion_. The _null_ in the first expression
+becomes `0`, and teh `"5"` in the second expression becomes `5` (from string to number).
+Yet in the third expression, `+` tries string concatenation before numeric addition,
+so the `1` is converted to `"1"` (from number to string).
+
+When something that doesn't map to a number in an obvious ways (such as `"five"` or 
+`undefined`) is converted to a number, one gets the value `NaN`. Further artithmetic
+operations on `NaN` keep producing `NaN`, so if you find yourself getting one of those
+in an unexpected place, look for accidental type conversions.
+
+When comparing values of the same type using `==`, the outcome is easy to predict: one 
+should get true when both values are the same, except in the case of `NaN`. But when the
+type differe, JS uses a complicated and confusing set of rules to determine what to do. 
+In most cases, it just tries to convert one of the values to the other value's type. 
+However, when `null` or `undefined` occurs on either side of the opeartor, it produces
+true only if both side are one of `null` or `undefined`.
+
+```js
+// HERE -- auto type conversion
+```
 
 <!-- HERE -- EMPTY VALUES! -->
