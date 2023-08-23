@@ -479,13 +479,23 @@ way. They will convert the value on their left side to Boolean type in order to
 decide what to do, but dependingon the operator and the result of that conversion, 
 they will return either the _original_ left-hand value or the right-hand value.
 
-The `||` operator, for example, will return the value to its value to its left when
-that can be converted to true and will return teh value on its right otehrwise. This
+The `||` operator, for example, will return the value to its left when
+that can be converted to true and will return the value on its right otehrwise. This
 has the expected effect when the values are Boolean and does something analogous
 for values of other types.
 
 ```js
-// HERE -- SHORT-CIRTUITING OF LOGICAL OPERATORS
+console.log(null || "user");
+// -> user
+console.log("Agnes" || "user");
+// -> Agnes
 ```
 
-<!-- HERE -- EMPTY VALUES! -->
+We can use this functionality as a way to fall back on a default value. If one
+has a value tha tmight be empty, one can put `||` after it with a replacement value.
+If the initial value cna be converted to `false`, one'll get the replacement instead.
+The rules for converting strings and number to Boolean values state that `0`, `NaN`,
+and the empty string(`""`) count as `false`, while all the other values count as
+`true`. So ...
+
+<!-- HERE -- SHORT-CIRTUITING OF LOGICAL OPERATORS -->
