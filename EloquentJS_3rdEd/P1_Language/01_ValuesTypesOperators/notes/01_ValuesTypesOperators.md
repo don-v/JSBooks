@@ -510,4 +510,19 @@ false, and will ignore `X`. This is called _short-circuit evaluation_.
 
 ## SUMMARY
 
+We looked at four types of JS values in this chapter: numbers, strings, Booleans,
+and undefined values.
+
+Such values are created by typing in their name (`true`, `null`) or value (`13`,
+`"abc"`). One can combine and transform values with operators. We saw binary
+operators for arithmetic (`+`, `-`, `*`, `/`, and `%`), string concatenation (`+`),
+comparison (`==`, `!=`, `===`, `!==`, `<`, `>`, `<=`, `>=`), and logic (`&&`,`||`),
+as well as several unary operators (`-`, to negate a number, `!` to negate logically,
+and `typeof` to find a value's type) and a ternary operator (`?:`) to pick one of 
+values based on a third value.
+
+This gives one enough information to use JS as a pocket calculator but not much 
+more. The next chapter will start lying these expression together into basic 
+programs.
+
 <!-- HERE -- SUMMARY -->
