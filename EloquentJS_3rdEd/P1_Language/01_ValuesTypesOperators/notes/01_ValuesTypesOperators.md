@@ -496,6 +496,18 @@ has a value tha tmight be empty, one can put `||` after it with a replacement va
 If the initial value cna be converted to `false`, one'll get the replacement instead.
 The rules for converting strings and number to Boolean values state that `0`, `NaN`,
 and the empty string(`""`) count as `false`, while all the other values count as
-`true`. So ...
+`true`. So `0 || -1` produces `-1` and `"" || "!?"`. 
 
-<!-- HERE -- SHORT-CIRTUITING OF LOGICAL OPERATORS -->
+The `&&` operator works similarly but the other way around. When the value to
+its left is something that converts to false, it returns that value, and otherwise
+it returns the value on its right.
+
+Another important property of these two operators is that the part to their right
+is evaluated only when necessary. In the case of `true || X`, no matter what `X`
+is -- even if it's a piece of a program that does something _terrible_--the result
+will be true, and `X` is never evaluated. The same goes for `false && X`, which is
+false, and will ignore `X`. This is called _short-circuit evaluation_.
+
+## SUMMARY
+
+<!-- HERE -- SUMMARY -->
