@@ -18,3 +18,10 @@ console.log("3 < 2:", 3 < 2)
 
     console.log("NaN == NaN:",NaN == NaN)
     // → false
+
+// 3 > 2: true
+// 3 < 2: false
+// "Aardvark" < "Zoroaster": true
+// "Itchy" != "Scratchy": true
+// "Apple" == "Orange": false
+// NaN == NaN: false
