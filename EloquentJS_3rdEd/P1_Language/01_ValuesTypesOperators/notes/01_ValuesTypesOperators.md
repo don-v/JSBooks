@@ -524,5 +524,3 @@ values based on a third value.
 This gives one enough information to use JS as a pocket calculator but not much 
 more. The next chapter will start lying these expression together into basic 
 programs.
-
-<!-- HERE -- SUMMARY ++++-->
