@@ -42,4 +42,25 @@ previous example just produces the values `1`, and `true` and then immediately
 throw them away. This leaves no impression on the world at all. When you run this
 program, nothing observable happens.
 
-<!-- HERE -- EXPRESSIONS AND STATEMENTS -->
+In some cases, JS allows one to omit the semicolon at the end of a statement. In 
+other cases, it has to be there, or the next line will be treated as part of the
+same statement. The rules for when it can be safely ommitted are somewhat complex
+and error-prone. So in this book, every statement that needs a semicolon will always
+get one. I recommend you do the same, at least until you've learned ore about the
+subtleties of missing semicolons. 
+
+## BINIDNGS
+
+How does a program keep an internal state? How does it remember things? We have 
+seen how to produce nwe vlaues from old values, but this does not change the old
+values, and the new values has to be immediately used or it wil dissipate again. To
+catch and hold values, JS provides a thing called _binding_, or _variable_:
+
+```js
+let caught = 5 * 5;
+```
+
+That's a second kind of statement. The special word (_keyword_) `let` indicates that
+this sentence is ...
+
+<!-- HERE -- BINDINGS -->
