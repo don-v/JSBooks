@@ -61,6 +61,33 @@ let caught = 5 * 5;
 ```
 
 That's a second kind of statement. The special word (_keyword_) `let` indicates that
-this sentence is ...
+this sentence is gong to define a binding. It is followed by the name of the binding
+and, if we want to immediately give a value, by an `=` operator and an expression.
+
+The previous statement creates a binding called `caught` and uses it to grab hold of
+the number that is produced by multiplying `5` by `5`.
+
+After a binding has been defined, its name can be used as an expression. The value
+of such an expression is the value the binding currenclty holds. Here's an example:
+
+```js
+let ten = 10;
+console.log(ten * ten);
+// -> 100
+```
+
+When a binding points at a value, that does not mean it is tied to that value 
+forever. The `=` operator can be used at any time on existing bindings to disconnect
+them from their current value and have them point to a new one. 
+
+
+```js
+let mood = "light";
+console.log(mood);
+// -> light
+mood = "dark";
+console.log(mood);
+// -> dark
+```
 
 <!-- HERE -- BINDINGS -->
