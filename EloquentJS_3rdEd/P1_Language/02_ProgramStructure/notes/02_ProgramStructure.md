@@ -90,4 +90,16 @@ console.log(mood);
 // -> dark
 ```
 
-<!-- HERE -- BINDINGS +-->
+One should imagine bindings as tentacles, rather than boxes. They do not
+_contain_ values; they _grasp_ them -- two bindings can refer to the same value.
+A program can access only the value that it still has a reference to. When one
+needs to remember something, one grows a tentacle to hold on to it or one 
+re-attaches one of one's existing tentacles to it.
+
+Let's look at another example. To remember the number of dollars that Luigi
+still owes, one creates a binidng. And then whe he pays back $35, one gives
+the binding a new value:
+
+```js
+// HERE -- BINDINGS!
+```
