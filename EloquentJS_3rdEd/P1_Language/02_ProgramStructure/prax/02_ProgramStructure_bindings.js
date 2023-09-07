@@ -17,9 +17,23 @@ console.log('mood = "dark";');
 console.log('mood: ',mood);
 // → dark
 
-// HERE !
-
 let luigisDebt = 140;
+console.log('let luigisDebt = 140;');
 luigisDebt = luigisDebt - 35;
-console.log(luigisDebt);
+console.log('luigisDebt = luigisDebt - 35;');
+console.log('luigisDebt: ',luigisDebt);
 // → 105
+
+let one = 1, two = 2;
+console.log('let one = 1, two = 2;');
+console.log('one + two:',one + two);
+// → 3
+
+var name = "Ayda";
+console.log('var name = "Ayda";');
+const greeting = "Hello ";
+console.log('const greeting = "Hello ";');
+console.log('greeting + name:',greeting + name);
+// → Hello Ayda
+
+// HERE -- BINDINGS

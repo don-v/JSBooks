@@ -101,5 +101,36 @@ still owes, one creates a binidng. And then whe he pays back $35, one gives
 the binding a new value:
 
 ```js
-// HERE -- BINDINGS!
+let luigisDebt = 140;
+luigisDebt = luigisDebt - 35;
+console.log(luigisDebt);
+// → 105
 ```
+
+When one defines a binding without giving it a value, the tentacle has nothing
+to grasp, so it ends in thin air. If one asks for the value of an empty binding,
+one'll get the value `undefined`.
+
+A single `let` statement may define multiple bindings. The definitions must
+be separated by commas:
+
+```js
+let one = 1, two = 2;
+console.log(one + two);
+// → 3
+```
+
+The words `var` and `const` can also be used to create bindings, in a similar
+way to `let`:
+
+```js
+var name = "Ayda";
+const greeting = "Hello ";
+console.log(greeting + name);
+// → Hello Ayda
+```
+
+The first, `var` (short for "variable"), is the way bindings were declared in pre-2015
+JS. ...
+
+<!-- HERE -- BINDINGS -->
