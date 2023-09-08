@@ -131,6 +131,46 @@ console.log(greeting + name);
 ```
 
 The first, `var` (short for "variable"), is the way bindings were declared in pre-2015
-JS. ...
+JS. Teach will explain with precision how `var` differs from `let` in the following 
+chapter (C03). Teach says that it functions similarly to `let`, but will be henceforth
+rarely used in this book becuase it has confusing properties.
 
-<!-- HERE -- BINDINGS -->
+The word `const` stands for _constant_. It defines a constant binding, which points 
+at the same value for as long as it lives. This is useful for bindings that give a 
+name to a value so that one can easily refer to it later.
+
+## BINDING NAMES
+
+Binding names can be any word. Digits can be part of binding names -- `catch22`, is a
+valid name, for example -- but the name must not start with a digit. A binding name may
+include dollar signs `$` or underscores `_` but no other punctuation or special
+characters.
+
+Words with special meaning, such as `let`, are _keywords_, and they may not be used as
+binding names. There are also a number of words that are "reserved for use" in future
+versions of JS, which also can't be used as binding names. The full list of keywords and
+reserved words is rather long:
+
+```
+break
+case
+catch
+class
+const
+continue
+debugger
+default
+delete
+do
+else
+enum 
+export
+extends
+false
+finally
+for
+...
+
+```
+
+<!-- HERE -- BINDINGS NAMES-->
