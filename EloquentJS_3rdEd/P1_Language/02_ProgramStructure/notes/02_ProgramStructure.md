@@ -169,8 +169,46 @@ extends
 false
 finally
 for
-...
-
+function
+if 
+implements
+import
+interface
+in
+instanceof
+let
+new
+package
+private
+protected
+public
+return
+static
+super
+switch
+this 
+throw
+true
+try 
+typeof
+var
+void
+while
+with 
+yield
 ```
 
-<!-- HERE -- BINDINGS NAMES-->
+When creating a binding produces an unexpected syntax error, it may be the 
+case that one is attempting to assign a reference to a reserved word from
+the list above!
+
+## THE ENVIRONMENT
+
+The collection of bindings and their values that exist at a given time is called
+the _environment_. When a program starts up, this environment is not empty. It
+always contains bindings that are part of the language standard, an dmost of the 
+time, it also has bindings that provide ways to interact with the surrounding
+system. For example, in a browser, there are functions to interact with the
+currently loaded website and to read mouse and keyboard input.
+
+<!-- HERE -- ENVIRONMENT-->
