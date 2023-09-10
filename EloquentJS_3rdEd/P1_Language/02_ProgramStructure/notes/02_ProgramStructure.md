@@ -211,4 +211,16 @@ time, it also has bindings that provide ways to interact with the surrounding
 system. For example, in a browser, there are functions to interact with the
 currently loaded website and to read mouse and keyboard input.
 
-<!-- HERE -- ENVIRONMENT-->
+## FUNCTIONS
+
+A lot of the values provided in the default environment have the type _functions_.
+A function is a piece of program wrapped in a value. Such a value can be
+_applied_ in order to run the wrapped program. For example, in a browser
+environment, the binding `prompt` holds a function that shows a little dialog
+box asking for user input. It is used like this:
+
+```js
+prompt("Enter passcode");
+```
+
+<!-- HERE -- FUNCTIONS-->
