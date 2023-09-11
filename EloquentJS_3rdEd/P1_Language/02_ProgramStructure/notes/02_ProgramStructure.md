@@ -223,4 +223,23 @@ box asking for user input. It is used like this:
 prompt("Enter passcode");
 ```
 
-<!-- HERE -- FUNCTIONS-->
+Executing a function is called _invoking_, _calling_, or _applying_ it. One can
+call a function by putting parentheses after an expression that produces a function
+value. Usually one'll direclty use the name of the binding that holds the function.
+The values between the parentheses are given to the program inside the function.
+In the example, the `prompt` function uses the string that was given to it as the 
+text to display in the dialog box that appears in the browser window. Values given
+to function are called _arguments_. Different functions might need a different number
+or different types of arguments.
+
+The `prompt` function isn't used much in modern web programming, mostly because one
+has no control over the way the resulting dialog box looks, but can be helpful in 
+toy programs and experiements.
+
+## THE `console.log` FUNCIONT
+
+In the examples, teach uses `console.log` to output values. Most JS systems (including
+all modern web browsers and Node.js) provide a `console.log` function that writes out
+its arguments to _some_ text output device. ...
+
+<!-- HERE -- CONSOLE.LOG-->
