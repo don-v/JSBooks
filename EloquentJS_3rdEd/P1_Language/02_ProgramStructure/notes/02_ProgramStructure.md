@@ -240,6 +240,28 @@ toy programs and experiements.
 
 In the examples, teach uses `console.log` to output values. Most JS systems (including
 all modern web browsers and Node.js) provide a `console.log` function that writes out
-its arguments to _some_ text output device. ...
+its arguments to _some_ text output device. In browsers, the output lands in the JS
+console. This part of the browser interface is hidden by default, but most browsers
+open it when one presses F12 or, on a mac, <COMMAND-OPTION-I>. If that does not work,
+serach through the menus for an item named 'Developer Tools' or similar.
 
-<!-- HERE -- CONSOLE.LOG-->
+When running examples (or one's own code) on the pages of this book, `console.log` 
+output will be shown after the example, instead of in the browser's JS console.
+
+```js
+let x = 30;
+console.log("the value of x is", x);
+// → the value of x is 30
+```
+
+Though binding names cannot contain period characters, `console.log` does have
+one. This is because `console.log` isn't a simple binding. It is actually an
+expression that retrieves the `log` property from the value held by the 
+`console` binding. We'll find out exactly what this means in C4!
+
+## RETURN VALUES
+
+Showing a diaglog box or writing text to the screen is a _side effect_. A 
+lot of functions are useful because ...
+
+<!-- HERE -- RETURN VALUES-->
