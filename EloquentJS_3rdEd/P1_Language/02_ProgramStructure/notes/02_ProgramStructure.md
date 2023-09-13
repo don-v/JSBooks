@@ -262,6 +262,26 @@ expression that retrieves the `log` property from the value held by the
 ## RETURN VALUES
 
 Showing a diaglog box or writing text to the screen is a _side effect_. A 
-lot of functions are useful because ...
+lot of functions are useful because of the side effects they produce. Functions
+may also produce values, in which case tehy don't need to have a side effect to 
+be useful. For example, the function `Math.max` takes any number arguments and
+returns the argument with the greatest value relative to all other arguments!
+
+```js
+console.log(Math.max(2, 4));
+// → 4
+```
+
+When a function produces a value, it is said to _return_ that value. Anything
+that produces a value is an expression in JS, which means function calls can
+be used within larger expressions. Here a call to `Math.min`, which is the
+opposite of `Math.max`, is used as part of a 'plus' expression:
+
+```js
+console.log(Math.min(2, 4) + 100);
+// → 102
+```
+
+The following chapter explains how one writes one's own functions.
 
 <!-- HERE -- RETURN VALUES-->
