@@ -305,4 +305,6 @@ those types.
 Here is a rather trivial schematic representation of straight-line control
 flow:
 
+![Straign-line Execution](../../../to_ignore/02_ProgramStructure/Straight_line_flow.png)
+
 <!-- HERE -- CONTROL FLOW-->
