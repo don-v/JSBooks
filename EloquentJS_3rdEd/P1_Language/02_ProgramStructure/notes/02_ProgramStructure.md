@@ -307,4 +307,25 @@ flow:
 
 ![Straign-line Execution](../../../to_ignore/02_ProgramStructure/Straight_line_flow.png)
 
+## CONDITOINAL EXECUTION 
+
+Not all programs are straight roads. We may, for example, want to create a 
+branching road, where the program takes the proper branch based on the 
+situation at hand. This is called _conditional execution_.
+
+![Conditional Execution](../../../to_ignore/02_ProgramStructure/Conditional_execution.png)
+
+Conditoinal execution is created with the `if` keyword in JS. IN the simple case,
+we want some code to be executed if, and only if, a certain condition is satisfied.
+We might for example, want to show the square of the input only if the input is 
+actually a number:  
+
+```js
+let theNumber = Number(prompt("Pick a number"));
+if (!Number.isNaN(theNumber)) {
+  console.log("Your number is the square root of " +
+              theNumber * theNumber);
+}
+```
+
 <!-- HERE -- CONTROL FLOW-->
