@@ -353,6 +353,47 @@ happens to return `NaN` when oen gives it a string that doesn't represent
 // → It's true
  ```
 
-One often won't just have code that executes when a condition holds true,...
+One often won't just have code that executes when a condition holds true,
+but also code that handles the other case. This alternate path is 
+represented by teh second arrow in the diagram. One can use the `else`
+keyword, together with `if`, to create two separate, alternative
+execution paths.
+
+```js
+let theNumber = Number(prompt("Pick a number"));
+if (!Number.isNaN(theNumber)) {
+  console.log("Your number is the square root of " +
+              theNumber * theNumber);
+} else {
+  console.log("Hey. Why didn't you give me a number?");
+}
+```
+
+If oen has more than two paths to choose from, one can "chain" multiple
+`if/else` pairs together. Here's an example:
+
+```js
+let num = Number(prompt("Pick a number"));
+
+if (num < 10) {
+  console.log("Small");
+} else if (num < 100) {
+  console.log("Medium");
+} else {
+  console.log("Large");
+}
+```
+
+The program will first check whether `num` is less than 10. If it is, it 
+chooses that branch, shows `"Small"`, and is done. If it isn't, iti takes
+the else branch, which itself contains a second `if`. If it isn't, it
+takes the `else` branch, which itself contains a second `if`. If the second
+condition `(< 100)` holds, that means the number is at least 10 but below
+100, and `"Medium"` is shown. If it doesn't, the second and last `else`
+branch is chosen.
+
+The schema for this program looks something like this:
+
+![Conditional Execution -- If else](../../../to_ignore/02_ProgramStructure/Conditional_if_else.png)
 
 <!-- HERE -- CONTROL FLOW-->
