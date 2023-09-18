@@ -328,4 +328,31 @@ if (!Number.isNaN(theNumber)) {
 }
 ```
 
+With this modification, if one enter "parrot", no output is shown.
+
+The `if` keyword execues or skips a statement depending on the value  
+of a Boolean expression. The deciding expression is written after the
+keyword, between parentheses, followed by the statement to execute.
+
+The `Number.isNaN` function is a standard JS function that returns 
+`true` only if the argument it is given is `NaN`. The `Number` function
+happens to return `NaN` when oen gives it a string that doesn't represent
+ a valid number. Thus, the condition translates to "unless `theNumber`
+ is not-a-number, do this".
+
+ The statement after the `if` is wrapped in braces (`{ and }`) in this
+ example. The braces can be used to group any number of statments into
+ a single statement, called a _bock_. One could also have omitted them
+ in this case, since they hold only a single statement, but to avoid
+ having to think about whether they are needed, most JS programmers use
+ them in every wrapped statement like this. We'll mostly follow that
+ convention in this book, except for the occasional one-liner:
+
+ ```js
+ if (1 + 1 == 2) console.log("It's true");
+// → It's true
+ ```
+
+One often won't just have code that executes when a condition holds true,...
+
 <!-- HERE -- CONTROL FLOW-->

@@ -3,3 +3,7 @@
 //   console.log("Your number is the square root of " +
 //               theNumber * theNumber);
 // }
+
+console.log('if (1 + 1 == 2) console.log("It\'s true");')
+if (1 + 1 == 2) console.log("It's true");
+// → It's true
