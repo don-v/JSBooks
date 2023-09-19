@@ -396,4 +396,22 @@ The schema for this program looks something like this:
 
 ![Conditional Execution -- If else](../../../to_ignore/02_ProgramStructure/Conditional_if_else.png)
 
-<!-- HERE -- CONTROL FLOW-->
+## WHILE AND DO LOOPS
+
+Consider a program that outputs all even numbers from 0 to 12. One way to write 
+this is as follows:
+
+```js
+console.log(0);
+console.log(2);
+console.log(4);
+console.log(6);
+console.log(8);
+console.log(10);
+console.log(12);
+```
+
+That works, but the idea of writing a program is to make something _less_
+work, not more. ...
+
+<!-- HERE -- while do-->
