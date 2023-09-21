@@ -412,6 +412,29 @@ console.log(12);
 ```
 
 That works, but the idea of writing a program is to make something _less_
-work, not more. ...
+work, not more. If we needed all even number less than 1000, this approach would
+be unworkable. What we need is a way to run a piece of code multiple times. 
+This form of control flow is called a _loop_:
+
+![Conditional Execution -- If else](../../../to_ignore/02_ProgramStructure/Looping.png)
+
+Looping control flow allows us to go back to some point in the program where we 
+were before and repeat it with our current program state. If we combine this with
+a binding that counts, we can do something like this:
+
+```js
+let number = 0;
+while (number <= 12) {
+  console.log(number);
+  number = number + 2;
+}
+// → 0
+// → 2
+//   … etcetera
+```
+
+A statement starting with the keyword `while` creates a loop. the word `while` is 
+followed by an expression in parentheses and then a statement, much like `if`. The 
+loop keeps entering that statement ...
 
 <!-- HERE -- while do-->
