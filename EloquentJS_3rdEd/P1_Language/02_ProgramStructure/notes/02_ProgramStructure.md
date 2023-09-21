@@ -435,6 +435,45 @@ while (number <= 12) {
 
 A statement starting with the keyword `while` creates a loop. the word `while` is 
 followed by an expression in parentheses and then a statement, much like `if`. The 
-loop keeps entering that statement ...
+loop keeps entering that statement as long as the expression produces a value that 
+evaluates to `true` when converted to 'Boolean'.
+
+The `number` binding demonstrates the way a binding can track the progress of a 
+program. Every time the loop repeats, `number` gets a value that is 2 more than its
+previous value. At the beginning of every repetition, it is compared with the number
+12 to decide whether the program's work is finished.
+
+As an example that actually does something useful, we can now write a program that
+calculates and shows the value of $2^10$ (2 to the 10th power). We use two bindings:
+one to keep track of our result and one to count how often we have multiplied by 
+2. The loop tests whether the second binding has reached 10 yet and, if not, updates
+both bindings.
+
+```js
+let result = 1;
+let counter = 0;
+while (counter < 10) {
+  result = result * 2;
+  counter = counter + 1;
+}
+console.log(result);
+// → 1024
+```
+
+The counter could also have started at 1 and checked for `<=10`, but for reasons that 
+will become apparent in C4, it is a good idea to get used to counting form `0`
+
+A `do` loop is a control structure similar to a `while` loop. It differes only on one 
+point: a do loop always execues its body at least once, and it starts testing whether
+it should stop only after that first execution. To reflect this, the test appears after 
+the body of the loop!
+
+```js
+let yourName;
+do {
+  yourName = prompt("Who are you?");
+} while (!yourName);
+console.log(yourName);
+```
 
 <!-- HERE -- while do-->
