@@ -476,4 +476,12 @@ do {
 console.log(yourName);
 ```
 
+This program will force one to enter a name. It will ask again and again until it
+gets something that is not an empty string. Applying the `!` operator will convert 
+a value to 'Boolean' type before negating it, an dall strings except "" convert to
+`true`. This mean the loop continues going until one provides a non-empty name. 
+
+## INDENTING CODE
+
+
 <!-- HERE -- while do-->

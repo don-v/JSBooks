@@ -23,3 +23,9 @@ while (counter < 10) {
 }
 console.log(result);
 // → 1024
+
+let yourName;
+do {
+  yourName = prompt("Who are you?");
+} while (!yourName);
+console.log(yourName);
