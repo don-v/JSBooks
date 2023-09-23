@@ -483,5 +483,27 @@ a value to 'Boolean' type before negating it, an dall strings except "" convert 
 
 ## INDENTING CODE
 
+In the examples, teach has been adding spaces in front of statements that are part
+of some larger statement. These spaces are not required -- the computer will accept 
+the program just fine without them. In fact, even the line breaks in programs are 
+optional. One could write a program as a single long line if one felt like that.
+
+The role of this indentation inside blocks is to make the structure of the code 
+stand out. In code where new blocks are opened inside other blocks, it can become
+hard to see where one block ends and another begins. With proper indentation, the
+visual shape of a program corresponds to the shape of the blocks inside it. I like
+to use two spaces for every open block, but tastes differ -- some people use four
+spaces, and some people use tab characters. The imporant thing is that each new 
+block adds the same amount of space. 
+
+```js
+if (false != true) {
+  console.log("That makes sense.");
+  if (1 < 2) {
+    console.log("No surprise there.");
+  }
+}
+```
+
 
 <!-- HERE -- while do-->
