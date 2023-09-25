@@ -520,8 +520,34 @@ shorter and more comprehensive form, the `for` loop:
 
 ```js
 for (let number = 0; number <= 12; number = number + 2) {
-    console.log(number);
+  console.log(number);
 }
+// → 0
+// → 2
+//   … etcetera
 ```
 
-<!-- HERE -- while do-->
+This program is exactly equivalent to the earlier even-number-printing example. The
+only change is that all the statements that are related to the "state" of the loop are
+grouped together after `for`.
+
+The parentheses after a `for` keyword must contain two semicolons. The part before the
+first semicolon _initializes_ the loop, usually by defining a binding. The second part
+is the expression that _checks_ whether the loop must continue. The final part _updateds_
+the state of the loop after every iteration. In most cases, this is shorter and
+clearer than a `while` construct.
+
+This is the code that computes $2^10$ using `for` instead of `while`:
+
+```js
+let result = 1;
+for (let counter = 0; counter < 10; counter = counter + 1) {
+  result = result * 2;
+}
+console.log(result);
+// → 1024
+```
+
+## BREAKING OUT OF A LOOP
+
+<!-- HERE -- LOOP BREAK OUT -->
