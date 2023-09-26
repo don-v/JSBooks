@@ -550,4 +550,34 @@ console.log(result);
 
 ## BREAKING OUT OF A LOOP
 
+Having the looping condition produce `false` is not the only way a loop
+can finish. There is a special statement called `break` that has the effect
+of immediately jumping out of teh enclosing loop.
+
+This program illustrates the `break` statement. It finds the first number 
+that is both greater than or equal to 20 and divisble by 7:
+
+```js
+for (let current = 20; ; current = current + 1) {
+  if (current % 7 == 0) {
+    console.log(current);
+    break;
+  }
+}
+// → 21
+```
+
+Using the remainder (`%`) operator is an easy way to test whether a number
+is divisible by another number. If it is, the remainder of the divisio will be
+zero. 
+
+The `for` construct in the example does not have a part that checks for the
+end of the loop. This means that the loop will never stop unless the `break`
+statement inside is executed.
+
+If one was to remove that `break` statement or one accidentally writes an 
+end condition that always produces `true`, one's program would get stuck in
+an _infinite loop_. A program stuck in an infinite loop will never finish
+running, which is usually a bad thing.
+
 <!-- HERE -- LOOP BREAK OUT -->
