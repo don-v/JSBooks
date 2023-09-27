@@ -580,4 +580,28 @@ end condition that always produces `true`, one's program would get stuck in
 an _infinite loop_. A program stuck in an infinite loop will never finish
 running, which is usually a bad thing.
 
+If one creates an infinite loop in one of the examples on these pages, you'll
+usually be asked whether one wants to stop the script after a few seconds. If
+that fails, one will have to close the tab that one is working in, or on some
+browsers close one's whole browser, to recover.
+
+The `continue` keyword is similar to `break`, in that it influences the progress
+of a loop. When `continue` is enountered in a loop body, control jumps out of the
+body and continues with the loop's next iterration. 
+
+## UPDATING BINDINGS SUCCINCTLY
+
+Especially when looping, a program often needs to "update" a binding to hold a
+value based on that binding's previous value.
+
+```js
+counter = counter + 1;
+```
+
+JS provides a shortcut for this:
+
+```js
+counter += 1;
+```
+
 <!-- HERE -- LOOP BREAK OUT -->
