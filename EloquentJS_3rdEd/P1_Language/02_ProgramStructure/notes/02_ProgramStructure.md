@@ -604,4 +604,17 @@ JS provides a shortcut for this:
 counter += 1;
 ```
 
-<!-- HERE -- LOOP BREAK OUT -->
+Similar shortcuts work for many other operators, such as `result *=2` to
+double `result` or `counter -= 1` to ocunt downward.
+
+This allows us to shorten our counting example a little more:
+
+```js
+for (let number = 0; number <= 12; number += 2) {
+  console.log(number);
+}
+```
+
+For `counter += 1` and `counter -= 1`, there are evne shorter equivalents:
+
+<!-- HERE -- binding update -->
