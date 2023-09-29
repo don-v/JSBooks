@@ -616,5 +616,41 @@ for (let number = 0; number <= 12; number += 2) {
 ```
 
 For `counter += 1` and `counter -= 1`, there are evne shorter equivalents:
+`counter++` and `counter--`.
+
+## DSIPATCHING ON A VALUE WITH SWTICH
+
+It is not uncommon for code to look like this:
+
+```js
+if (x == "value1") action1();
+else if (x == "value2") action2();
+else if (x == "value3") action3();
+else defaultAction();
+```
+
+There is a construct called `switch` that is intended to express such a "dispatch"
+in a more direct way. Unfortunately, the syntax JS uses for this (which it 
+inherited from the C/Java line of programming language) is somewhat awkward -- a
+chain of `if` statements may look better. Here is an example:
+
+```js
+switch (prompt("What is the weather like?")) {
+  case "rainy":
+    console.log("Remember to bring an umbrella.");
+    break;
+  case "sunny":
+    console.log("Dress lightly.");
+  case "cloudy":
+    console.log("Go outside.");
+    break;
+  default:
+    console.log("Unknown weather type!");
+    break;
+}
+```
+
+One may put any number of `case` labels inside the block opened by
+`switch`. The program will start executing...
 
 <!-- HERE -- binding update -->
