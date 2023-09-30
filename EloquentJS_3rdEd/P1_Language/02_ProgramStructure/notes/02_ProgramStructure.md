@@ -651,6 +651,36 @@ switch (prompt("What is the weather like?")) {
 ```
 
 One may put any number of `case` labels inside the block opened by
-`switch`. The program will start executing...
+`switch`. The program will start executing at the label that corresponds to
+the value that `switch` was given, or at `default` if no matching value is
+found. It will continue executing, even across other labels, until it 
+reaches a `break` statement. In some cases, such as the `"sunny"` case
+in the example, this can be used to share some code between cases (it
+recommends going outside for both sunny and cloudy weather). But be
+careful -- it is easy to forget such a `break`, which will cause the
+program to execute code one does not want executed. 
 
-<!-- HERE -- binding update -->
+## CAPITALIZATION
+
+Binding names may not contain spaces, yet it is often helpful to use
+multiple words to clearly describe what the binding represents. These
+are pretty much one's choices for writing a binding name with several
+words in it:
+
+```js
+fuzzylittleturtle
+fuzzy_little_turtle
+FuzzyLittleTurtle
+fuzzyLittleTurtle
+```
+
+The first style can be hard to read. Teach rather likes the look of the
+underscores, though that style is a bit more challenging to type. The 
+standard JS functions, and most JS programmers, follow the bottom style--
+they capitalize every word except the first. It is not hard to get used 
+to little things like that, and code with mixed naming styles can be
+jarring to read, so teach follows this (the bottom style) convention!
+
+In a few cases, such as ...
+
+<!-- HERE -- capitalization -->
