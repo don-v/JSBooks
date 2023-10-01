@@ -681,6 +681,51 @@ they capitalize every word except the first. It is not hard to get used
 to little things like that, and code with mixed naming styles can be
 jarring to read, so teach follows this (the bottom style) convention!
 
-In a few cases, such as ...
+In a few cases, such as the `Number` function, the first letter of a 
+binding is also capitalized. This was done to mark this function as a
+_constructor_. Waht a constructor is will become clear in C6. For now,
+the important thing is not to be bothered by this apparent lack of
+consistency.
 
-<!-- HERE -- capitalization -->
+## COMMENTS
+
+Often, raw code does not convey all the information one wants a program
+to convey to human readers, or it conveys it in such a cryptic way, that
+people might not understand it. At other times, one might just want to 
+include some realted thoughts as part of one's program. This is what 
+_comments_ are for.
+
+A comment is a piece of text that is part of a progrram but is completey
+ignored by the computer (interpreter?). JS has two ways of writing comments.
+To write a single-line comment, one can use two slash characters (`//`)
+and then the comment text after it:
+
+```js
+let accountBalance = calculateBalance(account);
+// It's a green hollow where a river sings
+accountBalance.adjust();
+// Madly catching white tatters in the grass.
+let report = new Report();
+// Where the sun on the proud mountain rings:
+addToReport(accountBalance, report);
+// It's a little valley, foaming like light in a glass.
+```
+
+A `//` comment goes only to the end of the line. A section of text between
+`/*` and `*/` will be ignored in its entirety, regardless of whether it 
+contains line breaks. This is useful for adding blocks of information about 
+a file or a chunk of program.
+
+```js
+/*
+  I first found this number scrawled on the back of an old
+  notebook. Since then, it has often dropped by, showing up in
+  phone numbers and the serial numbers of products that I've
+  bought. It obviously likes me, so I've decided to keep it.
+*/
+const myNumber = 11213;
+```
+
+## SUMMARY
+
+<!-- HERE -- SUMMARY -->
