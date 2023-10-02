@@ -728,4 +728,28 @@ const myNumber = 11213;
 
 ## SUMMARY
 
-<!-- HERE -- SUMMARY -->
+One now knows that a program is built out of statements, which themselves
+sometimes contain more statements. Statements tend to contain expressions,
+which themselves can be built out of smaller expressions.
+
+Putting statements after one another give one a program this is executed from
+top to bottom. One can introduce distrubances in the flow of control by using 
+conditional (`if`, `else`, and `switch`) and looping (`while`, `do`, and `for`)
+staments.
+
+Bindings can be used to file pieces of data under a name, and they are useful
+for tracking state in one's program. The environment is the set of bindings that
+are defined. JS systems always put a number of useful standard bindings into
+one's environment.
+
+Functions are special values that encapsulate a piece of a program. One can 
+invoke them by writing `functionName([arg1, arg2,...argn])`. Such a function
+call is an expression and may produc a value.
+
+## EXERCISES
+
+If one is unsure how to test one's exercises, refer to the 'Introduction'. 
+
+Each exercise starts with a problem description. 
+
+<!-- HERE -- EXERCISES! -->
