@@ -750,6 +750,50 @@ call is an expression and may produc a value.
 
 If one is unsure how to test one's exercises, refer to the 'Introduction'. 
 
-Each exercise starts with a problem description. 
+Each exercise starts with a problem description. Read this description and 
+try to solve the exercise. If one runs into problems, consider reading the
+hints after the exercise. Full solutions to the exercises are not inluded in
+this book, but one can find them online at 
+`https://eloquentjavascript.net/code`. If one wants to learn something from 
+the exercises, teach recommends looking at the solutions only after one has
+solved the exercise or at least after one has attacked it long and hard 
+enough to have a slight headache.
+
+## LOOPING A TRIANGLE
+
+Write a loop tha tmakes seven calls to `console.log` to output the following
+triangle:
+
+```js
+#
+##
+###
+####
+#####
+######
+#######
+```
+
+It may be useful to know that one can find the length of a string by
+writing by accessing its `length` attribute as follows:
+
+```js
+let abc = "abc";
+console.log(abc.length);
+// → 3
+```
+
+Most exercises...
 
 <!-- HERE -- EXERCISES! -->
+
+
+my solution:
+
+```js
+let tri = '#';
+for (let index = 1; index < 8; index++) {
+    console.log(tri);
+    tri += '#';
+}
+```
