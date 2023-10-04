@@ -783,10 +783,16 @@ console.log(abc.length);
 // → 3
 ```
 
-Most exercises...
+Most exercises contain a piece of code that one can modify to solve the
+exercise. Remember that one can click code blocks to edit them!
 
-<!-- HERE -- EXERCISES! -->
+### DISPLAY HINTS: TRIANGLES
 
+```js
+/*You can start with a program that prints out the numbers 1 to 7, which you can derive by making a few modifications to the even number printing example given earlier in the chapter, where the for loop was introduced.
+
+Now consider the equivalence between numbers and strings of hash characters. You can go from 1 to 2 by adding 1 (+= 1). You can go from "#" to "##" by adding a character (+= "#"). Thus, your solution can closely follow the number-printing program.*/
+```
 
 my solution:
 
@@ -797,3 +803,21 @@ for (let index = 1; index < 8; index++) {
     tri += '#';
 }
 ```
+
+## FIZZBUZZ
+
+Write a program that uses `console.log` to print all the numbers form 1 to 100,
+with two exceptions. for numbers divisble by 3, print "Fizz" instead of the 
+number, and for numbers divisible by 5 (and not 3), print "Buzz" instead.
+
+When one has that working, modify one's program to print "FizzBuzz" for numbers
+that are divisible by both `3` and `5` (and still print "Fizz" or "Buzz" for 
+numbers divisble by only of those)
+
+(This is actually an interview question that has been claimed to weed out a 
+significant percentage of programmer candidates. So if one is able to solve 
+it, one can say that one's market value has increased!)
+
+### DISPLAY HINTS: FIZZBUZZ
+
+<!-- HERE -- fizz buzz exercise -->
