@@ -11,6 +11,23 @@ significant percentage of programmer candidates. So if one is able to solve
 it, one can say that one's market value has increased!)
  */
 
+
+
+
+/* Going over the numbers is clearly a looping job, and selecting what to print is 
+a matter of conditional execution. Remember the trick of using the remainder (%) 
+operator for checking whether a number is divisible by another number (has a 
+remainder of zero).
+
+In the first version, there are three possible outcomes for every number, so you’ll 
+have to create an if/else if/else chain.
+
+The second version of the program has a straightforward solution and a clever one. The 
+simple solution is to add another conditional “branch” to precisely test the given 
+condition. For the clever solution, build up a string containing the word or words 
+to output and print either this word or the number if there is no word, potentially 
+by making good use of the || operator. */
+
 for (let index = 1; index < 101; index++) {
     if (index % 3 === 0) {
         console.log(`${index}: Fizz`); 
