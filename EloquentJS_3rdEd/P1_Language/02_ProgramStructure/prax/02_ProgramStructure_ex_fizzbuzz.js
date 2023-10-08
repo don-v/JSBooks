@@ -29,6 +29,10 @@ to output and print either this word or the number if there is no word, potentia
 by making good use of the || operator. */
 
 for (let index = 1; index < 101; index++) {
+    if (index % 3 === 0 && index % 5 === 0) {
+        console.log(`${index}: FizzBuzz`); 
+        continue;   
+    }    
     if (index % 3 === 0) {
         console.log(`${index}: Fizz`); 
         continue;   

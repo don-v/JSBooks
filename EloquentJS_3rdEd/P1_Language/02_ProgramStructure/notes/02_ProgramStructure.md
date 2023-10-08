@@ -828,4 +828,24 @@ In the first version, there are three possible outcomes for every number, so you
 The second version of the program has a straightforward solution and a clever one. The simple solution is to add another conditional “branch” to precisely test the given condition. For the clever solution, build up a string containing the word or words to output and print either this word or the number if there is no word, potentially by making good use of the || operator. */
 ```
 
-<!-- HERE -- fizz buzz exercise +-->
+my solution:
+
+```js
+for (let index = 1; index < 101; index++) {
+    if (index % 3 === 0 && index % 5 === 0) {
+        console.log(`${index}: FizzBuzz`); 
+        continue;   
+    }    
+    if (index % 3 === 0) {
+        console.log(`${index}: Fizz`); 
+        continue;   
+    }
+    if (index % 5 === 0) {
+        console.log(`${index}: Buzz`); 
+        continue;
+    }
+    console.log(index);
+}
+```
+
+<!-- HERE -- fizz buzz exercise ++-->
