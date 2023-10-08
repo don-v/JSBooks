@@ -848,4 +848,4 @@ for (let index = 1; index < 101; index++) {
 }
 ```
 
-<!-- HERE -- fizz buzz exercise ++-->
+<!-- HERE -- fizz buzz exercise +++-->

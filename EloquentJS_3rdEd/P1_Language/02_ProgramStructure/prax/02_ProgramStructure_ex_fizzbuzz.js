@@ -28,6 +28,8 @@ condition. For the clever solution, build up a string containing the word or wor
 to output and print either this word or the number if there is no word, potentially 
 by making good use of the || operator. */
 
+console.log('First version -- START:')
+
 for (let index = 1; index < 101; index++) {
     if (index % 3 === 0 && index % 5 === 0) {
         console.log(`${index}: FizzBuzz`); 
@@ -43,3 +45,26 @@ for (let index = 1; index < 101; index++) {
     }
     console.log(index);
 }
+
+console.log('First version -- END:')
+
+console.log('2ND version -- START:')
+
+for (let index = 1; index < 101; index++) {
+    let st = ''
+    if (index % 3 === 0 && index % 5 === 0) {
+        st = 'FizzBuzz'
+    } else {
+        if (index % 3 === 0) {
+            st = 'Fizz'
+        } else {
+            if (index % 5 === 0) {
+              st = 'Buzz'  
+            } 
+        }        
+    }
+    // console.log(`${index}: ${st}`); 
+    st ? console.log(`${index}: ${st}`) : console.log(index);
+}
+
+console.log('2ND version -- END:')
