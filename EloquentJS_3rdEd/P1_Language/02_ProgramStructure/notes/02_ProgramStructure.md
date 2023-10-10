@@ -804,6 +804,13 @@ for (let index = 1; index < 8; index++) {
 }
 ```
 
+teach's solution:
+
+```js
+for (let line = "#"; line.length < 8; line += "#")
+  console.log(line);
+```
+
 ## FIZZBUZZ
 
 Write a program that uses `console.log` to print all the numbers form 1 to 100,
@@ -831,6 +838,8 @@ The second version of the program has a straightforward solution and a clever on
 my solution:
 
 ```js
+console.log('First version -- START:')
+
 for (let index = 1; index < 101; index++) {
     if (index % 3 === 0 && index % 5 === 0) {
         console.log(`${index}: FizzBuzz`); 
@@ -846,6 +855,44 @@ for (let index = 1; index < 101; index++) {
     }
     console.log(index);
 }
+
+console.log('First version -- END:')
+
+console.log('2ND version -- START:')
+
+for (let index = 1; index < 101; index++) {
+    let st = ''
+    if (index % 3 === 0 && index % 5 === 0) {
+        st = 'FizzBuzz'
+    } else {
+        if (index % 3 === 0) {
+            st = 'Fizz'
+        } else {
+            if (index % 5 === 0) {
+              st = 'Buzz'  
+            } 
+        }        
+    }
+    // console.log(`${index}: ${st}`); 
+    st ? console.log(`${index}: ${st}`) : console.log(index);
+}
+
+console.log('2ND version -- END:')
 ```
+
+Teach's solution:
+
+```js
+for (let n = 1; n <= 100; n++) {
+  let output = "";
+  if (n % 3 == 0) output += "Fizz";
+  if (n % 5 == 0) output += "Buzz";
+  console.log(output || n);
+}
+```
+
+## CHESSBOARD
+
+Write a program that creates a string that represents an 8 x 8 grid,
 
 <!-- HERE -- fizz buzz exercise +++-->
