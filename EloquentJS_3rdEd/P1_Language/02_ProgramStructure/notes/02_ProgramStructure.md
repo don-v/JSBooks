@@ -920,4 +920,4 @@ a grid of the given width and height.
 
 ```
 
-<!-- HERE -- chessboard exercise -->
+<!-- HERE -- chessboard exercise +-->

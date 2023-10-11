@@ -22,11 +22,24 @@ a grid of the given width and height.
 
 let size = 8;
 
+let row = "";
+
 for (let w = 0; w < size; w++) {
     
     for (let h = 0; h < size; h++) {
         
-        
+        if (w % 2 === 0) {
+            row += "#"
+        } else {
+            row += " "
+        }
+
+        if (h ) {
+            
+        } else {
+            
+        }
+
     }
 
 }
