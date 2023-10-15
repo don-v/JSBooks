@@ -30,6 +30,34 @@ console.log(square(12));
 // → 144
 ```
 
-A function is created with an expression that starts with the keyword ...
+A function is created with an expression that starts with the keyword `function`. Functions have a 
+set of _parameters_ (in this case, only `x`) and a _body_, which contains the statements that are to 
+be executed when the function is called. The function body of a function created this way must always
+be wrapped in braces, even when it consists of only a single statement.
+
+A function can have multiple parameters or no parameters at all. In the following example, `makeNoise` 
+does not list any parameter names, whereas `power` lists two:
+
+```js
+const makeNoise = function() {
+  console.log("Pling!");
+};
+
+makeNoise();
+// → Pling!
+
+const power = function(base, exponent) {
+  let result = 1;
+  for (let count = 0; count < exponent; count++) {
+    result *= base;
+  }
+  return result;
+};
+
+console.log(power(2, 10));
+// → 1024
+```
+
+some functions produce a value, such as `power`, and `square`, and some don't. ...
 
 <!-- HERE -- defining a function -->
