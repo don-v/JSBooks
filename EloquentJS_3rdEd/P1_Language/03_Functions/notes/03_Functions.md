@@ -58,6 +58,24 @@ console.log(power(2, 10));
 // → 1024
 ```
 
-some functions produce a value, such as `power`, and `square`, and some don't. ...
+some functions produce a value, such as `power`, and `square`, and some don't,
+such as `makeNoise`, whose only result is a side effect. A `return` statement
+determines the value the function returns. When control comes across such a
+statement, it immediately jumps out of teh current function an dgives the
+returned values to  the code that called teh function. A `return` keyword
+without an expression after it will cause teh function to return `unefined`.
+Functions that don't have a `return` statement at all, such as `makeNosie`, 
+similalry return `undefined`.
 
-<!-- HERE -- defining a function -->
+Parameters to a function behave like regular bindings, but their initial 
+values are given by the _caller_ of teh function, not the code in the
+function itself.
+
+## BINDINGS AND SCOPES
+
+Each binding has a _scope_, which is teh part of the program in which the
+binding is visible. For bindings defined outside of any function or block,
+the scope is the whole program -- one can refer to such bindings wherever
+one wants. These are called _global_.
+
+<!-- HERE -- bindings and scopes -->
