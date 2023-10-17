@@ -78,4 +78,35 @@ binding is visible. For bindings defined outside of any function or block,
 the scope is the whole program -- one can refer to such bindings wherever
 one wants. These are called _global_.
 
+But bindings created for function parameters or declared inside a function
+can be referenced only in that function, so they are known as _local_
+bindings. Every time the function is called, new instances of these bindings
+are created. This provides some isolation between functions -- each function 
+call acts in its own little world (its local environment) and can often be
+understood without knowing a lot about what's going on in the global
+environment. 
+
+Bindings declared with `let` and `const` are in fact local to the _block_
+that they are declared in, so if one creates one of thise inside of a loop,
+the code before and after the loop cannot "see" it. In pre-2015 JS, only
+functions created new scopes, so old-style bindings, created with the `var`
+keyword, are visible throughout the whole function that they appear in --
+or throughout the global scope, if they are not in a function:
+
+```js
+let x = 10;
+if (true) {
+  let y = 20;
+  var z = 30;
+  console.log(x + y + z);
+  // → 60
+}
+// y is not visible here
+console.log(x + z);
+// → 40
+```
+
+Each scope can "look out" into the scope around it, so `x` is visible
+inside the block in teh example. ...
+
 <!-- HERE -- bindings and scopes -->
