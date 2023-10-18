@@ -107,6 +107,54 @@ console.log(x + z);
 ```
 
 Each scope can "look out" into the scope around it, so `x` is visible
-inside the block in teh example. ...
+inside the block in the example. The exception is when multiple bindings have
+the same name -- in that case, code can see only the innermost one. For 
+example, when the code inside the `halve` functon refers to `n`, it is
+seeing its _own_ `n`, not the global `n`:
 
-<!-- HERE -- bindings and scopes -->
+```js
+const halve = function(n) {
+  return n / 2;
+};
+
+let n = 10;
+console.log(halve(100));
+// → 50
+console.log(n);
+// → 10
+```
+
+## NESTED SCOPE
+
+JS distinguishes not just _global_ and _local_bindings. Blocks and functions can 
+be created inside other blocks and functions, producing multiple degrees of
+locality.
+
+For example, this function -- which outputs the ingredients needed to make a 
+batch of hummus-- has another function inside of it:
+
+```js
+const hummus = function(factor) {
+  const ingredient = function(amount, unit, name) {
+    let ingredientAmount = amount * factor;
+    if (ingredientAmount > 1) {
+      unit += "s";
+    }
+    console.log(`${ingredientAmount} ${unit} ${name}`);
+  };
+  ingredient(1, "can", "chickpeas");
+  ingredient(0.25, "cup", "tahini");
+  ingredient(0.25, "cup", "lemon juice");
+  ingredient(1, "clove", "garlic");
+  ingredient(2, "tablespoon", "olive oil");
+  ingredient(0.5, "teaspoon", "cumin");
+};
+```
+
+The code insie the `ingredient` function can see teh `factor` binding from
+the outer function. But its local bindings, such as `unit` or `ingredientAmount`,
+are not visible to the outer function.
+
+The set of bindings visible ...
+
+<!-- HERE -- nested scopes -->
