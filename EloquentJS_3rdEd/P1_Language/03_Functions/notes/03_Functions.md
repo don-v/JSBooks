@@ -155,6 +155,33 @@ The code insie the `ingredient` function can see teh `factor` binding from
 the outer function. But its local bindings, such as `unit` or `ingredientAmount`,
 are not visible to the outer function.
 
-The set of bindings visible ...
+The set of bindings visible inside a block is determined by the place of that
+block in the program text. Each local scope can also see all the local scopes
+that contain it, and al lscopes can see the global scope. This approach to 
+binding visibility is called _lexical scoping_.
 
-<!-- HERE -- nested scopes -->
+## FUNCTIONS AS VALUES
+
+A function binding usually simply acts as a name for a specific piece of the
+program. Such a binding is defined once and never changed. This make it easy
+to confuse the function and its name.
+
+But the two are differnt. A function value can do all the things that other
+values can do--one can use it in arbitrary expressions, not just call it.
+It is possible to store a function value in a new binding, pass it as an
+argument to a function, and so on. Similarly, a binding that holds a function
+is still just a regular binding and can, if not constant, be assigned a new
+value, like so:
+
+```js
+let launchMissiles = function() {
+  missileSystem.launch("now");
+};
+if (safeMode) {
+  launchMissiles = function() {/* do nothing */};
+}
+```
+
+In C5 ...
+
+<!-- HERE -- functions as values -->
