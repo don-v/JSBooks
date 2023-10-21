@@ -182,6 +182,33 @@ if (safeMode) {
 }
 ```
 
-In C5 ...
+In C5, teach will discuss the interesting things can be done by passing around
+function values to to other functions.
 
-<!-- HERE -- functions as values -->
+## DECLARATION NOTATION
+
+There is a slightly shorter way to create a function binding. When the `function` keyword
+is used at the start of a statement, it works differently.
+
+```js
+function square(x) {
+  return x * x;
+}
+```
+
+This is a function _declaration_. The statement defines the binding `square` and points it at the 
+given function. It is slightly easier to write and doesn't require a semicolon after the function. 
+
+There is one subtlety with this form of function definition.
+
+```js
+console.log("The future says:", future());
+
+function future() {
+  return "You'll never have flying cars";
+}
+```
+
+The preceding code works ...
+
+<!-- HERE -- declaration notation -->
