@@ -209,6 +209,28 @@ function future() {
 }
 ```
 
-The preceding code works ...
+The preceding code works, even though the function is defined _below_ the code that uses
+it. Function declarations are not part of the regular top-to-bottom flow of control. they are
+conceptually moved to the top of their scope and can be used by all the code in that scope. This is 
+sometimes useful because it offers the freedom to order code in a way that seems meaningful, without
+worrying about having to define all functions before they are used.
 
-<!-- HERE -- declaration notation -->
+## ARROW FUNCTIONS
+
+There's a third notation for functions, which looks very different from the others. Instead of the
+`function` keyword, it uses an arrow `=>` made up of an equal sign and a greater-than character
+(not to be confused with the greater-than-or-equal operator, which is written `>=`).
+
+```js
+const power = (base, exponent) => {
+  let result = 1;
+  for (let count = 0; count < exponent; count++) {
+    result *= base;
+  }
+  return result;
+};
+```
+
+The arrow comes _after_ the list of parameters ...
+
+<!-- HERE -- arrow functions -->
