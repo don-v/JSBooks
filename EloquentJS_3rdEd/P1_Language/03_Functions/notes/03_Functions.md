@@ -231,6 +231,31 @@ const power = (base, exponent) => {
 };
 ```
 
-The arrow comes _after_ the list of parameters ...
+The arrow comes _after_ the list of parameters and is followed by the function's body. It expresses
+something like "this input (the parameters) produces this result (the body)".
 
-<!-- HERE -- arrow functions -->
+When there is only one parameter name, one can omit the parentheses around the parameter list. If the
+body is a single expression, rather than a block in braces, that expression will be returned from the
+function. So, these two definitions of `square` do the same thing:
+
+```js
+const square1 = (x) => { return x * x; };
+const square2 = x => x * x;
+```
+
+When an arrow function has no parameters at all, its parameter list is just an empty set of parentheses:
+
+```js
+const horn = () => {
+  console.log("Toot");
+};
+```
+
+There's no deep reaosn to have both arrow functions and `function` expressions in the language. Apart 
+from a minor detail, which will be discussed in C6, they do the same thing. Arrow functions were added in 
+2015, mostly to make it possible to write small function expressions in a less verbose way. They will
+be used frequently in C5!
+
+## THE CALL STACK
+
+<!-- HERE -- THE CALL STACK -->

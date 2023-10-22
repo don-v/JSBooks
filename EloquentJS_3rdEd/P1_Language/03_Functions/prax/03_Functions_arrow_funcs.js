@@ -16,3 +16,15 @@ const power = (base, exponent) => {
     return result;
   };
 
+
+let ex2 = `
+const square1 = (x) => { return x * x; };
+const square2 = x => x * x;`;
+
+console.log(ex2);
+
+let ex3 = `
+const horn = () => {
+  console.log("Toot");
+};`;
+
