@@ -258,4 +258,40 @@ be used frequently in C5!
 
 ## THE CALL STACK
 
+The way control flows through functions is somewhat involved. Let's take a closer look at it. Here is a
+simple program that makes a few function calls:
+
+```js
+function greet(who) {
+  console.log("Hello " + who);
+}
+greet("Harry");
+console.log("Bye");
+```
+
+A run through this program goes roughly like this: the call to `greet` causes control to jump to the start of the function (line 2). The function calls `console.log`, which takes
+control, does its job, and then returns control to line 2. There it reaches the end of the
+`greet` function, so it returns ot the place that called it, which is line 4. The line 
+after that calls `console.log` again. After that returns, the program reaches its end.
+
+We could show the flow of control schematically like this:
+
+```
+not in function
+   in greet
+        in console.log
+   in greet
+not in function
+   in console.log
+not in function
+```
+
+Because a function has to jump back to the place that called it when it returns,
+the computer must remember the context from which the call happened. In one case, 
+`console.log` has to return to the `greet` function when it is done. In the other
+case, it returns to the end of the program.
+
+The place where the computer stores this context is the _call stack_. Every time
+a function is called, the current context is stored on top of this stack.
+
 <!-- HERE -- THE CALL STACK -->
