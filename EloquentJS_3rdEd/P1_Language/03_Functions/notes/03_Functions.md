@@ -292,6 +292,36 @@ the computer must remember the context from which the call happened. In one case
 case, it returns to the end of the program.
 
 The place where the computer stores this context is the _call stack_. Every time
-a function is called, the current context is stored on top of this stack.
+a function is called, the current context is stored on top of this stack. When a 
+function returns, it removes the top context from the stack and uses that context
+to continue execution.
 
-<!-- HERE -- THE CALL STACK -->
+Storing this stack requires space in the computer's memory. When the stack grows
+too big, the computer will fail with a message like "out of stack space" or "too
+much recursion". The following code illustrates this by asking the computer a 
+really hard question that causes an infinite back-and-forth between two functions. 
+Rather, it _would_ be infinite, if the computer had an infinite stack. As it is,
+we will run our of spce, of "blow the stack".
+
+```js
+function chicken() {
+  return egg();
+}
+function egg() {
+  return chicken();
+}
+console.log(chicken() + " came first.");
+// → ??
+```
+
+## OPTIONAL ARGUMENTS
+
+The following code is allowed and executes without any problem:
+
+```js
+function square(x) { return x * x; }
+console.log(square(4, true, "hedgehog"));
+// → 16
+```
+
+<!-- HERE -- OPTIONAL ARGUMENTS -->

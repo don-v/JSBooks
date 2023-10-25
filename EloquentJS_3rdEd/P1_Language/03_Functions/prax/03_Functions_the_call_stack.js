@@ -7,3 +7,17 @@ function greet(who) {
 `;
 
 console.log(ex);
+
+// infinite loop:s
+
+let ex2 = `
+function chicken() {
+  return egg();
+}
+function egg() {
+  return chicken();
+}
+console.log(chicken() + " came first.");
+// → ??
+`
+
