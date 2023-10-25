@@ -324,4 +324,43 @@ console.log(square(4, true, "hedgehog"));
 // → 16
 ```
 
+We defined `square` with only one parameter. Yet when we call it with three, the
+language doesn't complain. It ignores the extra arguments and computes the square
+of the first one.
+
+JS is extremely broad-minded about the number of arguments one passes to a funcion.
+If one passes too many, the extra ones are ignored. If one passes too few, the
+missing parameters get assigned the value `undefined`. 
+
+The downside of this is that it is possible -- likely, even -- that one'll
+accidentally pass the wrong number of arguments to functions. And no one will tell
+you about it.
+
+The upside is that this behavior can be used to allow a function to be called with
+different numbers of arguments. For example, this `minus` function tries to imitate
+the `-` operator by acting on either one or two arguments:
+
+```js
+function minus(a, b) {
+  if (b === undefined) return -a;
+  else return a - b;
+}
+
+console.log(minus(10));
+// → -10
+console.log(minus(10, 5));
+// → 5
+```
+
+If one writes an `=` operator after a parameter, followed by an expression, the
+value of that expression will replace the argument when it is not given.
+
+For example, this version of `power` makes its second argument optional. If one
+doesn't provide it or pass the value `undefined`, it will default to `2`, and the
+function will behave like `square`:
+
+```js
+// HERE -- optional args!
+```
+
 <!-- HERE -- OPTIONAL ARGUMENTS -->
