@@ -360,7 +360,52 @@ doesn't provide it or pass the value `undefined`, it will default to `2`, and th
 function will behave like `square`:
 
 ```js
-// HERE -- optional args!
+function power(base, exponent = 2) {
+  let result = 1;
+  for (let count = 0; count < exponent; count++) {
+    result *= base;
+  }
+  return result;
+}
+
+console.log(power(4));
+// → 16
+console.log(power(2, 6));
+// → 64
 ```
 
-<!-- HERE -- OPTIONAL ARGUMENTS -->
+In the next chapter, we will see a way in which a funciton body can get at the
+whole list of arguments it was passed. This is helpful because it makes it possible
+for a function to accept any number of arguments. For example, `console.log` does
+this -- it outputs all of the values it is given:
+
+```js
+console.log("C", "O", 2);
+// → C O 2
+```
+## CLOSURE
+
+The ability of treat functions as values, combined wiht the fact that local bindings
+are re-created every time a function is called, brings up an interesting question.
+What happens to local bindings when the function call that created them is no longer
+active?
+
+The following code shows an example of this. It defines a function, `wrapValue`, 
+that creates a local binding. It then returns a function that accesses and returns
+this local binding.
+
+```js
+function wrapValue(n) {
+  let local = n;
+  return () => local;
+}
+
+let wrap1 = wrapValue(1);
+let wrap2 = wrapValue(2);
+console.log(wrap1());
+// → 1
+console.log(wrap2());
+// → 2
+```
+
+<!-- HERE -- CLOSURE -->
