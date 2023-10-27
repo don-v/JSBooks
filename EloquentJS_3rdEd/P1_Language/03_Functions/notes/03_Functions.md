@@ -408,4 +408,24 @@ console.log(wrap2());
 // → 2
 ```
 
+This is allowed and works as one would hope -- both instances of the binding can still be accessed. This situation is a good demonstration of the fact that local bindings are created anew for every call, and different calls can't trample on one another's local bindings.
+
+This feature -- being able to reference a specific instance of a local binding is an enclosing scope -- is called a _closure_. A function that references bindings from local scopes around it is called _a_ closure. this behavior not only free one from having to worry about lifetimes of bindings but alos makes it possible to use function values in some createive ways. 
+
+With a slight change, one can convert the previous example into a way to create functions that multiply by an arbirtray amount. 
+
+```js
+function multiplier(factor) {
+  return number => number * factor;
+}
+
+let twice = multiplier(2);
+console.log(twice(5));
+// → 10
+```
+
+The explicit `local` binding from the `wrapValue` example isn't really needed since a parameter is itself a local binding.
+
+Thinking about programs like this take seme prax. ...
+
 <!-- HERE -- CLOSURE -->

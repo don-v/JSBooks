@@ -23,3 +23,23 @@ console.log(ex);
   // → 1
   console.log('console.log(wrap2());',wrap2());
   // → 2
+
+  const ex2 = `function multiplier(factor) {
+    return number => number * factor;
+  }
+  
+  let twice = multiplier(2);
+  console.log(twice(5));
+  // → 10`;
+
+  console.log(ex2);
+
+  function multiplier(factor) {
+    return number => number * factor;
+  }
+  
+  let twice = multiplier(2);
+  console.log('console.log(twice(5));',twice(5));
+  // → 10
+
+  
