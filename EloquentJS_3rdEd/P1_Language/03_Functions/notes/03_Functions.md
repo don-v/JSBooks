@@ -426,6 +426,18 @@ console.log(twice(5));
 
 The explicit `local` binding from the `wrapValue` example isn't really needed since a parameter is itself a local binding.
 
-Thinking about programs like this take seme prax. ...
+Thinking about programs like this take seme prax. A good mental model is to think of functin values as containing both the
+code in their body and the environment in which they are created. When called, the function body sees the environment in
+which it was created, not the environment in which it was called.
 
-<!-- HERE -- CLOSURE -->
+In the example, `multiplier` is called and creates an environment in which its `factor` parameter is bound to `2`. The 
+function value it returns, which is stores in `twice`, remembers this environment. So when that is called, it multiplies
+its argument by `2`. 
+
+## RECURSION
+
+It is perfectly okay for a function to call itself, as long as it doens't do it so often that it overflows the stack. 
+A function that calls itself is called _recursive_. Recursion allows some functions to be written in a different style.
+Take for example, this alternative implementation of `power`:
+
+<!-- HERE -- RECURSION -->
