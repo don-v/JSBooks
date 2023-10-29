@@ -440,4 +440,30 @@ It is perfectly okay for a function to call itself, as long as it doens't do it 
 A function that calls itself is called _recursive_. Recursion allows some functions to be written in a different style.
 Take for example, this alternative implementation of `power`:
 
+```js
+function power(base, exponent) {
+  if (exponent == 0) {
+    return 1;
+  } else {
+    return base * power(base, exponent - 1);
+  }
+}
+
+console.log(power(2, 3));
+// → 8
+```
+
+This is rather close to the way mathematicians define exponentiation and arguably describe more clearly than the 
+looping variant. The function calls itself multiple times with ever smaller exponents to achieve the repeated
+multiplication.
+
+But this implementation has one problem: in typical JS implementations, it's about three times slower than the 
+looping version. Running through a simple loop is generally cheaper than calling a function multiple times.
+
+The dilemma of speed versus elegance is an interesting one. One can see it as a kind of continuum between 
+human-friendliness and machine-friendliness. Almost any program can be made faster by making it bigger and more
+convoluted. The programmer has to decide on an appropriate balance.
+
+In the case of the `power` function, the ...
+
 <!-- HERE -- RECURSION -->
