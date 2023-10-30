@@ -11,6 +11,8 @@ function power(base, exponent) {
   // → 8
 `;
 
+console.log(ex);
+
 function power(base, exponent) {
     if (exponent == 0) {
       return 1;
@@ -19,5 +21,5 @@ function power(base, exponent) {
     }
   }
   
-  console.log('power(2, 3):',power(2, 3));
+  console.log('console.log(power(2, 3));:',power(2, 3));
   // → 8

@@ -464,6 +464,18 @@ The dilemma of speed versus elegance is an interesting one. One can see it as a 
 human-friendliness and machine-friendliness. Almost any program can be made faster by making it bigger and more
 convoluted. The programmer has to decide on an appropriate balance.
 
-In the case of the `power` function, the ...
+In the case of the `power` function, the inelegant (looping) version is still fairly simple and easy to read.
+It doesn't make much sense to replace it with the recursive version. Often, though, a program deals with such
+complex concepts that giving up some efficiency in order to make the program more straightforward is helpful.
+
+Worry about efficiency can be a distraction. It's yet another factor that complicates program design, and when 
+one is doing something that's already difficult, that extra thing to worry about can be paralyzing.
+
+Therefore, always start by writing something that's correct and easy to understand. If one is worried that it's 
+too slow -- which it usually isn't since most code simply isn't executed often enough to take any significant
+amoutn of time -- one can measure afterward and improve it if necessary.
+
+Recursion is not always just an efficient alternative to looping. Some problems really are easier to solve with
+recursion than with loops. ...
 
 <!-- HERE -- RECURSION -->
