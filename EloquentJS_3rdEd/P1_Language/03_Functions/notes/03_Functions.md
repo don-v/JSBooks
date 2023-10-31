@@ -476,6 +476,41 @@ too slow -- which it usually isn't since most code simply isn't executed often e
 amoutn of time -- one can measure afterward and improve it if necessary.
 
 Recursion is not always just an efficient alternative to looping. Some problems really are easier to solve with
-recursion than with loops. ...
+recursion than with loops. Most often these are problems that require exploring or processing several "branches",
+each of which might branch out again into even more branches.
+
+Consider the puzzle: by starting from the number `1` and repeatedly either adding 5 or multiplying by 3, an
+infinite set of number can be produced. How would one write a function that, given a number, tries to find
+a squence of such additions and multiplications that produces that number?
+
+For example, the number of 13 could be reached by first multiplying by `3` and then adding `5` twice, whereas
+the number `15` cannot be reached at all.
+
+Here's a recursive solution:
+
+```js
+function findSolution(target) {
+  function find(current, history) {
+    if (current == target) {
+      return history;
+    } else if (current > target) {
+      return null;
+    } else {
+      return find(current + 5, `(${history} + 5)`) ||
+             find(current * 3, `(${history} * 3)`);
+    }
+  }
+  return find(1, "1");
+}
+
+console.log(findSolution(24));
+// → (((1 * 3) + 5) * 3)
+```
+
+Note that this program doesn't necessarily find the _shortest_ sequence
+of operations. It is satisfied when it finds any seuqence at all.
+
+It is okay of one doesn't see how it works right away. Let's work through
+it, since it makes for a great exercise in recursive thinking. 
 
 <!-- HERE -- RECURSION -->
