@@ -531,6 +531,39 @@ it is returned. Otherwise, the second call is returned, regardless of whether
 it produces a string or `null`.
 
 To better understand how this function produces the effect we're looking for,
-...
+let's look at all the calls to `find` that are made when searching for a 
+solution for the number `13`.
 
-<!-- HERE -- RECURSION -->
+```js
+find(1, "1")
+  find(6, "(1 + 5)")
+    find(11, "((1 + 5) + 5)")
+      find(16, "(((1 + 5) + 5) + 5)")
+        too big
+      find(33, "(((1 + 5) + 5) * 3)")
+        too big
+    find(18, "((1 + 5) * 3)")
+      too big
+  find(3, "(1 * 3)")
+    find(8, "((1 * 3) + 5)")
+      find(13, "(((1 * 3) + 5) + 5)")
+        found!
+```
+
+The identification indicates the depth of the call stack. The first time
+`find` is called, it starts by calling itself to explore teh solution that
+starts with `(1+5)`. That call will further recurse to explore _every_
+continued solution that yields a number less than or equal to the target
+number. Since it does not find one that hits the target, it returns
+`null` back to the first call. There the `||` operator causes the call
+that explores `(1 * 3)` to happen. This search has more luck -- its first
+recursive call, through yet _another_ recursive call, hits upon the target
+number. That innermost call returns a string, and each of the `||`
+operators in the intermediate calls passes that string along, ultimately
+returning the solution. 
+
+## GROWING FUNCTIONS
+
+There are two more or less natrual ways...
+
+<!-- HERE -- GROWING FUNCTIONS -->
