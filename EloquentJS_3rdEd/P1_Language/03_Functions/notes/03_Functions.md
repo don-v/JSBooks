@@ -564,6 +564,38 @@ returning the solution.
 
 ## GROWING FUNCTIONS
 
-There are two more or less natrual ways...
+There are two more or less natrual ways for functions to be introduced into
+programs.
 
-<!-- HERE -- GROWING FUNCTIONS -->
+The first is that one finds oneself writing similar code multiple times. One'd
+prefer not to do that. Having more code means more space for mistakes to hide
+and more material to read for people trying to understand the program. So
+one takes the repreated functionality, find a good name for it, and put it
+into a function.
+
+The second way is that one finds one needs some functionality that one has
+not written yet and that sounds like it deserves its own function. One'll
+start by naming the function, and then'll write its body. One might even
+start writing code that uses the function before one actually defines the
+function itself.
+
+How difficult it is to find a good name for a function is a good indication
+of how clear a concept it is that one is trying to wrap. Let's go through
+an example. 
+
+We wnat to write a program that prints two numbers: the numbers of cows
+and the numbers of chickens on a farm, with the words `Cows` and `Chickens`
+after them and zeros padded before both numbers so that they are always 
+three digits long:
+
+```js
+007 Cows
+011 Chickens
+```
+
+This asks for a function of two arguments -- the number of cows and
+the number of chickens. Let's get coding:
+
+```js
+// HERE -- growing funcs
+```
