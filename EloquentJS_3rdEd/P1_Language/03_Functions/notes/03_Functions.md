@@ -644,6 +644,33 @@ printFarmInventory(7, 11, 3);
 ```
 
 It works! But that name, `printZeroPaddedWithLabel`, is a little
-awkward.
+awkward. It conflates three things -- printing, zero-padding, and 
+adding a label -- into a single function.
+
+Instead of lifting our the repeated part of our program wholesale,
+let's try to pick out a single _concept_.:
+
+```js
+function zeroPad(number, width) {
+  let string = String(number);
+  while (string.length < width) {
+    string = "0" + string;
+  }
+  return string;
+}
+
+function printFarmInventory(cows, chickens, pigs) {
+  console.log(`${zeroPad(cows, 3)} Cows`);
+  console.log(`${zeroPad(chickens, 3)} Chickens`);
+  console.log(`${zeroPad(pigs, 3)} Pigs`);
+}
+
+printFarmInventory(7, 16, 3);
+```
+
+A function with a nice, obvious name like `zeroPad` makes it easier for someone
+who reads the code to figure out what it does. And such a function is useful 
+in more situations than just this specific program. For example, one could
+use it to help print nicely aligned tables of numbers.
 
 <!-- HERE -- p. growing funcs! -->
