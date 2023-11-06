@@ -673,4 +673,36 @@ who reads the code to figure out what it does. And such a function is useful
 in more situations than just this specific program. For example, one could
 use it to help print nicely aligned tables of numbers.
 
-<!-- HERE -- p. growing funcs! -->
+How smart and versatile _should_ our function be? We could write anything,
+from a terribly simple function that can only pad a number to be three
+characters wide to a complicated generalized number-formatting system that
+handles fractional numbers, negative numbers, alignment of decimal dots,
+padding with different characters, and so on.
+
+A useful princple is to not add cleverness unless one is absolutely sure
+one is going to need it. It can be tempting to write general "frameworks"
+for every bit of functionality one comes across. Resist that urge. One
+won't get any real work done -- one'll simply be writing code that one
+will never use!
+
+## FUNCTIONS AND SIDE EFFECTS
+
+Functions can be roughly divided into those that are called for their side
+effects and those that are called for their return value. (Though it is 
+definitely also possible to both have side effects and return a value.)
+
+The first helper function in the farm example, `pritnZeroPaddedWithLabel`,
+is called for its side effect: it prints a line. The secon dversion, 
+`zeroPad`, is called for its return value. It is no coincidence that the
+second is useful in more situations than the first. Functions that create
+values are easier to combine in new ways than functions that directly
+perform side effects.
+
+A _pure_ function is a specific kind of value-producing function that not
+only has no side effects but also doesn't rely on side effects from other
+code -- for example, it doesn't read global bindings whose value might 
+change. A pure function has the pleasant property that, whencalled with
+the same arguments, it always produces the same value (and doesn't do 
+anything else). A call to such ...
+
+<!-- HERE -- funcs + side effects! -->
