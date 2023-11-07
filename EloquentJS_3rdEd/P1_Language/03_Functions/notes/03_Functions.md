@@ -703,6 +703,27 @@ only has no side effects but also doesn't rely on side effects from other
 code -- for example, it doesn't read global bindings whose value might 
 change. A pure function has the pleasant property that, whencalled with
 the same arguments, it always produces the same value (and doesn't do 
-anything else). A call to such ...
+anything else). A call to such a functio can be substituted by its 
+return value without changing the meaning of the code. When one is not
+sure that a pure function is working correctly, one can test it by 
+simply calling it an dknow that if it works in that context, it will 
+work in any context. Nonpure functions tend to require more scaffolding
+to test.
 
-<!-- HERE -- funcs + side effects! -->
+Still, there's no need to feel bad when writing functions that are not
+pure or to or to wage a holy war to purge them from one's code. Side
+effects are often useful. There'd be no way to write a pure version
+of `console.log`, for example, and `console.log` is good to ahve. 
+Some operations are also easier to express in an efficient way when
+we use side effects, so computing speed can be a reason to avoid
+purity. 
+
+## SUMMARY
+
+This chapter taught one how to write one's own functions. The `function`
+keyword, when used as an expression, can create a function value. When
+used as a statement as a statement, it can be used to declare a binding
+and give it a function as its value. Arrow functions are yet another way
+to create functions.
+
+<!-- HERE -- summary! -->
