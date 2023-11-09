@@ -726,4 +726,34 @@ used as a statement as a statement, it can be used to declare a binding
 and give it a function as its value. Arrow functions are yet another way
 to create functions.
 
-<!-- HERE -- summary! -->
+```js
+// Define f to hold a function value
+const f = function(a) {
+  console.log(a + 2);
+};
+
+// Declare g to be a function
+function g(a, b) {
+  return a * b * 3.5;
+}
+
+// A less verbose function value
+let h = a => a % 3;
+```
+
+A key aspect in understanding functions is understanding scopes. Each
+block creates a ew scope. Parameters and bindings declared in a given
+scope are local and not visible from the outside. Bindings declared
+with `var` behave differently -- they end up in the nearest function 
+scope.
+
+Separating the tasks one's program performs into different functions 
+is helpful. One won't have to repeat oneself as much, and functions
+can help organize a program by grouping code into piece that do
+specific things.
+
+## EXCERCISES
+
+### MINIUMUM
+
+<!-- HERE -- EX: MINIMUM! -->
