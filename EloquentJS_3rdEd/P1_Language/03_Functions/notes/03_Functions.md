@@ -770,4 +770,59 @@ console.log(min(0, -10));
 // → -10
 ```
 
-<!-- HERE -- EX: MINIMUM! -->
+here's my solution:
+
+```js
+function min_(a,b) {
+    if (a < b) {
+        return a
+    }
+    return b
+}
+
+console.log('min_(0,10):',min_(0,10))
+console.log('min_(0,-10):',min_(0,-10))
+```
+
+### DISPLAY HINTS:
+<!-- If you have trouble putting braces and parentheses in the right place to 
+get a valid function definition, start by copying one of the examples in this 
+chapter and modifying it.
+
+A function may contain multiple return statements. -->
+
+Here is teach's solution:
+
+```js
+function min(a, b) {
+  if (a < b) return a;
+  else return b;
+}
+
+console.log(min(0, 10));
+// → 0
+console.log(min(0, -10));
+// → -10
+```
+
+## RECURSION
+
+We've seen that `%` (the remainder operator) can be used to test whether a
+number is even or odd by using `% 2` to see whether it's divisible by
+two. Here's another way to define whether a positive whole number is even
+or odd:
+
+* Zero is even
+
+* One is odd
+
+* For any other number _N_, its evenness is the same as N-2.
+
+Define a recursive function `isEven` corresponding to this description. The 
+function should accept a single parameter (a positive whole number) and 
+return a Boolean.
+
+Test it on 50 and 75. See how it behaves on `-1`. Why? Can one think of a way 
+to fix this?
+
+<!-- HERE -- recursion -->
