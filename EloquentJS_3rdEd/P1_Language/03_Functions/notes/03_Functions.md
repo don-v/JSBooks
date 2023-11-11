@@ -825,4 +825,71 @@ return a Boolean.
 Test it on 50 and 75. See how it behaves on `-1`. Why? Can one think of a way 
 to fix this?
 
+Here's the starting point teach provides:
+
+```js
+// Your code here.
+
+console.log(isEven(50));
+// → true
+console.log(isEven(75));
+// → false
+console.log(isEven(-1));
+// → ??
+```
+
+my solution:
+
+```js
+function absVal(x) {
+    if (x >= 0) return x;
+    return -x;
+}
+
+function isEven(x) {
+    if (absVal(x) === 0) {
+        return true;
+    }
+    if (absVal(x) === 1) {
+        return false;
+    }
+    return isEven(x-2);
+}
+
+console.log('50 is even:', isEven(50));
+console.log('75 is even:', isEven(75));
+console.log('-1 is even:', isEven(-1));
+```
+
+### DISPLAY HINT:
+
+<!-- Your function will likely look somewhat similar to the inner find function 
+in the recursive findSolution example in this chapter, with an if/else if/else 
+chain that tests which of the three cases applies. The final else, corresponding 
+to the third case, makes the recursive call. Each of the branches should contain 
+a return statement or in some other way arrange for a specific value to be returned. 
+
+When given a negative number, the function will recurse again and again, passing itself a
+n ever more negative number, thus getting further and further away from returning a 
+result. It will eventually run out of stack space and abort.
+-->
+
+here's teach's soluiton:
+
+```js
+function isEven(n) {
+  if (n == 0) return true;
+  else if (n == 1) return false;
+  else if (n < 0) return isEven(-n);
+  else return isEven(n - 2);
+}
+
+console.log(isEven(50));
+// → true
+console.log(isEven(75));
+// → false
+console.log(isEven(-1));
+// → false
+```
+
 <!-- HERE -- recursion -->
