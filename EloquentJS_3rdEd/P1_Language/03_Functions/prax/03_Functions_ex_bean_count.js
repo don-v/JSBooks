@@ -29,8 +29,21 @@ function countBs(s) {
     return numBs;
 }
 
+function countChar(s, c) {
+    let numBs = 0;
+    for (let index = 0; index < s.length; index++) {
+        if (s[index] === c) numBs +=1;
+    }
+    return numBs;
+}
 
-console.log(countBs("BBC"));
-// → 2
-// console.log(countChar("kakkerlak", "k"));
-// → 4
+function countBs_(s) {
+    return countChar(s, 'B')
+}
+
+
+console.log('countBs("BBC"):',countBs("BBC"));
+
+console.log('countChar("kakkerlak", "k"):',countChar("kakkerlak", "k"));
+
+console.log('countBs_("BBC"):',countBs_("BBC"));
