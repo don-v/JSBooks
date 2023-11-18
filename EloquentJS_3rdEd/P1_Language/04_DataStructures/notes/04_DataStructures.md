@@ -52,6 +52,29 @@ an expression, with another expression inside of them, will look up
 the element in the left-hand expression that corresponds to the _index
 give by the expression in the brackets.
 
-The first index of an array ...
+The first index of an array is zero, not one. So the first element is
+retrieved with `listOfNumbers[0]`. Zero-based counting has a long
+tradition in technology and in certain way smakes a lot of sense, but
+it takes some getting used to. Think of the index as the amount of 
+items to skip, counting from the start of the array.
 
-<!-- HERE -- data sets -->
+## PROPERTIES
+
+We've seen a few suspicious-looking expressions like `myString.length`
+(to get the length of a string) and `Math.max` (the maximum function)
+in past chapters. These are expressions that access a _property_ of
+soe value. In the first case, we access the `length` property of teh
+value in `myString`. In the second, we access the property named 
+`max` in the `Math` object (which is a collection of 
+mathematics-related constatns and functions).
+
+Almost all 'JS' values (objects?) have properties. The exeptions are `null`
+and `undefined`. If one tries to access a property on one of these
+nonvalues, one gets an error:
+
+```js
+null.length;
+// → TypeError: null has no properties
+```
+
+<!-- HERE -- properties -->
