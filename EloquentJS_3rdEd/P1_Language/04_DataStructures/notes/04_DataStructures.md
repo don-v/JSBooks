@@ -77,4 +77,24 @@ null.length;
 // → TypeError: null has no properties
 ```
 
+The two main ways to access properties in JS are with a dot and with 
+square brackets. Both `value.x` and `value[x]` access a property on 
+`value` -- but not necessarily the same property. The difference is in how
+ `x` is interpreted. When using a dot, the word after the dot is the
+ liter name of the property. When using square brackets, the expression
+ between the brackets is _evaluated_ to get the property name. Whereas
+ `value.x` fetches the property of `value` names `"x"`, `value[x]` tries
+ to evaluate the expression `x` and uses the results, converted to a 
+ string, as teh property name.
+
+ So if one knows that the property one is interested in is called _color_,
+ one says `value.color`. If one wants to extract the property named by the
+ value held in binding `i`, one says `value[i]`. Property names are strings.
+ They can be any string, but the dot notation works only with names that look
+ like valid binding names. So if one wants to access a property named 
+ _2_ or _John Doe_, one must use square brackets: `value[2]` or 
+ `value["John Doe"]`.
+
+ The elements in an array ...
+
 <!-- HERE -- properties -->
