@@ -95,6 +95,33 @@ square brackets. Both `value.x` and `value[x]` access a property on
  _2_ or _John Doe_, one must use square brackets: `value[2]` or 
  `value["John Doe"]`.
 
- The elements in an array ...
+ The elements in an array are stored as the array's properties, using
+ numbers as property names. Because one can't use the dot notation with
+ numbers and usually want to use a binding that holds the index anyways, 
+ one has to use the bracket notation to get at them.
 
-<!-- HERE -- properties -->
+ The `length` property of an array tells us how many elements it has. This
+ property name is a valid binding name, and we know its name in advance, 
+ so to find the length of an array, one typically writes `array.length`
+ because that's easier to write than `array["length"]`.
+
+## METHODS
+
+Both string and array values contain, in addition to the `length` property,
+a number of properties that hold function values:
+
+```js
+let doh = "Doh";
+console.log(typeof doh.toUpperCase);
+// → function
+console.log(doh.toUpperCase());
+// → DOH
+```
+
+Every string has a `toUpperCase` property. When called, it will return a 
+copy of the string in which all letters have been converted to uppercase.
+There is also `toLowerCase`, going the other way.
+
+Interestingly, ...
+
+<!-- HERE -- methods -->
