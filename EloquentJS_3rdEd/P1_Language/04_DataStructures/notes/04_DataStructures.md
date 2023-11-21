@@ -122,6 +122,32 @@ Every string has a `toUpperCase` property. When called, it will return a
 copy of the string in which all letters have been converted to uppercase.
 There is also `toLowerCase`, going the other way.
 
-Interestingly, ...
+Interestingly, even though the call to `toUpperCase` does not pass any 
+arguments. the function somehow has access to the string `"Doh"`, the
+value whose property was called. How this works is described in C6.
+
+Properties that contain functions are generally called _methods_ of the
+value they belong to, as in "`toUpperCase` is a method of a string".
+
+This example demonstrates two methods one can use to manipulate arrays:
+
+```js
+let sequence = [1, 2, 3];
+sequence.push(4);
+sequence.push(5);
+console.log(sequence);
+// → [1, 2, 3, 4, 5]
+console.log(sequence.pop());
+// → 5
+console.log(sequence);
+// → [1, 2, 3, 4]
+```
+
+The `push` method adds values to the end of an array, and the `pop`
+method does the opposite, removing the last value in the array and
+returning it.
+
+These somewhat silly names are the traditional terms for operations 
+a _stack_.
 
 <!-- HERE -- methods -->
