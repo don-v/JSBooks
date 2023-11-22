@@ -148,6 +148,38 @@ method does the opposite, removing the last value in the array and
 returning it.
 
 These somewhat silly names are the traditional terms for operations 
-a _stack_.
+a _stack_. A stack, in programming, is a data structure that allow
+one to push values into it and pop them out again in the opposite
+order so that the thing that was added last is removed first. These
+are common in programming -- one might remember the function call 
+stack from the previous chapter, which is an instance of the
+same idea.
 
-<!-- HERE -- methods -->
+## OBJECTS
+
+Back to the 'weresquirrel'. a set of daily log entries can be 
+represented as an array. But the entries does not consist of just
+a number or a string -- each entry needs to store a list of activities
+and a 'Boolean' value that indicates whether Jacques turned into a
+squirrel or not. Ideally, we would like to group these together
+into a single value and then put those grouped values into an array
+of log entries.
+
+Values of the type _object_ are arbitrary collections of properties.
+One way to create an object's is by using braces as an expression:
+
+```js
+let day1 = {
+  squirrel: false,
+  events: ["work", "touched tree", "pizza", "running"]
+};
+console.log(day1.squirrel);
+// → false
+console.log(day1.wolf);
+// → undefined
+day1.wolf = false;
+console.log(day1.wolf);
+// → false
+```
+
+<!-- HERE -- objects -->
