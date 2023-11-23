@@ -23,3 +23,18 @@ let day1 = {
   day1.wolf = false;
   console.log(day1.wolf);
   // → false
+
+x = `
+let descriptions = {
+  work: "Went to work",
+  "touched tree": "Touched a tree"
+};
+`;
+
+let descriptions = {
+  work: "Went to work",
+  "touched tree": "Touched a tree"
+};
+
+console.log('descriptions:',descriptions);
+

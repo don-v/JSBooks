@@ -182,4 +182,30 @@ console.log(day1.wolf);
 // → false
 ```
 
+Inside the braces, there is a list of properties separated by commas. Each
+property has a name followed by a colon and a value. When an object is
+written over multiple lines, indenting it like in the example helps with
+readability. Properties whose names aren't valid binding names or valid
+numbers have to be quoted.
+
+```js
+let descriptions = {
+  work: "Went to work",
+  "touched tree": "Touched a tree"
+};
+```
+
+This means that braces have _two_ meanings in JS. At the start of a statement, 
+they start a block of statements. In any other position, they describe
+an object. Fortunately, it is rarely useful to start a statement with an 
+object in braces, so the ambiguity between the two is not much of a problem.
+
+Reading a property that doesn't exist will give one the value of `undefined`.
+
+It is possible to assign a value to a property expression with the `=` 
+operator. This will replace the property's value if it already existed or
+create a new property on the object if it didn't. 
+
+To briefly return ...
+
 <!-- HERE -- objects -->
