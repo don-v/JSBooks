@@ -26,14 +26,14 @@ let day1 = {
   console.log(day1.wolf);
   // → false
 
-x = `
+x1 = `
 let descriptions = {
   work: "Went to work",
   "touched tree": "Touched a tree"
 };
 `;
 
-console.log(x);
+console.log(x1);
 
 let descriptions = {
   work: "Went to work",
@@ -42,7 +42,7 @@ let descriptions = {
 
 console.log('descriptions:',descriptions);
 
-x = `
+x2 = `
 let anObject = {left: 1, right: 2};
 console.log(anObject.left);
 // → 1
@@ -55,7 +55,7 @@ console.log("right" in anObject);
 // → true
 `;
 
-console.log(x);
+console.log(x2);
 
 let anObject = {left: 1, right: 2};
 console.log(anObject.left);
@@ -68,3 +68,12 @@ console.log("left" in anObject);
 console.log("right" in anObject);
 // → true
 
+let x3 = `
+console.log(Object.keys({x: 0, y: 0, z: 2}));
+// → ["x", "y", "z"]
+`;
+
+console.log(x3);
+
+console.log('console.log(Object.keys({x: 0, y: 0, z: 2}));:',Object.keys({x: 0, y: 0, z: 2}));
+// → ["x", "y", "z"]

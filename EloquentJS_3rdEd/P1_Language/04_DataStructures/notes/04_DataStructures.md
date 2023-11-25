@@ -228,6 +228,22 @@ console.log("right" in anObject);
 // → true
 ```
 
-The binary `in` operator ...
+The binary `in` operator, when applied to a string and an object, tells
+one whether the object has a property with that name. The difference between
+setting a property to `undefined` and actually deleting it is that, in the
+first case, the object still _has_ the property (it just that its value is 
+`undefined`), whereas, in the second case, the property is no longer present
+and `in` will return `false`.
+
+To find out what properties an object has, one can use the `Object.keys`
+function. One give it an object, and it returns an array of strings --
+the object property names.
+
+```js
+console.log(Object.keys({x: 0, y: 0, z: 2}));
+// → ["x", "y", "z"]
+```
+
+There's an `Object.assign` function that ...
 
 <!-- HERE -- objects -->
