@@ -206,6 +206,28 @@ It is possible to assign a value to a property expression with the `=`
 operator. This will replace the property's value if it already existed or
 create a new property on the object if it didn't. 
 
-To briefly return ...
+To briefly return to our tentacle model of bindings -- property bindings
+are similar. They _grasp_ values, but other bindings and properties might be
+holding onto those same values. One may think of objects as octopuses with 
+any number of tentacles, each of which has a name tatooed on it.
+
+The `delete` operator cuts off a tentacle from such an octpous. It is a unary
+operator that, when applied to an object property, will remove the named
+property from the object. This is not a common thing to do, but it is possible.
+
+```js
+let anObject = {left: 1, right: 2};
+console.log(anObject.left);
+// → 1
+delete anObject.left;
+console.log(anObject.left);
+// → undefined
+console.log("left" in anObject);
+// → false
+console.log("right" in anObject);
+// → true
+```
+
+The binary `in` operator ...
 
 <!-- HERE -- objects -->
