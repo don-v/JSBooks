@@ -244,6 +244,38 @@ console.log(Object.keys({x: 0, y: 0, z: 2}));
 // → ["x", "y", "z"]
 ```
 
-There's an `Object.assign` function that ...
+There's an `Object.assign` function that copies all properties from one object
+into another:
 
-<!-- HERE -- objects -->
+```js
+let objectA = {a: 1, b: 2};
+Object.assign(objectA, {b: 3, c: 4});
+console.log(objectA);
+// → {a: 1, b: 3, c: 4}
+```
+
+Arrays, then, are just a kind of object specialized for storing sequences of
+things. If one evaluates `typeof []`, it produces `"object"`. One can see them 
+as long, flat octopuses with all their tentacles in a neat row, labeled with
+numbers.
+
+We will represent the journal that Jacques keeps as an array of objects.
+
+```js
+let journal = [
+  {events: ["work", "touched tree", "pizza",
+            "running", "television"],
+   squirrel: false},
+  {events: ["work", "ice cream", "cauliflower",
+            "lasagna", "touched tree", "brushed teeth"],
+   squirrel: false},
+  {events: ["weekend", "cycling", "break", "peanuts",
+            "beer"],
+   squirrel: true},
+  /* and so on... */
+];
+```
+
+## MUTABILITY
+
+<!-- HERE -- MUTABILITY -->
