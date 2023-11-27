@@ -278,4 +278,39 @@ let journal = [
 
 ## MUTABILITY
 
+We will get to actual programming _real_ soon now. First there's one more piece of
+theory to understand.
+
+We saw that object values can be modified. The types of values discussed in earlier
+chapters, such as numbers, strings, and Booleans, are all _immutable_--it is impossible
+to change values of those types. One can combine them an dderive new values from them, 
+but when one takes a specific string value, taht value will always remain the same. 
+The text inside it cannot be changed. If one has a string `"cat"`, it is not possible
+for other code to change a character in one's string to make it spell `"rat"`. 
+
+Objects work differently. One _can_ change their properties, causing a single
+object value to have different content at different times.
+
+When we have to numbers, 120 and 120, we can consider them precisely the same
+number, whether or not they refer to the same physical bits. With objects, there is
+a difference between having two references to the same object and having two different
+object that contain the same properties. Consider the following code:
+
+```js
+let object1 = {value: 10};
+let object2 = object1;
+let object3 = {value: 10};
+
+console.log(object1 == object2);
+// → true
+console.log(object1 == object3);
+// → false
+
+object1.value = 15;
+console.log(object2.value);
+// → 15
+console.log(object3.value);
+// → 10
+```
+
 <!-- HERE -- MUTABILITY -->
