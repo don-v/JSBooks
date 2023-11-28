@@ -313,4 +313,25 @@ console.log(object3.value);
 // → 10
 ```
 
+The `object1` and `object2` bindings grasp the _same_ object, which is
+why changing `object1` also changes the value of `object2`. They are said
+to have the same _identity_. The binding of `object3` points to a different
+object, which initially contains the same properties as `object1`, but lives
+a separate life.
+
+Bindings can also be changeable or constant, but this is separate from the
+way their values behave. Even though the number values don't change, one can
+use a `let` binding to keep track of a changing number by changing the value
+the bindings points at. Similarly, though a `const` binding to an object can
+itself not be changed and will continue to point at the same object, the 
+_contents_ of that object might change:
+
+```js
+const score = {visitors: 0, home: 0};
+// This is okay
+score.visitors = 1;
+// This isn't allowed
+score = {visitors: 1, home: 1};
+```
+
 <!-- HERE -- MUTABILITY -->
