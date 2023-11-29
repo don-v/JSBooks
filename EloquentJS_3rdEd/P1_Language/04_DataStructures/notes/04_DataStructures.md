@@ -334,4 +334,28 @@ score.visitors = 1;
 score = {visitors: 1, home: 1};
 ```
 
-<!-- HERE -- MUTABILITY -->
+When one compares objects with JS' `==` operatoer, it compares by identity: 
+it will produce `true` only if both objects are precisely the same value.
+Comparing different objects will return `false`, even if they have identical
+properties. There is no "deep" comparison operation built-in to JS, which
+compares objects by contents, but it is possible to write a custom function
+to accomplish that (which is one of the exercises at the end of this chapter).
+
+## THE LYCANTHROPE'S LOG
+
+So, Jacques starts up his JS interpreter and sets up the environment he needs
+to keep his journal.:
+
+```js
+let journal = [];
+
+function addEntry(events, squirrel) {
+  journal.push({events, squirrel});
+}
+```
+
+Note that the object  added to the journal looks a little odd. Instead of declaring
+properties like `events: events`, it just gives a property name. This is shorthand
+that means the same thing -- if a property name ...
+
+<!-- HERE -- LYCANTHROPE'S LOG -->
