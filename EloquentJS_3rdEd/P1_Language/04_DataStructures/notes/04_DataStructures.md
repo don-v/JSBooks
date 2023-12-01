@@ -356,6 +356,36 @@ function addEntry(events, squirrel) {
 
 Note that the object  added to the journal looks a little odd. Instead of declaring
 properties like `events: events`, it just gives a property name. This is shorthand
-that means the same thing -- if a property name ...
+that means the same thing -- if a property name in brace notation isn't followed by 
+a value, its value is taken from the binding with the same name.
+
+So then, every evening at 10 pm -- or sometimes the following morning, after climbing
+down from the top shelf of his bookcase -- Jacques records the day:
+
+```js
+addEntry(["work", "touched tree", "pizza", "running",
+          "television"], false);
+addEntry(["work", "ice cream", "cauliflower", "lasagna",
+          "touched tree", "brushed teeth"], false);
+addEntry(["weekend", "cycling", "break", "peanuts",
+          "beer"], true);
+```
+
+Once hea had enough data points, he intends to use statistics to find out which
+of these events may be related to the squirrelifications.
+
+_Correlation_ is a measure of dependence between statistical variables. A 
+statistical variable is not quite the same as a programming variable. In statistics
+one typically have a set of _measurements_, and each variable is measured for every
+measurement. Correlation between variables is usually expressed as a value 
+that ranges from `-1` to `1`. Zero correlation means the variables are not related.
+A correlation of one indicates that the two are perfectly related -- if one knows one, 
+one knows the other. Negative one al someans that the variables are perfectly 
+correlated, but that they are opposites -- when one is true, the other
+is false. 
+
+To compute the measure of correlation between two Boolean variables, we can
+use the _phi coefficient_ ($\phi$). This is a formula whose input is a frequency
+table containing ...
 
 <!-- HERE -- LYCANTHROPE'S LOG -->
