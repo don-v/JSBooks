@@ -386,6 +386,17 @@ is false.
 
 To compute the measure of correlation between two Boolean variables, we can
 use the _phi coefficient_ ($\phi$). This is a formula whose input is a frequency
-table containing ...
+table containing containing the number of time sthe different combinations of the
+variables were observed. The output of the formula is a number between -1 and 1 
+that describes the correlation.
+
+We could take the event of eating pizza and put that in a frequency table 
+as follows, where each number indicates the amount of time sthat combination
+occurred in our measurements:
+
+![Pizza Frequency Table](../../../to_ignore/04_DataStructures/Pizza_frequency.png)
+
+
+![Phi Correlation Formula](../../../to_ignore/04_DataStructures/phi_correlation_formula.png)
 
 <!-- HERE -- LYCANTHROPE'S LOG -->
