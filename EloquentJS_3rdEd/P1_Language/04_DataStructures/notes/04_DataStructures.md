@@ -396,7 +396,20 @@ occurred in our measurements:
 
 ![Pizza Frequency Table](../../../to_ignore/04_DataStructures/Pizza_frequency.png)
 
+If we call that table n, we can compute $\phi$ using the following formula:
 
 ![Phi Correlation Formula](../../../to_ignore/04_DataStructures/phi_correlation_formula.png)
+
+The notation $n_{01}$ indicates the number of measurements where the first variable
+(squirrelness) is false (`0`) and the second variable (`pizza`) is true (`1`). In
+the pizza table, $n_{01}$ is `9`.
+
+The value $n_{1.}$ refers to the sum of all measurements where the first variable is
+true, which is `5` in the example table. Likewise, $n_{.0}$ refers to the sum of the 
+measurements where the second variable is `false`.
+
+So for the pizza table, the part above the division line (the dividend) would be
+$1 X 76 - 4 x 9 = 40$, and the part below it (the divisor) would be the square of
+...
 
 <!-- HERE -- LYCANTHROPE'S LOG -->
