@@ -409,7 +409,19 @@ true, which is `5` in the example table. Likewise, $n_{.0}$ refers to the sum of
 measurements where the second variable is `false`.
 
 So for the pizza table, the part above the division line (the dividend) would be
-$1 X 76 - 4 x 9 = 40$, and the part below it (the divisor) would be the square of
-...
+$1 X 76 - 4 x 9 = 40$, and the part below it (the divisor) would be the square root
+of $5 x 85 x 10 x 80$, or $\sqrt{340000}$. This coes out to $\phi \approx 0.069$, which
+is tiny. Eating pizza does not appear to have influence on the transformations.
 
-<!-- HERE -- LYCANTHROPE'S LOG -->
+## COMPUTING CORRELATION
+
+We can represent a two-by-two table in JS with a four-element array: `[76, 9, 4, 1]`.
+We could als ouse other representations, such as an array containing two two-element
+arrays: `[[76, 9], [4, 1]]` or an object with property names like `"11"` and 
+`"01"`, but the flat array is simple and makes the expressions that access the table
+pleasantly short. We'll interpret the indices to the array as two-bit binary numbers,
+where the leftmost (most significant) digit refers to the squirrel variable and the 
+rightmost (least significant) digit refers to the event variable.
+
+
+<!-- HERE -- compute corr -->
