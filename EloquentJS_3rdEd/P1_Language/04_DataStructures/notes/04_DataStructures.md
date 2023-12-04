@@ -421,7 +421,30 @@ arrays: `[[76, 9], [4, 1]]` or an object with property names like `"11"` and
 `"01"`, but the flat array is simple and makes the expressions that access the table
 pleasantly short. We'll interpret the indices to the array as two-bit binary numbers,
 where the leftmost (most significant) digit refers to the squirrel variable and the 
-rightmost (least significant) digit refers to the event variable.
+rightmost (least significant) digit refers to the event variable. For example, the 
+binary number `10` refers to the case where Jacques did turn into a squirrel, but 
+the event (say, "pizza") didn't occur. This happened four times. and since binary 
+`10` is 2 in decimal notaiton, we will store this number at index 2 of the array.
 
+This is the function that computes the $\phi$ coefficient from such an array:
+
+```js
+function phi(table) {
+  return (table[3] * table[0] - table[2] * table[1]) /
+    Math.sqrt((table[2] + table[3]) *
+              (table[0] + table[1]) *
+              (table[1] + table[3]) *
+              (table[0] + table[2]));
+}
+
+console.log(phi([76, 9, 4, 1]));
+// → 0.068599434
+```
+
+This is a a direct translation of the $\phi$ formula into JS. `Math.sqrt`
+is the square root function, as provided by the `Math` object in a standard
+JS environment. We ahve to add two fields form the table to get fields like
+$n_{1.}$ since the sums of rows or columsn are not directly stored in our
+data structure. 
 
 <!-- HERE -- compute corr -->
