@@ -447,4 +447,11 @@ JS environment. We ahve to add two fields form the table to get fields like
 $n_{1.}$ since the sums of rows or columsn are not directly stored in our
 data structure. 
 
+Jacques kept his journal for three months. The resulting data set is available
+in the 'coding sandbox' for this chapter, where it is stored in the `JOURNAL`
+binding and in a downloadable [file](../../../to_ignore/04_DataStructures/journal.js)
+
+To extract a two-by-two table for a specific event from the journal, we must
+loop over all the entries ...
+
 <!-- HERE -- compute corr -->
