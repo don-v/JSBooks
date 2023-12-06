@@ -452,6 +452,38 @@ in the 'coding sandbox' for this chapter, where it is stored in the `JOURNAL`
 binding and in a downloadable [file](../../../to_ignore/04_DataStructures/journal.js)
 
 To extract a two-by-two table for a specific event from the journal, we must
-loop over all the entries ...
+loop over all the entries and tally how many times the event occurs in relation 
+to squirrel transformations:
 
-<!-- HERE -- compute corr -->
+```js
+function tableFor(event, journal) {
+  let table = [0, 0, 0, 0];
+  for (let i = 0; i < journal.length; i++) {
+    let entry = journal[i], index = 0;
+    if (entry.events.includes(event)) index += 1;
+    if (entry.squirrel) index += 2;
+    table[index] += 1;
+  }
+  return table;
+}
+
+console.log(tableFor("pizza", JOURNAL));
+// → [76, 9, 4, 1]
+```
+
+Arrays have an `includes` method that checks whether a given value exists in
+the array. The function  uses that to determine whether the event name it is
+interested in is part of the event list for a given day.
+
+The body of the loop in `tableFor` figures out which box in the table each
+journal entry falls into by checking whether the entry contains the specific
+event it's interested in and whether the even happens alongside a squirrel
+incident. The loop then adds one to the correct box in the table.
+
+We now have the tools we need to compute the individual correlations. The only
+step remaining is to find a correlation for every type of even that was recorded
+and see whether anything stands out.
+
+## ARRAY LOOPS
+
+<!-- HERE -- ARRAY LOOPS -->
