@@ -486,4 +486,34 @@ and see whether anything stands out.
 
 ## ARRAY LOOPS
 
+In the `tableFor` function, there's a loop like this:
+
+```js
+for (let i = 0; i < JOURNAL.length; i++) {
+  let entry = JOURNAL[i];
+  // Do something with entry
+}
+```
+
+This kind of loop is common in classical JS -- going over arrays one element
+at a time is something that comes up a lot, and to do that one'd run a counter
+over the length of the array and pick out each element in turn.
+
+There is a simpler way to write such loops in modern JS.
+
+```js
+for (let entry of JOURNAL) {
+  console.log(`${entry.events.length} events.`);
+}
+```
+
+When a `for` loop looks like this, with the word `of` after a variable definition,
+it will loop over the elements of the value given after `of`. This works not only 
+for arrays but also for strings and some other data structures. We'll discuss _how_
+it works in C6.
+
+## THE FINAL ANALYSIS
+
+We need to compute ...
+
 <!-- HERE -- ARRAY LOOPS -->
