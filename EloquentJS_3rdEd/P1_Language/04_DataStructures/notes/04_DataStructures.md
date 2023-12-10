@@ -573,6 +573,43 @@ for (let event of journalEvents(JOURNAL)) {
 ```
 
 Aha! There are two factors with a correlation that's clearly stronger than
-the others ...
+the others. Eating peanuts has a strong positive effect on the chance of 
+turning into a squirrel, whereas brushing his teeth has a significant negative
+effect. 
 
-<!-- HERE -- Final analysis -->
+Interesting let's try something:
+
+```js
+for (let entry of JOURNAL) {
+  if (entry.events.includes("peanuts") &&
+     !entry.events.includes("brushed teeth")) {
+    entry.events.push("peanut teeth");
+  }
+}
+console.log(phi(tableFor("peanut teeth", JOURNAL)));
+// → 1
+```
+
+That's a strong result. The phenomenon occurs precisely when Jacques
+eats peanuts and fails to brush his teeth. If only he weren't such a 
+slob about dental hygiene, he'd ahve never even noticed his affliction.
+
+Knowing this, Jacques stops eating peanuts altogether and finds that
+his transformation don't come back.
+
+For a few years, things go well for Jacques. Bat at some point, he loses
+his job. Because he lives in a nasty country where having no job means
+having no medical services, he is forced to take employment with a circus
+where he performs _The Incredibl Squirrelman_, stuffing his mouth peanut
+butter before every show.
+
+One day, fed up with his pitiful existence, Jacques fails to change into 
+his human form, hops through a crack in the circus tend, and vanishes into
+the forest. He is never seen again. 
+
+## FURTHER ARRAYOLOGY
+
+Before finishing this chapter, teach wants to introduce us to a few more
+object-related concepts. 
+
+<!-- HERE -- further arrayology -->
