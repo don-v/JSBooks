@@ -610,6 +610,40 @@ the forest. He is never seen again.
 ## FURTHER ARRAYOLOGY
 
 Before finishing this chapter, teach wants to introduce us to a few more
-object-related concepts. 
+object-related concepts. Teach starts by introducing some generally useful
+array methods.
+
+Previously, we used `push` and `pop`, which are `array` methods that remove 
+elements at the end of the array, earlier in the chapter.  The corresponding
+methods for adding and removing things at the start of an array are called
+`unshift` and `shift`:
+
+```js
+let todoList = [];
+function remember(task) {
+  todoList.push(task);
+}
+function getTask() {
+  return todoList.shift();
+}
+function rememberUrgently(task) {
+  todoList.unshift(task);
+}
+```
+
+That program manages a queue of tasks. One adds tasks to the end of the
+queue by calling `remember("groceries")`, and when one is ready to do something,
+one calls `getTask` to get (and remove) the front item from the queue. The
+`rmemeberUrgently` function also adds a task but adds it ot the front instead
+of the back of the queue.
+
+To search for a specific value, arrays provides an `indexOf` method. The method
+searches through the array from the start to the end and returns the index at
+which the requested value was found or `-1` if it wasn't found. To search from
+the end instead of teh start, there's a similar method called `lastIndexOf`:
+
+```js
+// HERE
+```
 
 <!-- HERE -- further arrayology -->
