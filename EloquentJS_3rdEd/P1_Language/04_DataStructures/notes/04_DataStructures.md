@@ -643,7 +643,28 @@ which the requested value was found or `-1` if it wasn't found. To search from
 the end instead of teh start, there's a similar method called `lastIndexOf`:
 
 ```js
-// HERE
+console.log([1, 2, 3, 2, 1].indexOf(2));
+// → 1
+console.log([1, 2, 3, 2, 1].lastIndexOf(2));
+// → 3
 ```
+
+Both `indexOf` and `lastIndexOf` take an optional second argument that indicates
+where to start searching.
+
+Anohter fundamental array method is `slice`, which takes `start` and `end` indices
+and returns an array that has only the elements between them. The `start` index 
+is inclusive, the `end` index exclusive:
+
+```js
+console.log([0, 1, 2, 3, 4].slice(2, 4));
+// → [2, 3]
+console.log([0, 1, 2, 3, 4].slice(2));
+// → [2, 3, 4]
+```
+
+
+When the `end` index is not given, `slice` will take all of the elements after the
+`start` index.
 
 <!-- HERE -- further arrayology -->
