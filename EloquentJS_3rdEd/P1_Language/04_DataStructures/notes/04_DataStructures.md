@@ -663,8 +663,31 @@ console.log([0, 1, 2, 3, 4].slice(2));
 // → [2, 3, 4]
 ```
 
-
 When the `end` index is not given, `slice` will take all of the elements after the
-`start` index.
+`start` index. One can also omit the `start` index to copy the entire array.
 
-<!-- HERE -- further arrayology -->
+The `concat` method can be used to glue arrays together to create a new array, 
+siilar to what the `+` operator does for `string` objects.
+
+The following example shows both `concat` and `slice` in action. It takes an 
+array and an index, and it returns a new array that is a copy of the original
+array with the element at the given index removed.
+
+```js
+function remove(array, index) {
+  return array.slice(0, index)
+    .concat(array.slice(index + 1));
+}
+console.log(remove(["a", "b", "c", "d", "e"], 2));
+// → ["a", "b", "d", "e"]
+```
+
+If one passes `concat` an argument that is not an array, that value will 
+be added to the new arrray as if it were a one-element array.
+
+## STRINGS AND THEIR PROPERTIES
+
+One can read properties like `length` and `toUpperCase` form string values. 
+But if one tries ot add a new property, it doesn't stick:
+
+<!-- HERE -- strings and their props -->
