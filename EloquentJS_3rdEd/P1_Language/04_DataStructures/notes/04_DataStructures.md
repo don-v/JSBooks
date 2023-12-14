@@ -688,6 +688,46 @@ be added to the new arrray as if it were a one-element array.
 ## STRINGS AND THEIR PROPERTIES
 
 One can read properties like `length` and `toUpperCase` form string values. 
-But if one tries ot add a new property, it doesn't stick:
+But if one tries to add a new property, it doesn't stick:
+
+```js
+let kim = "Kim";
+kim.age = 88;
+console.log(kim.age);
+// → undefined
+```
+
+Values of type `string`, `number`, and `Boolean` are not objects, and
+though the language doesn't complain if one tries to set new properties
+on them, it doesn't actually store these properteis. As mentioned earlier,
+such values are immutable, and cannot be changed.
+
+But these types _do_ have built-in properties. Eveyry string value has a 
+number of methods. some very useful ones are `slice` and `indexOf`, which 
+resemeble the array methods of the same name:
+
+```js
+console.log("coconuts".slice(4, 7));
+// → nut
+console.log("coconut".indexOf("u"));
+// → 5
+```
+
+One difference is that a `string`'s `indexOf` can search for a string 
+containing more than one character, whereas the corresponding array method
+looks only for a single element.
+
+```js
+console.log("one two three".indexOf("ee"));
+// → 11
+```
+
+The `trim` method removes whitespace (spaces, newlines, tabs, and similar
+characters) from the start and end of a string:
+
+```js
+console.log("  okay \n ".trim());
+// → okay
+```
 
 <!-- HERE -- strings and their props -->
