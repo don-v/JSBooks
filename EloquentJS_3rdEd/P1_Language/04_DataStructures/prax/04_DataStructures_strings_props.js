@@ -86,3 +86,18 @@ console.log(x);
 console.log("LA".repeat(3));
 // → LALALA
 
+x = `
+let string = "abc";
+console.log(string.length);
+// → 3
+console.log(string[1]);
+// → b
+`;
+
+console.log(x);
+
+let string = "abc";
+console.log('console.log(string.length);:',string.length);
+// → 3
+console.log('console.log(string[1]);:',string[1]);
+// → b

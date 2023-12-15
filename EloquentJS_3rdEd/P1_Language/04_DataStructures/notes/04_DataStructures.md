@@ -759,4 +759,16 @@ console.log("LA".repeat(3));
 // → LALALA
 ```
 
+We have already seen the string type's `length` property. Accessing the
+indivdiual characters in a string looks like accessing array alements (with
+a caveat that we'll discuss in C5):
+
+```js
+let string = "abc";
+console.log(string.length);
+// → 3
+console.log(string[1]);
+// → b
+```
+
 <!-- HERE -- strings and their props -->
