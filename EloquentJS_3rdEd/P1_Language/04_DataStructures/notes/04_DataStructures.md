@@ -771,4 +771,44 @@ console.log(string[1]);
 // → b
 ```
 
-<!-- HERE -- strings and their props -->
+## REST PARAMETERS
+
+It can be useful for a function to accept any number of arguments. For 
+example, `Math.max` computes the maximum of _all_ the arguments is given.
+
+To write such a funciton, one puts three dots before the function's last
+parameter, like this:
+
+```js
+function max(...numbers) {
+  let result = -Infinity;
+  for (let number of numbers) {
+    if (number > result) result = number;
+  }
+  return result;
+}
+console.log(max(4, 1, 9, -2));
+// → 9
+```
+
+When such a function is called, the _rest parameter_ is bound to an array
+containing all further arguments. If there are other parameters before it,
+their values aren't part of that array. When, as in `max`, it is the only
+parameter, it will hold all arguments.
+
+One can use a similar three-dot notation to call a function with an array
+of arguments. 
+
+```js
+let numbers = [5, 1, 7];
+console.log(max(...numbers));
+// → 7
+```
+
+This "spreads" out the array into the function call, passing its elements
+as separate arguments. It is possible to include an array like that along
+with other arguments, as in `max(9, ...numbers, 2)`
+
+Square bracket array notation similarly allows the ...
+
+<!-- HERE -- rest parameters -->
