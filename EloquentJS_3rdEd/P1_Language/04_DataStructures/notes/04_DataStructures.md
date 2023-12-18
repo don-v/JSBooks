@@ -809,6 +809,26 @@ This "spreads" out the array into the function call, passing its elements
 as separate arguments. It is possible to include an array like that along
 with other arguments, as in `max(9, ...numbers, 2)`
 
-Square bracket array notation similarly allows the ...
+Square bracket array notation similarly allows the triple-dot operator to 
+spread another array in the new array:
 
-<!-- HERE -- rest parameters -->
+```js
+let words = ["never", "fully"];
+console.log(["will", ...words, "understand"]);
+// → ["will", "never", "fully", "understand"]
+```
+
+## THE MATH OBJECT
+
+As we've seen, `Math` is a grab bag of number-related utility function, such
+as `Math.max` (maximum), `Math.min` (minimum), and `Math.sqrt` (square root).
+
+The `Math` object is used as a container to group a bunch of related functionality.
+There is only one `Math` object, and it is almost never useful as a value. Rather,
+it provides a _namespace_ so that all these functions and values do not have to be
+global bindings.
+
+Having too many global bindings "pollutes" the namespace. The more names
+have been taken, the more likely one ...
+
+<!-- HERE -- the math object -->

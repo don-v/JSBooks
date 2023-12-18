@@ -35,3 +35,15 @@ let numbers = [5, 1, 7];
 console.log('console.log(max(...numbers));:',max(...numbers));
 // → 7
 
+x = `
+let words = ["never", "fully"];
+console.log(["will", ...words, "understand"]);
+// → ["will", "never", "fully", "understand"]
+`;
+
+console.log(x);
+
+let words = ["never", "fully"];
+console.log('console.log(["will", ...words, "understand"]);:',["will", ...words, "understand"]);
+// → ["will", "never", "fully", "understand"]
+
