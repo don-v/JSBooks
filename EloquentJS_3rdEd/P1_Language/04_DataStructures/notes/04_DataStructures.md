@@ -829,6 +829,33 @@ it provides a _namespace_ so that all these functions and values do not have to 
 global bindings.
 
 Having too many global bindings "pollutes" the namespace. The more names
-have been taken, the more likely one ...
+have been taken, the more likely one is to accidentally overwrite the value of
+some existing binding. For example, it's not unlikely to want to name something
+`max` in one's programs. Since JS' built-in `max` function is tucked safely 
+inside the `Math` object, we don't have to worry about overwriting it.
+
+Many languages will warn or prevent one from defining a binding with a name that
+is already taken. JS does this for bindings one declared with `let` or `const`,
+but -- perversely -- not for standard bindings nor for bindings declared with 
+`var` or `function`.
+
+Back to the `Math` object, if one needs to do trigonometry, `Math` can help. It
+contains `cos` (cosine), `sin` (sine), and `tan` (tangent), as well as their 
+inverse functions `acos`, `asin`, and `atan`, respectively. The number $\pi$
+(pi) -- or at least the closest approximation that fits in a JS number -- is
+available as `Math.PI`. There is an old programming tradition of writing the 
+name of constant values in all caps.
+
+```js
+function randomPointOnCircle(radius) {
+  let angle = Math.random() * 2 * Math.PI;
+  return {x: radius * Math.cos(angle),
+          y: radius * Math.sin(angle)};
+}
+console.log(randomPointOnCircle(2));
+// → {x: 0.3667, y: 1.966}
+```
+
+If sines and cosines are not ...
 
 <!-- HERE -- the math object -->
