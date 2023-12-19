@@ -856,6 +856,37 @@ console.log(randomPointOnCircle(2));
 // → {x: 0.3667, y: 1.966}
 ```
 
-If sines and cosines are not ...
+If sines and cosines are not something one is familiar with, teach will review 
+them in C14.
+
+The previous example used `Math.random`. This is a function that returns a new
+pseudoranom number between zero (inclusive) and one (exclusive) every time it
+is called.
+
+```js
+console.log(Math.random());
+// → 0.36993729369714856
+console.log(Math.random());
+// → 0.727367032552138
+console.log(Math.random());
+// → 0.40180766698904335
+```
+
+Though computers are deterministic machines -- they always react the same way if
+given the same input -- it is possible to have them produce numbers that appear 
+random. To do that, the machine keeps some hidden value, and whenever one asks for a
+new random number, it performs comlicated computations on this hidden value to 
+create a new value. It stores a new value and returns some number derived form it. 
+That way, it can produce ever new, hard-to-predict numbers in a way that _seems_
+random.
+
+If one wanted a whole random number, instead of a fractional one, one can use
+`Math.floor` (which rounds down to the nearest whole number) on the result
+of `Math.random`.
+
+```js
+console.log(Math.floor(Math.random() * 10));
+// → 2
+```
 
 <!-- HERE -- the math object -->
