@@ -889,4 +889,58 @@ console.log(Math.floor(Math.random() * 10));
 // → 2
 ```
 
-<!-- HERE -- the math object -->
+Multiplying the random number by 10 gives us a number greater than or equal to
+0 and below 10. Since `Math.floor` rounds down, this expression will produce,
+with equal chance, any number from 0 through 9.
+
+There are also the function `Math.ceil` (for "ceiling", which rounds up to a whole
+number), `Math.round` (to the nearest whole number), and `Math.abs`, which takes
+the absolute value of a number, meaning it negates negative values, but leaves
+positive values as they are. 
+
+## DESTRUCTURING
+
+Let's go back to the `phi` function for a moment. 
+
+```js
+function phi(table) {
+  return (table[3] * table[0] - table[2] * table[1]) /
+    Math.sqrt((table[2] + table[3]) *
+              (table[0] + table[1]) *
+              (table[1] + table[3]) *
+              (table[0] + table[2]));
+}
+```
+
+One of the reasons this function is awkward to read is that there is
+a binding pointing to an array, but it would be much more prefereable to
+have bindings to individual _elements_ of the array, that is, 
+`let n00 = table[0]` and so on. Fortunately, there is a succinct way to
+do this in JS:
+
+```js
+function phi([n00, n01, n10, n11]) {
+  return (n11 * n00 - n10 * n01) /
+    Math.sqrt((n10 + n11) * (n00 + n01) *
+              (n01 + n11) * (n00 + n10));
+}
+```
+
+This also works for bindings crated with `let`, `var`, or `const`. If 
+one knows the value one is binding in an array, one cna use square brackets
+to "look inside" of the value, binding its contents.
+
+A similar trick works for objects, using braces instead of square brackets.
+
+```js
+let {name} = {name: "Faraji", age: 23};
+console.log(name);
+// → Faraji
+```
+
+Note that if one tries to destructure `null` or `undefined`, one gets an
+error, much as one would if one tried to access a property of those values.
+
+## JSON
+
+<!-- HERE -- JSON -->
