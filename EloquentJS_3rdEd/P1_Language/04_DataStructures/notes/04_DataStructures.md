@@ -991,7 +991,7 @@ console.log(JSON.parse(string).events);
 // → ["weekend"]
 ```
 
-# SUMMARY
+## SUMMARY
 
 Objects and arrays (which are a specific kind of object) provide ways to 
 group several values into a single value. Conceptually, this allows us to put
@@ -1002,6 +1002,34 @@ on to them separately.
 Most values in JS have properties, the exceptiosn being `null` and 
 `undefined`. Properties are accessed using `value.prop` or
 `value["prop"]`. Objects tend to use names for their properties and
-store more or less a fixed set of them.
+store more or less a fixed set of them. Arrays, on the other hand, usually
+contain varifying amounts of conceptually identical values and use numbers
+(starting from 0) as the names of their properties.
 
-<!-- HERE -- SUMMARY -->
+There _are_ some named properties in arrays, such as `length` and a number
+of methods. Methods are functions that live in properties and (usually) act
+on the value they are a proeprty of. 
+
+One can iterate over arrays using a special kind of `for` loop -- 
+`for (let element of array)`.
+
+## EXERCISES
+
+### THE SUM OF A RANGE
+
+The introduction of this book alluded to the following as a nice way to compute
+the sum of a range of numbers:
+
+```js
+console.log(sum(range(1, 10)));
+```
+
+Write a `range` function that takes two arguments, `start` and `end`, and returns
+an array containing all the numbers from `start` up to (and including) `end`.
+
+Next, write a `sum` function that takes an array of numbers and returns the sum of
+these numbers. Run the example program and see whether it does indeed return `55`.
+
+As a bonus assignment ...
+
+<!-- HERE -- exercise -- sum of range -->
