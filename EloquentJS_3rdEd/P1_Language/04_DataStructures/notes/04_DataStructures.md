@@ -1048,4 +1048,4 @@ console.log(sum(range(1, 10)));
 // → 55
 ```
 
-<!-- HERE -- exercise -- sum of range -->
+<!-- HERE -- exercise -- sum of range +-->

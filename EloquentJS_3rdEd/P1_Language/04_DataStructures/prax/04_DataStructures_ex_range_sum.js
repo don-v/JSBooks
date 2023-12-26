@@ -2,7 +2,7 @@
 the sum of a range of numbers:
  */
 
-console.log(sum(range(1, 10)));
+// console.log(sum(range(1, 10)));
 
 
 /* Write a `range` function that takes two arguments, `start` and `end`, and returns
@@ -22,16 +22,27 @@ produces  `[5, 4, 3, 2]`
 
 // Your code here.
 
-function range(start, end) {
-    
+function range1(start, end) {
+    let x = [start]
+    for (let index = start + 1; index <= end; index++) {
+        x.push(index);
+    }
+    return x;
+}
+
+function range2(start, end, step) {
+    let x = [start]
+    for (let index = start + 1; index <= end; index++) {
+        x.push(index);
+    }
+    return x;
 }
 
 
-
-console.log(range(1, 10));
+console.log(range1(1, 10));
 // → [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-console.log(range(5, 2, -1));
+// console.log(range(5, 2, -1));
 // → [5, 4, 3, 2]
-console.log(sum(range(1, 10)));
+//console.log(sum(range(1, 10)));
 // → 55
 
