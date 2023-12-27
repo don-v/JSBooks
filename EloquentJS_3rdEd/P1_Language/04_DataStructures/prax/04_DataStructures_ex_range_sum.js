@@ -64,3 +64,12 @@ console.log('console.log(range2(1, 10, 2));:',range2(1, 10, 2));
 console.log('console.log(sum1(range1(1, 10)));:',sum1(range1(1, 10)));
 // → 55
 
+/* 
+console.log(range1(1, 10));: [
+  1, 2, 3, 4,  5,
+  6, 7, 8, 9, 10
+]
+console.log(range2(5, 2, -1));: [ 5, 4, 3, 2 ]
+console.log(range2(1, 10, 2));: [ 1, 3, 5, 7, 9 ]
+console.log(sum1(range1(1, 10)));: 55
+*/

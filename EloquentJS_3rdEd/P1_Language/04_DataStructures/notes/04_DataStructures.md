@@ -1048,4 +1048,114 @@ console.log(sum(range(1, 10)));
 // → 55
 ```
 
-<!-- HERE -- exercise -- sum of range ++-->
+Here's my solution:
+
+```js
+function range1(start, end) {
+    let x = [start]
+    for (let index = start + 1; index <= end; index++) {
+        x.push(index);
+    }
+    return x;
+}
+
+
+function sum1(arr) {
+    total = 0;
+    for (let x of arr) {
+        total += x;
+    }
+    return total
+}
+
+
+function range2(start, end, step=1) {
+    let x = [start]
+    if (step > 0) {
+        for (let index = start + step; index <= end; index += step) {
+            x.push(index);
+        }    
+    } else {
+        for (let index = start + step; index >= end; index += step) {
+            x.push(index);
+        }
+    }
+    return x;
+}
+
+
+console.log('console.log(range1(1, 10));:',range1(1, 10));
+// → [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+console.log('console.log(range2(5, 2, -1));:',range2(5, 2, -1));
+// → [5, 4, 3, 2]
+console.log('console.log(range2(1, 10, 2));:',range2(1, 10, 2));
+// → [ 1, 3, 5, 7, 9 ]
+console.log('console.log(sum1(range1(1, 10)));:',sum1(range1(1, 10)));
+// → 55
+
+/* 
+console.log(range1(1, 10));: [
+  1, 2, 3, 4,  5,
+  6, 7, 8, 9, 10
+]
+console.log(range2(5, 2, -1));: [ 5, 4, 3, 2 ]
+console.log(range2(1, 10, 2));: [ 1, 3, 5, 7, 9 ]
+console.log(sum1(range1(1, 10)));: 55
+*/
+```
+
+### DISPLAYING HINTS PROVIDED BY TEACH
+
+Building up an array is most easily done by first initializing a binding to [] 
+(a fresh, empty array) and repeatedly calling its push method to add a value. 
+Don’t forget to return the array at the end of the function.
+
+Since the end boundary is inclusive, you’ll need to use the <= operator rather 
+than < to check for the end of your loop.
+
+The step parameter can be an optional parameter that defaults (using the = 
+operator) to 1.
+
+Having range understand negative step values is probably best done by writing 
+two separate loops—one for counting up and one for counting down—because the 
+comparison that checks whether the loop is finished needs to be >= rather 
+than <= when counting downward.
+
+It might also be worthwhile to use a different default step, namely, -1, when 
+the end of the range is smaller than the start. That way, range(5, 2) returns 
+something meaningful, rather than getting stuck in an infinite loop. It is possible 
+to refer to previous parameters in the default value of a parameter.
+
+### TEACH'S SOLUTION
+
+```JS
+function range(start, end, step = start < end ? 1 : -1) {
+  let array = [];
+
+  if (step > 0) {
+    for (let i = start; i <= end; i += step) array.push(i);
+  } else {
+    for (let i = start; i >= end; i += step) array.push(i);
+  }
+  return array;
+}
+
+function sum(array) {
+  let total = 0;
+  for (let value of array) {
+    total += value;
+  }
+  return total;
+}
+
+console.log(range(1, 10))
+// → [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+console.log(range(5, 2, -1));
+// → [5, 4, 3, 2]
+console.log(sum(range(1, 10)));
+// → 55
+```
+
+## REVERSING AN ARRAY
+
+<!-- HERE -- exercise -- REVERSE ARRAY-->
