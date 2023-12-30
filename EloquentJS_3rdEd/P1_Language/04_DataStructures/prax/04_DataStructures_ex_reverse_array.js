@@ -22,6 +22,19 @@ function reverseArray(arr) {
     return result
 }
 
+function reverseArrayInPlace() {
+    let x = [1,2,3];
+    let y = [1,2,3,4];
+    halfX = Math.floor(x.length/2)
+    halfY = Math.floor(y.length/2)
+    console.log(`
+    x: ${x}
+    y: ${y}
+    halfX: ${halfX}
+    halfY: ${halfY}
+    `);
+}
+
 
 console.log(reverseArray(["A", "B", "C"]));
 // → ["C", "B", "A"];
@@ -31,3 +44,4 @@ let arrayValue = [1, 2, 3, 4, 5];
 // → [5, 4, 3, 2, 1]
 
 
+reverseArrayInPlace()
