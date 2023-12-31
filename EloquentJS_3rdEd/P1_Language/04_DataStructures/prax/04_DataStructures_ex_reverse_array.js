@@ -22,17 +22,25 @@ function reverseArray(arr) {
     return result
 }
 
-function reverseArrayInPlace() {
-    let x = [1,2,3];
-    let y = [1,2,3,4];
-    halfX = Math.floor(x.length/2)
-    halfY = Math.floor(y.length/2)
-    console.log(`
-    x: ${x}
-    y: ${y}
-    halfX: ${halfX}
-    halfY: ${halfY}
-    `);
+function reverseArrayInPlace(arr) {
+    // let x = [1,2,3];
+    // let y = [1,2,3,4];
+    // halfX = Math.floor(x.length/2)
+    // halfY = Math.floor(y.length/2)
+    // console.log(`
+    // x: ${x}
+    // y: ${y}
+    // halfX: ${halfX}
+    // halfY: ${halfY}
+    // `);
+    halfIdx = Math.floor(arr.length/2);
+    console.log('arr length:', arr.length);
+    for (let index = 0; index < arr.length; index++) {
+        arr.push(arr.shift());
+        
+    }
+    return arr;
+
 }
 
 
@@ -44,4 +52,4 @@ let arrayValue = [1, 2, 3, 4, 5];
 // → [5, 4, 3, 2, 1]
 
 
-reverseArrayInPlace()
+console.log('reverseArrayInPlace([1, 2, 3]):',reverseArrayInPlace([1, 2, 3]));
