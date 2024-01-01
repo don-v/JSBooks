@@ -23,23 +23,30 @@ function reverseArray(arr) {
 }
 
 function reverseArrayInPlace(arr) {
-    // let x = [1,2,3];
-    // let y = [1,2,3,4];
-    // halfX = Math.floor(x.length/2)
-    // halfY = Math.floor(y.length/2)
-    // console.log(`
-    // x: ${x}
-    // y: ${y}
-    // halfX: ${halfX}
-    // halfY: ${halfY}
-    // `);
+    let x = [1,2,3];
+    let y = [1,2,3,4];
+    let z = [1,2,3,4,5]
+    function half_arr(arr) {
+        return Math.floor(arr.length/2)
+    }
+    halfX = half_arr(x);
+    halfY = half_arr(y);
+    halfZ = half_arr(z);
+    console.log(`
+    x: ${x}
+    y: ${y}
+    z: ${z}
+    halfX: ${halfX}
+    halfY: ${halfY}
+    halfZ: ${halfZ}
+    `);
     halfIdx = Math.floor(arr.length/2);
     console.log('arr length:', arr.length);
     for (let index = 0; index < arr.length; index++) {
         arr.push(arr.shift());
         
     }
-    return arr;
+    // return arr;
 
 }
 
