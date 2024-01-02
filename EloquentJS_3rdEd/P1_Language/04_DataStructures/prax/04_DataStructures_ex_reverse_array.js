@@ -40,7 +40,7 @@ function reverseArrayInPlace(arr) {
     halfY: ${halfY}
     halfZ: ${halfZ}
     `);
-    halfIdx = Math.floor(arr.length/2);
+    halfIdx = Math.ceil(arr.length/2);
     console.log('arr length:', arr.length);
     for (let index = 0; index < arr.length; index++) {
         arr.push(arr.shift());
