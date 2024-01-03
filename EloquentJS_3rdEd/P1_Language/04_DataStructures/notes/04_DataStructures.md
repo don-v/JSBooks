@@ -1181,4 +1181,4 @@ console.log(arrayValue);
 // → [5, 4, 3, 2, 1]
 ```
 
-<!-- HERE -- exercise -- REVERSE ARRAY ++++ -->
+<!-- HERE -- exercise -- REVERSE ARRAY +++++ -->
