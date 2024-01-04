@@ -23,9 +23,13 @@ function reverseArray(arr) {
 }
 
 function reverseArrayInPlace(arr) {
+    z = arr;
+    console.log('z before arr was reversed:', z)
     for (let index = arr.length-2; index >= 0; index--) {
         arr.push(arr.splice(index,1).pop())
     }
+    console.log('z after arr was reversed:', z)
+    console.log('ensuring reversal was done "in place":\nz === arr:', z === arr);
     return arr;
 }
 

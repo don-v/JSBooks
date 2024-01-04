@@ -1181,4 +1181,78 @@ console.log(arrayValue);
 // → [5, 4, 3, 2, 1]
 ```
 
-<!-- HERE -- exercise -- REVERSE ARRAY +++++ -->
+Here is my solution:
+
+```js
+function reverseArray(arr) {
+    result = []
+    while (arr.length > 0) {
+        result.push(arr.pop())
+    }
+    return result
+}
+
+function reverseArrayInPlace(arr) {
+    z = arr;
+    console.log('z before arr was reversed:', z)
+    for (let index = arr.length-2; index >= 0; index--) {
+        arr.push(arr.splice(index,1).pop())
+    }
+    console.log('z after arr was reversed:', z)
+    console.log('ensuring reversal was done "in place":\nz === arr:', z === arr);
+    return arr;
+}
+
+
+console.log(reverseArray(["A", "B", "C"]));
+// → ["C", "B", "A"];
+let arrayValue = [1, 2, 3, 4, 5];
+reverseArrayInPlace(arrayValue);
+console.log(arrayValue);
+// → [5, 4, 3, 2, 1]
+
+
+console.log('reverseArrayInPlace([1, 2, 3]):',reverseArrayInPlace([1, 2, 3]));
+```
+
+### DISPLAY HINTS BY TEACH 
+
+```js
+/* There are two obvious ways to implement reverseArray. The first is to simply go over the input array from front to back and use the unshift method on the new array to insert each element at its start. The second is to loop over the input array backwards and use the push method. Iterating over an array backwards requires a (somewhat awkward) for specification, like (let i = array.length - 1; i >= 0; i--).
+
+Reversing the array in place is harder. You have to be careful not to overwrite elements that you will later need. Using reverseArray or otherwise copying the whole array (array.slice(0) is a good way to copy an array) works but is cheating.
+
+The trick is to swap the first and last elements, then the second and second-to-last, and so on. You can do this by looping over half the length of the array (use Math.floor to round down—you don’t need to touch the middle element in an array with an odd number of elements) and swapping the element at position i with the one at position array.length - 1 - i. You can use a local binding to briefly hold on to one of the elements, overwrite that one with its mirror image, and then put the value from the local binding in the place where the mirror image used to be. */
+```
+
+### TEACH'S SOLUTION: 
+
+Here is teach's solution:
+
+```js
+function reverseArray(array) {
+  let output = [];
+  for (let i = array.length - 1; i >= 0; i--) {
+    output.push(array[i]);
+  }
+  return output;
+}
+
+function reverseArrayInPlace(array) {
+  for (let i = 0; i < Math.floor(array.length / 2); i++) {
+    let old = array[i];
+    array[i] = array[array.length - 1 - i];
+    array[array.length - 1 - i] = old;
+  }
+  return array;
+}
+
+console.log(reverseArray(["A", "B", "C"]));
+// → ["C", "B", "A"];
+let arrayValue = [1, 2, 3, 4, 5];
+reverseArrayInPlace(arrayValue);
+console.log(arrayValue);
+// → [5, 4, 3, 2, 1]
+```
+
+<!-- 'A LIST' exercise! -->
