@@ -1255,4 +1255,30 @@ console.log(arrayValue);
 // → [5, 4, 3, 2, 1]
 ```
 
+## A LIST
+
+Objects, a generic blobs of values, can be used to build all sorts of data structures. A 
+common data structureis the _list_ (not to be confused with array). A list is a nested set 
+of objects, with the first object building holding a reference to the second, the second
+to the third, and so on.
+
+```js
+let list = {
+  value: 1,
+  rest: {
+    value: 2,
+    rest: {
+      value: 3,
+      rest: null
+    }
+  }
+};
+```
+
+The resulting objects form a chian, like this:
+
+![chain_object](./../../../to_ignore/04_DataStructures/chain_object.png)
+
+A nice thing about lists ...
+
 <!-- 'A LIST' exercise! -->
