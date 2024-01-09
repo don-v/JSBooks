@@ -36,7 +36,7 @@ If one hasn't already, also write a recursive version of `nth`.
 // Your code here.
 
 function arrayToList(arr) {
-  let list = {}
+  let list = {};
   let i = 0;
   while (i < arr.lengh) {
     if (i === 0) {
