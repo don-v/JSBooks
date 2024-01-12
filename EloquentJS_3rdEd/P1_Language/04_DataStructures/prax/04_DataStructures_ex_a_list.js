@@ -36,19 +36,21 @@ If one hasn't already, also write a recursive version of `nth`.
 // Your code here.
 
 function arrayToList(arr) {
-  let list = {};
   let i = 0;
-  while (i < arr.lengh) {
+  let list = {};
+  while (i < arr.length) {
     if (i === 0) {
-      list.value = arr[i];
-      list.rest = {value: null};
+      list.value = i;
+      list.rest = {};
+      console.log(list);
+    } else {
+      list.rest.value = i;
+      list.rest.rest = {};
+      console.log(list);
     }
-    else {
-      list.rest = {value: arr[i], rest: {value: null}}
-    }
+    console.log(i);
     i += 1;
   }
-  return list
 }
 
 
