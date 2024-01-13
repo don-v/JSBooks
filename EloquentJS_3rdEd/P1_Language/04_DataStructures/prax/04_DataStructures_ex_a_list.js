@@ -41,16 +41,16 @@ function arrayToList(arr) {
   while (i < arr.length) {
     if (i === 0) {
       list.value = i;
-      list.rest = {};
-      console.log(list);
+      list.rest  = null;
     } else {
-      list.rest.value = i;
-      list.rest.rest = {};
-      console.log(list);
+      let temp = {}
+      temp.value = i;
+      temp.rest = null;  
+      list.rest = temp;
     }
-    console.log(i);
     i += 1;
   }
+  console.log(list);
 }
 
 

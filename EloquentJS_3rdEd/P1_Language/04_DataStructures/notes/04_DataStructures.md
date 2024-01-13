@@ -1310,4 +1310,4 @@ console.log(nth(arrayToList([10, 20, 30]), 1));
 // → 20
 ```
 
-<!-- 'A LIST' exercise!++++++ -->
+<!-- 'A LIST' exercise!+++++++ -->
