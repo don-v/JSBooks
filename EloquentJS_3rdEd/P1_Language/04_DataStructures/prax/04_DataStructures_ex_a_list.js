@@ -35,27 +35,12 @@ If one hasn't already, also write a recursive version of `nth`.
 
 // Your code here.
 
-function arrayToList(array, rest=null) {
-  
+function arrayToList(array, ) {
+  new_array = array.slice(1);
+  return {value: array[0], rest: array[1] ? arrayToList(new_array): null  }
 }
 
-
-
-function arrayToList2(array) {
-  let temps = [];
-  for (let index = 0; index < array.length; index++) {
-    let value = array[index];
-    console.log(value);
-    temps.push({value: value, rest: null});
-  }
-  console.log(temps);
-  return temps;
-}
-
-
-
-
-console.log(arrayToList2([10, 20]));
+console.log(arrayToList([10, 20, 30]));
 // → {value: 10, rest: {value: 20, rest: null}}
 // console.log(listToArray(arrayToList([10, 20, 30])));
 // → [10, 20, 30]
