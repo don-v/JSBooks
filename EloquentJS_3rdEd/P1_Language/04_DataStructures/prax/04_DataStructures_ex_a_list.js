@@ -40,7 +40,19 @@ function arrayToList(array, ) {
   return {value: array[0], rest: array[1] ? arrayToList(new_array): null  }
 }
 
-console.log(arrayToList([10, 20, 30]));
+let x = arrayToList([10, 20])
+
+function listToArray(list) {
+  array = new Array;
+  return array;
+}
+
+console.log('list:', x);
+
+console.log(listToArray(x));
+
+
+// console.log(arrayToList([10, 20, 30]));
 // → {value: 10, rest: {value: 20, rest: null}}
 // console.log(listToArray(arrayToList([10, 20, 30])));
 // → [10, 20, 30]
