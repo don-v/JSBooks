@@ -37,24 +37,18 @@ If one hasn't already, also write a recursive version of `nth`.
 
 function arrayToList(array, ) {
   new_array = array.slice(1);
-  return {value: array[0], rest: array[1] ? arrayToList(new_array): null  }
+  return {value: array[0], rest: array[1] ? arrayToList(new_array) : null  }
 }
-
-let x = arrayToList([10, 20])
 
 function listToArray(list) {
   array = new Array;
-  return array;
+  array.push(list.value);
+  return list.rest ? array.concat(listToArray(list.rest)) : array;
 }
 
-console.log('list:', x);
-
-console.log(listToArray(x));
-
-
-// console.log(arrayToList([10, 20, 30]));
+console.log(arrayToList([10, 20, 30]));
 // → {value: 10, rest: {value: 20, rest: null}}
-// console.log(listToArray(arrayToList([10, 20, 30])));
+console.log(listToArray(arrayToList([10, 20, 30])));
 // → [10, 20, 30]
 // console.log(prepend(10, prepend(20, null)));
 // → {value: 10, rest: {value: 20, rest: null}}
