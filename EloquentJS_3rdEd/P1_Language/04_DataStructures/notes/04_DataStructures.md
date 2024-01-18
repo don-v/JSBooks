@@ -1300,6 +1300,27 @@ If one hasn't already, also write a recursive version of `nth`.
 ```js
 // Your code here.
 
+function arrayToList(array, ) {
+  new_array = array.slice(1);
+  return {value: array[0], rest: array[1] ? arrayToList(new_array) : null  }
+}
+
+function listToArray(list) {
+  array = new Array;
+  array.push(list.value);
+  return list.rest ? array.concat(listToArray(list.rest)) : array;
+}
+
+function prepend(value, list) {
+  let rest = list;
+  return {value, rest};
+}
+
+function nth(list, idx) {
+  return listToArray(list).slice(idx,idx+1).pop();
+}
+
+
 console.log(arrayToList([10, 20]));
 // → {value: 10, rest: {value: 20, rest: null}}
 console.log(listToArray(arrayToList([10, 20, 30])));
