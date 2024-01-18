@@ -46,11 +46,20 @@ function listToArray(list) {
   return list.rest ? array.concat(listToArray(list.rest)) : array;
 }
 
+function prepend(value, list) {
+  let rest = list;
+  return {value, rest};
+}
+
+function nth(list, idx) {
+  
+}
+
 console.log(arrayToList([10, 20, 30]));
 // → {value: 10, rest: {value: 20, rest: null}}
 console.log(listToArray(arrayToList([10, 20, 30])));
 // → [10, 20, 30]
-// console.log(prepend(10, prepend(20, null)));
+console.log(prepend(10, prepend(20, null)));
 // → {value: 10, rest: {value: 20, rest: null}}
 // console.log(nth(arrayToList([10, 20, 30]), 1));
 // → 20
