@@ -1419,4 +1419,4 @@ console.log(deepEqual(obj, {here: {is: "an"}, object: 2}));
 
 ### TEACH'S SOLUTION
 
-<!-- 'DEEP COMPARISON EX! -->
+<!-- 'DEEP COMPARISON EX!+ -->

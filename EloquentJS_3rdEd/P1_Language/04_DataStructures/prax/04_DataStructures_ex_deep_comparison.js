@@ -25,6 +25,15 @@ function deepEqual(o1, o2) {
     console.log('typeof o1: ',x);
     console.log('typeof x', typeof x);
     console.log('typeof o2: ',typeof o2);
+
+    if (typeof o1 !== typeof o2 ) {
+        return false
+    } else if (typeof o1 !== "object") {
+        return o1 === o2
+    } else {
+        
+    }
+
 }
 
 
