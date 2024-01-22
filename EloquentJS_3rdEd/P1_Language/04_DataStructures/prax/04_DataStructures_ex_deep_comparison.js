@@ -31,7 +31,11 @@ function deepEqual(o1, o2) {
     } else if (typeof o1 !== "object") {
         return o1 === o2
     } else {
-        
+        for (const k1 of Object.keys(o1)) {
+            for (const k2 of Object.keys(o2)) {
+                deepEqual(k1,k2)
+            }
+        }
     }
 
 }
