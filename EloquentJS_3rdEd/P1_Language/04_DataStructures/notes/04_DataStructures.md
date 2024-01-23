@@ -1415,8 +1415,71 @@ console.log(deepEqual(obj, {here: {is: "an"}, object: 2}));
 
 ### MY SOLUTION
 
+```js
+function deepEqual(o1, o2) {
+    let objOneType = typeof o1;
+    let objTwoType = typeof o2;
+    // 0. check equality if neither is an object, but they are still the same type
+    if (objOneType !== 'object' && objTwoType !== 'object' && objOneType === objTwoType) return o1 === o2;
+    // 1. if they are different types, we can return false, they can't be equal!
+    if (objOneType !== objTwoType) return false;
+    // 2. if they are both objects, and not null, then we have to check
+    if ((o1 !== null && objOneType === 'object') && (o2 !== null && objTwoType === 'object')) {
+    // to see if each each have the same properties, if they don't then
+    // we return false. -- 
+        let objOneProps = Object.keys(o1);
+        let objTwoProps = Object.keys(o2);
+    // a. first we can check the length of the array of
+    // properties to see that they are the same. 
+        if (objOneProps.length !== objTwoProps.length) return false;
+    // b. then we have to check the order.
+        for (let index = 0; index < objOneProps.length; index++) {
+            if (objOneProps[index] !== objTwoProps[index]) return false;
+            else {
+                // c. then we have to compare the values associated with 
+                // each property
+                return deepEqual(o1[objOneProps[index]],o2[objTwoProps[index]])
+            }
+        }
+    }
+}
+```
+
 ### DISPLAY HINTS
+
+<!-- 
+Your test for whether you are dealing with a real object will look something like typeof x == "object" && x != null. Be careful to compare properties only when both arguments are objects. In all other cases you can just immediately return the result of applying ===.
+
+Use Object.keys to go over the properties. You need to test whether both objects have the same set of property names and whether those properties have identical values. One way to do that is to ensure that both objects have the same number of properties (the lengths of the property lists are the same). And then, when looping over one of the object’s properties to compare them, always first make sure the other actually has a property by that name. If they have the same number of properties and all properties in one also exist in the other, they have the same set of property names.
+
+Returning the correct value from the function is best done by immediately returning false when a mismatch is found and returning true at the end of the function.
+ -->
 
 ### TEACH'S SOLUTION
 
-<!-- 'DEEP COMPARISON EX!++ -->
+```js
+function deepEqual(a, b) {
+  if (a === b) return true;
+  
+  if (a == null || typeof a != "object" ||
+      b == null || typeof b != "object") return false;
+
+  let keysA = Object.keys(a), keysB = Object.keys(b);
+
+  if (keysA.length != keysB.length) return false;
+
+  for (let key of keysA) {
+    if (!keysB.includes(key) || !deepEqual(a[key], b[key])) return false;
+  }
+
+  return true;
+}
+
+let obj = {here: {is: "an"}, object: 2};
+console.log(deepEqual(obj, obj));
+// → true
+console.log(deepEqual(obj, {here: 1, object: 2}));
+// → false
+console.log(deepEqual(obj, {here: {is: "an"}, object: 2}));
+// → true
+```

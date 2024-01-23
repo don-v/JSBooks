@@ -21,23 +21,31 @@ of object to compare them.
 // Your code here.
 
 function deepEqual(o1, o2) {
-    let x = typeof o1;
-    console.log('typeof o1: ',x);
-    console.log('typeof x', typeof x);
-    console.log('typeof o2: ',typeof o2);
-
-    if (typeof o1 !== typeof o2 ) {
-        return false
-    } else if (typeof o1 !== "object") {
-        return o1 === o2
-    } else {
-        for (const k1 of Object.keys(o1)) {
-            for (const k2 of Object.keys(o2)) {
-                deepEqual(k1,k2)
+    let objOneType = typeof o1;
+    let objTwoType = typeof o2;
+    // 0. check equality if neither is an object, but they are still the same type
+    if (objOneType !== 'object' && objTwoType !== 'object' && objOneType === objTwoType) return o1 === o2;
+    // 1. if they are different types, we can return false, they can't be equal!
+    if (objOneType !== objTwoType) return false;
+    // 2. if they are both objects, and not null, then we have to check
+    if ((o1 !== null && objOneType === 'object') && (o2 !== null && objTwoType === 'object')) {
+    // to see if each each have the same properties, if they don't then
+    // we return false. -- 
+        let objOneProps = Object.keys(o1);
+        let objTwoProps = Object.keys(o2);
+    // a. first we can check the length of the array of
+    // properties to see that they are the same. 
+        if (objOneProps.length !== objTwoProps.length) return false;
+    // b. then we have to check the order.
+        for (let index = 0; index < objOneProps.length; index++) {
+            if (objOneProps[index] !== objTwoProps[index]) return false;
+            else {
+                // c. then we have to compare the values associated with 
+                // each property
+                return deepEqual(o1[objOneProps[index]],o2[objTwoProps[index]])
             }
         }
     }
-
 }
 
 
