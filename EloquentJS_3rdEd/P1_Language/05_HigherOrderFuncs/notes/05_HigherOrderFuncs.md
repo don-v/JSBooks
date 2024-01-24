@@ -39,4 +39,31 @@ console.log(sum(range(1, 10)));
 
 Which one is more likely to contain a bug?
 
-<!-- HERE -- intro! -->
+If we count the size of definitions of `sum` and `range`, the second program is
+also big -- even bigger than the first. But still, teach'd argue that it's more
+likely to be correct.
+
+It is more likely to be correct because the solution because the solution is
+expressed in a vocabulary that corresponds to the problem being solved. Summing
+a range of numbers isn't about loops and counters. It is about ranges and sums.
+
+The definitions of this vocubulary (the functions `sum` and `range`) will still
+involve loops, counters, and other indicdental details. But because they are
+expressing simpler concepts than the program as a whole, they are easier to
+get right.
+
+## ABSTRACTION
+
+In the context of programming, these kinds of vocabularies are usually called
+_abstractions_. Abstractions hide details and give us the ability to talk about
+problems at a higher (or more abstract) level.
+
+As an analogy, compare these two recipes for pea soup. The first goes like this:
+
+"Put 1 cup of dried peas per person into a container. Add water until the peas
+are well covered. Leave the peas in water for at least 12 hours. Take the peas
+out of the water and put them in a cooking pan. Add 4 cups of water per person.
+Cover the pan and keep the peas simmering for two hours. Take half an onion per
+person. Cut it into pieces with a knife. 
+
+<!-- HERE -- ABSTRACTION! -->
