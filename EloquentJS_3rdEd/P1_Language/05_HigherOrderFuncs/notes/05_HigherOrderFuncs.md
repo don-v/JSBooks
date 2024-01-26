@@ -91,7 +91,7 @@ level of abstraction.
 
 ## ABSTRACTING REPETITION
 
-Plain functions, ...
+Plain functions, 
   
 
 <!-- HERE -- ABSTRACTIING REPETITION! -->
