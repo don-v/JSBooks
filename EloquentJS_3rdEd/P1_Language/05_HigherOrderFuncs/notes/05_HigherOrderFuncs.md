@@ -91,7 +91,60 @@ level of abstraction.
 
 ## ABSTRACTING REPETITION
 
-Plain functions, 
-  
+Plain functions, as we've seen them so far, are a good way to build abstractions. But 
+sometimes they fall short.
+
+It is common for a program to do something a given number of times. One can write a `for`
+loop for that, like this:
+
+```js
+for (let i = 0; i < 10; i++) {
+  console.log(i);
+}
+```
+
+Can we abstract "doing something _N_ times" as a funciton? Well, it's easy to write
+a function that calls `console.log` _N_ times.
+
+```js
+function repeatLog(n) {
+  for (let i = 0; i < n; i++) {
+    console.log(i);
+  }
+}
+```
+
+But what if we wnat to do something other than logging the numbers? Since "doing
+something" can be represented as a function and functions are just values, we can
+pass our action as a function of value.
+
+```js
+function repeat(n, action) {
+  for (let i = 0; i < n; i++) {
+    action(i);
+  }
+}
+
+repeat(3, console.log);
+// → 0
+// → 1
+// → 2
+```
+
+We don't have to pass a predefined function to `repeat`. Often, it is easier to
+create a function value on the spot instead.
+
+```js
+let labels = [];
+repeat(5, i => {
+  labels.push(`Unit ${i + 1}`);
+});
+console.log(labels);
+// → ["Unit 1", "Unit 2", "Unit 3", "Unit 4", "Unit 5"]
+```
+
+This is structured a little like a `for` loop -- it first describes the kind of
+looop and then provides a body. ...
+
 
 <!-- HERE -- ABSTRACTIING REPETITION! -->
