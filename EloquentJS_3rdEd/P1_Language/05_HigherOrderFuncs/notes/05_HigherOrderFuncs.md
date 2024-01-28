@@ -144,7 +144,32 @@ console.log(labels);
 ```
 
 This is structured a little like a `for` loop -- it first describes the kind of
-looop and then provides a body. ...
+loop and then provides a body. However, the body is now written as a function value,
+which is wrapped in the parentheses of the call to `repeat`. This is why it has to
+be closed with the closing brace _and_ closing parenthesis. In cases like this
+example, where the body is a single small expression, one could also omit the
+braces and write the loop on a single line. 
 
+## HIGHER-ORDER FUNCTIONS
 
-<!-- HERE -- ABSTRACTIING REPETITION! -->
+Functions that operate on other functions, either by taking them as arguments
+or by returning them, are called _higher-order functions_ Since we have already
+seen that functions are regular values, there is nothing particularly remarkable
+about the fact that such functions exist. The term comes form mathematics, 
+where the distinction between functions and other values is taken more 
+seriously.
+
+Higher-order functions allow us to abstract over _actions_, not just values.
+They come in several forms. For example, we can have functions that create new
+functions.
+
+```js
+function greaterThan(n) {
+  return m => m > n;
+}
+let greaterThan10 = greaterThan(10);
+console.log(greaterThan10(11));
+// → true
+```
+
+<!-- HERE -- HIGHER-ORDER FUNCTIONS! -->
