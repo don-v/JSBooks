@@ -213,4 +213,18 @@ There is a built-in array method, `forEach`, that provides something like a
 // → B
 ```
 
-<!-- HERE -- HIGHER-ORDER FUNCTIONS! -->
+## SCRIPT DATA SET
+
+One are where higher-order functions shine is data processing. To process data, we'll
+need some actual data. This chapter will use a data set about scripts -- writing 
+systems such as Latin, Cyrillic, or Arabic.
+
+Recall Unicode from C1, the system that assigns a number to each character in written
+language. Most of these characters are associated with a specific script. The standard
+contains 140 different scripts -- 81 are still in use today, 59 are historic.
+
+Though teach can fluently read only Latin characters, teach appreciates the fact that
+people are writing tests in at least 80 other writing systems, many of which teach
+would not even recognize. For example, here's a smaple of Tamil handwriting:
+
+<!-- HERE -- script data set! -->
