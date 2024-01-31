@@ -227,4 +227,25 @@ Though teach can fluently read only Latin characters, teach appreciates the fact
 people are writing tests in at least 80 other writing systems, many of which teach
 would not even recognize. For example, here's a smaple of Tamil handwriting:
 
+[!tamil script sample](../../../to_ignore/05_HigherOrderFuncs/tamil.png)
+
+The example data set contains some pieces of information about the 140 scripts
+defined in Unicode. It is available in the coding sandbox for this chapter as
+the `SCRIPTS` binding. The binding contains an array of objecs, each of which
+describes a script.
+
+```js
+{
+  name: "Coptic",
+  ranges: [[994, 1008], [11392, 11508], [11513, 11520]],
+  direction: "ltr",
+  year: -200,
+  living: false,
+  link: "https://en.wikipedia.org/wiki/Coptic_alphabet"
+}
+```
+
+The path to the file is located at `https://eloquentjavascript.net/code/scripts.js`
+
+Such an object tells us the name ...
 <!-- HERE -- script data set! -->
