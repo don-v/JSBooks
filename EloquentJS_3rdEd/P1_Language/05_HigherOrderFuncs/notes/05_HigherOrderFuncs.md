@@ -247,5 +247,33 @@ describes a script.
 
 The path to the file is located at `https://eloquentjavascript.net/code/scripts.js`
 
-Such an object tells us the name ...
-<!-- HERE -- script data set! -->
+Such an object tells us the name the name of the script, the Unicode ranges assigned to it, the direction
+in which it is written, the (approximate) origin time, whether it is stii lin use, and a link to 
+more informaiton. The direction may be `"ltr"` for 'left to right', `"rtl"` for 'right to left' (the
+way Arabic and Hebrew text are written), or `"ttb"` for top to bottom (as with Mongolian writing).
+
+The `ranges` property contains an array of Unicode character ranges, each of which is a two-element array
+containing a lower bound and an upper bound. Any character codes within these ranges are assigned to the
+script. The lower bound is inclusive (code 994 is a Coptic character), and the upper bound is non-inclusive
+(code 1008 isn't). 
+
+## FILTERING ARRAYS
+
+To find the scripts in the data that are still in use, the following function might be
+helpful. It filters out the elements in an array that don't pass a test. 
+
+```js
+function filter(array, test) {
+  let passed = [];
+  for (let element of array) {
+    if (test(element)) {
+      passed.push(element);
+    }
+  }
+  return passed;
+}
+
+console.log(filter(SCRIPTS, script => script.living));
+// → [{name: "Adlam", …}, …]
+```
+<!-- HERE -- filtering arrays -->
