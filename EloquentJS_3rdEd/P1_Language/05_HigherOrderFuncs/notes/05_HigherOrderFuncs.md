@@ -276,4 +276,20 @@ function filter(array, test) {
 console.log(filter(SCRIPTS, script => script.living));
 // → [{name: "Adlam", …}, …]
 ```
-<!-- HERE -- filtering arrays -->
+
+The function uses the argument named `test`, a function value, to fill a "gap" in the
+computation -- the process of deciding which elements to collect.
+
+Note how the `filter` function, rather than deleting elements form the existing array, 
+builds up a new aray with only the elements that pass the test. This function is _pure_.
+It does not modify the array it is given. 
+
+Like `forEach`, `filter` is a standard array method. The example defined the function
+only to show what it does internally. From now on, we'll use it like this instead:
+
+```js
+console.log(SCRIPTS.filter(s => s.direction == "ttb"));
+// → [{name: "Mongolian", …}, …]
+```
+
+<!-- HERE -- Transforming with Map -->
