@@ -292,4 +292,33 @@ console.log(SCRIPTS.filter(s => s.direction == "ttb"));
 // → [{name: "Mongolian", …}, …]
 ```
 
-<!-- HERE -- Transforming with Map -->
+## TRANSFORMING WITH MAP
+
+Suppose one has an array of objects representing scripts, produced by filtering the
+`SCRIPTS` array somehow. But instead, one wants an array of names, which might be 
+easier to inspect. 
+
+The `map` method transforms an array by applying a function to all of its elements
+and building a new array from the returned values. The new array will have the same
+length as teh input array, but its content will have been _mapped_ to a new form 
+by the function:
+
+```js
+function map(array, transform) {
+  let mapped = [];
+  for (let element of array) {
+    mapped.push(transform(element));
+  }
+  return mapped;
+}
+
+let rtlScripts = SCRIPTS.filter(s => s.direction == "rtl");
+console.log(map(rtlScripts, s => s.name));
+// → ["Adlam", "Arabic", "Imperial Aramaic", …]
+```
+
+LIke `forEach` and `filter`, `map` is a standard array method.
+
+## SUMMARIZING WITH REDUCE
+
+<!-- HERE -- summarize with reduce -->
