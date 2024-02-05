@@ -361,5 +361,31 @@ To use `reduce` (twice), to find the script with the most characters, one can wr
 like as follows:
 
 ```js
-// HERE -- SUMMARIZING REDUCE!
+function characterCount(script) {
+  return script.ranges.reduce((count, [from, to]) => {
+    return count + (to - from);
+  }, 0);
+}
+
+console.log(SCRIPTS.reduce((a, b) => {
+  return characterCount(a) < characterCount(b) ? b : a;
+}));
+// → {name: "Han", …}
 ```
+
+The `characterCount` function reduces the ranges assigned to a script by summing their sizes. Note 
+the use of desctructuring in the parameter list of teh reducer function. The second call to `reduce`
+then uses this to find the largest script by repeatedly comparing two scripts and returning the larger
+one.
+
+The 'Han' script has more than 89,000 characters assigned to it in the Unicode standard, making it by 
+far the biggest writing system in the dataset. 'Han' is a script (sometimes) used for Chines, Japanese,,
+and Koren text. Those languages share a lot of characters, though they tend to write them differently.
+The (US-based) Unicode Consortium decided to treat them as a single writing system to save character
+codes. This is called _Han unification_ and still makes some people very angry.
+
+## COMPOSABILITY
+
+Consider ...
+
+<!-- HERE -- COMPOSABILITY! -->
