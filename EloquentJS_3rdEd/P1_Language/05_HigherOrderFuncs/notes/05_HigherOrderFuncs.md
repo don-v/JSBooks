@@ -321,4 +321,45 @@ LIke `forEach` and `filter`, `map` is a standard array method.
 
 ## SUMMARIZING WITH REDUCE
 
-<!-- HERE -- summarize with reduce -->
+Another common thing to do with arrays is to compute a single value from them. Our 
+recurring example, summing a collection of numbers, is an instance of this. Another
+example is finding the script with the most characters.
+
+The higher-order operation that represents this pattern is called _reduce_ (sometimes
+called _fold). It builds a valuel by repeatedly taking a single element from the 
+array and combinindg it with the current value. When summing numbers, one'd start with
+the number zero and, for each element, add that to the sum.
+
+The parameters to `reduce` are, apart from the array, a combining function and a 
+start value. This function is a little less straightforward than `filter` and 
+`map`, so teach encourages us to take a close look at it:
+
+```js
+function reduce(array, combine, start) {
+  let current = start;
+  for (let element of array) {
+    current = combine(current, element);
+  }
+  return current;
+}
+
+console.log(reduce([1, 2, 3, 4], (a, b) => a + b, 0));
+// → 10
+```
+
+The standard array method `reduce`, which of course corresponds to this function, has an
+added conveience. If one's array contains at least one element, one is allowed to leave 
+off the `start` argument. The method will take the first element of the array as its start
+value and start reducing at the second element:
+
+```js
+console.log([1, 2, 3, 4].reduce((a, b) => a + b));
+// → 10
+```
+
+To use `reduce` (twice), to find the script with the most characters, one can write something 
+like as follows:
+
+```js
+// HERE -- SUMMARIZING REDUCE!
+```
