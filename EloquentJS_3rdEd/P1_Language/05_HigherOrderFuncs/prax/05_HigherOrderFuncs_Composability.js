@@ -49,3 +49,25 @@ function average(array) {
     SCRIPTS.filter(s => !s.living).map(s => s.year))));
   // → 204
   
+x = `let total = 0, count = 0;
+for (let script of SCRIPTS) {
+  if (script.living) {
+    total += script.year;
+    count += 1;
+  }
+}
+console.log(Math.round(total / count));
+// → 1165
+`;
+
+console.log(x);
+
+let total = 0, count = 0;
+for (let script of SCRIPTS) {
+  if (script.living) {
+    total += script.year;
+    count += 1;
+  }
+}
+console.log(Math.round(total / count));
+// → 1165

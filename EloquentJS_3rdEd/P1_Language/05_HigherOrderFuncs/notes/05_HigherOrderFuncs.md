@@ -419,4 +419,36 @@ console.log(Math.round(average(
 // → 204
 ```
 
-<!-- HERE -- COMPOSABILITY! -->
+So the dead scripts in Unicode, are on average, older than the living ones. This 
+is not a terribly meaningful or surprising statistic. But hopefully, teach things that
+it is evident that the code used to compute it isn't hard to read. One can se it as
+a pipeline: we start with all scripts, filter out the living(or dead) ones, takes
+the years from those, average them, and round the result.
+
+One could definitely also write this computation as one big loop:
+
+```js
+let total = 0, count = 0;
+for (let script of SCRIPTS) {
+  if (script.living) {
+    total += script.year;
+    count += 1;
+  }
+}
+console.log(Math.round(total / count));
+// → 1165
+```
+
+But it is harder to see what was being computed and how. And because intermediate
+results aren't represented as coherent values, it'd be a lot more work to extract
+something like `average` into a separate function. 
+
+In terms of what the computer is actually doing, these two approaches are also
+quite different. Thei first will build up new arrays when running `filter` and
+`map`, whereas the second computes only some numbers, doing less work. One can
+usually afford the readable approach, but if one is processing huge arrays, and
+doing so many times, the less abstract style might be worth the extra speed.
+
+## STRINGS AND CHARACTER CODES
+
+<!-- HERE -- STRINGS AND CHARACTER CODES! -->
