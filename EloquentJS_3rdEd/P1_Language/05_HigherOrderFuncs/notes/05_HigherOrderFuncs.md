@@ -451,4 +451,40 @@ doing so many times, the less abstract style might be worth the extra speed.
 
 ## STRINGS AND CHARACTER CODES
 
+One use of the data set would be figuring out what script a piece of text is using.
+Let's go through a program that does this.
+
+Remember, that each script has an array of character code ranges associated with
+it. So given a character code, we coudl use a funciton like this to find the
+corresponding script (if any):
+
+```js
+function characterScript(code) {
+  for (let script of SCRIPTS) {
+    if (script.ranges.some(([from, to]) => {
+      return code >= from && code < to;
+    })) {
+      return script;
+    }
+  }
+  return null;
+}
+
+console.log(characterScript(121));
+// → {name: "Latin", …}
+```
+
+The `some` method is another higher-order function. It takes a test funciton
+and tells one whether that function returns true for any of of the elements in
+the array.
+
+But how does one get the character codes in a string?
+
+In C1, teach mentioned that JS strings are encoded as a sequence of 16-bit numbers.
+These are called _code units_. A Unicode character code was initially supposed to
+fit within such a unit (which gives one a little over 65,000 characters.) When it
+became clear that that wasn't going to be enough, many people balked at the need to 
+use more memory per character. To address these concerns, UTF-16, the format used by
+JS strings, was invented.
+
 <!-- HERE -- STRINGS AND CHARACTER CODES! -->
