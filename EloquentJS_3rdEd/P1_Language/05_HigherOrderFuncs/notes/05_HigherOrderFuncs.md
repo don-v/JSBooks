@@ -485,6 +485,36 @@ These are called _code units_. A Unicode character code was initially supposed t
 fit within such a unit (which gives one a little over 65,000 characters.) When it
 became clear that that wasn't going to be enough, many people balked at the need to 
 use more memory per character. To address these concerns, UTF-16, the format used by
-JS strings, was invented.
+JS strings, was invented. It describes most common characters using a single 16-bit
+code unit but uses a pair of two such units for others.
+
+UTF-16 is generally considered a bad idea today. It seems almost intentionally
+designed to invite mistakes. It's easy to write programs that pretend to code
+units and characters are the same thing. And if one's language doesn't use two-unit
+characters, that will appear to work ust fine. But as soon as someone tries to 
+use such a program with some less common Chines characters, it breaks. Fortunately, 
+with the advent of emoji, everybody has started using two-unit characters, and
+the burden of dealing with such problems is more fairly distributed. 
+
+Unfortunately, obvious operations on JS strings, such as getting their length
+through the `length` property and accessing their content using square brackets,
+deal only with code units:
+
+```js
+// Two emoji characters, horse and shoe
+let horseShoe = "🐴👟";
+console.log(horseShoe.length);
+// → 4
+console.log(horseShoe[0]);
+// → (Invalid half-character)
+console.log(horseShoe.charCodeAt(0));
+// → 55357 (Code of the half-character)
+console.log(horseShoe.codePointAt(0));
+// → 128052 (Actual code for horse emoji)
+```
+
+JS' `charCodeAt` method gives one a code unit, not a full character
+code. The `codePointAt` method, added later, does give one a full Unicode
+character. So we could use that to get characters from a string. But the...
 
 <!-- HERE -- STRINGS AND CHARACTER CODES! -->
