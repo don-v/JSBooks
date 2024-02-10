@@ -515,6 +515,51 @@ console.log(horseShoe.codePointAt(0));
 
 JS' `charCodeAt` method gives one a code unit, not a full character
 code. The `codePointAt` method, added later, does give one a full Unicode
-character. So we could use that to get characters from a string. But the...
+character. So we could use that to get characters from a string. But the
+argument passed to `codePointAt` is still an index into the sequence of code
+units. So to run over all characters in a string, we'd still need to deal with
+the question of whether a character takes up one or two code units.
 
-<!-- HERE -- STRINGS AND CHARACTER CODES! -->
+In the previous chapter, teach mentioned that a `for / of` loop can also be used on
+strings. Like `codePointAt`, this type of loop was introduced at a time where 
+folks were acutely aware of the problems with UTF-16. When one uses it to 
+loop ver a string, it gives on real characters, not code units:
+
+```js
+let roseDragon = "🌹🐉";
+for (let char of roseDragon) {
+  console.log(char);
+}
+// → 🌹
+// → 🐉
+```
+
+If one has a character (which will be a string of one or two code units), 
+one may use `codePointAt(0)` to get its code.
+
+## RECOGNIZING TEXT
+
+We have a `characterSTrict` function and a way to correclty loop over 
+characters. The next step is to count the characters that belong to each
+script. The following counting abstraction will be useful there:
+
+```js
+function countBy(items, groupName) {
+  let counts = [];
+  for (let item of items) {
+    let name = groupName(item);
+    let known = counts.findIndex(c => c.name == name);
+    if (known == -1) {
+      counts.push({name, count: 1});
+    } else {
+      counts[known].count++;
+    }
+  }
+  return counts;
+}
+
+console.log(countBy([1, 2, 3, 4, 5], n => n > 2));
+// → [{name: false, count: 2}, {name: true, count: 3}]
+```
+
+<!-- HERE -- RECOGNIZING TEXT! -->
