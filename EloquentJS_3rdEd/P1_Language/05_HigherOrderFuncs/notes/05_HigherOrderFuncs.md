@@ -562,4 +562,45 @@ console.log(countBy([1, 2, 3, 4, 5], n => n > 2));
 // → [{name: false, count: 2}, {name: true, count: 3}]
 ```
 
+The `countBy` function expects a collection (anything that can be looped over with
+`for`/ `of`) and a funciton that computes a group name for a given element. It returns
+an array of objects, each of which names a group and tells the number of 
+elements that were found in that group.
+
+It uses anothe rarray method, `findIndex`. This method is somewhat like `indexOf`, but
+instead of looking for a specific value, it finds the first value for which the given
+function returns `true`. Like `indexOf`, it returns `-1` when no such element is
+found.
+
+Using `countBy`, one can write the function that tells us which scripts are used
+in a piece of text:
+
+
+```js
+function textScripts(text) {
+  let scripts = countBy(text, char => {
+    let script = characterScript(char.codePointAt(0));
+    return script ? script.name : "none";
+  }).filter(({name}) => name != "none");
+
+  let total = scripts.reduce((n, {count}) => n + count, 0);
+  if (total == 0) return "No scripts found";
+
+  return scripts.map(({name, count}) => {
+    return `${Math.round(count * 100 / total)}% ${name}`;
+  }).join(", ");
+}
+
+console.log(textScripts('英国的狗说"woof", 俄罗斯的狗说"тяв"'));
+// → 61% Han, 22% Latin, 17% Cyrillic
+```
+
+The function first counts the characters by name, using `characterScript` 
+to assign them a name and falling back to the string `"none"` for characters
+that aren't part of any script. The `filter` call drops the entry for `"none"`
+from the resulting array since we aren't interested in those characters.
+
+To be able to compute percentages, we first need the total number of characters
+that belong to a script. ...
+
 <!-- HERE -- RECOGNIZING TEXT! -->
