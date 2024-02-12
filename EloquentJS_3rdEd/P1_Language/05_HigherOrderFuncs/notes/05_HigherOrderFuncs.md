@@ -455,7 +455,7 @@ One use of the data set would be figuring out what script a piece of text is usi
 Let's go through a program that does this.
 
 Remember, that each script has an array of character code ranges associated with
-it. So given a character code, we coudl use a funciton like this to find the
+it. So given a character code, we could use a funciton like this to find the
 corresponding script (if any):
 
 ```js
@@ -601,6 +601,9 @@ that aren't part of any script. The `filter` call drops the entry for `"none"`
 from the resulting array since we aren't interested in those characters.
 
 To be able to compute percentages, we first need the total number of characters
-that belong to a script. ...
+that belong to a script, which we can compute with `reduce`. If not such characters
+are found, the function returns a specific string. Otherwise, it transforms the
+counting entries into readable strings, with `map` and then combines them
+with `join`.
 
-<!-- HERE -- RECOGNIZING TEXT! -->
+<!-- HERE -- RECOGNIZING TEXT!+ -->
