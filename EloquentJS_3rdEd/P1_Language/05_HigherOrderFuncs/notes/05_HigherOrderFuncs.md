@@ -539,7 +539,7 @@ one may use `codePointAt(0)` to get its code.
 
 ## RECOGNIZING TEXT
 
-We have a `characterSTrict` function and a way to correclty loop over 
+We have a `characterScript` function and a way to correclty loop over 
 characters. The next step is to count the characters that belong to each
 script. The following counting abstraction will be useful there:
 
@@ -606,4 +606,4 @@ are found, the function returns a specific string. Otherwise, it transforms the
 counting entries into readable strings, with `map` and then combines them
 with `join`.
 
-<!-- HERE -- RECOGNIZING TEXT!+ -->
+<!-- HERE -- RECOGNIZING TEXT!++ -->
