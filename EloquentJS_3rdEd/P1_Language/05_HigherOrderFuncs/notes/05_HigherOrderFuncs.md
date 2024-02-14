@@ -567,7 +567,7 @@ The `countBy` function expects a collection (anything that can be looped over wi
 an array of objects, each of which names a group and tells the number of 
 elements that were found in that group.
 
-It uses anothe rarray method, `findIndex`. This method is somewhat like `indexOf`, but
+It uses another array method, `findIndex`. This method is somewhat like `indexOf`, but
 instead of looking for a specific value, it finds the first value for which the given
 function returns `true`. Like `indexOf`, it returns `-1` when no such element is
 found.
@@ -606,4 +606,4 @@ are found, the function returns a specific string. Otherwise, it transforms the
 counting entries into readable strings, with `map` and then combines them
 with `join`.
 
-<!-- HERE -- RECOGNIZING TEXT!++ -->
+<!-- HERE -- RECOGNIZING TEXT!+++ -->
