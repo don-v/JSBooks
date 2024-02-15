@@ -1,3 +1,5 @@
+require('./../../../to_ignore/05_HigherOrderFuncs/scripts.js');
+
 let x = `function characterScript(code) {
     for (let script of SCRIPTS) {
       if (script.ranges.some(([from, to]) => {
