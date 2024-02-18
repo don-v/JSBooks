@@ -606,4 +606,4 @@ are found, the function returns a specific string. Otherwise, it transforms the
 counting entries into readable strings, with `map` and then combines them
 with `join`.
 
-<!-- HERE -- RECOGNIZING TEXT!++++++ -->
+<!-- HERE -- RECOGNIZING TEXT!+++++++ -->
