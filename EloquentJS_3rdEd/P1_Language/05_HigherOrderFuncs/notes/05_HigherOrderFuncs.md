@@ -606,4 +606,33 @@ are found, the function returns a specific string. Otherwise, it transforms the
 counting entries into readable strings, with `map` and then combines them
 with `join`.
 
-<!-- HERE -- RECOGNIZING TEXT!+++++++ -->
+## SUMMARY
+
+Being able to pass funciton values to other functions is a deeply useful aspact
+of JS. It allows us to write functions that model computations with "gaps" in 
+them. The code that calls these functions can fill in the gaps by providing
+function values.
+
+Arrays provide a number of useful higher-order methods. One can use `forEach`
+to loop over the elements in an array. The `filter` method rturns a new array
+containing only the elements that pass the predicate function. Transforming an
+array by putting each element through a function is done with `map`. One can
+use `reduce` to combine all the elements in an array into a single value. The
+`some` method tests whether any element matches a given predicate funciton. And
+`findIndex` finds the position of the first element that matches a predicate.
+
+## EXERCISES
+
+### FLATTENING
+
+Use the `reduce` method in combination with the `concat` method to "flatten"
+an array of arrays into a single array that has all the elements of the
+original arrays.
+
+```js
+let arrays = [[1, 2, 3], [4, 5], [6]];
+// Your code here.
+// → [1, 2, 3, 4, 5, 6]
+```
+
+<!-- HERE -- EX FLATTENING! -->
