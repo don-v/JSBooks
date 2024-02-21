@@ -635,4 +635,73 @@ let arrays = [[1, 2, 3], [4, 5], [6]];
 // → [1, 2, 3, 4, 5, 6]
 ```
 
-<!-- HERE -- EX FLATTENING!+ -->
+#### MY SOLUTION
+
+```js
+function flatten(arr) {
+    return arr.reduce(
+        (accumulator, currentValue) => accumulator.concat(currentValue)
+    );
+}
+```
+
+#### TEACH'S SOLUTION
+
+```js
+let arrays = [[1, 2, 3], [4, 5], [6]];
+
+console.log(arrays.reduce((flat, current) => flat.concat(current), []));
+// → [1, 2, 3, 4, 5, 6]
+```
+
+### YOUR OWN LOOP
+
+Write a higher-order function `loop` that provides something like a 
+`for` loop statement. It takes a value, a test function, an update
+function, and a body function. Each iteration, it first runs the 
+test funciton on the current loop value and stops if that returns
+false. Then, it calls the body function, giving it the current value.
+Finally, it calls the upate function to creat a new value and starts 
+from the beginning.
+
+When defining the function, one can use a regular loop to do the 
+actual looping:
+
+```js
+// Your code here.
+
+loop(3, n => n > 0, n => n - 1, console.log);
+// → 3
+// → 2
+// → 1
+```
+
+#### MY SOLUTION
+
+```js
+function loop(value, test_func, update_func, body_func) {
+    while (test_func(value)) {
+        body_func(value);
+        value = update_func(value);
+    }
+}
+```
+
+#### TEACH'S SOLUTION
+
+```js
+function loop(start, test, update, body) {
+  for (let value = start; test(value); value = update(value)) {
+    body(value);
+  }
+}
+
+loop(3, n => n > 0, n => n - 1, console.log);
+// → 3
+// → 2
+// → 1
+```
+
+### EVERYTHING
+
+<!-- HERE -- EVERYTHING! -->
