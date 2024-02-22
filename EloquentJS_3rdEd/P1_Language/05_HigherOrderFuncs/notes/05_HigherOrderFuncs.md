@@ -704,4 +704,92 @@ loop(3, n => n > 0, n => n - 1, console.log);
 
 ### EVERYTHING
 
-<!-- HERE -- EVERYTHING! -->
+Analogous to the `some` method, arrays also have an `every` method. This
+one returns true when the given function returns `true` for _every_
+element in the array. In a way, `some` is a version of the `||` operator
+that accts on arrays, and `every` is like the `&&` operator.
+
+Implement `every` as a funciton that takes an array and a predicate as
+parameters. Write two versions, one using a loop and one using the `some`
+method.
+
+```js
+function every(array, test) {
+  // Your code here.
+}
+
+console.log(every([1, 3, 5], n => n < 10));
+// → true
+console.log(every([2, 4, 16], n => n < 10));
+// → false
+console.log(every([], n => n < 10));
+// → true
+```
+
+### MY SOLUTION
+
+```js
+function every_loop(array, test) {
+    for (let index = 0; index < array.length; index++) {
+        if (!test(array[index])) {
+            return false
+        }        
+    }
+    return true;
+  }
+  
+console.log(every_loop([1, 3, 5], n => n < 10));
+// → true
+console.log(every_loop([2, 4, 16], n => n < 10));
+// → false
+console.log(every_loop([], n => n < 10));
+// → true
+
+function every_some(array, test) {
+    if (array.some((element) => !test(element))) {
+        return false;
+    }
+    return true;
+  }
+  
+console.log(every_some([1, 3, 5], n => n < 10));
+// → true
+console.log(every_some([2, 4, 16], n => n < 10));
+// → false
+console.log(every_some([], n => n < 10));
+// → true
+```
+
+### HINTS
+
+<!-- 
+Like the && operator, the every method can stop evaluating further elements as soon as it has found one that doesn’t match. So the loop-based version can jump out of the loop—with break or return—as soon as it runs into an element for which the predicate function returns false. If the loop runs to its end without finding such an element, we know that all elements matched and we should return true.
+
+To build every on top of some, we can apply De Morgan’s laws, which state that a && b equals !(!a || !b). This can be generalized to arrays, where all elements in the array match if there is no element in the array that does not match.
+ -->
+
+### TEACH'S SOLUTIN
+
+```js
+function every(array, predicate) {
+  for (let element of array) {
+    if (!predicate(element)) return false;
+  }
+  return true;
+}
+
+function every2(array, predicate) {
+  return !array.some(element => !predicate(element));
+}
+
+console.log(every([1, 3, 5], n => n < 10));
+// → true
+console.log(every([2, 4, 16], n => n < 10));
+// → false
+console.log(every([], n => n < 10));
+// → true
+```
+
+## DOMINANT WRITING DIRECTION
+
+<!-- HERE -- DOMINANT WRITING DIRECTION! -->
