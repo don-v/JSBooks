@@ -491,7 +491,7 @@ code unit but uses a pair of two such units for others.
 UTF-16 is generally considered a bad idea today. It seems almost intentionally
 designed to invite mistakes. It's easy to write programs that pretend to code
 units and characters are the same thing. And if one's language doesn't use two-unit
-characters, that will appear to work ust fine. But as soon as someone tries to 
+characters, that will appear to work just fine. But as soon as someone tries to 
 use such a program with some less common Chines characters, it breaks. Fortunately, 
 with the advent of emoji, everybody has started using two-unit characters, and
 the burden of dealing with such problems is more fairly distributed. 
@@ -792,4 +792,65 @@ console.log(every([], n => n < 10));
 
 ## DOMINANT WRITING DIRECTION
 
-<!-- HERE -- DOMINANT WRITING DIRECTION! -->
+Write a function that computes the dominatn writing direction in a string of
+text. Remember tha teach script object has a `direction` property that can be
+`"ltr'` (left to right), `"rtl"` (right to left), or `"ttb"` (top to bottom).
+
+The dominant direction is the direction of a majority of the characters that
+have a script associated with them. The `characterScript` and `countBy` functions
+defined earlier in the chapter are probably useful here.
+
+```js
+function dominantDirection(text) {
+  // Your code here.
+}
+
+console.log(dominantDirection("Hello!"));
+// → ltr
+console.log(dominantDirection("Hey, مساء الخير"));
+// → rtl
+```
+
+### MY SOLUTION
+
+```js
+function dominantDirection(text) {
+    let scripts = countBy(text, char => {
+        let script = characterScript(char.codePointAt(0));
+        return script ? script.direction : "none";
+      }).filter(({name}) => name != "none");
+    
+    const max = scripts.reduce(function(prev, current) {
+        return (prev && prev.count > current.count) ? prev : current
+    });
+    return max.name;
+}
+```
+
+### DISPLAY HINTS
+
+<!-- 
+Your solution might look a lot like the first half of the textScripts example. You again have to count characters by a criterion based on characterScript and then filter out the part of the result that refers to uninteresting (script-less) characters.
+
+Finding the direction with the highest character count can be done with reduce. If it’s not clear how, refer to the example earlier in the chapter, where reduce was used to find the script with the most characters.
+ -->
+
+### TEACH'S SOLUTION
+
+```js
+function dominantDirection(text) {
+  let counted = countBy(text, char => {
+    let script = characterScript(char.codePointAt(0));
+    return script ? script.direction : "none";
+  }).filter(({name}) => name != "none");
+
+  if (counted.length == 0) return "ltr";
+
+  return counted.reduce((a, b) => a.count > b.count ? a : b).name;
+}
+
+console.log(dominantDirection("Hello!"));
+// → ltr
+console.log(dominantDirection("Hey, مساء الخير"));
+// → rtl
+```
