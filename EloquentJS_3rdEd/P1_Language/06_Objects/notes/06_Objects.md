@@ -30,6 +30,37 @@ a more abstrac level, hiding thier precise implementaiton.
 
 Such program pieces are modeled using objects. Their interface consists of a 
 specific set of methods and properties. Properties that are part of the 
-interface are called _public_. The others, which ...
+interface are called _public_. The others, which outside code should not be
+touching are called _private_.
 
-<!-- HERE -- ENCAPSULATION! -->
+Many languages provide a way to distinguish between public and private properties
+and prevent outside code from accessing the private ones altogether. JS, 
+once again taking the minimalist approach, does not -- not yet at least. There
+is work underway to add this to the language.
+
+Even though the language doesn't have this distinction built in, JS
+programmers _are_ successfully using this idea. Typically, the available
+interface is described in documentation or comments. It is also common to put
+undescore `_` at the start of property names to indicate that those properties
+are private.
+
+Separating interface from implementation is a great idea. It is usually called
+_encapsulation_.
+
+## METHODS
+
+Methods are nothing more than properties that hold function values. This is
+a simple method:
+
+```js
+let rabbit = {};
+rabbit.speak = function(line) {
+  console.log(`The rabbit says '${line}'`);
+};
+
+rabbit.speak("I'm alive.");
+// → The rabbit says 'I'm alive.'
+```
+
+
+<!-- HERE -- METHODS! -->
