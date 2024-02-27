@@ -62,5 +62,41 @@ rabbit.speak("I'm alive.");
 // → The rabbit says 'I'm alive.'
 ```
 
+Usually a method needs to do something with the object when called on. When
+a function is called as a method-- looked up as a property and immediately
+called, as in `object.method()`-- the binding called `this` in its body
+automatically points at the object that it was called on.:
+
+```js
+function speak(line) {
+  console.log(`The ${this.type} rabbit says '${line}'`);
+}
+let whiteRabbit = {type: "white", speak};
+let hungryRabbit = {type: "hungry", speak};
+
+whiteRabbit.speak("Oh my ears and whiskers, " +
+                  "how late it's getting!");
+// → The white rabbit says 'Oh my ears and whiskers, how
+//   late it's getting!'
+hungryRabbit.speak("I could use a carrot right now.");
+// → The hungry rabbit says 'I could use a carrot right now.'
+```
+
+One can think of `this` ans an extra parameter that is passed in a
+different way. If one wants to pass it explicitly, one can use a 
+function's `call` method, which takes the `this` value as its first
+argument and treats further arguments as normal parameters:
+
+```js
+speak.call(hungryRabbit, "Burp!");
+// → The hungry rabbit says 'Burp!'
+```
+
+Since each function has its own `this` binding, whose value depends on the
+way it is called, one cannot refer to the `this` of the wrapping scope in a 
+regular function defines with the function keyword.
+
+Arrow functions are different -- they do not bind their own `this` but
+can see the `this` binding of the scope around them. Thus, ...
 
 <!-- HERE -- METHODS! -->
