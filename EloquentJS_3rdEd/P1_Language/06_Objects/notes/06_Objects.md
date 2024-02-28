@@ -97,6 +97,38 @@ way it is called, one cannot refer to the `this` of the wrapping scope in a
 regular function defines with the function keyword.
 
 Arrow functions are different -- they do not bind their own `this` but
-can see the `this` binding of the scope around them. Thus, ...
+can see the `this` binding of the scope around them. Thus, one can do something
+like the following code, which references `this` from inside a local function:
 
-<!-- HERE -- METHODS! -->
+```js
+function normalize() {
+  console.log(this.coords.map(n => n / this.length));
+}
+normalize.call({coords: [0, 2, 3], length: 5});
+// → [0, 0.4, 0.6]
+```
+
+If I had written the argument to `map` using the `function` keyword, the code
+wouldn't work. 
+
+## PROTOTYPES
+
+Watch closely.
+
+```js
+let empty = {};
+console.log(empty.toString);
+// → function toString(){…}
+console.log(empty.toString());
+// → [object Object]
+```
+
+Teach pulled a property out of an empty object. Magic!
+
+Well, not really. Teach simply has been withholding informaiton about the way
+JS objects work. IN adition to their set of properties, most objects also have
+a _prototype_. A prototype is another object that is used as a fallback source
+of properties. When an object gets a request for a property tha tit does not
+have, its prototpye ...
+
+<!-- HERE -- PROTOTYPES! -->
