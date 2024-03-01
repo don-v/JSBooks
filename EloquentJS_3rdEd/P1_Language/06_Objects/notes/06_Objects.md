@@ -128,7 +128,45 @@ Teach pulled a property out of an empty object. Magic!
 Well, not really. Teach simply has been withholding informaiton about the way
 JS objects work. IN adition to their set of properties, most objects also have
 a _prototype_. A prototype is another object that is used as a fallback source
-of properties. When an object gets a request for a property tha tit does not
-have, its prototpye ...
+of properties. When an object gets a request for a property that it does not
+have, its prototpye will be searched for the property, then the prototype's
+prototype, and so on.
+
+So who is the prototype of that empty object? It is the great ancestral 
+prototype, the entity behind almost all object, `Object.prototype`.:
+
+```js
+console.log(Object.getPrototypeOf({}) ==
+            Object.prototype);
+// → true
+console.log(Object.getPrototypeOf(Object.prototype));
+// → null
+```
+
+As one might guess, `Object.getPrototypeOf` returns the prototype of an object.
+
+The prototpye relations of JS objects form a tree-shaped structure, and at the
+root of this structure sits `Object.prototype`. It provides a few methods that 
+shown up in all objects, such as `toString`, which converts an object to a 
+string representation.
+
+Many objects don't direclty have `Object.prototype` as their prototype but 
+instead have another object that provides a different set of default 
+properties. Functions derive from `Function.prototype`, and arrays derive
+from `Array.prototype`:
+
+```js
+console.log(Object.getPrototypeOf(Math.max) ==
+            Function.prototype);
+// → true
+console.log(Object.getPrototypeOf([]) ==
+            Array.prototype);
+// → true
+```
+
+Such a prototype object will itself have a prototype, often `Object.prototype`, 
+so that it still indirectly provides methods like `toString`
+
+One can use `Object.create` to ...
 
 <!-- HERE -- PROTOTYPES! -->
