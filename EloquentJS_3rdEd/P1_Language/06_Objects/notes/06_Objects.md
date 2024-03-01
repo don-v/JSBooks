@@ -167,6 +167,29 @@ console.log(Object.getPrototypeOf([]) ==
 Such a prototype object will itself have a prototype, often `Object.prototype`, 
 so that it still indirectly provides methods like `toString`
 
-One can use `Object.create` to ...
+One can use `Object.create` to an object with a specific prototype:
 
-<!-- HERE -- PROTOTYPES! -->
+```js
+let protoRabbit = {
+  speak(line) {
+    console.log(`The ${this.type} rabbit says '${line}'`);
+  }
+};
+let killerRabbit = Object.create(protoRabbit);
+killerRabbit.type = "killer";
+killerRabbit.speak("SKREEEE!");
+// → The killer rabbit says 'SKREEEE!'
+```
+
+A property like `speak(line)` in an object expression is a shorthand way
+of defining a method. It creates a property called `speak` and gives it
+a function as its value.
+
+The "proto" rabbit acts as a container for the properties that are shared by
+all rabbits. An individual rabbit object, like the killer rabbit, contains 
+properties that apply only to itself -- in this case its type -- and derives
+properties form its prototype.
+
+## CLASSES
+
+<!-- HERE -- CLASSES! -->

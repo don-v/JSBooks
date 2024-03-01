@@ -44,3 +44,24 @@ console.log(Object.getPrototypeOf([]) ==
             Array.prototype);
 // → true
 
+x = `let protoRabbit = {
+    speak(line) {
+      console.log(<backtick-open>The <dollar-sign>{this.type} rabbit says '<dollar-sign>{line}'<backtick-close>);
+    }
+  };
+  let killerRabbit = Object.create(protoRabbit);
+  killerRabbit.type = "killer";
+  killerRabbit.speak("SKREEEE!");
+  // → The killer rabbit says 'SKREEEE!'`;
+
+console.log(x);
+
+let protoRabbit = {
+    speak(line) {
+      console.log(`The ${this.type} rabbit says '${line}'`);
+    }
+  };
+  let killerRabbit = Object.create(protoRabbit);
+  killerRabbit.type = "killer";
+  killerRabbit.speak("SKREEEE!");
+  // → The killer rabbit says 'SKREEEE!'
