@@ -192,4 +192,43 @@ properties form its prototype.
 
 ## CLASSES
 
+JS' prototype system can be interpreted as a somewhat free-form take on 
+abstract data types or classes. A class defines the shape of a type of object --
+what methods and properties it has. Such an object is called an _instance_
+of the class. 
+
+Prototypes are useful for defining properties for which all instances of a 
+class share the same value. Properties that differ per instance, such as our 
+rabbits' `type` propertyy, need to be stored directly in the objects 
+themselves.
+
+So to create an instance of a given class, one has to make an object that
+derives from the proper prototype, but one can _also_ has to make sure it,
+itself, has the properties that instances of this class are supposed to have.
+This is what a _constructor_ function does:
+
+```js
+function makeRabbit(type) {
+  let rabbit = Object.create(protoRabbit);
+  rabbit.type = type;
+  return rabbit;
+}
+```
+
+JS' class notation makes it easier to defin this type of function, along with
+a prototpye object.
+
+```js
+class Rabbit {
+  constructor(type) {
+    this.type = type;
+  }
+  speak(line) {
+    console.log(`The ${this.type} rabbit says '${line}'`);
+  }
+}
+```
+
+The `class` keyword ...
+
 <!-- HERE -- CLASSES! -->
