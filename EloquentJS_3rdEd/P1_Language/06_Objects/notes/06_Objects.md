@@ -229,6 +229,54 @@ class Rabbit {
 }
 ```
 
-The `class` keyword ...
+The `class` keyword starts a class declaration, which allows us to define a 
+consstructor and a set of methods together. Any number of methods may be written
+isnide the declaration's braces. This code has the effect of defing a binding
+called `Rabbit`, which holds a function that runs the code in `constructor`,
+and has a `prototype` property which holds the `speak` method.
+
+This function cannot be called normally. Constructors, in JS, are called by 
+putting the keyword `new` in front of them. Doing so creates a fresh object
+with the object held in the function's `prototype` property as prototype,
+then runs the function with `this` bound to the new object, and finally 
+returns the object.
+
+```js
+let killerRabbit = new Rabbit("killer");
+```
+
+In fact `class` was only introduced in the 2015 editition of JS. Any
+function can be used as a constructor, and before 2015, the way to define
+a class was to write a reguular function and then manipulate its `prototype`
+property:
+
+```js
+function ArchaicRabbit(type) {
+  this.type = type;
+}
+ArchaicRabbit.prototype.speak = function(line) {
+  console.log(`The ${this.type} rabbit says '${line}'`);
+};
+let oldSchoolRabbit = new ArchaicRabbit("old school");
+```
+
+For this reason, all non-arrow function start with a start with a 
+`prototpye` property holding an empty object. 
+
+By conventions, the names of constructors are capitalized so that they
+are easily distinguished from other functions.
+
+It is important to understand the distinction between the way a prototype
+is associated with a constructor (throug its `prototype` _property_) and the
+way objects _have_ a prototype (which can be found with `Object.getPrototypeOf`).
+The actual prototype of a constructor is `Function.prototype` since 
+constructors are functions. Its `prototype` _property_ holds the prototype
+used for instances created through it!:
+
+```js
+
+```
+
+Constructors ...
 
 <!-- HERE -- CLASSES! -->
