@@ -10,6 +10,7 @@ let x = `function makeRabbit(type) {
     return rabbit;
   }`;
 
+console.log('*'.repeat(80).concat('\n'));
 console.log(x);
 
 function makeRabbit(type) {
@@ -27,6 +28,7 @@ x = `class Rabbit {
     }
   }`;
 
+console.log('*'.repeat(80).concat('\n'));
 console.log(x);
 
 class Rabbit {
@@ -40,6 +42,7 @@ class Rabbit {
 
 x = `let killerRabbit = new Rabbit("killer");`;
 
+console.log('*'.repeat(80).concat('\n'));
 console.log(x);
 
 let killerRabbit = new Rabbit("killer");
@@ -52,6 +55,7 @@ ArchaicRabbit.prototype.speak = function(line) {
 };
 let oldSchoolRabbit = new ArchaicRabbit("old school");`;
 
+console.log('*'.repeat(80).concat('\n'));
 console.log(x);
 
 function ArchaicRabbit(type) {
@@ -61,3 +65,30 @@ ArchaicRabbit.prototype.speak = function(line) {
   console.log(`The ${this.type} rabbit says '${line}'`);
 };
 let oldSchoolRabbit = new ArchaicRabbit("old school");
+
+x = `console.log(Object.getPrototypeOf(Rabbit) ==
+Function.prototype);
+// → true
+console.log(Object.getPrototypeOf(killerRabbit) ==
+Rabbit.prototype);
+// → true`;
+
+console.log('*'.repeat(80).concat('\n'));
+console.log(x);
+
+console.log(Object.getPrototypeOf(Rabbit) ==
+            Function.prototype);
+// → true
+console.log(Object.getPrototypeOf(killerRabbit) ==
+            Rabbit.prototype);
+// → true
+
+x = `class Particle {
+  speed = 0;
+  constructor(position) {
+    this.position = position;
+  }
+}`;
+
+console.log('*'.repeat(80).concat('\n'));
+console.log(x)

@@ -274,9 +274,25 @@ constructors are functions. Its `prototype` _property_ holds the prototype
 used for instances created through it!:
 
 ```js
-
+console.log(Object.getPrototypeOf(Rabbit) ==
+            Function.prototype);
+// → true
+console.log(Object.getPrototypeOf(killerRabbit) ==
+            Rabbit.prototype);
+// → true
 ```
 
-Constructors ...
+Constructors will typically add some per-instance properties to `this`. It is
+also possible to declare properties directly in the class declaration. Unlike methods,
+such properties are added to instance objects, not the prototype.
+
+```js
+class Particle {
+  speed = 0;
+  constructor(position) {
+    this.position = position;
+  }
+}
+```
 
 <!-- HERE -- CLASSES! -->
