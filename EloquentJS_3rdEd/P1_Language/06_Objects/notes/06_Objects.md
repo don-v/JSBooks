@@ -295,4 +295,35 @@ class Particle {
 }
 ```
 
-<!-- HERE -- CLASSES! -->
+Like `function`, `class` can be used both in statements and in expressions. When used
+as an expression, it doesn't define a binding but just produces the constructor as a
+value. One is allowed to omit the class name in a class expression:
+
+```js
+let object = new class { getWord() { return "hello"; } };
+console.log(object.getWord());
+// → hello
+```
+
+## PRIVATE PROPERTIES
+
+It is common for classes to define some properties and methods for internal use, which are 
+not part of their interface. These are called _private_ properties, as opposed to _public_
+ones, which are part of the object's external interface.
+
+To declare a private method, put a `#` sign in front of its name. Such methods can only
+be called form inside the `class` declaration that defines them:
+
+```js
+class SecretiveObject {
+  #getSecret() {
+    return "I ate all the plums";
+  }
+  interrogate() {
+    let shallISayIt = this.#getSecret();
+    return "never";
+  }
+}
+```
+
+<!-- HERE -- PRIVATE PROPERTIES! -->

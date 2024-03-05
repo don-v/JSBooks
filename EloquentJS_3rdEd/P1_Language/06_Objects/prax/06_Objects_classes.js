@@ -92,3 +92,11 @@ x = `class Particle {
 
 console.log('*'.repeat(80).concat('\n'));
 console.log(x)
+
+x=`let object = new class { getWord() { return "hello"; } };
+console.log(object.getWord());
+// → hello`;
+
+let object = new class { getWord() { return "hello"; } };
+console.log(object.getWord());
+// → hello
