@@ -326,4 +326,48 @@ class SecretiveObject {
 }
 ```
 
-<!-- HERE -- PRIVATE PROPERTIES! -->
+If oen tries to call `#getSecret` from outside the class, one gets an error. Its 
+existence is entirely hidden inside the class declaration.
+
+to use private instance properties, one must delcare them. Regular properties can be
+created by just assigning them, but private properties _must_ be declared in the class
+declaration to be available at all.
+
+This class implements an applicance for getting random whole number below a given 
+maximum number. It only has one public property: `getNumber`:
+
+```js
+class RandomSource {
+  #max;
+  constructor(max) {
+    this.#max = max;
+  }
+  getNumber() {
+    return Math.floor(Math.random() * this.#max);
+  }
+}
+```
+
+## OVERRIDING DERIVED PROEPRTIES
+
+When one adds a property to an object, whether it is present in the prototype
+or not, the property is added to the object _itself_. If there was already a 
+property with the same name in the prototype, this property will no longer 
+affect the object, as it is now hidden behind the object's own property.
+
+```js
+Rabbit.prototype.teeth = "small";
+console.log(killerRabbit.teeth);
+// → small
+killerRabbit.teeth = "long, sharp, and bloody";
+console.log(killerRabbit.teeth);
+// → long, sharp, and bloody
+console.log((new Rabbit("basic")).teeth);
+// → small
+console.log(Rabbit.prototype.teeth);
+// → small
+```
+
+
+
+<!-- HERE -- OVERRIDING DERIVED PROPERTIES! -->
