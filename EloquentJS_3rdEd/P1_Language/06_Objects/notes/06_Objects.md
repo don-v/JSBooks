@@ -368,6 +368,10 @@ console.log(Rabbit.prototype.teeth);
 // → small
 ```
 
+The following diagram sketches the situation after this code has run. The 
+`Rabbit` and `Object` prototypes lie behind `killerRabbit` as a kind of backdrop,
+where properties that are not found in the object itself can be looked up.
+
 
 
 <!-- HERE -- OVERRIDING DERIVED PROPERTIES! -->
