@@ -372,6 +372,38 @@ The following diagram sketches the situation after this code has run. The
 `Rabbit` and `Object` prototypes lie behind `killerRabbit` as a kind of backdrop,
 where properties that are not found in the object itself can be looked up.
 
+```json
+{
+  "classes" : ["Object", "Rabbit", "killerRabbit"],
+  "killerRabbit": {
+    "properties": {
+      "Rabbit.teeth (overridden)": "long, sharp",
+      "teeth": "small",
+      "type": "killer"
+    },
+    "methods" : {
+      "Rabbit.speak.prototype (inherited)": "<function>",
+      "Object.prototype.toString (inherited)": "<function>"
+    }
+  },
+  "Rabbit": {
+    "prototype": {
+      "properties": {
+      "teeth": "small"
+    },
+    "methods": {
+      "speak": "<function>"
+    }
+    }
+  },
+  "Object" : {
+    "create": "<function>",
+    "prototype" : {
+      "toString": "<function>"
+    }
+  }
+}
+```
 
 
 <!-- HERE -- OVERRIDING DERIVED PROPERTIES! -->
