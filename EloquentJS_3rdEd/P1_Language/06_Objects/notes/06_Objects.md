@@ -405,5 +405,33 @@ where properties that are not found in the object itself can be looked up.
 }
 ```
 
+Overriding properties that exist in a prototype can be a useful thing to do. As
+the rabbit teeth example shows, overriding can be used to express exceptional
+properties in instances of a more generic class of objects, while letting the
+nonexceptional objects take a standard value from their prototype.
 
-<!-- HERE -- OVERRIDING DERIVED PROPERTIES! -->
+Overriding is also used to give the standard function and array prototypes a 
+different `toString` method than the basic object prototype:
+
+```js
+console.log(Array.prototype.toString ==
+            Object.prototype.toString);
+// → false
+console.log([1, 2].toString());
+// → 1,2
+```
+
+Calling `toString` on an array gives a result similar to calling `.join(",")` on
+it -- it puts commas between the values in the array. Directly calling 
+`Object.prototype.toString` with an array produces a different string. That
+function doesn't know about arrays, so it simply puts the word _object_ and
+the name of the type between square brackets:
+
+```js
+console.log(Object.prototype.toString.call([1, 2]));
+// → [object Array]
+```
+
+## MAPS
+
+<!-- HERE -- MAPS! -->
