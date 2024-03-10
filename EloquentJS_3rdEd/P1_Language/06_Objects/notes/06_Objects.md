@@ -434,4 +434,40 @@ console.log(Object.prototype.toString.call([1, 2]));
 
 ## MAPS
 
-<!-- HERE -- MAPS! -->
+We saw the word _map_ used in the previous chapter (C5) for an operation that 
+transforms a data structure by applying a function ot its elements. Confusing as 
+it is, in programming, the same word is used for a related but rather different
+thing.
+
+A _map_ (noun) is a data structure that associates values (the keys) with other 
+values. For example, one might want ot map names to ages. It is possible to use
+objects for this.
+
+```js
+let ages = {
+  Boris: 39,
+  Liang: 22,
+  Júlia: 62
+};
+
+console.log(`Júlia is ${ages["Júlia"]}`);
+// → Júlia is 62
+console.log("Is Jack's age known?", "Jack" in ages);
+// → Is Jack's age known? false
+console.log("Is toString's age known?", "toString" in ages);
+// → Is toString's age known? true
+```
+
+Here, the object's property names are the people's names, and the property
+values are their ages. But we certainly didn't list any boyd named `toString`
+in our map. Yet, because plain objects derive from `Object.prototype`, it
+looks like the property is there.
+
+As such, using plain objects as maps is dangerous. There are several possible
+ways to avoid this problem. First, it is possible to create objects with no
+prototype. If one passes `null` to `Object.create`, the resulting object will
+not derive form `Object.prototype` and can safely be used as a map.
+
+```js
+// <!-- HERE -- MAPS! -->
+```
