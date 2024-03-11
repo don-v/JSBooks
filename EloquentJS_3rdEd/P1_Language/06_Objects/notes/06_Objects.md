@@ -469,5 +469,41 @@ prototype. If one passes `null` to `Object.create`, the resulting object will
 not derive form `Object.prototype` and can safely be used as a map.
 
 ```js
-// <!-- HERE -- MAPS! -->
+console.log("toString" in Object.create(null));
+// → false
+```
+
+Object property names must be strings. If one needs a map whose keys can't
+easily be converted to strings -- such as objects -- one cannot use an object
+as one's map.
+
+Fortunately, JavaScript comes with a class called `Map` that is written for
+this exact purpose. It stores a mapping and allows any type of keys. 
+
+```js
+let ages = new Map();
+ages.set("Boris", 39);
+ages.set("Liang", 22);
+ages.set("Júlia", 62);
+
+console.log(`Júlia is ${ages.get("Júlia")}`);
+// → Júlia is 62
+console.log("Is Jack's age known?", ages.has("Jack"));
+// → Is Jack's age known? false
+console.log(ages.has("toString"));
+// → false
+```
+
+The methods `set`, `get`, and `has` are part of the interface of the `Map`
+object. Writing a data structure that can quickly update and search a large set
+of values isn't easy, but we don't have to worry about that. Someone else did it for
+us, and we can go through this simple interface to use their work.
+
+If one does have a plain object that one needs to treat as a map for some reason,
+it is useful to know that `Object.keys` returns only an object's _own_ keys, not
+those in the prototype. As an alternative to the `in` operator, one can use the
+`Object.hasOwn` function, which ignores the object's prototype:
+
+```js
+// MAPS!
 ```
