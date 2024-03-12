@@ -65,3 +65,16 @@ console.log("Is Jack's age known?", ages.has("Jack"));
 // → Is Jack's age known? false
 console.log(ages.has("toString"));
 // → false
+
+x=`console.log(Object.hasOwn({x: 1}, "x"));
+// → true
+console.log(Object.hasOwn({x: 1}, "toString"));
+// → false`;
+
+console.log('*'.repeat(80).concat('\n'));
+console.log(x);
+
+console.log(Object.hasOwn({x: 1}, "x"));
+// → true
+console.log(Object.hasOwn({x: 1}, "toString"));
+// → false

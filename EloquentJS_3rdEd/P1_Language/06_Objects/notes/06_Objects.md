@@ -505,5 +505,35 @@ those in the prototype. As an alternative to the `in` operator, one can use the
 `Object.hasOwn` function, which ignores the object's prototype:
 
 ```js
-// MAPS!
+console.log(Object.hasOwn({x: 1}, "x"));
+// → true
+console.log(Object.hasOwn({x: 1}, "toString"));
+// → false
 ```
+
+## POLYMORPHISM
+
+When one calls the `String` fuction (which converts a value to a string) on an 
+object, it will call the `toString` method on that object to tryy to create a 
+meaningful string from it. Teach mentioned that some of the standard prototypes
+define their own version of `toString` so they can create a string that contains
+more useful information than `"[object Object]"`. One can also do that by oneself:
+
+```js
+Rabbit.prototype.toString = function() {
+  return `a ${this.type} rabbit`;
+};
+
+console.log(String(killerRabbit));
+// → a killer rabbit
+```
+
+This is a sample instance of a powerful idea. When a piece of code is written
+to work with objects that have a certain interface -- in this case, a `toString`
+method -- any kind of object that happens to support this interface can be plugged
+into the code, and it will be able to work with it.
+
+This technique is called _polymorphism_. Polymorphic code can work with values o f
+different shapes, as long as they support the interface it expects.
+
+<!-- HERE-- POLYMORPHISM! -->
