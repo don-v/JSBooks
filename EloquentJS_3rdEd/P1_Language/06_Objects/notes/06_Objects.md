@@ -536,4 +536,44 @@ into the code, and it will be able to work with it.
 This technique is called _polymorphism_. Polymorphic code can work with values o f
 different shapes, as long as they support the interface it expects.
 
-<!-- HERE-- POLYMORPHISM! -->
+an example of widely used interface is that of arry-like objects which have a 
+`length` property holding a number, and numbered properties for each of their
+elements. Both arrays and strings support this interface, as do various other 
+objects, some of which we'll see later in the chapters about the browser. Our 
+impelementation of `forEach` from C5 works on anything that provides this 
+interface. In fact, so does `Array.prototype.forEach`.
+
+```js
+Array.prototype.forEach.call({
+  length: 2,
+  0: "A",
+  1: "B"
+}, elt => console.log(elt));
+// → A
+// → B
+```
+
+## GETTERS, SETTERS, AND STATICS
+
+Interfaces often contain plain properties, not just methods. For example, `Map
+objects have a `size` property that tells one how many keys are stored in them.
+
+It is not necessary for such an object to compute and store such a property
+directly in the instance. Even properties that are accessed directly may hide a
+method call. Such methods are called _getters_ and are defined by writing `get`
+in front of the method name in an object expression or class declaration.
+
+```js
+let varyingSize = {
+  get size() {
+    return Math.floor(Math.random() * 100);
+  }
+};
+
+console.log(varyingSize.size);
+// → 73
+console.log(varyingSize.size);
+// → 49
+```
+
+<!-- HERE-- GETTERS, SETTERS, AND STATICS! -->

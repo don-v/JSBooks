@@ -14,3 +14,22 @@ return `a ${this.type} rabbit`;
 
 console.log(String(killerRabbit));
 // → a killer rabbit
+
+x=`Array.prototype.forEach.call({
+  length: 2,
+  0: "A",
+  1: "B"
+}, elt => console.log(elt));
+// → A
+// → B`;
+
+console.log('*'.repeat(80).concat('\n'));
+console.log(x);
+
+Array.prototype.forEach.call({
+  length: 2,
+  0: "A",
+  1: "B"
+}, elt => console.log(elt));
+// → A
+// → B
