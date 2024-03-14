@@ -576,4 +576,45 @@ console.log(varyingSize.size);
 // → 49
 ```
 
+Whenever someone reads form the object's `size` proeperty, the associated
+method is called. One can do similar things when a property is written  to
+using a _setter.:
+
+```js
+class Temperature {
+  constructor(celsius) {
+    this.celsius = celsius;
+  }
+  get fahrenheit() {
+    return this.celsius * 1.8 + 32;
+  }
+  set fahrenheit(value) {
+    this.celsius = (value - 32) / 1.8;
+  }
+
+  static fromFahrenheit(value) {
+    return new Temperature((value - 32) / 1.8);
+  }
+}
+
+let temp = new Temperature(22);
+console.log(temp.fahrenheit);
+// → 71.6
+temp.fahrenheit = 86;
+console.log(temp.celsius);
+// → 30
+```
+
+The `Temperature` class allow one to read and write the temperature in either
+degrees Celsius or degrees Fahrenheit, but internally it stores only Celcius
+and automatically converts to and from Celsius in the `fahrenheit` getter and
+setter. 
+
+Sometimes one wants to attach some properties directly to one's constructor
+function, rather than to the prototype. Such methods won't have access to a 
+class instance but can, for example, be used to provide additional ways to
+create instances.
+
+Inside a class defini ...
+
 <!-- HERE-- GETTERS, SETTERS, AND STATICS! -->
