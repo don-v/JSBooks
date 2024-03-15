@@ -50,7 +50,6 @@ console.log(temp.celsius);
 
 console.log('*'.repeat(80).concat('\n'));
 console.log(x);
-  
 
 class Temperature {
   constructor(celsius) {
@@ -74,3 +73,15 @@ console.log(temp.fahrenheit);
 temp.fahrenheit = 86;
 console.log(temp.celsius);
 // → 30
+
+x=`let boil = Temperature.fromFahrenheit(212);
+console.log(boil.celsius);
+// → 100`;
+
+console.log('*'.repeat(80).concat('\n'));
+console.log(x);
+
+
+let boil = Temperature.fromFahrenheit(212);
+console.log(boil.celsius);
+// → 100

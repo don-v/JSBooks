@@ -615,6 +615,17 @@ function, rather than to the prototype. Such methods won't have access to a
 class instance but can, for example, be used to provide additional ways to
 create instances.
 
-Inside a class defini ...
+Inside a class declaration, methods or properties that have `static` written
+before their name are stored on the constructor. For example, the `Temperature`
+class allows one to write `Temperature.fromFahrenheit(100)` to create a 
+temperature using degrees Fahrenheit. 
 
-<!-- HERE-- GETTERS, SETTERS, AND STATICS! -->
+```js
+let boil = Temperature.fromFahrenheit(212);
+console.log(boil.celsius);
+// → 100
+```
+
+## SYMBOLS
+
+<!-- HERE-- SYMBOLS! -->
