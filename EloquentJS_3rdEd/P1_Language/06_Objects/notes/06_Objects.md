@@ -628,4 +628,28 @@ console.log(boil.celsius);
 
 ## SYMBOLS
 
-<!-- HERE-- SYMBOLS! -->
+Teach mentioned in C4 that `for/of` loop can loop over several kinds of data structures.
+This is another case of polymorphism -- such loops expect the data structure to expose a
+specific interface, which arrays and strings do. And we can also add this interface to our
+own objects! But before we can do that, we need to briefly take a look at the symbol type.
+
+It is possible for multiple interfaces to use the same property name for different things.
+For example, on array-like objects, `length` refers to the number of elements in the 
+collection. But an object interface describing a hiking route could use `length` to provide
+the length of the route in meters. It would not be possible for an object to conform to 
+both these interfaces.
+
+An object trying to be a route and array-like (maybe to enumerate its waypoints) is 
+somewhat far-fetched, and this kind of problem isn't that common in practice. For things
+like the interation protocol, though, the language designers needed a type of property
+that _really_ doesn't conflict with any other . So in 2015, _symbols_ were added to
+the language.
+
+Most proeprties, including all those we have seen so far, are named with strings. But it
+is also possible to use symbols as property names. Symbols are values created with the 
+`Symbol`  function. Unlike strings, newly created symbols are unique -- one cannot create
+the same symbol twice:
+
+```js
+// <!-- HERE-- SYMBOLS! -->
+```
