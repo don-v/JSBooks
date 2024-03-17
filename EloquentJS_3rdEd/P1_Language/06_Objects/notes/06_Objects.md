@@ -645,11 +645,52 @@ like the interation protocol, though, the language designers needed a type of pr
 that _really_ doesn't conflict with any other . So in 2015, _symbols_ were added to
 the language.
 
-Most proeprties, including all those we have seen so far, are named with strings. But it
+Most properties, including all those we have seen so far, are named with strings. But it
 is also possible to use symbols as property names. Symbols are values created with the 
 `Symbol`  function. Unlike strings, newly created symbols are unique -- one cannot create
 the same symbol twice:
 
 ```js
-// <!-- HERE-- SYMBOLS! -->
+let sym = Symbol("name");
+console.log(sym == Symbol("name"));
+// → false
+Rabbit.prototype[sym] = 55;
+console.log(killerRabbit[sym]);
+// → 55
 ```
+
+The string one passes to `Symbol` is included when one converts it to a string and
+can make it easier to recognize a symbol when, for example, showing it in the console. 
+But it has no meaning beyond that -- multiple symbols may have the same name.
+
+Being both unique and usable as property names makes symbols suitable for defining 
+interfaces that can peacefully live alongside other properties, no matter what thier
+names are. 
+
+```js
+const length = Symbol("length");
+Array.prototype[length] = 0;
+
+console.log([1, 2].length);
+// → 2
+console.log([1, 2][length]);
+// → 0
+```
+
+It is possible to inlcude symbol properties in object expressions and classes by
+using square brackets around the property name. That causes the expression between
+the brackets to be evaluated to produce the property name, analogous to the square
+bracket property access notation.
+
+```js
+let myTrip = {
+  length: 2,
+  0: "Lankwitz",
+  1: "Babelsberg",
+  [length]: 21500
+};
+console.log(myTrip[length], myTrip.length);
+// → 21500 2
+```
+
+<!-- HERE-- SYMBOLS! -->
