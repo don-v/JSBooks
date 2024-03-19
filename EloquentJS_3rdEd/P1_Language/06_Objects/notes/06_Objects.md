@@ -693,4 +693,34 @@ console.log(myTrip[length], myTrip.length);
 // → 21500 2
 ```
 
-<!-- HERE-- SYMBOLS!+ -->
+## THE ITERATOR INTERFACE
+
+The object given to a `for/of` loop is expected to be _iterable_. This means it has a
+method named wiht the `Symbol.iterator` symbol (a symbol value defined by the language,
+stored as a property of the `Symbol` function).
+
+When called, that method should return an object that provided a second interface, 
+_iterator_. This is the actual thing that iterates. It has a `next` method that returns
+the next result. That result should be an object with a `value` property that provides
+the next vlaue, if there is one, and a `done` property, which should be true when there
+are not more results and false otherwise.
+
+Note that the `next`, `value`, and `done` property names are plain strings, not symbols.
+Only `Symbol.iterator`, which is likely to be added to a _lot_ different objects, is an
+actual symbol.
+
+We can directlyy use this interface ourselves:
+
+```js
+let okIterator = "OK"[Symbol.iterator]();
+console.log(okIterator.next());
+// → {value: "O", done: false}
+console.log(okIterator.next());
+// → {value: "K", done: false}
+console.log(okIterator.next());
+// → {value: undefined, done: true}
+```
+
+Let's implement an iterable data structure similar to the linked. 
+
+<!-- HERE-- ITERATOR INTERFACE-->
