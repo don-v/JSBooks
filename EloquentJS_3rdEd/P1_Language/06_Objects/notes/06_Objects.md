@@ -696,7 +696,7 @@ console.log(myTrip[length], myTrip.length);
 ## THE ITERATOR INTERFACE
 
 The object given to a `for/of` loop is expected to be _iterable_. This means it has a
-method named wiht the `Symbol.iterator` symbol (a symbol value defined by the language,
+method named with the `Symbol.iterator` symbol (a symbol value defined by the language,
 stored as a property of the `Symbol` function).
 
 When called, that method should return an object that provided a second interface, 
@@ -721,6 +721,38 @@ console.log(okIterator.next());
 // → {value: undefined, done: true}
 ```
 
-Let's implement an iterable data structure similar to the linked. 
+Let's implement an iterable data structure similar to the linked list from the
+exercise in C4. We'll write the list as a class this time:
+
+```js
+class List {
+  constructor(value, rest) {
+    this.value = value;
+    this.rest = rest;
+  }
+
+  get length() {
+    return 1 + (this.rest ? this.rest.length : 0);
+  }
+
+  static fromArray(array) {
+    let result = null;
+    for (let i = array.length - 1; i >= 0; i--) {
+      result = new this(array[i], result);
+    }
+    return result;
+  }
+}
+```
+
+Note that `this`, in a static method, points at the constructor of the class, not an
+instance -- there is no instance around when a static method is called.
+
+Iterating over a list should return all the list's elements from start to end. We'll
+write a separate class for the iterator.
+
+```js
+// HERE -- 
+```
 
 <!-- HERE-- ITERATOR INTERFACE-->
