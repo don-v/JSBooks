@@ -752,7 +752,54 @@ Iterating over a list should return all the list's elements from start to end. W
 write a separate class for the iterator.
 
 ```js
-// HERE -- 
+class ListIterator {
+  constructor(list) {
+    this.list = list;
+  }
+
+  next() {
+    if (this.list == null) {
+      return {done: true};
+    }
+    let value = this.list.value;
+    this.list = this.list.rest;
+    return {value, done: false};
+  }
+}
 ```
 
-<!-- HERE-- ITERATOR INTERFACE-->
+The class tracks the progress of iterating through the list by updating its `list`
+property to move to the next list object whenever a value is returned and reports
+that it is done when that list is empty (`null`).
+
+Let's set up the `List` class to be iterable. Throughout this book, teach'll 
+occasionally use after-the-fact- prototype manipulation to add methods to classes 
+so that the individual pieces of code remain small and self-contained. In a 
+regular program, where there is no need to split the code into small pieces,
+one'd declare these methods directly in the class instead.
+
+```js
+List.prototype[Symbol.iterator] = function() {
+  return new ListIterator(this);
+};
+```
+
+We can now loop over a list with `for/of`:
+
+```js
+let list = List.fromArray([1, 2, 3]);
+for (let element of list) {
+  console.log(element);
+}
+// → 1
+// → 2
+// → 3
+```
+
+The `...` syntax in array notation and function calls similarly works with any
+iterable object. for example, on can use `[...value]` to create an array 
+containing the elements in an arbitrary iterable object:
+
+```js
+// the iterator interface
+```
