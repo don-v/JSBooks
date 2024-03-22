@@ -121,3 +121,11 @@ for (let element of list) {
 // → 2
 // → 3
 
+x=`console.log([..."PCI"]);
+// → ["P", "C", "I"]`;
+
+console.log('*'.repeat(80).concat('\n'));
+console.log(x);
+
+console.log([..."PCI"]);
+// → ["P", "C", "I"]

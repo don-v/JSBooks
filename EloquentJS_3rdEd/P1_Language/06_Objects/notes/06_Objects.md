@@ -801,5 +801,46 @@ iterable object. for example, on can use `[...value]` to create an array
 containing the elements in an arbitrary iterable object:
 
 ```js
-// the iterator interface
+console.log([..."PCI"]);
+// → ["P", "C", "I"]
 ```
+
+## INHERITANCE
+
+Imagine we need a list type much like the `List` class we saw before, but because
+we will be asking for its length all the time, we don't want it to have to scan 
+through its `rest` every time.  Instead, we want to store the length in every
+instance for efficinet access.
+
+JS' prototype system makes it possible to create a _new_ class, much like the
+old class, but with new definitions for some of its properties. The prototype
+for the new class derives from the old prototype but adds a new definition for,
+say, the `length` getter.
+
+In OOP terms, this is called _inheritance_. The new class inherits properties and
+behavior from the old class.
+
+```js
+class LengthList extends List {
+  #length;
+
+  constructor(value, rest) {
+    super(value, rest);
+    this.#length = super.length;
+  }
+
+  get length() {
+    return this.#length;
+  }
+}
+
+console.log(LengthList.fromArray([1, 2, 3]).length);
+// → 3
+```
+
+The use of the words `extends` indicates that this class shouldn't
+be direclty based on the default `Object` prototype but on some other
+class. This is called the _superclass_. The derived class is the 
+_subclass_.
+
+<!-- INHERITANCE -->
