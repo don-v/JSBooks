@@ -843,4 +843,67 @@ be direclty based on the default `Object` prototype but on some other
 class. This is called the _superclass_. The derived class is the 
 _subclass_.
 
-<!-- INHERITANCE -->
+To initialize a `LengthList` instance, the contstructor calls the 
+constructor of its superclass through the `super` keyword. This is
+necessary because if this new object is to behave (roughly) like a
+`List`, it is good to need the instance properties that lists have.
+
+The constructor then stores the lists's length in a private property.
+If we had written `this.length` there, the class's own 'getter' would
+have been called, which doens't work yet, since `#length` hasn't been
+filled in yet. We can use `super.something` to call methods and
+'getters` on the superclass's prototype, which is often useful.
+
+Inheritance allows us to build slightly different data types from 
+existing data types with relatively little work. It is a fundamental
+part of the OOP tradition, alongisde encapsulation and polymoriphsm. 
+But while the latter two are now generallly regarded as wonderful
+ideas, inheritance is more controversial.
+
+Whereas encapsulation and polymorphism can be used to _separate_
+pieces of code from one another, reducing the tangledness of the
+overall progrm, inheritance fundamentally ties classes together, creating
+_more_ tangle. When inheriting from a class, one usually has to know more
+about how it works than when simply using it. Inheritance can be a 
+useful tool to make some types of programs more succinct, but it shouldn't
+be the first tool one reaches for, and one probably shouldn't actively
+go looking for opportunities to construct class hierarchies (family
+trees of classes).
+
+## THE `instanceof` OPERATOR:
+
+It is occasionally useful to know whether an object was derived from a 
+specific class. For this, JS provides a binary operator called 
+`instanceof`:
+
+```js
+console.log(
+  new LengthList(1, null) instanceof LengthList);
+// → true
+console.log(new LengthList(2, null) instanceof List);
+// → true
+console.log(new List(3, null) instanceof LengthList);
+// → false
+console.log([1] instanceof Array);
+// → true
+```
+
+The operator will see through inherited types, so a `LengthList` is an 
+instance of `List`. The operator can also be applied to standard constructors
+like `Array`. Almost every object is an instance of `Object`.
+
+## SUMMARY
+
+Objects do more than just hold their own properties. They have prototypes, 
+which are other objects. They'll act as if they have properties they don't have as
+long as their prototype has that property. Simple objects have `Object.prototype`
+as their prototype.
+
+Constructors, which are functiosn whose names usually start with a capital letter,
+can be used with the `new` operator to create new objects. The new object's 
+prototype will be the object found in the `prototype` property of the constructor.
+One can make good use of this by putting the properties that all values of a given
+type share into their prototype. There's a `class` notation that provides a clear
+way to define a constructor and its prototype. 
+
+<!-- SUMMARY -->
