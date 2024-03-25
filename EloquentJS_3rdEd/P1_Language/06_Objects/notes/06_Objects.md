@@ -14,6 +14,10 @@ Though no one really agrees on its precise definition, OOP has shaped the design
 of many programming languages, including JS. This chapter will describe the
 way these ideas can be applied in JS.
 
+## ABSTRACT DATA TYPES
+
+<!-- HERE -- ABSTRACT DATA TYPES -->
+
 ## ENCAPSULATION
 
 The core idea in OOP is to divie programs into smaller pieces and make each 
@@ -905,5 +909,26 @@ prototype will be the object found in the `prototype` property of the constructo
 One can make good use of this by putting the properties that all values of a given
 type share into their prototype. There's a `class` notation that provides a clear
 way to define a constructor and its prototype. 
+
+One can define getters and setters to secretly call methods every time an object's
+property is accessed. Static methods are methods sotred in a class's contructor
+rather than its prototype.
+
+The `instanceof` operator can, given an object and a constructor, tell determine
+if the given object is an instance of the given constructor.
+
+One useful thing to do with objects is to specify an interface for them and tell
+everybody that they are supposed to talk to your object only thorugh that interface.
+The rest of the detials tha tmake up one's object are now _encapsulated_, hidden
+behind the interface. One can use private properties to hide a part of one's 
+object from the outside world. 
+
+More than one type may implement the same interface. Code written to use an 
+interface automatically knows how to work with any number of different objects
+that provide the interface. This is called _polymorphism_.
+
+When implmementing multiple classes that differ in only some details, it can be
+helpful to write the new classes as _sublcasses_ of an existing class, 
+_inheriting_ part of its behavior. 
 
 <!-- SUMMARY -->
