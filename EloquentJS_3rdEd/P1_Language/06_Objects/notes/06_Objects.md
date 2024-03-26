@@ -16,11 +16,43 @@ way these ideas can be applied in JS.
 
 ## ABSTRACT DATA TYPES
 
-<!-- HERE -- ABSTRACT DATA TYPES -->
+The main idea in OOP is to use objects, or rather _types_ of objects, as the unit
+of program organizztion. Setting up a program as a number of strictly separated
+object types provides a ay to think about its structure and thus to enforce
+some kind of discipline, preventing everything form becoming entangled.
+
+The way to do this is to think of objects somewhat like one'd think of an electric
+mixer or other consumer appliance. The people who design and assmemble a mixer have to
+do specilaized work requring material science and understanding of electricity.
+They cover all that up in a smooth plastic shell so that the people who onlly want
+to mix pancake batter don't have to worry about all that -- they only have to
+understand the few knowbs that the mixer can be operated with.
+
+Similarly, the _abstract data type_, or _object_ class, is a subprogram that may
+contain arbitrarily complicated code but exposes a limited set of methods and 
+properties that people working with it are supposed to use. This allows large
+programs to be built up out of oa number of appliance types, limiting the degree to
+which these different parts are entangled by requiring them to only interact with 
+each other in specific ways.
+
+If a problem is found in one such object class, it can often be repaired even 
+completely rewritten without impacting the rest of the program. Even better, 
+it may be possible to use object classes in multiple differnt programs, avoiding
+the need to recreate thier functionality from scratch. One can think of JS built-in
+data structures, such as arrays and strings, as such reusable abstract data types.
+
+Each abstract data type has an _interface_, the collection of operations that 
+external code can perform on it. Even basic things like numbers can be thought
+of as an abstract data type whose interface allows us to add them, multiply them,
+compare them, and so on. IN fact, the fixation on single _objects_ as the 
+main unit of organization isn classical OOP is somewhat unfortunate, since useful
+pieces of functionality often invovle a group of different object classes working
+closely together.
+
 
 ## ENCAPSULATION
 
-The core idea in OOP is to divie programs into smaller pieces and make each 
+The core idea in OOP is to diviDe programs into smaller pieces and make each 
 piece responsible for managing its own state.
 
 This way, some knowledge about the way a piece of the program works can be
@@ -931,4 +963,4 @@ When implmementing multiple classes that differ in only some details, it can be
 helpful to write the new classes as _sublcasses_ of an existing class, 
 _inheriting_ part of its behavior. 
 
-<!-- SUMMARY -->
+<!-- SUMMARY+ -->
