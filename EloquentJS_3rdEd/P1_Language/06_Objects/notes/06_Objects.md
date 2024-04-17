@@ -988,4 +988,4 @@ console.log(new Vec(3, 4).length);
 // → 5
 ```
 
-<!-- exercises -- vec type -->
+<!-- exercises -- vec type+ -->

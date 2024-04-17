@@ -13,9 +13,18 @@ vector -- that is, the distance  of the point _(x,y)_ form the origin (0,0).
 // Your code here.
 
 class Vec {
-    constructor(x,y) {
+    constructor(x, y) {
         this.x = x;
         this.y = y;
+    }
+    plus(vec) {
+        return new Vec(this.x+vec.x,this.y,vec.y);
+    }
+    minus(vec) {
+        return new Vec(this.x-vec.x,this.y-vec.y);
+    }
+    get length() {
+        return Math.sqrt(this.x**2 + this.y**2);
     }
 }
 
