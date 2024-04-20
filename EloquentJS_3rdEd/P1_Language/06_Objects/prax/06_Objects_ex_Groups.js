@@ -21,9 +21,26 @@ class Group {
   // Your code here.
   constructor() {
     this = Object.create(null);
+    this.vals = new Array;
   }
+  
   add(x) {
-    // HERE!
+    this.vals.push(x) ? !this.vals.has(x) : this.vals;
+  }
+  
+  delete(x) {
+    this.vals.push(x) ? !this.vals.has(x) : this.vals;
+  }
+
+  has(x) {
+    return this.vals.has(x);
+  }
+
+  static from(iterable) {
+    let result = new Group();
+    for (let x of iterable) {
+      // HERE -- group.
+    }
   }
 }
 
