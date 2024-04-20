@@ -25,11 +25,14 @@ class Group {
   }
   
   add(x) {
-    this.vals.push(x) ? !this.vals.has(x) : this.vals;
+    let idx = this.vals.indexOf(x);
+    if (idx !== -1) return this.vals.push(x);
   }
   
   delete(x) {
-    this.vals.push(x) ? !this.vals.has(x) : this.vals;
+    let idx = this.vals.indexOf(x);
+    if (idx !== -1) return this.vals;
+    return this.vals.splice(idx,1,x);
   }
 
   has(x) {
