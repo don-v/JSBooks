@@ -20,30 +20,29 @@ creates a group that contains all the values produced by iterating over it.
 class Group {
   // Your code here.
   constructor() {
-    this = Object.create(null);
     this.vals = new Array;
   }
   
   add(x) {
     let idx = this.vals.indexOf(x);
-    if (idx !== -1) return this.vals.push(x);
+    if (idx === -1) this.vals.push(x);
   }
   
   delete(x) {
     let idx = this.vals.indexOf(x);
-    if (idx !== -1) return this.vals;
-    return this.vals.splice(idx,1,x);
+    if (idx !== -1) this.vals.splice(idx,1,x);
   }
 
   has(x) {
-    return this.vals.has(x);
+    return x in this.vals;
   }
 
   static from(iterable) {
     let result = new Group();
     for (let x of iterable) {
-      // HERE -- group.
+      result.add(x);
     }
+    return result;
   }
 }
 
