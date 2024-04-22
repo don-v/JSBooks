@@ -30,11 +30,11 @@ class Group {
   
   delete(x) {
     let idx = this.vals.indexOf(x);
-    if (idx !== -1) this.vals.splice(idx,1,x);
+    if (idx !== -1) this.vals.splice(idx,1);
   }
 
   has(x) {
-    return x in this.vals;
+    return this.vals.includes(x);
   }
 
   static from(iterable) {
