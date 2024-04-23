@@ -1084,4 +1084,98 @@ console.log(group.has(10));
 // → false
 ```
 
-<!-- exercises -- group++++ -->
+### GROUPS: MYSOLUTION
+
+```js
+class Group {
+  // Your code here.
+  constructor() {
+    this.vals = new Array;
+  }
+  
+  add(x) {
+    let idx = this.vals.indexOf(x);
+    if (idx === -1) this.vals.push(x);
+  }
+  
+  delete(x) {
+    let idx = this.vals.indexOf(x);
+    if (idx !== -1) this.vals.splice(idx,1);
+  }
+
+  has(x) {
+    return this.vals.includes(x);
+  }
+
+  static from(iterable) {
+    let result = new Group();
+    for (let x of iterable) {
+      result.add(x);
+    }
+    return result;
+  }
+}
+```
+
+### GROUPS: TEACH KA HINTS
+
+The easiest way to do this is to store an array of group members in an instance property. 
+The includes or indexOf methods can be used to check whether a given value is in the array.
+
+Your class’s constructor can set the member collection to an empty array. When add is called, 
+it must check whether the given value is in the array or add it, for example with push, otherwise.
+
+Deleting an element from an array, in delete, is less straightforward, but you can use filter to 
+create a new array without the value. Don’t forget to overwrite the property holding the members 
+with the newly filtered version of the array.
+
+The from method can use a for/of loop to get the values out of the iterable object and call add 
+to put them into a newly created group.
+
+### GROUPS: TEACH KA SOLUTION
+
+```js
+class Group {
+  #members = [];
+
+  add(value) {
+    if (!this.has(value)) {
+      this.#members.push(value);
+    }
+  }
+
+  delete(value) {
+    this.#members = this.#members.filter(v => v !== value);
+  }
+
+  has(value) {
+    return this.#members.includes(value);
+  }
+
+  static from(collection) {
+    let group = new Group;
+    for (let value of collection) {
+      group.add(value);
+    }
+    return group;
+  }
+}
+
+let group = Group.from([10, 20]);
+console.log(group.has(10));
+// → true
+console.log(group.has(30));
+// → false
+group.add(10);
+group.delete(10);
+console.log(group.has(10));
+// → false
+```
+
+### ITERABLE GROUPS
+
+Make the `Group` class from the previous exercise iterable. Refer to the
+seciton about the iterator interface earlier in the chapter.
+
+
+<!-- exercises -- iterator group -->
