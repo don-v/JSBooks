@@ -1175,7 +1175,26 @@ console.log(group.has(10));
 ### ITERABLE GROUPS
 
 Make the `Group` class from the previous exercise iterable. Refer to the
-seciton about the iterator interface earlier in the chapter.
+section about the iterator interface earlier in the chapter if one is not clear
+on the exact form of the interface anymore.
+
+If one used an array to represent the group's members, one should not just
+return the iterator created by calling the `Symbol.iterator` method on the array.
+That would work, but it defeats the purpose for this exercise. 
+
+Is is okay if one's iterator behaves strangely when the group is modified during 
+iteration.
+
+```js
+// Your code here (and the code from the previous exercise)
+
+for (let value of Group.from(["a", "b", "c"])) {
+  console.log(value);
+}
+// → a
+// → b
+// → c
+```
 
 
-<!-- exercises -- iterator group -->
+<!-- exercises -- iterator group+ -->
