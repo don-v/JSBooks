@@ -77,7 +77,21 @@ class Group {
     }
   }
 
-  
+
+class GroupIterator extends Group {
+  constructor(group) {
+    this.group = group
+  }
+
+  next() {
+    if (this.group.#members.length == 0) {
+      return {done: true};
+    }
+    let value = this.group.#members.value;
+    this.group.#members = this.group.#members.rest;
+    return {value, done: false};
+  }
+}
 
 
 for (let value of Group.from(["a", "b", "c"])) {
