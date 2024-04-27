@@ -67,6 +67,14 @@ class Group {
     has(value) {
       return this.#members.includes(value);
     }
+
+    next() {
+      if (!this.#members.length) {
+        return {done: true};
+      }
+      let value = this.#members.shift();
+      return {value, done: false};
+    }
   
     static from(collection) {
       let group = new Group;
@@ -77,21 +85,24 @@ class Group {
     }
   }
 
+//   Group.prototype[Symbol.iterator] = function() {
+//     return new Group();
+//   }
 
-class GroupIterator extends Group {
-   
-  constructor() {
-  }
+// class GroupIterator {
 
-  next() {
-    if (this.group.#members.length == 0) {
-      return {done: true};
-    }
-    let value = this.group.#members.value;
-    this.group.#members = this.group.#members.rest;
-    return {value, done: false};
-  }
-}
+//   constructor(group) {
+//     this.group = group;
+//   }
+
+//   next() {
+//       if (!this.#members.length) {
+//         return {done: true};
+//       }
+//       let value = this.#members.shift();
+//       return {value, done: false};
+//     }
+//   }
 
 
 for (let value of Group.from(["a", "b", "c"])) {
