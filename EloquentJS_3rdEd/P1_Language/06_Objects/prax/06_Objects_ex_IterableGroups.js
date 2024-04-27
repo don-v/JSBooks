@@ -79,8 +79,8 @@ class Group {
 
 
 class GroupIterator extends Group {
-  constructor(group) {
-    this.group = group
+   
+  constructor() {
   }
 
   next() {
