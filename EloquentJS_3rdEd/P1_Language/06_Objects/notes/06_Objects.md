@@ -1172,7 +1172,7 @@ console.log(group.has(10));
 // → false
 ```
 
-### ITERABLE GROUPS
+## ITERABLE GROUPS
 
 Make the `Group` class from the previous exercise iterable. Refer to the
 section about the iterator interface earlier in the chapter if one is not clear
@@ -1197,4 +1197,115 @@ for (let value of Group.from(["a", "b", "c"])) {
 ```
 
 
-<!-- exercises -- iterator group+++++ -->
+### ITERABLE GROUPS: MY SOLUTION
+
+```js
+class Group {
+    #members = [];
+  
+    add(value) {
+      if (!this.has(value)) {
+        this.#members.push(value);
+      }
+    }
+  
+    delete(value) {
+      this.#members = this.#members.filter(v => v !== value);
+    }
+  
+    has(value) {
+      return this.#members.includes(value);
+    }
+
+    [Symbol.iterator]() {
+      return this;
+    }
+
+    next() {
+      if (!this.#members.length) {
+        return {done: true};
+      }
+      let value = this.#members.shift();
+      return {value, done: false};
+    }
+
+
+    static from(collection) {
+      let group = new Group;
+      for (let value of collection) {
+        group.add(value);
+      }
+      return group;
+    }
+  }
+```
+
+### ITERABLE GROUPS: TEACH KA HINTS
+
+It is probably worthwhile to define a new class GroupIterator. Iterator instances should 
+have a property that tracks the current position in the group. Every time next is called, 
+it checks whether it is done and, if not, moves past the current value and returns it.
+
+The Group class itself gets a method named by Symbol.iterator that, when called, returns 
+a new instance of the iterator class for that group.
+
+### ITERABLE GROUPS: TEACH KA SOLUTION
+
+```js
+class Group {
+  #members = [];
+
+  add(value) {
+    if (!this.has(value)) {
+      this.#members.push(value);
+    }
+  }
+
+  delete(value) {
+    this.#members = this.#members.filter(v => v !== value);
+  }
+
+  has(value) {
+    return this.#members.includes(value);
+  }
+
+  static from(collection) {
+    let group = new Group;
+    for (let value of collection) {
+      group.add(value);
+    }
+    return group;
+  }
+
+  [Symbol.iterator]() {
+    return new GroupIterator(this.#members);
+  }
+}
+
+class GroupIterator {
+  constructor(members) {
+    this.#members = members;
+    this.#position = 0;
+  }
+
+  next() {
+    if (this.#position >= this.#members.length) {
+      return {done: true};
+    } else {
+      let result = {value: this.#members[this.#position],
+                    done: false};
+      this.#position++;
+      return result;
+    }
+  }
+}
+
+for (let value of Group.from(["a", "b", "c"])) {
+  console.log(value);
+}
+// → a
+// → b
+// → c
+```
+
+<!-- 3rd ed.  -->
