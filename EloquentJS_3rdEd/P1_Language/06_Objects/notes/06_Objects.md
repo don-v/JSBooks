@@ -52,7 +52,7 @@ closely together.
 
 ## ENCAPSULATION
 
-The core idea in OOP is to diviDe programs into smaller pieces and make each 
+The core idea in OOP is to divide programs into smaller pieces and make each 
 piece responsible for managing its own state.
 
 This way, some knowledge about the way a piece of the program works can be
@@ -228,8 +228,8 @@ properties form its prototype.
 
 ## CLASSES
 
-JS' prototype system can be interpreted as a somewhat free-form take on 
-abstract data types or classes. A class defines the shape of a type of object --
+JS' prototype system can be interpreted as a somewhat informaal take on an
+OO concept called _classes_. A class defines the shape of a type of object --
 what methods and properties it has. Such an object is called an _instance_
 of the class. 
 
@@ -251,8 +251,15 @@ function makeRabbit(type) {
 }
 ```
 
-JS' class notation makes it easier to defin this type of function, along with
-a prototpye object.
+JS provides a ways ot make defining this type of function easier. If one puts
+the keyword `new` in front of a function call, the function is treated as a
+constructor. This means that an object with the right prototype is automatically
+created, bound to `this` in the function, and returned at the end of the function.
+
+The prototype object used when constructing objects is found by taking the `prototype`
+property of the constructor function.
+
+<!-- HERE -- 3RD ED REVIEW ++ -->
 
 ```js
 class Rabbit {
@@ -1307,5 +1314,3 @@ for (let value of Group.from(["a", "b", "c"])) {
 // → b
 // → c
 ```
-
-<!-- 3rd ed.  -->
