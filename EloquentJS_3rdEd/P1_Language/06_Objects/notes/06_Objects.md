@@ -259,6 +259,45 @@ created, bound to `this` in the function, and returned at the end of the functio
 The prototype object used when constructing objects is found by taking the `prototype`
 property of the constructor function.
 
+```js
+function Rabbit(type) {
+  this.type = type;
+}
+Rabbit.prototype.speak = function(line) {
+  console.log(`The ${this.type} rabbit says '${line}'`);
+};
+
+let weirdRabbit = new Rabbit("weird");
+```
+
+Constructors (all functions, in fact) automatically get a property names `prototype`, 
+which by default holds a plain, empty object that derives from `Object.prototype`. 
+One can overwrite it with a new object if one wants to. Or one can add properties
+to the existing object, as the example does. 
+
+By conventions, the names of constructors are capitalized so that they can easily be
+distinguished from other functions.
+
+It is important to understand the distinction betwee the way a prototype is
+associated with a constructor (through its `prototype` property) and the way
+objects _have_ a prototype (which can be found with `Object.getPrototypeOf`). 
+The actual prototype of a constructor is `Function.prototype` since constructors
+are functions. Its `prototype` _property_ holds the prototype used for instances
+created through it:
+
+```js
+console.log(Object.getPrototypeOf(Rabbit) ==
+            Function.prototype);
+// → true
+console.log(Object.getPrototypeOf(weirdRabbit) ==
+            Rabbit.prototype);
+// → true
+```
+
+## CLASS NOTATION
+
+
+
 <!-- HERE -- 3RD ED REVIEW ++ -->
 
 ```js
