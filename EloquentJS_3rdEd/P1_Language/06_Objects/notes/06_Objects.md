@@ -296,9 +296,10 @@ console.log(Object.getPrototypeOf(weirdRabbit) ==
 
 ## CLASS NOTATION
 
+So JS classes are constructor functions with a prototype property. That is how they work, 
+and until 2015, that was how one had to write them. These days, we have a less awkward 
+notation.
 
-
-<!-- HERE -- 3RD ED REVIEW ++ -->
 
 ```js
 class Rabbit {
@@ -309,7 +310,30 @@ class Rabbit {
     console.log(`The ${this.type} rabbit says '${line}'`);
   }
 }
+
+let killerRabbit = new Rabbit("killer");
+let blackRabbit = new Rabbit("black");
 ```
+
+<!-- ************************3rd ed******************************* -->
+
+The `class` keyword starts a class declaration, which allows us to define
+a constructor and a set of methods all lin a single place. Any number of 
+methods may be written inside the declaration's braces. The one named 
+`constructor` is treated specially. Iit provides the actual constructor
+function, which will be bound to the name `Rabbit`. The otheres are 
+packaged into that constructor's prototype. Thus, the earlier class 
+declaration is equivalent to the constructor definition from the previous
+section. It just looks nicer.
+
+Class declarationis currently allow only _methods_ -- properties that
+hold functions -- to be added to the prototype. This can be somewhat
+inconvenient when one wants to save a non-function value in there. The
+next version of the language ...
+
+<!-- HERE -- 3rd ed ++++ -->
+
+<!-- ************************3rd ed******************************* -->
 
 The `class` keyword starts a class declaration, which allows us to define a 
 consstructor and a set of methods together. Any number of methods may be written
