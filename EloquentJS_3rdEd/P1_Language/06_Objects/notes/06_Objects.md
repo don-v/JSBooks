@@ -329,7 +329,20 @@ section. It just looks nicer.
 Class declarationis currently allow only _methods_ -- properties that
 hold functions -- to be added to the prototype. This can be somewhat
 inconvenient when one wants to save a non-function value in there. The
-next version of the language ...
+next version of the language will probably improve this. For now, one
+can create such properties by directly manipulating the prototype after
+one has defined the class.
+
+Like `function`, `class` can be used both in statements and in expressions.
+When used as an expression, it doesn't define a binding but just produces 
+the constructor as a value. One is allowed to omit the class name in a class
+expression:
+
+```js
+let object = new class { getWord() { return "hello"; } };
+console.log(object.getWord());
+// → hello
+```
 
 <!-- HERE -- 3rd ed ++++ -->
 
@@ -565,7 +578,7 @@ console.log("Is toString's age known?", "toString" in ages);
 ```
 
 Here, the object's property names are the people's names, and the property
-values are their ages. But we certainly didn't list any boyd named `toString`
+values are their ages. But we certainly didn't list any body named `toString`
 in our map. Yet, because plain objects derive from `Object.prototype`, it
 looks like the property is there.
 
@@ -599,6 +612,12 @@ console.log("Is Jack's age known?", ages.has("Jack"));
 console.log(ages.has("toString"));
 // → false
 ```
+
+<!-- *************************3rd ed************************* -->
+
+<!-- *************************3rd ed************************* -->
+
+<!-- HERE -- 3RD ED! -->
 
 The methods `set`, `get`, and `has` are part of the interface of the `Map`
 object. Writing a data structure that can quickly update and search a large set
