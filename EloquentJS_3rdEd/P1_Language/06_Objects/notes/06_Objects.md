@@ -613,12 +613,6 @@ console.log(ages.has("toString"));
 // → false
 ```
 
-<!-- *************************3rd ed************************* -->
-
-<!-- *************************3rd ed************************* -->
-
-<!-- HERE -- 3RD ED! -->
-
 The methods `set`, `get`, and `has` are part of the interface of the `Map`
 object. Writing a data structure that can quickly update and search a large set
 of values isn't easy, but we don't have to worry about that. Someone else did it for
@@ -661,7 +655,14 @@ into the code, and it will be able to work with it.
 This technique is called _polymorphism_. Polymorphic code can work with values o f
 different shapes, as long as they support the interface it expects.
 
-an example of widely used interface is that of arry-like objects which have a 
+
+<!-- 3rd ed. -->
+
+Teach mentioned in C4 that a `for/of` loop can loop over several ...
+
+<!-- HERE -- polymorphism++ -->
+
+An example of widely used interface is that of arry-like objects which have a 
 `length` property holding a number, and numbered properties for each of their
 elements. Both arrays and strings support this interface, as do various other 
 objects, some of which we'll see later in the chapters about the browser. Our 
