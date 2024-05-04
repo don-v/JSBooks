@@ -658,7 +658,11 @@ different shapes, as long as they support the interface it expects.
 
 <!-- 3rd ed. -->
 
-Teach mentioned in C4 that a `for/of` loop can loop over several ...
+Teach mentioned in C4 that a `for/of` loop can loop over several kinds of data 
+structures. This is another case of polymorphism -- such loops expect the data structures
+to expose a specific interface, which arrays and strings do. And we can also add this
+interface to our own objects. But before we can do that, we need to know what 
+symbols are!
 
 <!-- HERE -- polymorphism++ -->
 
@@ -753,6 +757,56 @@ console.log(boil.celsius);
 ```
 
 ## SYMBOLS
+
+<!-- 3rd ed -->
+
+It is possible for multiple interfaces to use the same property name for different things. 
+For examle, teach could define an interface in which the `toString` method is supposed ot
+convert the object into a piece of yarn. It would not be possible for an object to conform
+to both that interface and that standard use of `toString`.
+
+That would be a bad idea, and this problem isn't that common. Most JS programmers simply
+dont' tink about it. But the language designers, whose _job_ is to think about this stuff,
+have provided us with a solution anyway.
+
+When teach claimed that property names are strings, that wasn't entirely accurate.  They 
+usually are, but they can also be _symbols_. Symbols are values created with the `Symbol`
+function. Unlike strings, newly created symbols are unique -- one cannot create the same
+symbol twice!
+
+```js
+let sym = Symbol("name");
+console.log(sym == Symbol("name"));
+// → false
+Rabbit.prototype[sym] = 55;
+console.log(blackRabbit[sym]);
+// → 55
+```
+
+The string one passes to `Symbol` is included when one converts it to a string and can 
+make it easier to recognize a symbol when, for example, showing it in the console. But it 
+has no meaning beyond that -- multiple symbols have the same name. 
+
+Being both unique and usable as property names makes symbols suitable for defining interfaces
+that can peacefully live alongside other properties, no matter what their names are.
+
+```js
+const toStringSymbol = Symbol("toString");
+Array.prototype[toStringSymbol] = function() {
+  return `${this.length} cm of blue yarn`;
+};
+
+console.log([1, 2].toString());
+// → 1,2
+console.log([1, 2][toStringSymbol]());
+// → 2 cm of blue yarn
+```
+
+It is possible to include sybmol properties ...
+
+<!-- HERE -- SYMBOLS + -->
+
+<!-- 3rd ed -->
 
 Teach mentioned in C4 that `for/of` loop can loop over several kinds of data structures.
 This is another case of polymorphism -- such loops expect the data structure to expose a
