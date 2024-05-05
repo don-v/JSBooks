@@ -802,9 +802,18 @@ console.log([1, 2][toStringSymbol]());
 // → 2 cm of blue yarn
 ```
 
-It is possible to include sybmol properties ...
+It is possible to include sybmol properties in object expressions and classes by using square
+brackets around the property name. That causes the property name to be evaluated, much like the
+square bracket property access notation, which allows us to refer to a binding that holds the
+symbol.
 
-<!-- HERE -- SYMBOLS + -->
+```js
+let stringObject = {
+  [toStringSymbol]() { return "a jute rope"; }
+};
+console.log(stringObject[toStringSymbol]());
+// → a jute rope
+```
 
 <!-- 3rd ed -->
 
@@ -900,6 +909,38 @@ console.log(okIterator.next());
 console.log(okIterator.next());
 // → {value: undefined, done: true}
 ```
+
+<!-- 3rd ed -->
+
+Let's implement an iterable data structure. We'll build a _matrix_ class, acting
+as a two-dimensional array.
+
+```js
+class Matrix {
+  constructor(width, height, element = (x, y) => undefined) {
+    this.width = width;
+    this.height = height;
+    this.content = [];
+
+    for (let y = 0; y < height; y++) {
+      for (let x = 0; x < width; x++) {
+        this.content[y * width + x] = element(x, y);
+      }
+    }
+  }
+
+  get(x, y) {
+    return this.content[y * this.width + x];
+  }
+  set(x, y, value) {
+    this.content[y * this.width + x] = value;
+  }
+}
+```
+
+<!-- HERE ITERATOR INTERFACE ++ -->
+
+<!-- 3rd ed -->
 
 Let's implement an iterable data structure similar to the linked list from the
 exercise in C4. We'll write the list as a class this time:
