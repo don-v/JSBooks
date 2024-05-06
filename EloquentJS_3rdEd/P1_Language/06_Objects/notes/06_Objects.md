@@ -938,7 +938,54 @@ class Matrix {
 }
 ```
 
-<!-- HERE ITERATOR INTERFACE ++ -->
+The class stores its contents in a single array of _width x height_ elements. The
+elements are stored row by row, so, fo rexample, the third element in the fifth row
+is (using zero-based indexing) stored at position _4 x width + 2_.
+
+Thhe constructor function takes a width, a height, and an optional `element`
+function tht will be used to fill in the initial values. There are `get`
+and `set` methods to retrieve and upate elements in the matrix.
+
+When looping over a matrix, one is usually interested in the position of the
+elements as well as the elements themselves, so we'll have our iterator
+produce objects with `x`, `y`, and `value` properties:
+
+```js
+class MatrixIterator {
+  constructor(matrix) {
+    this.x = 0;
+    this.y = 0;
+    this.matrix = matrix;
+  }
+
+  next() {
+    if (this.y == this.matrix.height) return {done: true};
+
+    let value = {x: this.x,
+                 y: this.y,
+                 value: this.matrix.get(this.x, this.y)};
+    this.x++;
+    if (this.x == this.matrix.width) {
+      this.x = 0;
+      this.y++;
+    }
+    return {value, done: false};
+  }
+}
+```
+
+The class tracks the progress of iterating over a matrix in its `x` and `y` properties.
+The `next` method starts by checking whether the bottom of the matrix has been reached.
+If it hasn't, it _first_ creates the object holding the current value and _then_
+updates its position, moving to the next row if necessary.
+
+Let's set up the `Matrix` class to be interable. Throughout this book, teach'll occasionally
+se after-the-fact prototype manipulation to add methods to classes so that the individual
+pieces of code remain small and self-contained. In a regular program, ...
+
+<!-- HERE -- matrix iterator -->
+
+<!-- HERE ITERATOR INTERFACE +++ -->
 
 <!-- 3rd ed -->
 
