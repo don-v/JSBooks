@@ -981,11 +981,32 @@ updates its position, moving to the next row if necessary.
 
 Let's set up the `Matrix` class to be interable. Throughout this book, teach'll occasionally
 se after-the-fact prototype manipulation to add methods to classes so that the individual
-pieces of code remain small and self-contained. In a regular program, ...
+pieces of code remain small and self-contained. In a regular program, where there is no need
+to split the code into small pieces, one'd declare these methods directly in the class 
+instead.
 
-<!-- HERE -- matrix iterator -->
+```js
+Matrix.prototype[Symbol.iterator] = function() {
+  return new MatrixIterator(this);
+};
+```
 
-<!-- HERE ITERATOR INTERFACE +++ -->
+We can not loop over a matrix with `for/of`:
+
+```js
+let matrix = new Matrix(2, 2, (x, y) => `value ${x},${y}`);
+for (let {x, y, value} of matrix) {
+  console.log(x, y, value);
+}
+// → 0 0 value 0,0
+// → 1 0 value 1,0
+// → 0 1 value 0,1
+// → 1 1 value 1,1
+```
+
+<!-- matrix iterator -->
+
+<!-- HERE ITERATOR INTERFACE ++++ -->
 
 <!-- 3rd ed -->
 
