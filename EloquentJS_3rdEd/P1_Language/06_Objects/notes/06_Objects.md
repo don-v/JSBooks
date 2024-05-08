@@ -1004,10 +1004,6 @@ for (let {x, y, value} of matrix) {
 // → 1 1 value 1,1
 ```
 
-<!-- matrix iterator -->
-
-<!-- HERE ITERATOR INTERFACE ++++ -->
-
 <!-- 3rd ed -->
 
 Let's implement an iterable data structure similar to the linked list from the
@@ -1095,6 +1091,10 @@ console.log([..."PCI"]);
 ```
 
 ## INHERITANCE
+
+<!-- HERE  -->
+
+<!-- 3RD ED INHERITANCE -->
 
 Imagine we need a list type much like the `List` class we saw before, but because
 we will be asking for its length all the time, we don't want it to have to scan 
