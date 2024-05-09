@@ -1092,7 +1092,50 @@ console.log([..."PCI"]);
 
 ## INHERITANCE
 
-<!-- HERE  -->
+<!-- 3RD ED INHERITANCE -->
+
+Some matrices are known to be _symmetric_. If one mirrors a symmetric matrix around its
+top-left-to-bottom-right diagonal, it stays the same. In other words, the value stored at
+_x,y_ is always the same as that at _y,x_.
+
+Imagine we need a data structure like `Matrix` but one that enforces the fact that the 
+matrix is and remains symmetrical. We could write it from scratch, but that would invovle
+repeating some code very similar to waht we already wrote.
+
+JS' prototype system makes it possible to create a _new_ class, much like the old class,
+but with new definitions for some of its properties. The prototype for the new class
+derives from the old prototype but adds a new definition for, say, the `set` method.
+
+In OOP terms, this is called _inheritance_. The new class inherits properties and behavior
+form the old class.
+
+```js
+class SymmetricMatrix extends Matrix {
+  constructor(size, element = (x, y) => undefined) {
+    super(size, size, (x, y) => {
+      if (x < y) return element(y, x);
+      else return element(x, y);
+    });
+  }
+
+  set(x, y, value) {
+    super.set(x, y, value);
+    if (x != y) {
+      super.set(y, x, value);
+    }
+  }
+}
+
+let matrix = new SymmetricMatrix(5, (x, y) => `${x},${y}`);
+console.log(matrix.get(2, 3));
+// → 3,2
+```
+
+The use of the word `extends` indicates that this class shouldn't be directly
+based on the default `Object` prototype but on some other class. This is called
+the _superclass_. The derived class is the _subclass_.
+
+<!-- HERE --  -->
 
 <!-- 3RD ED INHERITANCE -->
 
