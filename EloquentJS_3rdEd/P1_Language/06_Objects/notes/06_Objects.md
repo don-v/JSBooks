@@ -1135,6 +1135,23 @@ The use of the word `extends` indicates that this class shouldn't be directly
 based on the default `Object` prototype but on some other class. This is called
 the _superclass_. The derived class is the _subclass_.
 
+To initialize a `SymmetricMatrix` instance, the constructor calls its superclass's
+constructor through the `super` keyword. This is necessary because if the this new
+object is to behave (roughly) like a `Matrix`, it is going to need the instance
+properties that matrices have. To ensure the matrix is symmetrical, the constructor
+wraps the `element` function to swap the coordinates for values below the diagonal.
+
+The `set` method again uses `super` but this time not to call the constructor
+but to call a specific method form the superclass's set of methods. We are redefining
+`set` but do want to use the original behavior. Because `this.set` refers to the
+_new_ `set` method, calling that wouldn't work. Inside class methods, `super` 
+provides a way to call methods as they were defined in the superclass.
+
+Inheritance allows us to build slightly different data types from existing data
+types with relatively little work. It is a fundamental part of OOP tradition, 
+alongside encapsulation and polymorphism. But while the latter two are now generally
+regarded as wonderful ideas, inheritance is more controversial.
+
 <!-- HERE --  -->
 
 <!-- 3RD ED INHERITANCE -->
