@@ -1152,7 +1152,14 @@ types with relatively little work. It is a fundamental part of OOP tradition,
 alongside encapsulation and polymorphism. But while the latter two are now generally
 regarded as wonderful ideas, inheritance is more controversial.
 
-<!-- HERE --  -->
+Whereas encapsulation and polymorhpism can be used to _separate_ pieces of code 
+from each other, reducing the tangledness of the overall program, inheritance
+fundamentally ties classes together, creating _more_ tangle. When inheriting from 
+a class, one usually have to know mor eabout how it works than when simply using
+it. Inheritance can be a useful tool, and teach uses it now and then in his own
+programs, but it shouldn't be the first tool one reaches for, and one probably
+shouldn't actively go looking for opportunities to construct class hierarchies
+(family trees of classes).
 
 <!-- 3RD ED INHERITANCE -->
 
@@ -1224,6 +1231,26 @@ trees of classes).
 It is occasionally useful to know whether an object was derived from a 
 specific class. For this, JS provides a binary operator called 
 `instanceof`:
+
+<!-- 3rd ed -->
+
+```js
+console.log(
+  new SymmetricMatrix(2) instanceof SymmetricMatrix);
+// → true
+console.log(new SymmetricMatrix(2) instanceof Matrix);
+// → true
+console.log(new Matrix(2, 2) instanceof SymmetricMatrix);
+// → false
+console.log([1] instanceof Array);
+// → true
+```
+
+The operator will see through the inheritied types, so a `SymmetricMatrix`
+is an instance of `Matrix`. The operator can also be applied to standard
+constructors like `Array`. Almost eveyr object is an instance of `Object`.
+
+<!-- 3rd ed -->
 
 ```js
 console.log(
@@ -1620,3 +1647,17 @@ for (let value of Group.from(["a", "b", "c"])) {
 // → b
 // → c
 ```
+
+<!-- 3RD ED -->
+
+## BORRWOING A METHOD
+
+Earlier in the chapter teach mentioned that an object's `hasOwnProperty` can be used as 
+a more robust alternative to the `in` operator when one wants to ignore the prototype's
+properties. But what if one's map needs to include the word `"hasOwnProperty"` One won't
+be able to call that method anymore because the object's own property hides the method
+value.
+
+<!-- HERE -- -->
+
+<!-- 3RD ED -->
