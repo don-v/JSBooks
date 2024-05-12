@@ -1658,6 +1658,19 @@ properties. But what if one's map needs to include the word `"hasOwnProperty"` O
 be able to call that method anymore because the object's own property hides the method
 value.
 
+Can you think of a way to call `hasOwnProperty` on an object that has its own 
+property by that name?
+
+```js
+let map = {one: true, two: true, hasOwnProperty: true};
+
+// Fix this call
+console.log(map.hasOwnProperty("one"));
+// → true
+```
+
+
+
 <!-- HERE -- -->
 
 <!-- 3RD ED -->
