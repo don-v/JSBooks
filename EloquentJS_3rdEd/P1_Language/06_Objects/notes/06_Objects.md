@@ -1670,7 +1670,7 @@ console.log(map.hasOwnProperty("one"));
 ```
 
 
-<!-- BORROWING A METHOD ++ -->
+<!-- BORROWING A METHOD +++ -->
 
 <!-- HERE -- -->
 
