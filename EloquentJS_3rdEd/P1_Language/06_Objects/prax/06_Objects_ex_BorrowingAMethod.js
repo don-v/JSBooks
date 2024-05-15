@@ -11,6 +11,13 @@ property by that name?
 
 let map = {one: true, two: true, hasOwnProperty: true};
 
+map[hasOwnProperty] = function(x) {
+    for (let z of this) {
+        if (x === z) return true
+    }
+    return false
+}
+
 // Fix this call
 console.log(map.hasOwnProperty("one"));
 // → true
