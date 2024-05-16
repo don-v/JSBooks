@@ -13,16 +13,16 @@ let map = {one: true, two: true, hasOwnProperty: true};
 
 const hasOwnProperty = Symbol("hasOwnProperty");
 
-map[hasOwnProperty] = function(x) {
-    for (let z of this) {
-        if (x === z) return true
-    }
-    return false
-}
+// map[hasOwnProperty] = function(x) {
+//     for (let z of this) {
+//         if (x === z) return true
+//     }
+//     return false
+// }
 
-// let x = Object.getPrototypeOf(map);
-// console.log(x);
+let x = Object.getPrototypeOf(map);
+console.log(x);
 
-// Fix this call
-console.log(map.hasOwnProperty("one"));
-// → true
+// // Fix this call
+// console.log(map.hasOwnProperty("one"));
+// // → true
