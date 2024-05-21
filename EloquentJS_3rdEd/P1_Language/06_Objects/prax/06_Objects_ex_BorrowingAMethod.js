@@ -9,20 +9,28 @@ Can you think of a way to call `hasOwnProperty` on an object that has its own
 property by that name?
 */
 
-let map = {one: true, two: true, hasOwnProperty: true};
 
-// const hasOwnProperty = Symbol("hasOwnProperty");
 
-// map.prototype[hasOwnProperty] = function(x) {
-//     for (let z of this) {
-//         if (x === z) return true
-//     }
-//     return false
-// }
+let z = {one: true, two: true, hasOwnProperty: true};
+
+const hasOwnProperty = Symbol("hasOwnProperty");
+
+Object.prototype[hasOwnProperty] = function(x) {
+    for (let z of this) {
+        if (x === z) return true
+    }
+    return false
+}
+
+let map = new Object;
+map = {one: true, two: true, hasOwnProperty: true};
+
+
 
 let x = Object.getPrototypeOf(map);
-console.log(x);
+let x1 = Object.getPrototypeOf(z);
+console.log(`x: ${x}; z: ${z}`);
 
 // // Fix this call
-// console.log(map.hasOwnProperty("one"));
+console.log(map[hasOwnProperty]("one"));
 // // → true
