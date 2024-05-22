@@ -11,26 +11,16 @@ property by that name?
 
 
 
-let z = {one: true, two: true, hasOwnProperty: true};
-
-const hasOwnProperty = Symbol("hasOwnProperty");
-
-Object.prototype[hasOwnProperty] = function(x) {
-    for (let z of this) {
-        if (x === z) return true
-    }
-    return false
-}
-
-let map = new Object;
-map = {one: true, two: true, hasOwnProperty: true};
+let map = {one: true, two: true, hasOwnProperty: true};
 
 
+// Call hasOwnProperty from Object.prototype
+console.log(Object.prototype.hasOwnProperty.call(map, "one"));
+console.log(Object.prototype.hasOwnProperty.call(map, "hasOwnProperty"));
+// → true
 
-let x = Object.getPrototypeOf(map);
-let x1 = Object.getPrototypeOf(z);
-console.log(`x: ${x}; z: ${z}`);
+
 
 // // Fix this call
-console.log(map[hasOwnProperty]("one"));
+// console.log(map[hasOwnProperty]("one"));
 // // → true

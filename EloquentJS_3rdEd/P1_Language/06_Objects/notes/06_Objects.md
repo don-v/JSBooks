@@ -1669,9 +1669,29 @@ console.log(map.hasOwnProperty("one"));
 // → true
 ```
 
+### MY SOLUTION 
 
-<!-- BORROWING A METHOD ++++++++ -->
+```js
+let map = {one: true, two: true, hasOwnProperty: true};
 
-<!-- HERE -- -->
 
-<!-- 3RD ED -->
+// Call hasOwnProperty from Object.prototype
+console.log(Object.prototype.hasOwnProperty.call(map, "one"));
+// → true
+```
+
+### DISPLAY HINTS FROM TEACH
+
+Remember that methods that exist on plain objects come from `Object.prototype`.
+
+Also remember that you can call a function with a specific this binding 
+by using its call method.
+
+### TEACH'S SOLUTION
+
+```js
+let map = {one: true, two: true, hasOwnProperty: true};
+
+console.log(Object.prototype.hasOwnProperty.call(map, "one"));
+// → true
+```
