@@ -10,4 +10,27 @@ parcels.
 
 ## MEADOWFIELD
 
-<!-- HERE -- meadowfield+ -->
+The village of Meadowfield isn't bery big. It consists of 11 places with 14 roads between them. It
+can be described with this array of roads:
+
+```js
+const roads = [
+  "Alice's House-Bob's House",   "Alice's House-Cabin",
+  "Alice's House-Post Office",   "Bob's House-Town Hall",
+  "Daria's House-Ernie's House", "Daria's House-Town Hall",
+  "Ernie's House-Grete's House", "Grete's House-Farm",
+  "Grete's House-Shop",          "Marketplace-Farm",
+  "Marketplace-Post Office",     "Marketplace-Shop",
+  "Marketplace-Town Hall",       "Shop-Town Hall"
+];
+```
+
+![meadowmong village](../../../to_ignore/07_Prj_Robot/meadowmont.png)
+
+The network of roads in the village forms a _graph_. A graph is a collection of
+points (places in the village) with lines between them (roads). This graph will
+be the world that our robot moves through.
+
+The array of strings isn't ...
+
+<!-- HERE -- meadowfield++ -->
