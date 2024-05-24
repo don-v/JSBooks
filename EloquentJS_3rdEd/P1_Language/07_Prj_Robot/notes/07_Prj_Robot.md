@@ -31,6 +31,29 @@ The network of roads in the village forms a _graph_. A graph is a collection of
 points (places in the village) with lines between them (roads). This graph will
 be the world that our robot moves through.
 
-The array of strings isn't ...
+The array of strings isn't very easy to work with. What we're interested in is
+the destinations that we can reach from a given place. Let's convert the list
+of roads to a data structure that, for each place, tells us what can be reached
+from there.
+
+```js
+function buildGraph(edges) {
+  let graph = Object.create(null);
+  function addEdge(from, to) {
+    if (graph[from] == null) {
+      graph[from] = [to];
+    } else {
+      graph[from].push(to);
+    }
+  }
+  for (let [from, to] of edges.map(r => r.split("-"))) {
+    addEdge(from, to);
+    addEdge(to, from);
+  }
+  return graph;
+}
+
+const roadGraph = buildGraph(roads);
+```
 
 <!-- HERE -- meadowfield++ -->
