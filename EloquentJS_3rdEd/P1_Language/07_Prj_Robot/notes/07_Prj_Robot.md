@@ -56,4 +56,19 @@ function buildGraph(edges) {
 const roadGraph = buildGraph(roads);
 ```
 
-<!-- HERE -- meadowfield+++ -->
+Given an array of edges, `buildGraph` creates a map object that, for each node, stores
+an array of connected nodes.
+
+It uses the `split` method to go from the road strings, which have the form `"Start-End"`,
+to tow-element arrays containing the start and end as separate strings!
+
+## THE TASK
+
+Our robot will be moving around the village. There are parcels in various places, each 
+addressed to some other place. The robot picks up parcels when it comes to them and 
+delivers them when it arrives at their destinations.
+
+The automation must decide, at each poitn, where to go next. It has finished its task
+when all parcels have been delivered.
+
+<!-- HERE -- the task -->
