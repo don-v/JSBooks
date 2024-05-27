@@ -71,4 +71,29 @@ delivers them when it arrives at their destinations.
 The automation must decide, at each poitn, where to go next. It has finished its task
 when all parcels have been delivered.
 
+To be able to simulate this process, we must define a virtual world that can describe
+it. This model tells us where the robot is and where the parcels are. When the robot
+has decided to move somewhere, we need to updated the model to reflect the new situation.
+
+If one is thinking in terms of OOP, one's first impulse might be to start defining objects
+for the various elements in the world: a class for the robot, one for a parcel, maybe 
+one for places. These could then hold properties that describe their current state, each as
+the pile of parcels at a location, which we could change when updating the world.
+
+This is wrong.
+
+At least, it usually is. The fact that something sounds like an object does not automatically
+mean that it should be an object in one's program. Reflexively writing classes for every
+concept in one's application tends to leave one with a collection of interconnected objects
+that each have their own internal changing state. Such programs are often hard to understand
+and thus easy to break.
+
+Instead, let's condense the village's state down to the minimal set of values that define it.
+There's the robot's current location and the collection of undelivered parcels, each of which 
+has a current location and a destination address. That's it.
+
+And while we'r eat it, let' smake it so that we don't _change_ this state when the robot
+moves but rather compute a _new_ state for the situation after the move.
+
+
 <!-- HERE -- the task -->
