@@ -126,6 +126,47 @@ is carrying (that are at the robot's current place) need to be moved along
 to the new place. And parcels that are addressed to the new place need to
 be delivered -- that is, they need to be removed from the set of undelivered
 parcels. The call to `map` takes care of the moving, and the call to `filter`
-does teh delivering. 
+does the delivering. 
 
-<!-- HERE -- the task+ -->
+Parcel objects aren't changed when they are moved but re-created. The 
+`move` method gives us a new village state but leaves the old one entirely
+intact.
+
+```js
+let first = new VillageState(
+  "Post Office",
+  [{place: "Post Office", address: "Alice's House"}]
+);
+let next = first.move("Alice's House");
+
+console.log(next.place);
+// → Alice's House
+console.log(next.parcels);
+// → []
+console.log(first.place);
+// → Post Office
+```
+
+The move causes the parcel to be delivered, and this is reflected in the next state. 
+But the initial state still describes the situation where the robot is at the post ofice
+and the parcel is undelivered. 
+
+## PERSISTENT DATA
+
+Data structures that don't change are called _immutable_ or _persistent_. They behave
+a lot like strings and numbers in that they are who they are and stay that way, rather
+than containing different things at different times.
+
+In JS, just about everything _can_ be changed, so working with values that are supposed
+to be persistent requires some restraint. There is a function called `Object.freeze` that
+changes an object so that writing to its properties is ignored. One could use that to 
+make sure one's objects aren't changed, if one wants to be careful. Freezing does require
+the computer to do extra work, and having updates ignored is just about as likely to
+confuse someone as having them to do the wrong thing. So teach usually prefers to just
+tell people that a given object shouldn't be messed with and hopes they remember it.
+
+```js
+
+```
+
+<!-- HERE -- the task++ -->
