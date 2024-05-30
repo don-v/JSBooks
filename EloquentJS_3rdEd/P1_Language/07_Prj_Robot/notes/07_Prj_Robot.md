@@ -166,7 +166,31 @@ confuse someone as having them to do the wrong thing. So teach usually prefers t
 tell people that a given object shouldn't be messed with and hopes they remember it.
 
 ```js
-
+let object = Object.freeze({value: 5});
+object.value = 10;
+console.log(object.value);
+// → 5
 ```
 
-<!-- HERE -- the task++ -->
+Why would one go out of his/her way to not change objects when the language is obviously
+expecting me to?
+
+Because it helps one undertand one's programs. This is about complexity management again.
+When the objects in the system are fixed, stable things, teach can consider operations 
+on them in isolation -- moving to Alices' house from a given start state always produces 
+the same new state. When objects change over time, that adds a whole new dimension of 
+complexity to this kind of reasoning.
+
+For a small system like the one we are building in this chpater, we could handle that bit of
+extra complexity. But the most important limit on what kind of system we can build is how
+much we can understand. Anything that makes one's code easier to understand makes it possible
+to build a more ambitious system.
+
+Unfortunately, although understanding a system built on persistent data structures is easier,
+_designing_ one, especially when one's programming language is not helping, can be a bit
+more dificult. We'll look for opportunities to use persistent data structures in this book,
+but we'll also be using changeable ones.
+
+## SIMULATION
+
+<!-- HERE -- SIMULATION -->
