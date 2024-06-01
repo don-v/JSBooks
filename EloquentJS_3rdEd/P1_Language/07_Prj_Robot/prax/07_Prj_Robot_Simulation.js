@@ -26,3 +26,27 @@ console.log(x);
       console.log(`Moved to ${action.direction}`);
     }
   }
+
+
+x=`function randomPick(array) {
+  let choice = Math.floor(Math.random() * array.length);
+  return array[choice];
+}
+
+function randomRobot(state) {
+  return {direction: randomPick(roadGraph[state.place])};
+}`;
+
+console.log('*'.repeat(80).concat('\n'));
+console.log(x);
+
+
+
+  function randomPick(array) {
+    let choice = Math.floor(Math.random() * array.length);
+    return array[choice];
+  }
+  
+  function randomRobot(state) {
+    return {direction: randomPick(roadGraph[state.place])};
+  }

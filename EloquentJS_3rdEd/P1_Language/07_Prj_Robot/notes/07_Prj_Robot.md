@@ -222,6 +222,50 @@ parcels by visiting every location that has a parcel and deliver them by visting
 every location that a parcel is addressed to, but only after picking up the parcel.
 
 What is the dumbest strategy that could possibly work? The robot could just walk in 
-a random direction every turn. That means, ...
+a random direction every turn. That means, with great likelihood, it will eventually
+run into all parcels and then also at some point reach the place where they
+should be delivered.
 
-<!-- HERE -- SIMULATION+ -->
+Here's what that could look like:
+
+```js
+function randomPick(array) {
+  let choice = Math.floor(Math.random() * array.length);
+  return array[choice];
+}
+
+function randomRobot(state) {
+  return {direction: randomPick(roadGraph[state.place])};
+}
+```
+
+Remember that `Math.random()` returns a number between zero and one -- but always
+below one. Multiplying such a number by the length of an array and then applying
+`Math.floor()` to it gives us a random index for the array.
+
+Since this robot does not need to remember anything, it ignores its second argument
+(recall that JS function can be called with extra arguments without ill effects)
+and omits the `memory` property in its returned object. 
+
+To put this sophisticated robot to work, we'll first need a way to crate a new
+state with some parcels. A static method (written here by direclty adding a 
+prpoerty to the construtor) is a good place to put that functionality:
+
+```js
+VillageState.random = function(parcelCount = 5) {
+  let parcels = [];
+  for (let i = 0; i < parcelCount; i++) {
+    let address = randomPick(Object.keys(roadGraph));
+    let place;
+    do {
+      place = randomPick(Object.keys(roadGraph));
+    } while (place == address);
+    parcels.push({place, address});
+  }
+  return new VillageState("Post Office", parcels);
+};
+```
+
+We don't want any parcels ...
+
+<!-- HERE -- SIMULATION++ -->
