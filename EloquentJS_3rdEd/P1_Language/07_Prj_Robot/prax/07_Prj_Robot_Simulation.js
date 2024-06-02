@@ -50,3 +50,26 @@ console.log(x);
   function randomRobot(state) {
     return {direction: randomPick(roadGraph[state.place])};
   }
+
+
+x= `runRobot(VillageState.random(), randomRobot);
+// → Moved to Marketplace
+// → Moved to Town Hall
+// → …
+// → Done in 63 turns`;
+
+console.log('*'.repeat(80).concat('\n'));
+console.log(x);
+
+runRobot(VillageState.random(), randomRobot);
+// → Moved to Marketplace
+// → Moved to Town Hall
+// → …
+// → Done in 63 turns
+
+x=`runRobotAnimation(VillageState.random(), randomRobot);`;
+
+console.log('*'.repeat(80).concat('\n'));
+console.log(x);
+
+runRobotAnimation(VillageState.random(), randomRobot);

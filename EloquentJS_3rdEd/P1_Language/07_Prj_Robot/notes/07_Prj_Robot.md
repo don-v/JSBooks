@@ -266,6 +266,36 @@ VillageState.random = function(parcelCount = 5) {
 };
 ```
 
-We don't want any parcels ...
+We don't want any parcels that are sent from the same place that they are
+addressed to. For this reason, the `do` loop keep picking new places when
+it gets one that's equal to the address.
 
-<!-- HERE -- SIMULATION++ -->
+Let's start up a virtual world:
+
+```js
+runRobot(VillageState.random(), randomRobot);
+// → Moved to Marketplace
+// → Moved to Town Hall
+// → …
+// → Done in 63 turns
+```
+
+It takes the robot a lot o fturns to deliver the parcels because it isnt' planning
+ahead very well. We'll address that soon.
+
+For a more pleasant perspective on the simulation, one can use the `runRobotAnimation`
+function that's available in this chapter's programming environment. This runs
+the simulation, but instead of outputting text, it shows one the robot moving
+around the village map:
+
+```js
+runRobotAnimation(VillageState.random(), randomRobot);
+```
+
+The way `runRobotAnimation` is implemented will remain a mystery for now,
+but after one has read the later chapters of this book, which discussed JS integration
+in web browsers, one'll be able to guess how it works.
+
+## THE MAIL TRUCK'S ROUTE
+
+<!-- HERE -- THE MAIL TRUCK'S ROUTE -->
