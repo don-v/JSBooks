@@ -298,4 +298,50 @@ in web browsers, one'll be able to guess how it works.
 
 ## THE MAIL TRUCK'S ROUTE
 
-<!-- HERE -- THE MAIL TRUCK'S ROUTE -->
+We should be able to do a lot better than the random robot. An easy improvement would be to take 
+hint from the way real-world mail delivery works. If we find a route that passes all places in 
+the Village, the robot oculd run that route twice, at which point it is guaranteed to be done. 
+Here is one such route (starting from the post office):
+
+```js
+const mailRoute = [
+  "Alice's House", "Cabin", "Alice's House", "Bob's House",
+  "Town Hall", "Daria's House", "Ernie's House",
+  "Grete's House", "Shop", "Grete's House", "Farm",
+  "Marketplace", "Post Office"
+];
+```
+
+To implement the route-following robot. we'll need otmake use of robot memory. The
+robot keeps the rest of its route in its memory and drops the first element every 
+turn.
+
+```js
+function routeRobot(state, memory) {
+  if (memory.length == 0) {
+    memory = mailRoute;
+  }
+  return {direction: memory[0], memory: memory.slice(1)};
+}
+```
+
+This robot is a lot faster already. It'll take a maximum of 26 turns (twice
+the 13-step route) but usually less.
+
+```js
+runRobotAnimation(VillageState.random(), routeRobot, []);
+```
+
+## PATHFINDING
+
+Still, teach wouldn't really call blindly following a fixed route intelligent
+behavior. The robot could work more efficiently if it adjusted its behavior to
+the actual work that needs to be done.
+
+To do that, it has to be able to deliberately move toward a given parcel or 
+toward the location where a parcel has to be delivered. Doing that, even when
+the goal is more than one move away, will require some kind of route-finding
+function.
+
+
+<!-- HERE -- PATHFINDING-->
