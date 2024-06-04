@@ -343,5 +343,51 @@ toward the location where a parcel has to be delivered. Doing that, even when
 the goal is more than one move away, will require some kind of route-finding
 function.
 
+The problem of finding a route through a graph is a typical _search problem_.
+We can tell whether a given solution (a route) is a valid solution, but we can't
+directly compute the solution the way we could for `2 + 2`. Instead, we have to 
+keep creating potential solutions until we find one that works.
+
+The number of possible routes through a graph is infinite. But when searching
+for a route form _A_ to _B_, we are interested only in one that start at _A_.
+We also don't care about routes that visit the same place twice -- those are
+definitely not the most efficient route anywhere. So that cuts down on the number
+of routes that the route finder has to consider.
+
+In fact, we are mostly interested in the _shortest_ route. So we want ot make 
+sure we look at short routes beore we look at longer ones. A good approach would
+be to "grow" routes from the starting point, exploring every reachable place that
+hasn't been visited yet, until a route reaches the goal. That way, we'll only
+explore routes that are potentially interesting, and we'll find the shortest
+route (or one of the shortest routes, if there are more than one) to the goal.
+
+Here is a function that does this:
+
+```js
+function findRoute(graph, from, to) {
+  let work = [{at: from, route: []}];
+  for (let i = 0; i < work.length; i++) {
+    let {at, route} = work[i];
+    for (let place of graph[at]) {
+      if (place == to) return route.concat(place);
+      if (!work.some(w => w.at == place)) {
+        work.push({at: place, route: route.concat(place)});
+      }
+    }
+  }
+}
+```
+
+The exploring has to be done in the right order -- the places that were reached
+first have to explored first. We can't immediately explore a place as soon as we
+reach it because that would mean places reached _form there_ would also be explored
+immediately, and so on, even though there may be other, shorter, paths that haven't
+yet been explored.
+
+Therefore, teh function keeps a _work list_. This is an array of places that should 
+be explored next, ...
+
+<!-- HERE -- p. PATHFINDING+ -->
+
 
 <!-- HERE -- PATHFINDING-->
