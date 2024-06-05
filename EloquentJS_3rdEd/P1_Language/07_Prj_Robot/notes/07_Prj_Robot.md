@@ -68,7 +68,7 @@ Our robot will be moving around the village. There are parcels in various places
 addressed to some other place. The robot picks up parcels when it comes to them and 
 delivers them when it arrives at their destinations.
 
-The automation must decide, at each poitn, where to go next. It has finished its task
+The automation must decide, at each point, where to go next. It has finished its task
 when all parcels have been delivered.
 
 To be able to simulate this process, we must define a virtual world that can describe
@@ -121,7 +121,7 @@ there is a road going from the current place to the destination, and if
 not, it returns the old state since this is not a valid move.
 
 Then it creates a new state with the destination as the robot's new place.
-But it also needs to create a new set o fparcels -- parcels that the robot
+But it also needs to create a new set of parcels -- parcels that the robot
 is carrying (that are at the robot's current place) need to be moved along
 to the new place. And parcels that are addressed to the new place need to
 be delivered -- that is, they need to be removed from the set of undelivered
@@ -387,7 +387,4 @@ yet been explored.
 Therefore, teh function keeps a _work list_. This is an array of places that should 
 be explored next, ...
 
-<!-- HERE -- p. PATHFINDING+ -->
-
-
-<!-- HERE -- PATHFINDING-->
+<!-- HERE -- p. PATHFINDING++(THE TASK) -->
