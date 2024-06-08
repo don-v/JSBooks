@@ -198,7 +198,7 @@ such, we could say that a robot is a function that takes a `VillageState` object
 returns the name of a nearby place.
 
 Because we want robots to be able to remember things, so that they can make and execute
-plans, we also pass them their memory an dallow them to return a new memory. Thus, the
+plans, we also pass them their memory and allow them to return a new memory. Thus, the
 things a robot returns is an object containing both the direction it wants to move in
 and a memory value that will be given back to it the next time it is called.
 
@@ -387,4 +387,4 @@ yet been explored.
 Therefore, teh function keeps a _work list_. This is an array of places that should 
 be explored next, ...
 
-<!-- HERE -- p. PATHFINDING+++(PERSISTENT DATA) -->
+<!-- HERE -- p. PATHFINDING++++(SIMULATION) -->
