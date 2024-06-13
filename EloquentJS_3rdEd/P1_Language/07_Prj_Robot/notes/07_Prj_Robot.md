@@ -387,4 +387,4 @@ yet been explored.
 Therefore, teh function keeps a _work list_. This is an array of places that should 
 be explored next, ...
 
-<!-- HERE -- p. PATHFINDING+++++++++(PATHFINDING) -->
+<!-- HERE -- p. PATHFINDING++++++++++(PATHFINDING) -->
