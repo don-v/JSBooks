@@ -385,6 +385,17 @@ immediately, and so on, even though there may be other, shorter, paths that have
 yet been explored.
 
 Therefore, teh function keeps a _work list_. This is an array of places that should 
-be explored next, ...
+be explored next, along with the route that got us there. It starts with just the
+start position and an empty route.
 
-<!-- HERE -- p. PATHFINDING+++++++++++(PATHFINDING) -->
+The search then operates by taking the next item in the list and exploring that,
+which means all roads going from that place are looked at. If one of them is the
+goal, a finished route can be returned. Otherwise, if we haven't looked at this 
+place before, a new itme is added to the list. If we have looked at it before, 
+since we are looking at short routes first, we've found either a longer route to
+that place or one precisely as long as the existing one, and we dont' need to 
+explore it.
+
+One can visually imagine this as a web of know routes crawling out from the ...
+
+<!-- HERE -- p. PATHFINDING+++++++++++(PATHFINDING)+ -->
