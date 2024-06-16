@@ -396,6 +396,47 @@ since we are looking at short routes first, we've found either a longer route to
 that place or one precisely as long as the existing one, and we dont' need to 
 explore it.
 
-One can visually imagine this as a web of know routes crawling out from the ...
+One can visually imagine this as a web of known routes crawling out from the 
+start location, growing evenly on all sides (but never tangling back into 
+itslef). As soon as the first thread reaches the goal location, that thread is
+traced back to the start, giving us our route.
 
-<!-- HERE -- p. PATHFINDING+++++++++++(PATHFINDING)+ -->
+Teach's code doesn't handle the situation where there are no more work items on
+the work list because we know that our graph is _connected_, meaning that every
+location can be reached form all other locations. We'll always be able to find a 
+route between two points, and the search can't fail.
+
+
+```js
+function goalOrientedRobot({place, parcels}, route) {
+  if (route.length == 0) {
+    let parcel = parcels[0];
+    if (parcel.place != place) {
+      route = findRoute(roadGraph, place, parcel.place);
+    } else {
+      route = findRoute(roadGraph, place, parcel.address);
+    }
+  }
+  return {direction: route[0], memory: route.slice(1)};
+}
+```
+
+This robot uses its memory value as a list of directions to move in, just
+like the route-following robot. Whenever that list is empty, it has to figure
+out what to do next. It takes the first undelivered parcel in the set and, 
+if that parcel hasn't been picked up yet, plots a route toward it. If the 
+parcel _has_ been picked up, it still needs to be delivered, so the robot
+creates a route toward teh delivery address instead.
+
+Let's see how it does.
+
+```js
+runRobotAnimation(VillageState.random(),
+                  goalOrientedRobot, []);
+```
+
+This robot usually finishes the task of delivering 5 parcels
+in about 16 turns. That's the slightly better than `routeRobot`
+but still definitely not optimal.
+
+<!-- HERE -- p. PATHFINDING+++++++++++(PATHFINDING)++ -->
