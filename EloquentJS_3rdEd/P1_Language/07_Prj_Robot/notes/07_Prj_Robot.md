@@ -355,7 +355,7 @@ definitely not the most efficient route anywhere. So that cuts down on the numbe
 of routes that the route finder has to consider.
 
 In fact, we are mostly interested in the _shortest_ route. So we want ot make 
-sure we look at short routes beore we look at longer ones. A good approach would
+sure we look at short routes before we look at longer ones. A good approach would
 be to "grow" routes from the starting point, exploring every reachable place that
 hasn't been visited yet, until a route reaches the goal. That way, we'll only
 explore routes that are potentially interesting, and we'll find the shortest
@@ -463,4 +463,4 @@ function compareRobots(robot1, memory1, robot2, memory2) {
 compareRobots(routeRobot, [], goalOrientedRobot, []);
 ```
 
-<!-- EX: MEASURING A ROBOT -->
+<!-- EX: MEASURING A ROBOT+ -->
