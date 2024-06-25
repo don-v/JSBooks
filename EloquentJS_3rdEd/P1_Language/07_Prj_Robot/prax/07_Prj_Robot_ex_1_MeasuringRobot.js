@@ -12,15 +12,6 @@ For the sake of fairness, make sure one gives each task to both robots, rather
 than generating different tasks per robot.
 */
 
-let x = `function compareRobots(robot1, memory1, robot2, memory2) {
-  // Your code here
-}
-
-compareRobots(routeRobot, [], goalOrientedRobot, []);`;
-
-console.log('*'.repeat(80).concat('\n'));
-console.log(x);
-
 const roads = [
   "Alice's House-Bob's House",   "Alice's House-Cabin",
   "Alice's House-Post Office",   "Bob's House-Town Hall",
@@ -48,6 +39,8 @@ function buildGraph(edges) {
 }
 
 const roadGraph = buildGraph(roads);
+
+console.log('roadGraph:\n', roadGraph);
 
 class VillageState {
   constructor(place, parcels) {
@@ -109,9 +102,18 @@ function randomRobot(state) {
 // HERE!
 
 
-function compareRobots(robot1, memory1, robot2, memory2) {
-    // Your code here
-  }
+let x = `function compareRobots(robot1, memory1, robot2, memory2) {
+  // Your code here
+}
+
+compareRobots(routeRobot, [], goalOrientedRobot, []);`;
+
+console.log('*'.repeat(80).concat('\n'));
+console.log(x);
+
+// function compareRobots(robot1, memory1, robot2, memory2) {
+//     // Your code here
+//   }
   
-  compareRobots(routeRobot, [], goalOrientedRobot, []);
+  // compareRobots(routeRobot, [], goalOrientedRobot, []);
 
