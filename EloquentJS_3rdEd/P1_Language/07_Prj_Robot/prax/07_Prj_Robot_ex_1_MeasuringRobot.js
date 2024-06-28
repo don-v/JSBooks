@@ -48,18 +48,6 @@ class VillageState {
   constructor(place, parcels) {
     this.place = place;
     this.parcels = parcels;
-    this.random = function(parcelCount = 5) {
-      let parcels = [];
-      for (let i = 0; i < parcelCount; i++) {
-        let address = randomPick(Object.keys(roadGraph));
-        let place;
-        do {
-          place = randomPick(Object.keys(roadGraph));
-        } while (place == address);
-        parcels.push({place, address});
-      }
-      return new VillageState("Post Office", parcels);
-    };
   }
 
   move(destination) {
@@ -76,18 +64,18 @@ class VillageState {
 }
 
 
-// VillageState.random = function(parcelCount = 5) {
-//   let parcels = [];
-//   for (let i = 0; i < parcelCount; i++) {
-//     let address = randomPick(Object.keys(roadGraph));
-//     let place;
-//     do {
-//       place = randomPick(Object.keys(roadGraph));
-//     } while (place == address);
-//     parcels.push({place, address});
-//   }
-//   return new VillageState("Post Office", parcels);
-// };
+VillageState.random = function(parcelCount = 5) {
+  let parcels = [];
+  for (let i = 0; i < parcelCount; i++) {
+    let address = randomPick(Object.keys(roadGraph));
+    let place;
+    do {
+      place = randomPick(Object.keys(roadGraph));
+    } while (place == address);
+    parcels.push({place, address});
+  }
+  return new VillageState("Post Office", parcels);
+};
 
 
 function runRobot(state, robot, memory) {
@@ -103,6 +91,18 @@ function runRobot(state, robot, memory) {
   }
 }
 
+function runRobot_(state, robot, memory) {
+  for (let turn = 0;; turn++) {
+    if (state.parcels.length == 0) {
+      // console.log(`Done in ${turn} turns`);
+      return turn;
+    }
+    let action = robot(state, memory);
+    state = state.move(action.direction);
+    memory = action.memory;
+    // console.log(`Moved to ${action.direction}`);
+  }
+}
 
 // *************************randomRobot***********************************
 // ***********************************************************************
@@ -162,8 +162,12 @@ function goalOrientedRobot({place, parcels}, route) {
   return {direction: route[0], memory: route.slice(1)};
 }
 
-runRobot(VillageState.random(), randomRobot);
-runRobot(VillageState.random(), routeRobot, []);
+let state = VillageState.random()
+
+console.log('randomRobot:',runRobot_(state, randomRobot));
+console.log('routeRobot:',runRobot_(state, routeRobot, []));
+console.log('goalOrientedRobot:',runRobot_(state, goalOrientedRobot, []));
+
 
 // HERE!
 
