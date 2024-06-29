@@ -181,9 +181,20 @@ compareRobots(routeRobot, [], goalOrientedRobot, []);`;
 console.log('*'.repeat(80).concat('\n'));
 console.log(x);
 
-// function compareRobots(robot1, memory1, robot2, memory2) {
-//     // Your code here
-//   }
+function compareRobots(robot1, memory1, robot2, memory2) {
+    // Your code here
+    // create 100 tasks
+    const numTasks = 100;
+    taskSet = new Array;
+    for (let index = 0; index < numTasks; index++) {
+      taskSet.push(VillageState.random())
+      }
+    // collect results for each robot, so we can average them
+    // at the end:
+    robot1Results = new Array;
+    robot2Results = new Array;
+    // HERE !
+  }
   
   // compareRobots(routeRobot, [], goalOrientedRobot, []);
 
