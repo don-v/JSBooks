@@ -42,7 +42,7 @@ function buildGraph(edges) {
 
 const roadGraph = buildGraph(roads);
 
-console.log('roadGraph:\n', roadGraph);
+// console.log('roadGraph:\n', roadGraph);
 
 class VillageState {
   constructor(place, parcels) {
@@ -169,9 +169,6 @@ console.log('routeRobot:',runRobot_(state, routeRobot, []));
 console.log('goalOrientedRobot:',runRobot_(state, goalOrientedRobot, []));
 
 
-// HERE!
-
-
 let x = `function compareRobots(robot1, memory1, robot2, memory2) {
   // Your code here
 }
@@ -189,12 +186,26 @@ function compareRobots(robot1, memory1, robot2, memory2) {
     for (let index = 0; index < numTasks; index++) {
       taskSet.push(VillageState.random())
       }
-    // collect results for each robot, so we can average them
-    // at the end:
+    // collect results for each robot for all 100 takss, so we can 
+    // average them at the end:
     robot1Results = new Array;
     robot2Results = new Array;
-    // HERE !
+    taskSet.forEach(element => {
+      robot1Results.push(runRobot_(element, robot1, memory1))
+      robot2Results.push(runRobot_(element, robot2, memory2))
+    });
+    // calcualte the average number of turns for each robot using the
+    // saved results.
+    function getAverage(arr) {
+      let total = 0;
+      for (let index = 0; index < arr.length; index++) {
+        total += arr[index];      
+      }
+      return total/arr.length;
+    }
+    return {robot1Avg: getAverage(robot1Results), robot2Avg: getAverage(robot2Results)}
   }
   
-  // compareRobots(routeRobot, [], goalOrientedRobot, []);
+  const results = compareRobots(routeRobot, [], goalOrientedRobot, []);
+  console.log(results);
 
