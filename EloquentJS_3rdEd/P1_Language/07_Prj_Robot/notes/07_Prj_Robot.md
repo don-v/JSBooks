@@ -678,4 +678,17 @@ compareRobots(routeRobot, [], goalOrientedRobot, []);
 
 ### ROBOT EFFICIENCY
 
-<!-- EX: ROBOT EFFICIENCY -->
+Can you write a robot that finished the delivery task faster than `goalOrientedRobot`?
+If one observes that robot's behavior, what obviously stupid things does it do? How
+could this be improved?
+
+If one solved the previous exercise, one might wan tto use one's `compareRobots`
+function to verify the new robot outperforms `goalOrientedRobot`.
+
+
+```js
+// Your code here
+
+runRobotAnimation(VillageState.random(), yourRobot, memory);
+```
+<!-- EX: ROBOT EFFICIENCY+ -->
