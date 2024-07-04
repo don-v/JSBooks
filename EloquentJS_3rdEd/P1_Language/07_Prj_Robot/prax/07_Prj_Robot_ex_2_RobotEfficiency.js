@@ -157,6 +157,73 @@ function goalOrientedRobot({place, parcels}, route) {
   return {direction: route[0], memory: route.slice(1)};
 }
 
+/* 
+output for 3 examples:
+
+Moved to Alice's House
+Moved to Bob's House
+Moved to Town Hall
+Moved to Marketplace
+Moved to Town Hall
+Moved to Daria's House
+Moved to Town Hall
+Moved to Bob's House
+Moved to Alice's House
+Moved to Cabin
+Moved to Alice's House
+Moved to Bob's House
+Moved to Town Hall
+Moved to Shop
+Moved to Marketplace
+Moved to Post Office
+Done in 16 turns
+goalOrientedRobot: 16
+********************************************************************************
+
+Moved to Alice's House
+Moved to Bob's House
+Moved to Town Hall
+Moved to Daria's House
+Moved to Town Hall
+Moved to Marketplace
+Moved to Post Office
+Moved to Alice's House
+Moved to Bob's House
+Moved to Town Hall
+Moved to Shop
+Moved to Grete's House
+Moved to Farm
+Moved to Marketplace
+Moved to Post Office
+Moved to Alice's House
+Done in 16 turns
+goalOrientedRobot: 16
+********************************************************************************
+
+Moved to Marketplace
+Moved to Town Hall
+Moved to Bob's House
+Moved to Alice's House
+Moved to Cabin
+Moved to Alice's House
+Moved to Bob's House
+Moved to Town Hall
+Moved to Shop
+Moved to Grete's House
+Moved to Ernie's House
+Moved to Daria's House
+Moved to Town Hall
+Moved to Shop
+Moved to Town Hall
+Moved to Bob's House
+Done in 16 turns
+goalOrientedRobot: 16
+********************************************************************************
+*/
+
+
+
+
 let state = VillageState.random()
 
 runRobot(state, goalOrientedRobot, []);
