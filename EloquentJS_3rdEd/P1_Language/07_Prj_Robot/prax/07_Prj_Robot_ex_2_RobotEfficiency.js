@@ -145,13 +145,35 @@ function findRoute(graph, from, to) {
   }
 }
 
+function findRoute_(graph, from, to) {
+  let work = [{at: from, route: []}];
+  for (let i = 0; i < work.length; i++) {
+    let {at, route} = work[i];
+    for (let place of graph[at]) {
+      if (place == to) {
+        let temp_route = route;
+        console.log(`adding ${place} to the route array before returning route:`)
+        console.log({place, route: temp_route.concat(place)})
+        return route.concat(place);
+      }
+      if (!work.some(w => w.at == place)) {
+        let temp_route2 = route;
+        console.log(`adding ${place} to the route array then pushing object with update route property to work array`)
+        console.log({at: place, route: temp_route2.concat(place)})
+        work.push({at: place, route: route.concat(place)});
+      }
+    }
+  }
+}
+
+
 function goalOrientedRobot({place, parcels}, route) {
   if (route.length == 0) {
     let parcel = parcels[0];
     if (parcel.place != place) {
-      route = findRoute(roadGraph, place, parcel.place);
+      route = findRoute_(roadGraph, place, parcel.place);
     } else {
-      route = findRoute(roadGraph, place, parcel.address);
+      route = findRoute_(roadGraph, place, parcel.address);
     }
   }
   return {direction: route[0], memory: route.slice(1)};
