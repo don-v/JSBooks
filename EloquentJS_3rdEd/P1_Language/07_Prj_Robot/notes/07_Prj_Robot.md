@@ -691,4 +691,12 @@ function to verify the new robot outperforms `goalOrientedRobot`.
 
 runRobotAnimation(VillageState.random(), yourRobot, memory);
 ```
-<!-- EX: ROBOT EFFICIENCY++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<!-- EX: ROBOT EFFICIENCY
+++++++++++
+++++++++++
+++++++++++
+++++++++++
+++++++++++
+++++++++++
+++++++++++
+++++++++++ -->
