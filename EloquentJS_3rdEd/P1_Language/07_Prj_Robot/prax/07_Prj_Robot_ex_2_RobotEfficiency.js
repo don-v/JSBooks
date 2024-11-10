@@ -246,7 +246,17 @@ goalOrientedRobot: 16
 
 
 
-let state = VillageState.random()
+// let state = VillageState.random()
+let state = new VillageState("Post Office", [
+  { place: 'Town Hall', address: 'Farm' },
+  { place: 'Cabin', address: 'Town Hall' },
+  { place: 'Post Office', address: 'Farm' },
+  { place: "Alice's House", address: 'Post Office' },
+  { place: "Alice's House", address: 'Post Office' }
+]);
+
+console.log(state);
+console.log(`state.place: ${state.place}; state.parcels: ${state.parcels}`)
 
 runRobot(state, goalOrientedRobot, []);
 console.log('goalOrientedRobot:',runRobot_(state, goalOrientedRobot, []));
