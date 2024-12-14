@@ -179,6 +179,18 @@ function goalOrientedRobot({place, parcels}, route) {
   return {direction: route[0], memory: route.slice(1)};
 }
 
+// ****************************myRobot**************************
+// ***********************************************************************
+
+/* Instead of selecting the first parcel in the randomlyl generated
+list, let's instead use the `findRoute` function to calculate all of 
+the routes from current `place` to the `parcel.place` for each 
+parcel. Then measure the length of each route, and choose the 
+closest as the parcel we select */
+
+// let's write a funciton to do that!
+
+
 /* 
 output for 3 examples:
 
