@@ -189,6 +189,13 @@ parcel. Then measure the length of each route, and choose the
 closest as the parcel we select */
 
 // let's write a funciton to do that!
+function selectParcel(place, parcels) {
+  
+  parcels.forEach(parcel => {
+    route = findRoute(graph, place, parcel.place)
+    // HERE!
+  });
+}
 
 
 /* 
