@@ -191,12 +191,17 @@ closest as the parcel we select */
 // let's write a funciton to do that!
 function selectParcel(place, parcels) {
   
+  let routeCollection = [];
+
   parcels.forEach(parcel => {
     route = findRoute(graph, place, parcel.place)
-    // HERE!
+    routeCollection.push(
+      {placeLocation: parcel.place, 
+        distanceToParcel: route.length})
   });
 }
 
+// HERE!
 
 /* 
 output for 3 examples:
