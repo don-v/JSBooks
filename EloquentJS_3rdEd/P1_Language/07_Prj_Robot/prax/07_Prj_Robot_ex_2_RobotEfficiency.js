@@ -197,8 +197,10 @@ function selectParcel(place, parcels) {
     route = findRoute(graph, place, parcel.place)
     routeCollection.push(
       {placeLocation: parcel.place, 
-        distanceToParcel: route.length})
+        distanceToParcelLocation: route.length})
   });
+
+  // array.sort((a, b) => a.distance - b.distance);
 }
 
 // HERE!
