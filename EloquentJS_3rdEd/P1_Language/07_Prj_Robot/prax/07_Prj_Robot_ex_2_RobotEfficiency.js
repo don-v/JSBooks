@@ -190,7 +190,17 @@ closest as the parcel we select */
 
 // let's write a funciton to do that!
 function selectParcel(place, parcels) {
+
   
+  let state = new VillageState("Post Office", [
+  { place: 'Town Hall', address: 'Farm' },
+  { place: 'Cabin', address: 'Town Hall' },
+  { place: 'Post Office', address: 'Farm' },
+  { place: "Alice's House", address: 'Post Office' },
+  { place: "Alice's House", address: 'Post Office' }
+  ]);  
+  
+//  HERE!
   let routeCollection = [];
 
   parcels.forEach(parcel => {
@@ -200,7 +210,9 @@ function selectParcel(place, parcels) {
         distanceToParcelLocation: route.length})
   });
 
-  // array.sort((a, b) => a.distance - b.distance);
+  console.log('prior to sort:', routeCollection);
+  routeCollection.sort((a, b) => a.distanceToParcelLocation - b.distanceToParcelLocation);
+  console.log('post sort', routeCollection);
 }
 
 // HERE!
