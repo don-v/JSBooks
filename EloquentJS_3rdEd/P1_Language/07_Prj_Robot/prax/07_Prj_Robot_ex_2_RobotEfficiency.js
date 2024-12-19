@@ -189,31 +189,37 @@ parcel. Then measure the length of each route, and choose the
 closest as the parcel we select */
 
 // let's write a funciton to do that!
-function selectParcel(place, parcels) {
+function selectParcel(graph, place, parcels) {
 
-  
-  let state = new VillageState("Post Office", [
-  { place: 'Town Hall', address: 'Farm' },
-  { place: 'Cabin', address: 'Town Hall' },
-  { place: 'Post Office', address: 'Farm' },
-  { place: "Alice's House", address: 'Post Office' },
-  { place: "Alice's House", address: 'Post Office' }
-  ]);  
-  
-//  HERE!
   let routeCollection = [];
 
   parcels.forEach(parcel => {
     route = findRoute(graph, place, parcel.place)
     routeCollection.push(
-      {placeLocation: parcel.place, 
-        distanceToParcelLocation: route.length})
+      {parcelLocation: parcel.place, 
+        distanceToParcelLocation: route.length,
+      route2: findRoute(graph, place, parcel.place).length})
   });
 
   console.log('prior to sort:', routeCollection);
   routeCollection.sort((a, b) => a.distanceToParcelLocation - b.distanceToParcelLocation);
   console.log('post sort', routeCollection);
 }
+
+// let _state = new VillageState("Post Office", [
+//   { place: 'Town Hall', address: 'Farm' },
+//   { place: 'Cabin', address: 'Town Hall' },
+//   { place: 'Post Office', address: 'Farm' },
+//   { place: "Alice's House", address: 'Post Office' },
+//   { place: "Alice's House", address: 'Post Office' }
+//   ]);  
+
+  let _state = VillageState.random()
+  
+  let p1=_state.place;
+  let p2=_state.parcels
+
+selectParcel(roadGraph, p1, p2);
 
 // HERE!
 
@@ -285,27 +291,27 @@ goalOrientedRobot: 16
 
 
 // let state = VillageState.random()
-let state = new VillageState("Post Office", [
-  { place: 'Town Hall', address: 'Farm' },
-  { place: 'Cabin', address: 'Town Hall' },
-  { place: 'Post Office', address: 'Farm' },
-  { place: "Alice's House", address: 'Post Office' },
-  { place: "Alice's House", address: 'Post Office' }
-]);
+// let state = new VillageState("Post Office", [
+//   { place: 'Town Hall', address: 'Farm' },
+//   { place: 'Cabin', address: 'Town Hall' },
+//   { place: 'Post Office', address: 'Farm' },
+//   { place: "Alice's House", address: 'Post Office' },
+//   { place: "Alice's House", address: 'Post Office' }
+// ]);
 
-console.log(state);
-console.log(`state.place: ${state.place}; state.parcels: ${state.parcels}`)
+// console.log(state);
+// console.log(`state.place: ${state.place}; state.parcels: ${state.parcels}`)
 
-runRobot(state, goalOrientedRobot, []);
-console.log('goalOrientedRobot:',runRobot_(state, goalOrientedRobot, []));
+// runRobot(state, goalOrientedRobot, []);
+// console.log('goalOrientedRobot:',runRobot_(state, goalOrientedRobot, []));
 
 
-let x = `// Your code here
+// let x = `// Your code here
 
-runRobotAnimation(VillageState.random(), yourRobot, memory);`;
+// runRobotAnimation(VillageState.random(), yourRobot, memory);`;
 
-console.log('*'.repeat(80).concat('\n'));
-console.log(x);
+// console.log('*'.repeat(80).concat('\n'));
+// console.log(x);
 
 function compareRobots(robot1, memory1, robot2, memory2) {
     // Your code here
