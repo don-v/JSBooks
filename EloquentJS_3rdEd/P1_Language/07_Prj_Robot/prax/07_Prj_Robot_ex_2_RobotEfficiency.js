@@ -195,15 +195,14 @@ function selectParcel(graph, place, parcels) {
 
   parcels.forEach(parcel => {
     route = findRoute(graph, place, parcel.place)
-    routeCollection.push(
-      {parcelLocation: parcel.place, 
-        distanceToParcelLocation: route.length,
-      route2: findRoute(graph, place, parcel.place).length})
+    parcel.distanceToParcelLocation = route.length;
+    routeCollection.push(parcel)
   });
 
-  console.log('prior to sort:', routeCollection);
+  // console.log('prior to sort:', routeCollection);
   routeCollection.sort((a, b) => a.distanceToParcelLocation - b.distanceToParcelLocation);
-  console.log('post sort', routeCollection);
+  // console.log('post sort', routeCollection);
+  return routeCollection;
 }
 
 // let _state = new VillageState("Post Office", [
@@ -214,12 +213,27 @@ function selectParcel(graph, place, parcels) {
 //   { place: "Alice's House", address: 'Post Office' }
 //   ]);  
 
-  let _state = VillageState.random()
+//   let _state = VillageState.random()
   
-  let p1=_state.place;
-  let p2=_state.parcels
+//   let p1=_state.place;
+//   let p2=_state.parcels
 
-selectParcel(roadGraph, p1, p2);
+// selectParcel(roadGraph, p1, p2);
+
+
+function myRobot({place, parcels}, route) {
+  if (route.length == 0) {
+    let parcel = selectParcel(roadGraph,place,parcels)[0];
+    if (parcel.place != place) {
+      route = findRoute(roadGraph, place, parcel.place);
+    } else {
+      route = findRoute(roadGraph, place, parcel.address);
+    }
+  }
+  return {direction: route[0], memory: route.slice(1)};
+}
+
+
 
 // HERE!
 
@@ -341,5 +355,5 @@ function compareRobots(robot1, memory1, robot2, memory2) {
     return {robot1Avg: getAverage(robot1Results), robot2Avg: getAverage(robot2Results)}
   }
   
-  // const results = compareRobots(routeRobot, [], goalOrientedRobot, []);
-  // console.log(results);
+  const results = compareRobots(myRobot, [], goalOrientedRobot, []);
+  console.log(results);
