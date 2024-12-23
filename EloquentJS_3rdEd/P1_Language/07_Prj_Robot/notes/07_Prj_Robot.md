@@ -689,8 +689,45 @@ function to verify the new robot outperforms `goalOrientedRobot`.
 ```js
 // Your code here
 
+// ****************************myRobot**************************
+// ***********************************************************************
+
+/* Instead of selecting the first parcel in the randomlyl generated
+list, let's instead use the `findRoute` function to calculate all of 
+the routes from current `place` to the `parcel.place` for each 
+parcel. Then measure the length of each route, and choose the 
+closest as the parcel we select */
+
+// let's write a funciton to do that!
+function selectParcel(graph, place, parcels) {
+
+  let routeCollection = [];
+
+  parcels.forEach(parcel => {
+    route = findRoute(graph, place, parcel.place)
+    parcel.distanceToParcelLocation = route.length;
+    routeCollection.push(parcel)
+  });
+
+  routeCollection.sort((a, b) => a.distanceToParcelLocation - b.distanceToParcelLocation);
+  return routeCollection;
+}
+
+function myRobot({place, parcels}, route) {
+  if (route.length == 0) {
+    let parcel = selectParcel(roadGraph,place,parcels)[0];
+    if (parcel.place != place) {
+      route = findRoute(roadGraph, place, parcel.place);
+    } else {
+      route = findRoute(roadGraph, place, parcel.address);
+    }
+  }
+  return {direction: route[0], memory: route.slice(1)};
+}
+
 runRobotAnimation(VillageState.random(), yourRobot, memory);
 ```
+
 <!-- EX: ROBOT EFFICIENCY
 ++++++++++
 ++++++++++
@@ -709,4 +746,58 @@ runRobotAnimation(VillageState.random(), yourRobot, memory);
 ++++++++++
 ++++++++++
 ++++++++++
-+++++++++ ->
++++++++++ -->
+
+When we ran the `compareRobots` function comparing `myRobot`
+against `goalOrientedRobot`, we got the following result:
+
+{ robot1Avg: 13.4, robot2Avg: 14.71 }, where `robot1Avg` refers
+to the average steps for `myRobot` and `robot2Avg` refers
+to the average steps for `goalOrientedRobot`.
+
+Let's look at teach's hints now that I solved it!
+
+#### DISPLAY HINTS
+
+The main limitation of goalOrientedRobot is that it considers only 
+one parcel at a time. It will often walk back and forth across the 
+village because the parcel it happens to be looking at happens to be 
+at the other side of the map, even if there are others much closer.
+
+One possible solution would be to compute routes for all packages 
+and then take the shortest one. Even better results can be obtained, 
+if there are multiple shortest routes, by preferring the ones that 
+go to pick up a package instead of delivering a package.
+
+#### TEACH KA SOLUTION
+
+```js
+function lazyRobot({place, parcels}, route) {
+  if (route.length == 0) {
+    // Describe a route for every parcel
+    let routes = parcels.map(parcel => {
+      if (parcel.place != place) {
+        return {route: findRoute(roadGraph, place, parcel.place),
+                pickUp: true};
+      } else {
+        return {route: findRoute(roadGraph, place, parcel.address),
+                pickUp: false};
+      }
+    });
+
+    // This determines the precedence a route gets when choosing.
+    // Route length counts negatively, routes that pick up a package
+    // get a small bonus.
+    function score({route, pickUp}) {
+      return (pickUp ? 0.5 : 0) - route.length;
+    }
+    route = routes.reduce((a, b) => score(a) > score(b) ? a : b).route;
+  }
+
+  return {direction: route[0], memory: route.slice(1)};
+}
+
+runRobotAnimation(VillageState.random(), lazyRobot, []);
+```
+
+<!-- HERE! -->
