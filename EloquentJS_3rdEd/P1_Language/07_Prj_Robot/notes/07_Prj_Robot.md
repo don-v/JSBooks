@@ -800,4 +800,4 @@ function lazyRobot({place, parcels}, route) {
 runRobotAnimation(VillageState.random(), lazyRobot, []);
 ```
 
-<!-- HERE! -->
+<!-- HERE! + -->
