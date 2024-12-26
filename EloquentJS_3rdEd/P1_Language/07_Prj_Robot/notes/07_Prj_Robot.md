@@ -800,4 +800,86 @@ function lazyRobot({place, parcels}, route) {
 runRobotAnimation(VillageState.random(), lazyRobot, []);
 ```
 
-<!-- HERE! ++ -->
+### PERSISTENT GROUP
+
+Most data structures provided in a standard JS environment aren't very well suited for persistent 
+use. Arrays have `slice` and `concat` methods, which allow us to easily create new arrays without 
+damaging the old one. But `Set`, for example, has no methods for creating a new set with an item 
+added or removed. 
+
+Write a new class `PGroup`, similar to the `Group` class for C6, which stores a set of values. Like 
+`Group`, it has `add`, `delete`, and `has` methods. Its `add` method, however, should return a 
+*new* `PGroup` instance with the given member added and leave the old one unchanged. Similalry, 
+`delete` should create a new instance without a given member.
+
+The class should work for values fo any type, not just strings. It does *not* have to be efficient 
+when used with large number of values. 
+
+The constructor shouln't be part of the class's interface (though one'll definitely want to use 
+it internally). Instead, there is an empty instance, `PGroup.empty`, that can be used as a starting 
+value.
+
+Why does one need only one `PGroup.empty` value rather than havign a function that creates a new, 
+empty map every time? 
+
+#### PERSISTENT GROUP: TEACH KA SOLUTION FOR `Group` FROM C6:
+
+```js
+class Group {
+  #members = [];
+
+  add(value) {
+    if (!this.has(value)) {
+      this.#members.push(value);
+    }
+  }
+
+  delete(value) {
+    this.#members = this.#members.filter(v => v !== value);
+  }
+
+  has(value) {
+    return this.#members.includes(value);
+  }
+
+  static from(collection) {
+    let group = new Group;
+    for (let value of collection) {
+      group.add(value);
+    }
+    return group;
+  }
+
+  [Symbol.iterator]() {
+    return new GroupIterator(this.#members);
+  }
+}
+
+class GroupIterator {
+  constructor(members) {
+    this.#members = members;
+    this.#position = 0;
+  }
+
+  next() {
+    if (this.#position >= this.#members.length) {
+      return {done: true};
+    } else {
+      let result = {value: this.#members[this.#position],
+                    done: false};
+      this.#position++;
+      return result;
+    }
+  }
+}
+
+for (let value of Group.from(["a", "b", "c"])) {
+  console.log(value);
+}
+// → a
+// → b
+// → c
+```
+
+
+<!-- HERE! ex3 -- persistent group -->
