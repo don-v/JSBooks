@@ -81,17 +81,22 @@ class PGroup {
   #members = [];
 
   constructor(members) {
-    this.#members = members; 
+    this.#members = members;
+    this.empty = this.#members; 
 }
   
   add(value) {
-    if (!this.has(value)) {
-      this.#members.push(value);
+    newGroup = new PGroup();
+    newGroup.#members = this.#members;
+    if (!newGroup.has(value)) {
+      return newGroup.#members.push(value);
     }
   }
 
   delete(value) {
-    this.#members = this.#members.filter(v => v !== value);
+    newGroup = new PGroup();
+    newGroup.#members = this.#members;
+    return newGroup.#members.filter(v => v !== value);
   }
 
   has(value) {
