@@ -82,11 +82,14 @@ class PGroup {
 
   constructor(members) {
     this.#members = members;
-    this.empty = this.#members; 
 }
+
+  static get empty() {
+    return new PGroup();
+  }
   
   add(value) {
-    newGroup = new PGroup();
+    let newGroup = new PGroup();
     newGroup.#members = this.#members;
     if (!newGroup.has(value)) {
       return newGroup.#members.push(value);
@@ -94,7 +97,7 @@ class PGroup {
   }
 
   delete(value) {
-    newGroup = new PGroup();
+    let newGroup = new PGroup();
     newGroup.#members = this.#members;
     return newGroup.#members.filter(v => v !== value);
   }
