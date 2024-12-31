@@ -89,17 +89,14 @@ class PGroup {
   }
   
   add(value) {
-    let newGroup = new PGroup();
-    newGroup.#members = this.#members;
-    if (!newGroup.has(value)) {
-      return newGroup.#members.push(value);
+    if (!this.has(value)) {
+      return new PGroup(this.#members.push(value));
     }
   }
 
   delete(value) {
-    let newGroup = new PGroup();
-    newGroup.#members = this.#members;
-    return newGroup.#members.filter(v => v !== value);
+    this.#members = this.#members.filter(v => v !== value);
+    return new PGroup(this.#members);
   }
 
   has(value) {
