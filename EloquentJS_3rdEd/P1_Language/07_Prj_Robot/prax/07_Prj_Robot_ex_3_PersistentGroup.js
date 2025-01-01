@@ -78,11 +78,11 @@ a new, empty map every time?
  */
 
 class PGroup {
-  #members = [];
+  #members;
 
   constructor(members) {
     this.#members = members;
-}
+  }
 
   static get empty() {
     return new PGroup();
@@ -100,7 +100,7 @@ class PGroup {
   }
 
   has(value) {
-    return this.#members.includes(value);
+    this.#members.includes(value);
   }
 
 }
