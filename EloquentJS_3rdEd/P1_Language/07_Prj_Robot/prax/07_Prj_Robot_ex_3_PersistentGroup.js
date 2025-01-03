@@ -26,15 +26,15 @@ class Group1 {
   }
 }
 
-let group = Group1.from([10, 20]);
-console.log(group.has(10));
-// → true
-console.log(group.has(30));
-// → false
-group.add(10);
-group.delete(10);
-console.log(group.has(10));
-// → false
+// let group = Group1.from([10, 20]);
+// console.log(group.has(10));
+// // → true
+// console.log(group.has(30));
+// // → false
+// group.add(10);
+// group.delete(10);
+// console.log(group.has(10));
+// // → false
 
 
 
@@ -117,14 +117,15 @@ a new, empty map every time?
  */
 
 class PGroup {
-  #members;
+  #members = [];
 
   constructor(members) {
-    this.#members = members;
+    this.#members.push(members);
   }
 
   static get empty() {
-    return new PGroup();
+    let x = [];
+    return new PGroup(x);
   }
   
   add(value) {
@@ -144,13 +145,13 @@ class PGroup {
 
 }
 
-// let a = PGroup.empty.add("a");
-// let ab = a.add("b");
-// let b = ab.delete("a");
+let a = PGroup.empty.add("a");
+let ab = a.add("b");
+let b = ab.delete("a");
 
-// console.log(b.has("b"));
-// // → true
-// console.log(a.has("b"));
-// // → false
-// console.log(b.has("a"));
-// // → false
+console.log(b.has("b"));
+// → true
+console.log(a.has("b"));
+// → false
+console.log(b.has("a"));
+// → false
