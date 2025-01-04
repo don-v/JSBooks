@@ -140,7 +140,7 @@ class PGroup {
   }
 
   has(value) {
-    this.#members.includes(value);
+    return this.#members.includes(value);
   }
 
 }
