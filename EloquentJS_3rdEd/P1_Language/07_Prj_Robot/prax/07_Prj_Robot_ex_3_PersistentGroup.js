@@ -120,7 +120,7 @@ class PGroup {
   #members = [];
 
   constructor(members) {
-    this.#members.push(members);
+    this.#members.concat(members);
   }
 
   static get empty() {
@@ -130,13 +130,13 @@ class PGroup {
   
   add(value) {
     if (!this.has(value)) {
-      return new PGroup(this.#members.push(value));
+      return new PGroup(value);
     }
   }
 
   delete(value) {
     this.#members = this.#members.filter(v => v !== value);
-    return new PGroup(this.#members);
+    return new PGroup(...this.#members);
   }
 
   has(value) {
