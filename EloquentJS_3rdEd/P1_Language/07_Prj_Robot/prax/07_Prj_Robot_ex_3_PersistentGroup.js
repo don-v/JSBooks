@@ -124,8 +124,7 @@ class PGroup {
   }
 
   static get empty() {
-    let x = [];
-    return new PGroup(x);
+    return new PGroup([]);
   }
   
   add(value) {
