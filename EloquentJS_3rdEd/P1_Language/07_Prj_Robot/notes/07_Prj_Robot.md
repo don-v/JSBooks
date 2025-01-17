@@ -882,5 +882,7 @@ for (let value of Group.from(["a", "b", "c"])) {
 ```
 
 
-<!-- HERE! ex3 -- persistent group ++++++++++
-++++++++++++ -->
+<!-- HERE! ex3 -- persistent group 
+++++++++++
+++++++++++
++++ -->
