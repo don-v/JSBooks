@@ -117,10 +117,10 @@ a new, empty map every time?
  */
 
 class PGroup {
-  #members = [];
+  #members;
 
   constructor(members) {
-    this.#members.concat(members);
+    this.#members = members;
   }
 
   static get empty() {
