@@ -129,13 +129,13 @@ class PGroup {
   
   add(value) {
     if (!this.has(value)) {
-      return new PGroup(value);
+      return new PGroup(this.#members.concat(value));
     }
   }
 
   delete(value) {
     this.#members = this.#members.filter(v => v !== value);
-    return new PGroup(...this.#members);
+    return new PGroup(this.#members);
   }
 
   has(value) {
@@ -150,7 +150,7 @@ let b = ab.delete("a");
 
 console.log(b.has("b"));
 // → true
-// console.log(a.has("b"));
-// // → false
-// console.log(b.has("a"));
-// // → false
+console.log(a.has("b"));
+// → false
+console.log(b.has("a"));
+// → false
