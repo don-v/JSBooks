@@ -881,9 +881,97 @@ for (let value of Group.from(["a", "b", "c"])) {
 // → c
 ```
 
+#### MY SOLUTION
 
-<!-- HERE! ex3 -- persistent group 
-++++++++++
-++++++++++
-++++++++++
-++++++++ -->
+```js
+class PGroup {
+  #members;
+
+  constructor(members) {
+    this.#members = members;
+  }
+
+  static get empty() {
+    return new PGroup([]);
+  }
+  
+  add(value) {
+    if (!this.has(value)) {
+      return new PGroup(this.#members.concat(value));
+    }
+  }
+
+  delete(value) {
+    this.#members = this.#members.filter(v => v !== value);
+    return new PGroup(this.#members);
+  }
+
+  has(value) {
+    return this.#members.includes(value);
+  }
+
+}
+```
+
+#### DISPLAY HINTS
+
+The most convenient way to represent the set of member values is still as an array, since 
+arrays are easy to copy.
+
+When a value is added to the group, you can create a new group with a copy of the original 
+array that has the value added (for example, using concat). When a value is deleted, you 
+filter it from the array.
+
+The class’s constructor can take such an array as its argument and store it as the instance’s 
+(only) property. This array is never updated.
+
+To add the empty property to the constructor, you can declare it as a static property.
+
+You need only one empty instance because all empty groups are the same and instances of the 
+class don’t change. You can create many different groups from that single empty group without 
+affecting it.
+
+#### TEACH KA SOLUTION
+
+```js
+class PGroup {
+  #members;
+  constructor(members) {
+    this.#members = members;
+  }
+
+  add(value) {
+    if (this.has(value)) return this;
+    return new PGroup(this.#members.concat([value]));
+  }
+
+  delete(value) {
+    if (!this.has(value)) return this;
+    return new PGroup(this.#members.filter(m => m !== value));
+  }
+
+  has(value) {
+    return this.#members.includes(value);
+  }
+
+  static empty = new PGroup([]);
+}
+
+let a = PGroup.empty.add("a");
+let ab = a.add("b");
+let b = ab.delete("a");
+
+console.log(b.has("b"));
+// → true
+console.log(a.has("b"));
+// → false
+console.log(b.has("a"));
+// → false
+```
+
+I used `concat` incorrectly; should have had `value` inside an array literal., 
+but actually, when I test in the node REPL temrinal environment, my code 
+appears to be valid!
+for `delete` and `add` methods, teach returned `this` if the `if` statement was 
+`true`; otherwise, returned a new `PGroup`. Definition of `static empty()` more
+terse than mine, but very similar!
