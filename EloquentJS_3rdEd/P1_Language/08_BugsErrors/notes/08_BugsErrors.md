@@ -50,6 +50,32 @@ canYouSpotTheProblem();
 // → ReferenceError: counter is not defined
 ```
 
+Code inside classes and modules (which we will discuss in 'C10') is automatically strict. The old nonstrict 
+behavior still exists only because some old code might depend on it, and the language designers work hard to 
+avoid breaking any existing programs. 
 
+Normally, when one forgets to put `let` in front of your binding, as with `counter` in the example, JS quietly 
+creates a global binding and uses that. In strct mode, an error is reported instead. This is very helpful. It 
+should be noted, though, that this doens't work when the binding in question already exists somewhere in scope. 
+In that case, the loop will still quietly overwrite the value of the binding. 
+
+Another change in strict mode is that the `this` binidng holds the value `undefined` in functions that are not 
+called as methods. When making such a call outside of strict mode, `this` refers to the global scope object, 
+which is an object whose properties are the global bindings. So if one accidentally calls a method or constructor 
+incorrectly in strict mode, JS will produce an error as soon as it tries to read something from `this`, rather 
+than happily writing to the global scope. 
+
+For example, consider the following code, which calls a constructor function without the `new` keyword so that 
+its `this` will *not* refer to a newly constructed object:
+
+```js
+function Person(name) { this.name = name; }
+let ferdinand = Person("Ferdinand"); // oops
+console.log(name);
+// → Ferdinand
+```
+
+The bogus call to `Person` succeeded, but returned an undefined value and created the global binding 
+`name`. In strict mode, the result is different:
 
 <!-- HERE -- use strict... -->
