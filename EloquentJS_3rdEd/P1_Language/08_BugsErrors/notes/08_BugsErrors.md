@@ -78,4 +78,28 @@ console.log(name);
 The bogus call to `Person` succeeded, but returned an undefined value and created the global binding 
 `name`. In strict mode, the result is different:
 
-<!-- HERE -- use strict... -->
+```js
+"use strict";
+function Person(name) { this.name = name; }
+let ferdinand = Person("Ferdinand"); // forgot new
+// → TypeError: Cannot set property 'name' of undefined
+```
+
+We are immeditately told that something is wrong. This is helpful.
+
+Fortunately, constructors created with the `class` notation will always complain if they are called without 
+`new`, making this less of a problem even in nonstrict mode. 
+
+Strict mode does a few more things. It disallows giving a function multiple parameters with the same 
+name and removes certain problematic language features entirely (such as the `with` statement, which is so 
+wrong it is not further discussed in this book).
+
+In short, putting `"use string"` at the top of one' sprogram rarely hurts and may actually help one spot a 
+problem.
+
+## TYPES
+
+Some langauges want to know the types of all one's bindings and expressions before even running a program. 
+They will indicate right away when a type is used in an inconsistent way. JS considers types only when. ...
+
+<!-- HERE -- types... -->
