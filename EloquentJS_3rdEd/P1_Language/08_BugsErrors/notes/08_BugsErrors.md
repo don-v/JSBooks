@@ -100,6 +100,51 @@ problem.
 ## TYPES
 
 Some langauges want to know the types of all one's bindings and expressions before even running a program. 
-They will indicate right away when a type is used in an inconsistent way. JS considers types only when. ...
+They will indicate right away when a type is used in an inconsistent way. JS considers types only when actually
+running the program, and even there often tries to implicilty convert values to the type it expects, so 
+it's not much help.
 
-<!-- HERE -- types... -->
+Still, types provide a useful framework for talking about programs. A lot of mistakes come from being confused 
+about the kind of value that goes into or comes out of a function. If one has that information written down, 
+one is less likely to get confused. 
+
+One could add a comment like the following before the `findRoute` function from the previous chapter to 
+describe its type:
+
+```js
+// (graph: Object, from: string, to: string) => string[]
+function findRoute(graph, from, to) {
+  // ...
+}
+```
+
+There are a number of different conventions for annotating JS programs with types. 
+
+One thing about types is that they need to introduce their own complexity to be able to describe 
+enough code to be useful. What does one think would be the type of the `randomPick` function that 
+returns a random element from an array? One'd need to introduce a *type variable, T*, which can 
+stand in for any type, so that one can give `randomPick` a type like `(T[]) -> T` (function from 
+an array of *Ts* to a *T*).
+
+When the types of a program are known, it is possible for the computer to *check* them for you, 
+pointing out mistakes before the program is run. There are several JS dialects that add types to the 
+language and check them. The most popular one is called 'TypeScript'. If oen is interested in adding 
+more rigor to one's programs, teach recommends giving it a try. 
+
+## TESTING 
+
+If the language is not going to do much to help us find mistakes, we'll have to find them the 
+hard way: by running the program and seeing whether it does the right thing.
+
+Doing this by hand, again, and again, is a really bad idea. Not only is it annoying but it also 
+leads to be ineffective, since it takes too much time to exhaustively test everything every time 
+one makes a change. 
+
+Computers are good at repetitive tasks, and testing is the ideal repetitive task. Automated testing  
+is the process of writing a program that tests another program. Writing tests is a bit more work than 
+testing manually, but once one has done it, one gains a superpower: it takes one only a few seconds to 
+verify that one's program still behaves properly for all situations for which one wrote tests. When 
+one breaks somehting, one'll immediately notice the error rathern than detecting it at some random 
+point in the future. 
+
+<!-- HERE -- testing... -->
