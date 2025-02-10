@@ -147,4 +147,30 @@ verify that one's program still behaves properly for all situations for which on
 one breaks somehting, one'll immediately notice the error rathern than detecting it at some random 
 point in the future. 
 
+Tests usually take the form of little labeled programs that verify some aspect of one's code. For 
+example, a set of tests for the (standard, probably already tested by someone else) `toUpperCase`
+might look as follows:
+
+```js
+function test(label, body) {
+  if (!body()) console.log(`Failed: ${label}`);
+}
+
+test("convert Latin text to uppercase", () => {
+  return "hello".toUpperCase() == "HELLO";
+});
+test("convert Greek text to uppercase", () => {
+  return "Χαίρετε".toUpperCase() == "ΧΑΊΡΕΤΕ";
+});
+test("don't convert case-less characters", () => {
+  return "مرحبا".toUpperCase() == "مرحبا";
+});
+```
+
+Writing tests like this tends to produce rather repetitive, awkward code. Fortunately, 
+there exist pieces of software that help devs build and run collections of tests 
+(*test suites*) by providing a langauge (in the form of functions and methods) suited to 
+expressing tests and by outputting informative information when a test fails. These are 
+usually called *test runners*. 
+
 <!-- HERE -- testing... -->
