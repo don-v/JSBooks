@@ -173,4 +173,24 @@ there exist pieces of software that help devs build and run collections of tests
 expressing tests and by outputting informative information when a test fails. These are 
 usually called *test runners*. 
 
-<!-- HERE -- testing... -->
+Some code is easier to test than other code. Generally, the more external objects that 
+the code interacts with, the harder it is to set up the context in which to tests it. The style 
+of programming shown in the previous chapter, which uses self-contained persistent value rather 
+than changing objects, tends to be easy to test. 
+
+## DEBUGGING
+
+Once one notice there is something wrong with one's program because it misbehaves or produces 
+errors, the next step is to figure out *what* the problem is. 
+
+Sometimes it is obvious. The error message will point at a specific line of one's program, and if 
+one looks at the error description and that line of code, one can often see the problem. 
+
+But not always. Sometimes the line that triggered the problem is simply the first place where a 
+flaky value produced elsewhere gets used in an invalid way. If  one ahs been sovling the 
+exercises in earlier chapters, one will probably have already experienced such situations. 
+
+The following example program tries to convert a whole number to a string in a given base (decimal 
+binary and so on) by repeatedly picking out th elast digit. 
+
+<!-- HERE -- debugging... -->
