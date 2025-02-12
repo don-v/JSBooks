@@ -191,6 +191,53 @@ flaky value produced elsewhere gets used in an invalid way. If  one ahs been sov
 exercises in earlier chapters, one will probably have already experienced such situations. 
 
 The following example program tries to convert a whole number to a string in a given base (decimal 
-binary and so on) by repeatedly picking out th elast digit. 
+binary and so on) by repeatedly picking out the last digit and then dividing the number to get rid 
+of this digit. But the strange output that it currently produces suggests that it has a bug. 
+
+```js
+function numberToString(n, base = 10) {
+  let result = "", sign = "";
+  if (n < 0) {
+    sign = "-";
+    n = -n;
+  }
+  do {
+    result = String(n % base) + result;
+    n /= base;
+  } while (n > 0);
+  return sign + result;
+}
+console.log(numberToString(13, 10));
+// → 1.5e-3231.3e-3221.3e-3211.3e-3201.3e-3191.3e-3181.3…
+```
+
+Even if one sees the problem already, one should pretend for a moment that one doesn't. We 
+know that our program is malfunctioning, and we want to find out why. 
+
+This is where one must resist the urge to start making random changes to the code to see 
+whether that makes it better. Instead, *think*. Analyze what is happening and come up with 
+a theory of why it might be happening. Then make additional observations to test this 
+theory -- or, if one doens't yet have a theory, make additional observations to help one 
+come up with one. 
+
+Putting a few strategic `console.log` calls into the program is a good way to get additional 
+information about what the program is doing. In this case, we want `n` to take the values `13`, 
+`1`, and then `0`. Let's write out its value at the start of the loop:
+
+```
+13
+1.3
+0.13
+0.013
+...
+1.5e-323
+```
+
+*Right*. Dividing by 13 by 10 does not produce a whole number. Instead of 
+`n /= base`, what we actually want is `n = Math.floor(n / base)` so that the number is 
+properly "shifted" to the right. 
+
+An alternative to using `console.log` to peek into the program's behavior is to use the 
+*debugger* capablities of one's browser.  ...
 
 <!-- HERE -- debugging... -->
