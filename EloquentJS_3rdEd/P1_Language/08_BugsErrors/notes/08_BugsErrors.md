@@ -238,6 +238,29 @@ information about what the program is doing. In this case, we want `n` to take t
 properly "shifted" to the right. 
 
 An alternative to using `console.log` to peek into the program's behavior is to use the 
-*debugger* capablities of one's browser.  ...
+*debugger* capablities of one's browser.  Browser's come with the ability to set a *breakpoint*
+on a specific line of one's code. When the execution of the program reaches a line with a 
+breakpoint, it is puased, and one can inspect the value of bindings at that point. Teach 
+won't go into details, as debuggers differe from browser to browser, but teach encourages 
+us to look into our browser's dev tools or to search the web for browser debugging capability 
+documentation. 
 
-<!-- HERE -- debugging... -->
+Another way to se ta breakpoint is to include a `debugger` statement (consisting simply 
+of that keyword) in one's program. If the dev tools of one's browser are active, the program 
+will pause whenever it reaches such a statement. 
+
+## ERROR PROGPAGATION
+
+Not all problems can be prevented by the programmer, unfortunatley. If one's program 
+communicates with the outside world in any way, it is possible to get malformed input, to 
+become overloaded with work, or to have the network fail. 
+
+If one is programming for oneself, one can affor to just ignore such problems until they 
+occur. But if one builds somehting that is going to be used by someone else, one usually 
+wants the progarm to do better than simply crash. Sometimes the right thing to do is take 
+the bad input in strid and continue running. In other cases, it is better to report to the 
+user what went wrong and then give up. In either situation the program has to actively do 
+something in response to the problem. 
+
+
+<!-- HERE -- error propagation... -->
