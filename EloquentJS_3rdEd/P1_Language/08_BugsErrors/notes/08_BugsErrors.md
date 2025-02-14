@@ -262,5 +262,51 @@ the bad input in strid and continue running. In other cases, it is better to rep
 user what went wrong and then give up. In either situation the program has to actively do 
 something in response to the problem. 
 
+Say one has a funciton `promptNUmber` that asks the user for a number and returns it. What 
+should it return if the user inputs "orange"?
 
-<!-- HERE -- error propagation... -->
+One option is ot make it return a special value. Common choices for such values are `null`, 
+`undefined`, or `-1`:
+
+```js
+function promptNumber(question) {
+  let result = Number(prompt(question));
+  if (Number.isNaN(result)) return null;
+  else return result;
+}
+
+console.log(promptNumber("How many trees do you see?"));
+```
+
+Now any code that calls `promptNumber` must check whether an actual number was read and, 
+failing that, must somehow recover -- maybe by asking again or by filling in a default value. 
+Or it could again return a special value to *its* caller to indicate that it failed to do 
+what it asked. 
+
+In many situations, mostly when errors are common and the caller should be explicitly taking 
+them into account, returning a special value is a good way to indicate an error. It does, 
+however, have its downsides. First what if the function can already return every possible 
+kind of value? In such a funciton, one'll have to do something like wrap the result in an 
+object to be able to distinguish success from failure, the way the `next` method on the 
+iterator interface does. 
+
+```js
+function lastElement(array) {
+  if (array.length == 0) {
+    return {failed: true};
+  } else {
+    return {value: array[array.length - 1]};
+  }
+}
+```
+
+The second issue with returning special values is that it can lead to awkward code. If a 
+piece of code calls `promprtNUmber 10 times`, it has to check 10 times whether `null` was 
+returned. If its response to finding `null` is to simply return `null` itself, callers of 
+the funcion will in return have to check for it, and so on. 
+
+## EXCEPTIONS
+
+
+
+<!-- HERE -- exceptions... -->
