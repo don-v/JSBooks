@@ -307,6 +307,63 @@ the funcion will in return have to check for it, and so on.
 
 ## EXCEPTIONS
 
+When a function cannot proceed normally, what we would often *like* to do is just stop what 
+we are doing and immediately jump to a place that knows how to handle the problem. This is 
+what *exception handling* does. 
+
+Exceptions are a mechanism that makes it possible for code that runs into a problem to *raise* 
+(or *throw*) an exception. An exception can be any value. Raising one somewhat resembeles a 
+super-charged return form a function: it jumps out of not just the current function but also 
+its callers, all the way down to the first call that started the current execution. This is 
+called *unwinding the stack*. One may remember the stack of function calls mentioned in C3. 
+An exception zooms donw this stack, throwing away all the call contexts it encounters. 
+
+If exceptions always zoomed right down to the bottom of the stack, they would not be of much 
+use. They'd just provide a novel way to blow up one's program. Their power lies in the fact 
+that oen can set "obstacles" along hte stack to *catch* the exeption as it is zooming down. 
+Once one has caught an exception, one can do something with it to address the problem and then 
+continue to run the program. 
+
+Here's an example:
+
+```js
+function promptDirection(question) {
+  let result = prompt(question);
+  if (result.toLowerCase() == "left") return "L";
+  if (result.toLowerCase() == "right") return "R";
+  throw new Error("Invalid direction: " + result);
+}
+
+function look() {
+  if (promptDirection("Which way?") == "L") {
+    return "a house";
+  } else {
+    return "two angry bears";
+  }
+}
+
+try {
+  console.log("You see", look());
+} catch (error) {
+  console.log("Something went wrong: " + error);
+}
+```
+
+The `throw` keyword is used to raise an exception. Catching one is done by wrapping a 
+piece of code in a `try` block, follwoed by the keywrod `catch`. When the code in the 
+`try` block causes an exception to be raised, the `catch` block is evaluated, with the 
+name in parentheses bound to the exception value. After the `catch` block finished -- or 
+if the `try` block finishes without problems, -- the program proceeds beneath the entire 
+`try/catch` statement. 
+
+In this case, we used `Error` constructor to create our exception value. This is a standard
+JS consructor that creates an object with a `message` propeorty. Instances of `Error` also 
+gather information about the call stack that existed when the exception was created, a so-called 
+*stack trace*. This information is stored in the `stack` property can can be helpful when 
+trying to debug a problem: it tells us the function where the problem occurred and which 
+functions made the failing call. 
+
+Note tha the `look` function completely ignores the possibility that ...
 
 
 <!-- HERE -- exceptions... -->
