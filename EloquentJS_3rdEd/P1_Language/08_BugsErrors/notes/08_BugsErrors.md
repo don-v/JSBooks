@@ -363,7 +363,53 @@ gather information about the call stack that existed when the exception was crea
 trying to debug a problem: it tells us the function where the problem occurred and which 
 functions made the failing call. 
 
-Note tha the `look` function completely ignores the possibility that ...
+Note tha the `look` function completely ignores the possibility that `promptDirection` might 
+go wrong. This is a big advantage of exepctions: error-handling code is necessary nly at the 
+point where the error occurs and at the point where it is handled. The functions in between 
+can forget all about it. 
+
+Well, almost...
+
+## CLEANING UP AFTER EXCEPTIONS
+
+The effect of an exception is another kind of control flow. Every action that might cause 
+an exception, which is pretty much every function call and property access, might cause 
+control to suddenly leave your code. 
+
+This means when code has several side effects, even if its "regular" control flow looks 
+like they'll always happen, an exception might prevent some of them from taking place.
+
+Here is some really bad banking code.  
+
+```js
+const accounts = {
+  a: 100,
+  b: 0,
+  c: 20
+};
+
+function getAccount() {
+  let accountName = prompt("Enter an account name");
+  if (!Object.hasOwn(accounts, accountName)) {
+    throw new Error(`No such account: ${accountName}`);
+  }
+  return accountName;
+}
+
+function transfer(from, amount) {
+  if (accounts[from] < amount) return;
+  accounts[from] -= amount;
+  accounts[getAccount()] += amount;
+}
+```
+
+The `transfer` function transfers a sum of money from a given account to another, 
+asking for the name of the other account in the process. If given an invalid account
+name, `getAccount` throws an exception.
+
+But `transfer` *first* removes the money from the account and *then* calls `getAccount` 
+before it adds it to another account. If it is broken off by an exception at that point, 
+it'll just make the money disappear. 
 
 
-<!-- HERE -- exceptions... -->
+<!-- HERE -- cleaning up after exceptions... -->
