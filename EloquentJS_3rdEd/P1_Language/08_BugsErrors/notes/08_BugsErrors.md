@@ -411,5 +411,47 @@ But `transfer` *first* removes the money from the account and *then* calls `getA
 before it adds it to another account. If it is broken off by an exception at that point, 
 it'll just make the money disappear. 
 
+That code could have been written a little more intelligently, for example by caling 
+`getAccount` before it starts moving money around. But often problems like thi soccur in 
+more subtle ways. Even functions that don't look like they will throw an exception 
+might do so in exceptional circumstances or when they contain a programmer mistake. 
+
+One way to address thi sis to use fewer side effects. Again, a programmming style 
+that computes new values instead of changing existing data helps. If a piece of code 
+stops running in the middle of creating a new value, no existing data structures were 
+damaged, making it easier to recover. 
+
+Since that isn't always practical, `try` statements have another feature: tehy may be 
+follwoed by a `finally` block either instead of or in addition to a `catch` block. 
+A `finally` block says "no matter *what* happens, run this code after trying to 
+run the code in the `try` block.";
+
+```js
+function transfer(from, amount) {
+  if (accounts[from] < amount) return;
+  let progress = 0;
+  try {
+    accounts[from] -= amount;
+    progress = 1;
+    accounts[getAccount()] += amount;
+    progress = 2;
+  } finally {
+    if (progress == 1) {
+      accounts[from] += amount;
+    }
+  }
+}
+```
+
+This version of the function tracks its progress, and if, when leaving, it notices that it was 
+aborted at a point where it had created an inconsistent program state, it repairs the damage it 
+did. 
+
+Note that even though the `finally` code is run when an exception is thrown in the `try` block, 
+it does not interfere with the exception. After the `finally` block runs, the stack continues
+unwinidng. 
+
+Writing programs. ..
+
 
 <!-- HERE -- cleaning up after exceptions... -->
