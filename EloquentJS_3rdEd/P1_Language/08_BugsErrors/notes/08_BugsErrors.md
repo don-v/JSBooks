@@ -451,7 +451,34 @@ Note that even though the `finally` code is run when an exception is thrown in t
 it does not interfere with the exception. After the `finally` block runs, the stack continues
 unwinidng. 
 
-Writing programs. ..
+Writing programs that operate reliably even when exceptions pop up in unexpected places is hard. 
+Many people simly don't bother, and because exceptions are typically reserved for exceptonal 
+cirtumstances, the problem may occur so rarely that it is never even noticed. Whether that is 
+a good thing or a really bad ting depends on how much damage the software will do when it  
+fails. 
 
+## SELECTIVE CATCHING
 
-<!-- HERE -- cleaning up after exceptions... -->
+When an exception makes it all the way to the bottom of the stack without being caught, 
+it gets handled by the environment. What this means differes between environments. In browsers, 
+a description of the error typically gets written to the JS console (reachable through the 
+browser's 'Tools' or 'Developer' menu). 'Node.js', the browserless JS environment to be 
+discussed in C20, is more careful about data corruption. It aborts the whole process when an 
+unhandled exception occurs. 
+
+For programmer mistakes, just letting the error go through is often the best one can do. An 
+unhandled exception is a reasonable way to signal a broken program, and the JS console will, 
+one modern browsers, provide one with some information about which function calls were on the 
+stack when the problem occurred. 
+
+For people that are *expected* to happen during routine use, crashing with an unhandled exception 
+is a terrible strategy. 
+
+Invalid use of the language, such as referencing a nonexistent binding, looking up a property 
+on a `null`, or calling something that's not a function, will also result in the raising of 
+exceptions. But wwe are agnostic to *what* did or *which* excpetion it caused. 
+
+JS (in a rather glaring omission) doesn't provide direct support for selectively catching 
+exceptions: either one catches them all or one doesn't catch any. ...
+
+<!-- HERE -- selective catching... -->
