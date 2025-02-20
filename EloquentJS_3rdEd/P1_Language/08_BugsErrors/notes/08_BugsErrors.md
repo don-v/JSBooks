@@ -479,6 +479,38 @@ on a `null`, or calling something that's not a function, will also result in the
 exceptions. But wwe are agnostic to *what* did or *which* excpetion it caused. 
 
 JS (in a rather glaring omission) doesn't provide direct support for selectively catching 
-exceptions: either one catches them all or one doesn't catch any. ...
+exceptions: either one catches them all or one doesn't catch any. This make it tempting to 
+*assume* that the exception one gets is the one one was thinking about when one wrote the 
+`catch` block.
+
+But it might not be. some other assumption may be violated, or one might have introduced a 
+bug that is causing an exception. Here is an example that *attempts* to keep calling `
+`promptDirection` until it gets a valid answer:
+
+```js
+for (;;) {
+  try {
+    let dir = promtDirection("Where?"); // ← typo!
+    console.log("You chose ", dir);
+    break;
+  } catch (e) {
+    console.log("Not a valid direction. Try again.");
+  }
+}
+```
+
+The `for(;;)` construct is a way to intentionally create a loop that doesn't terminate 
+on its own. We break out of the loop only when a valid direction is given. Unfortunately, 
+we mispelled `promptDirection`, which will resut lin an "undefinable variable" error. 
+Because the `catch `block completely ignores its exception value (`e`), assuming it knows
+what the problem is, it wrongly treats the binding error as indicating  bad input. Not only
+does this cause an infinite loop but it also "buries" the useful erro rmessage about the 
+mispelled binding. 
+
+As a general rule, don't blanket-catch exceptions unless it is for the purpose of "routing"
+them somewhere -- for example, over the network to tell another system that our program 
+crashed. And even then, thinking carefully about hwo one might be hiding information. 
+
+We want to catch a *specific* kind of exception. ...
 
 <!-- HERE -- selective catching... -->
