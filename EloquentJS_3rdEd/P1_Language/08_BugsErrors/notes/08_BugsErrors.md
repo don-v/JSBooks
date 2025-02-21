@@ -511,6 +511,54 @@ As a general rule, don't blanket-catch exceptions unless it is for the purpose o
 them somewhere -- for example, over the network to tell another system that our program 
 crashed. And even then, thinking carefully about hwo one might be hiding information. 
 
-We want to catch a *specific* kind of exception. ...
+We want to catch a *specific* kind of exception. We can do this by checking in the `catch` 
+block whether the exception we got is the one we are interested in, and if not, rethrow 
+it. But how do we recognize an exception?
 
-<!-- HERE -- selective catching... -->
+We could compare its `message` property against the error message we happen to expect. But
+that's a shaky way to write code -- we'd be using information that's intended for human 
+consumption (the message) to make a programmatic decision. As soon as someone changes 
+(or translates) the message, the code will stop working. 
+
+Rather, let's define a new type of error an duse `instanceof` to identify it:
+
+```js
+class InputError extends Error {}
+
+function promptDirection(question) {
+  let result = prompt(question);
+  if (result.toLowerCase() == "left") return "L";
+  if (result.toLowerCase() == "right") return "R";
+  throw new InputError("Invalid direction: " + result);
+}
+```
+
+The new error class extends `Error`. It doesn't defien its own constructor, which means that it
+inherits the `Error` constructor, which expects a string message as argument. In fact, it doesn't 
+define anything at all -- the class is empty. `InputError` objects behave like `Error` objects, 
+except that they have a different class by which we can recognize them. 
+
+Now the lop can catch these more carefully:
+
+```js
+for (;;) {
+  try {
+    let dir = promptDirection("Where?");
+    console.log("You chose ", dir);
+    break;
+  } catch (e) {
+    if (e instanceof InputError) {
+      console.log("Not a valid direction. Try again.");
+    } else {
+      throw e;
+    }
+  }
+}
+```
+
+This will catch only instances of `InputError` and let unrelated exceptions through. If one 
+reintroduces the type, the undefined binding error will be properly reported.
+
+## ASSERTIONS
+
+<!-- HERE -- assertions... -->
