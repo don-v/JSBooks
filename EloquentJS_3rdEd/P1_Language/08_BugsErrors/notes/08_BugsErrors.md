@@ -561,4 +561,39 @@ reintroduces the type, the undefined binding error will be properly reported.
 
 ## ASSERTIONS
 
-<!-- HERE -- assertions... -->
+*Assertions* are checks inside a program that verify that something is the way it is supposed 
+to be. They are nto to handle situations that can come up in normal operation but to find 
+programmer mistakes. 
+
+If, for example, `firstElement` is described as a function that should never be called on empty 
+arrays, we might write it like this:
+
+```js
+function firstElement(array) {
+  if (array.length == 0) {
+    throw new Error("firstElement called with []");
+  }
+  return array[0];
+}
+```
+
+Now, instead of silently returning undefined (which one gets when reading an array 
+proprery that does not exist), this will loudly blow up one's program as soon as 
+one misuses it. This makes it less likely for such mistakes to go unnoticed and 
+easier to find their cause when they occur. 
+
+Teach does not recommend trying to write assertions for every possible kind of bad input. That'd 
+be a lot of work and would lead to very noisy code. One'll want to reserver them for 
+mistakes that are easy to make (or that one finds oneself making).
+
+## SUMMARY
+
+An important part of programming is finding, diagnosing, and fixing bugs. Problems 
+can become easier to notice if one has an automated test suite or add assertions to 
+one's programs. 
+
+Problems caused by factors outside the program's control should usually be actively 
+planned for. Sometimes, when the problem can be handled locally, special return values 
+are a good way to track them. 
+
+<!-- HERE -- summary... -->
