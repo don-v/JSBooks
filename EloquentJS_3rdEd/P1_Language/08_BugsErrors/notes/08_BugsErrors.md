@@ -594,6 +594,43 @@ one's programs.
 
 Problems caused by factors outside the program's control should usually be actively 
 planned for. Sometimes, when the problem can be handled locally, special return values 
-are a good way to track them. 
+are a good way to track them. Otherwise, exceptions may be preferable.
+
+Throwing an exception causes the call stack to be unwound until the enxt encolsing 
+`try/catch` block or until the bottom of the stack. The exception values will be given 
+to the `catch` block that catches it, which would verify that it is actually the expected 
+kind of exception and then do something with it. To help address the unpredictable control 
+flow causes by exceptions, `finally` blocks can be used to ensure that apiece of code 
+*always* runs when a block finishes.
+
+## EXERCISES
+
+### RETRY 
+
+Say one has a function `primitiveMultiply` that in 20 percent of cases multiplies two 
+numbers and in the other 80 percent of cases raises an exception of type 
+`MultiplicatorUnitFailure`. Write a function that wraps this clunky function and just keeps 
+trying until a call succeeds, after which it returns the result. 
+
+One should be sure to handle only the exceptions one are trying to handle:
+
+```js
+class MultiplicatorUnitFailure extends Error {}
+
+function primitiveMultiply(a, b) {
+  if (Math.random() < 0.2) {
+    return a * b;
+  } else {
+    throw new MultiplicatorUnitFailure("Klunk");
+  }
+}
+
+function reliableMultiply(a, b) {
+  // Your code here.
+}
+
+console.log(reliableMultiply(8, 8));
+// → 64
+```
 
 <!-- HERE -- summary... -->
