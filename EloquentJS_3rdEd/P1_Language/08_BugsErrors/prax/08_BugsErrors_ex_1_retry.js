@@ -4,7 +4,7 @@ numbers and in the other 80 percent of cases raises an exception of type
 `MultiplicatorUnitFailure`. Write a function that wraps this clunky function and just keeps 
 trying until a call succeeds, after which it returns the result. 
 
-One should be sure to handle only the exceptions one are trying to handle:
+One should be sure to handle only the exceptions one is trying to handle:
 */
 
 class MultiplicatorUnitFailure extends Error {}

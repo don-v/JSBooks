@@ -633,4 +633,4 @@ console.log(reliableMultiply(8, 8));
 // → 64
 ```
 
-<!-- HERE -- summary... -->
+<!-- HERE -- ex retry + -->
