@@ -19,8 +19,25 @@ function primitiveMultiply(a, b) {
 
 function reliableMultiply(a, b) {
   // Your code here.
+  for (;;) {
+    try {
+      let result = primitiveMultiply(a,b);
+      console.log("The result is: ", result);
+      break;
+    } catch (e) {
+      if (e instanceof MultiplicatorUnitFailure) {
+        console.log("Still processing...");
+      } else {
+        throw e;
+      }
+    }
+  }
 }
 
 console.log(reliableMultiply(8, 8));
 // → 64
+
+
+
+
 
