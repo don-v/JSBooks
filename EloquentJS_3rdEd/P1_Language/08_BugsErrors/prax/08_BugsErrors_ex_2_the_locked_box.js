@@ -18,9 +18,9 @@ const box_ = new class {
 get at it only when the box is unlocked. 
 
 Write a function called `withBoxUnlocked` that takes a function value 
-as argument, unlocks the box, runs the funciton, and then ensurese that 
+as argument, unlocks the box, runs the funciton, and then ensures that 
 the box is unlocked again before returning, regardless of whether the 
-argument function returned normally or threw an exception.
+argument function returned normally or threw an exception.  
  */
 
 const box = new class {
