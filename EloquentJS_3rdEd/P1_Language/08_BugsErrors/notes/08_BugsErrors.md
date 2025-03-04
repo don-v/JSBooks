@@ -727,7 +727,7 @@ It is a box with a lock. There is an array in the box, but one can
 get at it only when the box is unlocked. 
 
 Write a function called `withBoxUnlocked` that takes a function value 
-as argument, unlocks the obx, runs the funciton, and then ensurese that 
+as argument, unlocks the box, runs the funciton, and then ensurese that 
 the box is unlocked again before returning, regardless of whether the 
 argument function returned normally or threw an exception.
 
@@ -766,4 +766,4 @@ console.log(box.locked);
 For extra points, make sure that it if one calls `withBoxUnlocked` when the box 
 is already unlocked, the box stays unlocked. 
 
-<!-- HERE -- ex the locked box++ -->
+<!-- HERE -- ex the locked box+++ -->
