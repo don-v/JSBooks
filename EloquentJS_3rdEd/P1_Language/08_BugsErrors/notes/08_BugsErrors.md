@@ -766,4 +766,4 @@ console.log(box.locked);
 For extra points, make sure that it if one calls `withBoxUnlocked` when the box 
 is already unlocked, the box stays unlocked. 
 
-<!-- HERE -- ex the locked box+++ -->
+<!-- HERE -- ex the locked box++++ -->

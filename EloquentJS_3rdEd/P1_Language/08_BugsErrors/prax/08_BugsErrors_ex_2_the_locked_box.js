@@ -37,6 +37,17 @@ const box = new class {
 
 function withBoxUnlocked(body) {
   // Your code here.
+  try {
+    let currentBoxLockState = box.locked;
+    if (currentBoxLockState) {
+      box.unlock();
+    }
+    body();
+  } catch (error) {
+    
+  } finally {
+
+  }
 }
 
 withBoxUnlocked(() => {
