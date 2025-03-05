@@ -38,15 +38,15 @@ const box = new class {
 function withBoxUnlocked(body) {
   // Your code here.
   try {
-    let currentBoxLockState = box.locked;
-    if (currentBoxLockState) {
+    let originalBoxLockState = box.locked;
+    if (originalBoxLockState) {
       box.unlock();
     }
     body();
   } catch (error) {
-    
+    console.log(`The following error occurred: ${error}`);
   } finally {
-
+    box.locked = originalBoxLockState;
   }
 }
 
