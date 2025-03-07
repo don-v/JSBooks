@@ -766,4 +766,72 @@ console.log(box.locked);
 For extra points, make sure that it if one calls `withBoxUnlocked` when the box 
 is already unlocked, the box stays unlocked. 
 
-<!-- HERE -- ex the locked box+++++ -->
+#### MY SOLUTION
+
+```js
+let originalBoxLockState = box.locked;
+
+function withBoxUnlocked(body) {
+  // Your code here.
+  try {
+    if (originalBoxLockState) {
+      box.unlock();
+    }
+    body();
+  // } catch (error) {
+  //   console.log(`The following error occurred: ${error}`);
+  } finally {
+    box.locked = originalBoxLockState;
+  }
+}
+```
+
+#### DISPLAY HINTS:
+
+This exercise calls for a `finally` block. Your function should first unlock the box 
+and then call the argument function from inside a try body. The `finally` block after 
+it should lock the box again.
+
+To make sure we don’t lock the box when it wasn’t already locked, check its lock at 
+the start of the function and unlock and lock it only when it started out locked.
+
+#### TEACH KA SOLUTION
+
+```js
+const box = new class {
+  locked = true;
+  #content = [];
+
+  unlock() { this.locked = false; }
+  lock() { this.locked = true;  }
+  get content() {
+    if (this.locked) throw new Error("Locked!");
+    return this.#content;
+  }
+};
+
+function withBoxUnlocked(body) {
+  let locked = box.locked;
+  if (locked) box.unlock();
+  try {
+    return body();
+  } finally {
+    if (locked) box.lock();
+  }
+}
+
+withBoxUnlocked(() => {
+  box.content.push("gold piece");
+});
+
+try {
+  withBoxUnlocked(() => {
+    throw new Error("Pirates on the horizon! Abort!");
+  });
+} catch (e) {
+  console.log("Error raised:", e);
+}
+
+console.log(box.locked);
+// → true
+```
