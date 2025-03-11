@@ -50,6 +50,45 @@ let aPlus = /A\+/;
 
 ## TESTING FOR MATCHES
 
-Regular expression objects have a number of methods ...
+Regular expression objects have a number of methods. The simplest one is `test`. If one passes it 
+a string, it will return a Boolean indicating whether the string contains a match of the pattern 
+in the expression:
 
-<!-- HERE -- testing for matches -->
+```js
+console.log(/abc/.test("abcde"));
+// → true
+console.log(/abc/.test("abxde"));
+// → false
+```
+
+A regular expression consisting of only nonspecial characters simply represents the 
+sequence of characters. If *abc* occurs anywhere in the string we are testing again (not 
+just the start), `test` will return `true`. 
+
+## SETS OF CHARACTERS
+
+Finding out whether a string contains *abc* could just as well be done with a call to 
+`indexOf`. Regular expressions are useful because they allow us to describe more 
+complicated patterns.
+
+Say one wants to match any number. In a regular expression, putting a set of characters 
+between square brackets makes that part of the expression match any of the characters between 
+the brackets. 
+
+Both of the following expressions match all strings that contain a digit:
+
+```js
+console.log(/[0123456789]/.test("in 1992"));
+// → true
+console.log(/[0-9]/.test("in 1992"));
+// → true
+```
+
+Within the square brackets, a hyphen (`-`) between two characters can be used to 
+indicate a range of characters, where the ordering is determined by the character's 
+Unicode number. Characters 0 to 9 sit right next to each other in this ordering (codes 48
+to 57), so `[0-9]` covers all of them and matche any digit. 
+
+A number of common character groups ...
+
+<!-- HERE -- sets of chars.. -->
