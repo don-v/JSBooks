@@ -89,6 +89,44 @@ indicate a range of characters, where the ordering is determined by the characte
 Unicode number. Characters 0 to 9 sit right next to each other in this ordering (codes 48
 to 57), so `[0-9]` covers all of them and matche any digit. 
 
-A number of common character groups ...
+A number of common character groups have their own built-in shortcuts. Digits are one of 
+them: `\d` means the same things as `[0-9]`:
+
+* `\d`: Any digit character
+
+* `\w`: An alphanumeric character ("word character")
+
+* `\s`: Any whitespace character (space, tab, newline, and similar)
+
+* `\D`: A character that is *not* a digit
+
+* `\W`: A nonalphanumeric character
+
+* `\S`: A nonwhitespace character
+
+* `.` : Any character except newline
+
+One could match a date and time format like '01-30-2003 15:20' with the following expression:
+
+```js
+let dateTime = /\d\d-\d\d-\d\d\d\d \d\d:\d\d/;
+console.log(dateTime.test("01-30-2003 15:20"));
+// → true
+console.log(dateTime.test("30-jan-2003 15:20"));
+// → false
+```
+
+That regular expression looks completely awful, doesn't it? Half of it is backslashes, producing 
+a background noise that makes it hard to spot the actual pattern expressed. We'll see a slightly 
+improved version of this expression later. 
+
+These backslash codes can also be used inside square brackets. For example, `[\d.]` means any digit 
+or a period character. The period itself, between square brackets, loses its special meaning. The 
+same goes for the other special characters, such as the plus sign (`+`).
+
+To *invert* a set of characters -- that is, to express that one wants to match any character *except*
+the ones in the set -- one can write a caret (`^`) character after the opening bracket: 
+
+
 
 <!-- HERE -- sets of chars.. -->
