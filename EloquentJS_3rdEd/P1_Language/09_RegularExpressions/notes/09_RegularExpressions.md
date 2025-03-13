@@ -127,6 +127,31 @@ same goes for the other special characters, such as the plus sign (`+`).
 To *invert* a set of characters -- that is, to express that one wants to match any character *except*
 the ones in the set -- one can write a caret (`^`) character after the opening bracket: 
 
+```js
+let nonBinary = /[^01]/;
+console.log(nonBinary.test("1100100010100110"));
+// → false
+console.log(nonBinary.test("0111010112101001"));
+// → true
+```
 
+## INTERNATIONAL CHARACTERS
 
-<!-- HERE -- sets of chars.. -->
+Because of JS' initial simplistic implementation and the fact that this simplistic approach was later
+set in stone as standard behavior, JS' regular expressions are rather dumb about characters that do 
+not appear in the English language. For example, as far as JS' regular expression are concernced, a 
+"word character" in only one of the 26 characters in the Latin alphabet (uppercase or lowercase), 
+decimal digits, and, for some reaosn, the underscore character. Things like `é` or `β`, which most 
+definitely are word characters, will notmatch `\w` (and *will* match uppercase, `\W`, the nonword
+category).
+
+By a strange historical accident, `\s` (whitespace) does not have this problem and matches all 
+characters that the Unicode standard considers whitespace, including things like the nonbreaking 
+space and the Mongolian vowel separator. 
+
+It is possible to use `\p` in a regular expression to match all characters to which the Unicode standard 
+assigns a given property. This allows us to match things like letters in a more cosmopolitan way. However, 
+again due to compatibility with the original language standards, those are recognized only when one
+puts a character (for Unicode) after the regular expression. 
+
+<!-- HERE -- international chars.. -->

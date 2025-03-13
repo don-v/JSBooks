@@ -8,3 +8,9 @@ console.log(dateTime.test("01-30-2003 15:20"));
 // → true
 console.log(dateTime.test("30-jan-2003 15:20"));
 // → false
+
+let nonBinary = /[^01]/;
+console.log(nonBinary.test("1100100010100110"));
+// → false
+console.log(nonBinary.test("0111010112101001"));
+// → true
