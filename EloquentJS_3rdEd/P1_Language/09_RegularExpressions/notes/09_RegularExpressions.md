@@ -154,4 +154,36 @@ assigns a given property. This allows us to match things like letters in a more 
 again due to compatibility with the original language standards, those are recognized only when one
 puts a character (for Unicode) after the regular expression. 
 
-<!-- HERE -- international chars.. -->
+* `\p{L}`: Any letter
+
+* `\p{N}`: Any numeric character
+
+* `\p{P}`: Any punctuation character
+
+* `\P{L}`: Any nonletter (uppercase P inverts)
+
+* `\p{Script=Hangul}`: Any character from the given script (see 'C5')
+
+Using `\w` for text processing that may need to handle non-English text (or even English text with borrowed words
+like `"cliché"`) is a liability, since it won't treat characters like `"é"` as letters. Though they tend to be a bit
+more verbose, `\p` property groups are more robust:
+
+```js
+console.log(/\p{L}/u.test("α"));
+// → true
+console.log(/\p{L}/u.test("!"));
+// → false
+console.log(/\p{Script=Greek}/u.test("α"));
+// → true
+console.log(/\p{Script=Arabic}/u.test("α"));
+// → false
+```
+
+On the other hand, if one is matching numbers in order to do something with them, one often 
+does want `\d` for digits, since converting arbitrary numeric characters into a JS number 
+is not something that a function like `Number` can do for you. 
+
+## REPEATING PARTS OF A PATTERN
+
+
+<!-- HERE -- REPEATING PARTS OF A PATTERN.. -->
