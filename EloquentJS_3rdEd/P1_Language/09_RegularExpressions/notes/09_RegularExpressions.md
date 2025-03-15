@@ -185,5 +185,41 @@ is not something that a function like `Number` can do for you.
 
 ## REPEATING PARTS OF A PATTERN
 
+We now know how to match a single digit. What if we want to match a whole number -- a sequence of 
+one or more digits?
+
+When one puts a plus sign (`+`) after something in a regular expression, it indicates that the element 
+may be repeated more than once. Thus, `/\d+/` matches one or more digit characters. 
+
+```js
+console.log(/'\d+'/.test("'123'"));
+// → true
+console.log(/'\d+'/.test("''"));
+// → false
+console.log(/'\d*'/.test("'123'"));
+// → true
+console.log(/'\d*'/.test("''"));
+// → true
+```
+
+The start (`*`) has a similar meaning but also allows the pattern to match zero times. 
+Something with a start after itnever prevents a pattern form matching -- it'll just match 
+zero instances if it can't find any suitable texxt to match. 
+
+A question mark (`?`) makes a part of a pattern *optional*, meaning it may occur zero 
+times or one time. In the following example, the *u* character is allowed to occur, but 
+the pattenr also matches when it is missing:
+
+```js
+let neighbor = /neighbou?r/;
+console.log(neighbor.test("neighbour"));
+// → true
+console.log(neighbor.test("neighbor"));
+// → true
+```
+
+To indicate that a pattern should occur a precise number of times, use braces. 
+Putting `{4}` after an element, for example, requires it to occur exactly 4 times. 
+It is also possible to specify a range this way: `{2,4}` ...
 
 <!-- HERE -- REPEATING PARTS OF A PATTERN.. -->
