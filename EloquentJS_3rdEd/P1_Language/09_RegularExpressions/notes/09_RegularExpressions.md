@@ -220,6 +220,35 @@ console.log(neighbor.test("neighbor"));
 
 To indicate that a pattern should occur a precise number of times, use braces. 
 Putting `{4}` after an element, for example, requires it to occur exactly 4 times. 
-It is also possible to specify a range this way: `{2,4}` ...
+It is also possible to specify a range this way: `{2,4}` means the element must occur 
+at least twice and at most four times.
 
-<!-- HERE -- REPEATING PARTS OF A PATTERN.. -->
+Here is another version of the date and time pattern that allows both single- 
+and double-digit days, months, and hours. It is also slightly easier to decipher. 
+
+```js
+let dateTime = /\d{1,2}-\d{1,2}-\d{4} \d{1,2}:\d{2}/;
+console.log(dateTime.test("1-30-2003 8:45"));
+// → true
+```
+
+One can also specify open-ended ranges when using braced by omitting the number 
+after the comma. For example, `{5,}` means five or more times.
+
+## GROUPING SUBEXPRESSIONS
+
+To use an operator like `*` or `+` on more than one element at a time, one must 
+use parentheses. A part of a regular exprssion that is enclosed in parentheses 
+counts as a single element as far as the operators following it are connected. 
+
+```js
+let cartoonCrying = /boo+(hoo+)+/i;
+console.log(cartoonCrying.test("Boohoooohoohooo"));
+// → true
+```
+
+The first and second `+` characters apply only to the second `o` in `boo` and 
+`hoo`, respectively. The third `+` applies to the whole group `(hoo+)`, matching
+one or more sequences like that. 
+
+<!-- HERE -- GROUPING SUBEXPRESSIONS -->
