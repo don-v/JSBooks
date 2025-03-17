@@ -251,4 +251,30 @@ The first and second `+` characters apply only to the second `o` in `boo` and
 `hoo`, respectively. The third `+` applies to the whole group `(hoo+)`, matching
 one or more sequences like that. 
 
-<!-- HERE -- GROUPING SUBEXPRESSIONS -->
+The `i` at the end of the expression in the exaple makes this regular expression 
+case insensitive, allowing it to match the uppercase *B* in the inpput string, 
+even though the pattern is itself all lowercase. 
+
+## MATCHES AND GROUPS
+
+The `test` method is the absolute simplest way to match a regular expression. It indicates 
+only whether it matched and nothing else. Regular expressions also have an `exec` (execute) 
+method that will return `null` if no match was found and return an object with information 
+about the match otherwise:
+
+```js
+let match = /\d+/.exec("one two 100");
+console.log(match);
+// → ["100"]
+console.log(match.index);
+// → 8
+```
+
+An object returned from `exec` has an `index` property that tells us *where* in the string 
+the successful match begins. Other than that, the object looks like (and in fact is) an 
+array of strings, whose first element is the string that was matched. In the previous 
+example, this is the sequence of digits that we were looking for. 
+
+String values have a `match` method that behaves similarly. 
+
+<!-- HERE -- MATCHES AND GROUPS -->
