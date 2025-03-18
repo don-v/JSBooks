@@ -277,4 +277,48 @@ example, this is the sequence of digits that we were looking for.
 
 String values have a `match` method that behaves similarly. 
 
-<!-- HERE -- MATCHES AND GROUPS -->
+```js
+console.log("one two 100".match(/\d+/));
+// → ["100"]
+```
+
+When the regular expression contains subexpressions grouped with parentheses, the text that 
+matched those groups will also show up in the array. The whole match is always the first element. 
+The next element is the part matched by the first group (the one whose opening parenthesis comes 
+first in the expression), then the second group, and so on.
+
+```js
+let quotedText = /'([^']*)'/;
+console.log(quotedText.exec("she said 'hello'"));
+// → ["'hello'", "hello"]
+```
+
+When a group does not end up being matched at all (for example, when followed by a question mark),
+its position in the output array will hold `undefined`. When a group is matched multiple times
+(for example, when followed by a `+`), only the lats match ends up in the array.
+
+```js
+console.log(/bad(ly)?/.exec("bad"));
+// → ["bad", undefined]
+console.log(/(\d)+/.exec("123"));
+// → ["123", "3"]
+```
+
+If one wants to use parentheses purely for grouping, without having them show up in the array matches, 
+one can put `?:` after the opening parenthesis:
+
+```js
+console.log(/(?:na)+/.exec("banana"));
+// → ["nana"]
+```
+
+Groups can be useful for extracting parts of a string. If we don't just want to verify whether a 
+string contains a date but also extract it and construct an object that represents it, we can wrap
+parentheses around the digit patterns and directly pick the date out of the result of `exec`. 
+
+But first, we'll take a brief detour to discuss the built-in way to represent date and time values 
+in JS. 
+
+## THE DATE CLASS
+
+<!-- HERE -- THE DATE CLASS -->
