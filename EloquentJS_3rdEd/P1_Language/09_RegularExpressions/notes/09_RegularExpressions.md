@@ -356,6 +356,33 @@ console.log(new Date(1387407600000));
 // → Thu Dec 19 2013 00:00:00 GMT+0100 (CET)
 ```
 
-If one gives. ...
+If one gives the `Date` constructor a single argument, that argument is treated as such a millisecond count. 
+One can get the current millisecond count by creating a new `Date` object and callign `getTime` on it or 
+by calling the `Date.now` function. 
 
-<!-- HERE -- THE DATE CLASS -->
+Date objects provide methods such as `getFullYear`, `getMonth`, `getDate`, `getHours`, `getMinutes`, 
+and `getSeconds` to extract their components. Besides `getFullYear`, there's also `getYear`, which 
+gives you the year minus '1900' (such as '98' or `125') and is mostly useless.
+
+Putting parentheses around the parts of the expression that we are interested in, we can create a date 
+object from a string. 
+
+```js
+function getDate(string) {
+  let [_, month, day, year] =
+    /(\d{1,2})-(\d{1,2})-(\d{4})/.exec(string);
+  return new Date(year, month - 1, day);
+}
+console.log(getDate("1-30-2003"));
+// → Thu Jan 30 2003 00:00:00 GMT+0100 (CET)
+```
+
+The underscore (`_`) binding is ignored and used only to skip the full match element in the array 
+returned by `exec`. 
+
+## BOUNDARIES AND LOOK-AHEAD
+
+Unfortunately, `getDate` will also happily extract a date from the string `"100-1-30000"`. A match 
+may happen anywhere in the string, so in this case. ...
+
+<!-- HERE -- BOUNDARIES AND LOOK-AHEAD -->
