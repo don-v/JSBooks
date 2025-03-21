@@ -383,6 +383,23 @@ returned by `exec`.
 ## BOUNDARIES AND LOOK-AHEAD
 
 Unfortunately, `getDate` will also happily extract a date from the string `"100-1-30000"`. A match 
-may happen anywhere in the string, so in this case. ...
+may happen anywhere in the string, so in this case, it'sll just start at the second character and 
+at the second-to-last character.
+
+If we want to enforce that the match must span the whole string, we can add the markers `^` and `$`. 
+The caret matches the start of the input string, whereas the dollar sign matches the end. Thus, 
+`/^\d+$/` matches a string consisting entirely of one or more digits, `/^!` matches any string that 
+starts with an exlamation mark, and `/x^/` does not match any string (there cannot be an `x` before the 
+start of the string).
+
+There is also a `\b` marker that maches *word boundaries*, positions that have a word characer on 
+one side, an da nonword character on the other. Unfortunately, these use the same simplistic concept of
+word characters as `\w` and are therefore not very reliable. 
+
+Note that these boundary markers don't match any actual chracters. They just enforce that a given condition 
+holds at the place where it appears in the pattern.
+
+*Look-ahead* tests do something similar. They provide a pattern and will make the match fail if the input
+doesn't match that pattern. 
 
 <!-- HERE -- BOUNDARIES AND LOOK-AHEAD -->
