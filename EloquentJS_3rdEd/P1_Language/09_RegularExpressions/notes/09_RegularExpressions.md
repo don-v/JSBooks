@@ -400,6 +400,18 @@ Note that these boundary markers don't match any actual chracters. They just enf
 holds at the place where it appears in the pattern.
 
 *Look-ahead* tests do something similar. They provide a pattern and will make the match fail if the input
-doesn't match that pattern. 
+doesn't match that pattern, but dont' actually move the match position forward. They are written between 
+`(?=` and `)`.
+
+```js
+console.log(/a(?=e)/.exec("braeburn"));
+// → ["a"]
+console.log(/a(?! )/.exec("a b"));
+// → null
+```
+
+The `e` in the first example is necessary to match, but is not part of the matched string. The `(?! )` notation 
+expresses a *negative* look-ahead. This matches only if the pattern in the parentheses *doesn't* match, causing 
+the second example to match only `a` characters that dont' have a space after them. 
 
 <!-- HERE -- BOUNDARIES AND LOOK-AHEAD -->
