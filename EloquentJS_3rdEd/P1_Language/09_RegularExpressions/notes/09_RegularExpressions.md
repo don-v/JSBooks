@@ -414,4 +414,39 @@ The `e` in the first example is necessary to match, but is not part of the match
 expresses a *negative* look-ahead. This matches only if the pattern in the parentheses *doesn't* match, causing 
 the second example to match only `a` characters that dont' have a space after them. 
 
-<!-- HERE -- BOUNDARIES AND LOOK-AHEAD -->
+## CHOICE PATTERNS
+
+Say one wants to know whether a piece of text contains not only a number but a number follwoed by one of the 
+words *pig*, *cow*, or *chicken*, or any of their plural forms. 
+
+We could write three regular expression and test them in turn, but there is a nicer way. The pipe character `|`
+denotes a choice between the pattern to its left and the pattern to its right. We can use it in expressions like 
+this: 
+
+```js
+let animalCount = /\d+ (pig|cow|chicken)s?/;
+console.log(animalCount.test("15 pigs"));
+// → true
+console.log(animalCount.test("15 pugs"));
+// → false
+```
+
+Parentheses can be used to limit the part of the pattern to which the pipe operator 
+applies, and one can put multiple such operators next to each other to express a 
+choice between more than two alternatives.
+
+## THE MECHANICS OF MATCHING
+
+Conceptually, when one uses `exec` or `test`, the regular expression engine looks 
+for a match in your string by trying to match the expression first from the start of 
+the string, then from the second character, and so on until it finds a match or 
+reaches the end of the string. It'll either return the first match that can be found 
+or fail to find any match at all. 
+
+To do the actual matching, teh engine treates a regular expression something like a
+flow diagram. This is the diagram for the livestock expression in the previous 
+example:
+
+![meadowmong village](../../../to_ignore/09_RegExpr/re_flow_diag_01.png)
+
+<!-- HERE -- mechanics of matching -->
