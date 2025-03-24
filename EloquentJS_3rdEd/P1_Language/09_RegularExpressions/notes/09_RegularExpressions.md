@@ -447,6 +447,31 @@ To do the actual matching, teh engine treates a regular expression something lik
 flow diagram. This is the diagram for the livestock expression in the previous 
 example:
 
-![meadowmong village](../../../to_ignore/09_RegExpr/re_flow_diag_01.png)
+![RE flow diagram 1](../../../to_ignore/09_RegExpr/re_flow_diag_01.png)
 
-<!-- HERE -- mechanics of matching -->
+If we can find a path from the left side of the diagram to the right side, our 
+expression matches. We keep a current position in the string, and every tie 
+we move through a box, we verify that the part of the string after our current 
+position matches that box. 
+
+## BACKTRACKING
+
+The regular expression `/^([01]+b|[\da-f]+h|\d+)$/` matches either a binary number
+follwoed by a `b`, a hexadecimal number (that is, base 16, with the letters `a` to `f`
+standing for the digits `10` to `15`) followed by an `h`, or a regular decimal number 
+with no suffix character. This is the corresponding diagram:
+
+![RE flow diagram 2](../../../to_ignore/09_RegExpr/re_flow_diag_02.png)
+
+When matching this expression, the top (binary) branch will often be entered even though
+the input does not actually contain a binary number. When matching the string `"103"`, for
+example, it becomes clear that only at the `3` that we are in the wrong branch. The string 
+*does* match the expression, just not the branch we are currently in.
+
+So the match *backtracks*. When entering a branch, it remembers its current position (in this 
+case, at the start of the string, just past the first boundary box in the diagram) so that it 
+can go back and try another branch if the current one does not work out. For the string "103",
+after encountering the `3` character, the matcher starts trying the branch for hexadecimal 
+numbers, ...
+
+<!-- HERE -- backtracking -->
