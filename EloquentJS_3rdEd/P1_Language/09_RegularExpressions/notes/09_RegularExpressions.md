@@ -470,8 +470,24 @@ example, it becomes clear that only at the `3` that we are in the wrong branch. 
 
 So the match *backtracks*. When entering a branch, it remembers its current position (in this 
 case, at the start of the string, just past the first boundary box in the diagram) so that it 
-can go back and try another branch if the current one does not work out. For the string "103",
+can go back and try another branch if the current one does not work out. For the string `"103"`,
 after encountering the `3` character, the matcher starts trying the branch for hexadecimal 
-numbers, ...
+numbers, which fails again because there is no `h` after the number. It then tries the 
+decimal number branch. This one fits, and a match is reported after all.
+
+The matcher stops as soon as it finds a full match. This means that if multiple branches 
+could potentially match a string, only the first one (ordered by where the branhes appear 
+in the regular expression) is used.
+
+Backtracking also happens for repitition operators like `+` and `*`. If one matches 
+`/^.*x/` against `"abcxe"`, the `.*` part will first try to consume the whole string.
+The engine will then realize that it needs an `x` to match the pattern. Since there is no 
+`x` past the end of the string, the star operator tries to match one character less. But the
+matcher doesn't find an `x` after `abcx` either, so it backtracks again, matching the start
+operator to just `abc`. *Now* it finds an `x` where it needs it and reports a successful 
+match form positions `0` to `4`. 
+
+It is possible to write regular expression that will do a *lot* of backgracking. This problem 
+occurs when a pattern can match a piece of input in many different ways. ...
 
 <!-- HERE -- backtracking -->
