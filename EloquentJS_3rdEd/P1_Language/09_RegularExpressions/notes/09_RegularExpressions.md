@@ -488,6 +488,32 @@ operator to just `abc`. *Now* it finds an `x` where it needs it and reports a su
 match form positions `0` to `4`. 
 
 It is possible to write regular expression that will do a *lot* of backgracking. This problem 
-occurs when a pattern can match a piece of input in many different ways. ...
+occurs when a pattern can match a piece of input in many different ways. For example, if we 
+get confused while writing a binary-number regular expression, we might accidentally write 
+something like `/([01]+)+b/`.
 
-<!-- HERE -- backtracking -->
+![RE flow diagram 3](../../../to_ignore/09_RegExpr/re_flow_diag_03.png)
+
+If that tries to match some long series of zeros and ones with no trailing *b* character, the 
+matcher first goes through the inner loop until it runs out of digits. Then it notices there 
+is not a *b*, so it backtracks one position, goes through the outer loop one, and gives 
+up again, trying to backtrack out of inner loop once more. It will continue to try every 
+possible route through these two loops. This means the amount of work *doubles* with each 
+additional character. For even just a few dozen characters, the resulting match will take 
+practically forever. 
+
+## THE REPLACE METHOD 
+
+String values have a `replace` method that can be used to replace part of the string with
+another string. 
+
+```js
+console.log("papa".replace("p", "m"));
+// → mapa
+```
+
+The first argument can also be a regular expression, in which case the first match of the 
+regular expression is replaced. When a `g` option (for *global*) is added after the regular 
+expression, *all matches in the string will be replaced, not just the first: 
+
+<!-- HERE -- the replace method! -->
