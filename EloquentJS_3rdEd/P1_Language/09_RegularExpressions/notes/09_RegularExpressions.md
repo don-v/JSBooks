@@ -516,4 +516,4 @@ The first argument can also be a regular expression, in which case the first mat
 regular expression is replaced. When a `g` option (for *global*) is added after the regular 
 expression, *all matches in the string will be replaced, not just the first: 
 
-<!-- HERE -- the replace method+! -->
+<!-- HERE -- the replace method++ ! -->
