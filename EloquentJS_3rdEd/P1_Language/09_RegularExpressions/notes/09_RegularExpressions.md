@@ -545,6 +545,26 @@ It is possible to pass a function -- rather than a string -- as the second argum
 each replacement, the function will be called with the matched groups (as well as the whole match) as 
 arguments, and its return value will be inserted into the new string.
 
+Here's an example:
 
+```js
+let stock = "1 lemon, 2 cabbages, and 101 eggs";
+function minusOne(match, amount, unit) {
+  amount = Number(amount) - 1;
+  if (amount == 1) { // only one left, remove the 's'
+    unit = unit.slice(0, unit.length - 1);
+  } else if (amount == 0) {
+    amount = "no";
+  }
+  return amount + " " + unit;
+}
+console.log(stock.replace(/(\d+) (\p{L}+)/gu, minusOne));
+// → no lemon, 1 cabbage, and 100 eggs
+```
 
-<!-- HERE -- the replace method++ ! -->
+This code takes a string, finds all occurrences of a number follwoed by an alphanumeric word, and 
+returns a string that has one less of every such quantity. 
+
+The `(\d+)` group ends up as the `amount` argument to the function, and the ...
+
+<!-- HERE -- the replace method+++ ! -->
