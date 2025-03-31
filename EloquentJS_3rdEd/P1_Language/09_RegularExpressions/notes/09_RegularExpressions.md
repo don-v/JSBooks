@@ -565,6 +565,43 @@ console.log(stock.replace(/(\d+) (\p{L}+)/gu, minusOne));
 This code takes a string, finds all occurrences of a number follwoed by an alphanumeric word, and 
 returns a string that has one less of every such quantity. 
 
-The `(\d+)` group ends up as the `amount` argument to the function, and the ...
+The `(\d+)` group ends up as the `amount` argument to the function, and the `(\p{L}+)` group gets 
+bound to `unit`. The function converts `amount` to a number -- which always works, since it matched 
+`\d+` earlier -- and makes some adjustments in case there is only one or zero elft. 
 
-<!-- HERE -- the replace method+++ ! -->
+## GREED
+
+We can use `replace` to write a function that removes all comments from a piece of JS code. Here is 
+a first attempt:
+
+```js
+function stripComments(code) {
+  return code.replace(/\/\/.*|\/\*[^]*\*\//g, "");
+}
+console.log(stripComments("1 + /* 2 */3"));
+// → 1 + 3
+console.log(stripComments("x = 10;// ten!"));
+// → x = 10;
+console.log(stripComments("1 /* a */+/* b */ 1"));
+// → 1  1
+```
+
+The part before the `|` operator matches two slash characters followed by any number 
+of non-newline characters. The part for multiline comments is more invovled. We use `[^]`
+(any character that is not in the empty set of characters) as a way to amtch any character.
+We cannot just use a period here because block comments can continue on a new line, and 
+the period character does not match new line characters.
+
+But the output for the last line appears to have gone wrong. Why?
+
+The `[^]*` part of the last expression, as described in the section on backtracking, 
+will first match as much as it can. If that causes the next part of the pattern to fail, 
+the matcher moves back one character and tried again form there. In the example, the 
+matcher first triesto match the whole rest of the string an dthen moves back from there.
+It will find an occurrence of `*/` after going back four characters and match that. This 
+is not what we wanted -- the intention was to match a single comment, not to go all the way 
+to the end of the code and find the end of the last block comment. 
+
+Because of this behavior, we say the repetition operators (...)
+
+<!-- HERE -- greed! -->
