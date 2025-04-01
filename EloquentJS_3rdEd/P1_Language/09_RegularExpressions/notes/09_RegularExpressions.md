@@ -602,6 +602,36 @@ It will find an occurrence of `*/` after going back four characters and match th
 is not what we wanted -- the intention was to match a single comment, not to go all the way 
 to the end of the code and find the end of the last block comment. 
 
-Because of this behavior, we say the repetition operators (...)
+Because of this behavior, we say the repetition operators (`+`, `*`, `?`, `{}`) are 
+*greedy*, meaning they match as much as they can and backtrack from there. If one puts 
+a question mark after them (`+?`, `*?`, `??`, `{}?`), they become nongreedy and start 
+by matching as little as possible, matching more only when the remaining pattern does not 
+fit the smaller match. 
 
-<!-- HERE -- greed! -->
+And that is exactly what we want in this case. By having the star match the smallest 
+stretch of characters that brings us to a `*/`, we consume one block comment and nothing 
+more.
+
+```js
+function stripComments(code) {
+  return code.replace(/\/\/.*|\/\*[^]*?\*\//g, "");
+}
+console.log(stripComments("1 /* a */+/* b */ 1"));
+// → 1 + 1
+```
+
+A lot of bugs in regualr expression programs can be traced to unintentionally using a greedy 
+operator where a nongreedy one would work better. When using a repetition operator, prefer the 
+nongreedy variant. 
+
+## DYNAMICALLY CREATING REGEXP OBJECTS
+
+In some cases one may not know th exact pattern one needs to match against when one is writing 
+one's code. Say one wants to test for the user's name in a piece of text, one can build up a string
+and use the 'RegExp` constructor on that. 
+
+```js
+
+```
+
+<!-- HERE -- dynamic regex! -->

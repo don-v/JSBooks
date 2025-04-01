@@ -8,4 +8,10 @@ function stripComments(code) {
   console.log(stripComments("1 /* a */+/* b */ 1"));
   // → 1  1
 
+  function stripComments(code) {
+    return code.replace(/\/\/.*|\/\*[^]*?\*\//g, "");
+  }
+  console.log(stripComments("1 /* a */+/* b */ 1"));
+  // → 1 + 1
+
   
