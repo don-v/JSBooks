@@ -628,10 +628,35 @@ nongreedy variant.
 
 In some cases one may not know th exact pattern one needs to match against when one is writing 
 one's code. Say one wants to test for the user's name in a piece of text, one can build up a string
-and use the 'RegExp` constructor on that. 
+and use the `RegExp` constructor on that. 
 
 ```js
-
+let name = "harry";
+let regexp = new RegExp("(^|\\s)" + name + "($|\\s)", "gi");
+console.log(regexp.test("Harry is a dodgy character."));
+// → true
 ```
 
-<!-- HERE -- dynamic regex! -->
+When creating the `\s` part of the string, we have to use two backslashes becaue we are writing 
+them in a normal string, not a slash-enlcosed regular expression. The second argument to the `RegExp`
+constructor contains the options for the regular expression -- in this case, `"gi"`, for global 
+and case insensitive. 
+
+But what if the name is `"dea+hl[]rd"` because our user is a nerdy teenager? That would result in a 
+nonsensical regular expression that won't actually match the user's name. 
+
+To work around this, we can add backslashes before any character that has a special meaning. 
+
+```js
+let name = "dea+hl[]rd";
+let escaped = name.replace(/[\\[.+*?(){|^$]/g, "\\$&");
+let regexp = new RegExp("(^|\\s)" + escaped + "($|\\s)",
+                        "gi");
+let text = "This dea+hl[]rd guy is super annoying.";
+console.log(regexp.test(text));
+// → true
+```
+
+## THE SEARCH METHOD
+
+<!-- HERE -- the search method! -->
