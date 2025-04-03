@@ -659,4 +659,29 @@ console.log(regexp.test(text));
 
 ## THE SEARCH METHOD
 
-<!-- HERE -- the search method! -->
+While the `indefOf` method on strings cannot be called with a regular expression, there is another method,
+`search`, that does expect a regular expression. Like `indefOf`, it returns the first index on which 
+the expression was found, or `-1`, when it wasn't found:
+
+```js
+console.log("  word".search(/\S/));
+// → 2
+console.log("    ".search(/\S/));
+// → -1
+```
+
+Unfortuneately, there is no way to indicate that the mach should start at a given offset (like we can the 
+second argument to `indexOf`), which would often be useful. 
+
+## THE LASTINDEX PROPERTY
+
+The `exec` method similarly does not provide a convenient way to start searching from a given 
+position in the string. But it does provide an *inconvenient* way.
+
+Regular expression objects have properties. One such property is `source`, which contains 
+the string that expression was created from. Another property is `lastIndex`, which controls,
+in some limited circumstances, where the next match will start. 
+
+Those circumstances ...
+
+<!-- HERE -- the lastIndex property! -->
