@@ -682,6 +682,37 @@ Regular expression objects have properties. One such property is `source`, which
 the string that expression was created from. Another property is `lastIndex`, which controls,
 in some limited circumstances, where the next match will start. 
 
-Those circumstances ...
+Those circumstances are that the regular expression must have the global (`g`) or sticky (`y`) option 
+enabled, and the match must happen through the `exec` method. Again, a less confusing solution would 
+have been to just allow an extra argument to be passed to `exec`, but confusion is an essential feature
+of JS' regular expression interface: 
+
+```js
+let pattern = /y/g;
+pattern.lastIndex = 3;
+let match = pattern.exec("xyzzy");
+console.log(match.index);
+// → 4
+console.log(pattern.lastIndex);
+// → 5
+```
+
+If the match was successful, the call to `exec` automatically updates the `lastIndex` property to point after the match. If no match was found, `lastIndex` is set back to `o`, which is also 
+the value it has in a newly constructed regular expression object.
+
+The difference between the global and the sticky options is that when stickky is enabled, the 
+match will succeed only if it starts directly at `lastIndex`, whereas with global, it will 
+search ahead for a position where a match can start. 
+
+```js
+let global = /abc/g;
+console.log(global.exec("xyz abc"));
+// → ["abc"]
+let sticky = /abc/y;
+console.log(sticky.exec("xyz abc"));
+// → null
+```
+
+When using a shared regular expression value for multiple `exec` calls, these automatic updates to the `lastIndex` property can cause problems. ...
 
 <!-- HERE -- the lastIndex property! -->
