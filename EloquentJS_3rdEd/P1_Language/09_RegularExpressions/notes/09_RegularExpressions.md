@@ -713,6 +713,49 @@ console.log(sticky.exec("xyz abc"));
 // → null
 ```
 
-When using a shared regular expression value for multiple `exec` calls, these automatic updates to the `lastIndex` property can cause problems. ...
+When using a shared regular expression value for multiple `exec` calls, these automatic updates to the `lastIndex` property can cause problems. Ones' regular expression might be accidentally starting at an index left over form a previous 
+call:
+
+```js
+let digit = /\d/g;
+console.log(digit.exec("here it is: 1"));
+// → ["1"]
+console.log(digit.exec("and now: 1"));
+// → null
+```
+
+Another interesting effect of the global option is that it changes the way the `match` method on strings works. When 
+called with a global expression, instead of returning an array similar to tht returned by `exec`, `match` will
+find *all* matches of the pattern in the string and return an array containing the matched strings. 
+
+```js
+console.log("Banana".match(/an/g));
+// → ["an", "an"]
+```
+
+So be cautious with global regular expressions. The cases where they are necessary -- calls to `replace` and 
+places where one wants to explicitly use `lastIndex` -- are typically the situations where one wants to use 
+them. 
+
+A common thing to do is find all the matches of a reglar expression in a string. We can do this by using the 
+`matchAll` method:
+
+```js
+let input = "A string with 3 numbers in it... 42 and 88.";
+let matches = input.matchAll(/\d+/g);
+for (let match of matches) {
+  console.log("Found", match[0], "at", match.index);
+}
+// → Found 3 at 14
+//   Found 42 at 33
+//   Found 88 at 40
+```
+
+This method returns an array of match arrays. The regular expression gives to `matchAll` *must* have 
+`g` enabled. 
+
+## PARSING AN '.ini' FILE
+
+To conclude the chapter, teach says we will explore a problem that calls for regex.
 
 <!-- HERE -- the lastIndex property! -->
