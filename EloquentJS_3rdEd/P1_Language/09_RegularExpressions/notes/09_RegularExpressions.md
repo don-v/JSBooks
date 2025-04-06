@@ -754,8 +754,47 @@ for (let match of matches) {
 This method returns an array of match arrays. The regular expression gives to `matchAll` *must* have 
 `g` enabled. 
 
-## PARSING AN '.ini' FILE
+## PARSING AN *INI* FILE
 
-To conclude the chapter, teach says we will explore a problem that calls for regex.
+To conclude the chapter, teach says we will explore a problem that calls for regular expressions. Imagine 
+we are writing a program to automatically collect information about our enemies from the internet. (We will 
+not actually write that program here, just the part that reads the configuration file. Sorry.) The 
+configuration file looks like this: 
 
-<!-- HERE -- the lastIndex property! -->
+```ini
+searchengine=https://duckduckgo.com/?q=$1
+spitefulness=9.7
+
+; comments are preceded by a semicolon...
+; each section concerns an individual enemy
+[larry]
+fullname=Larry Doe
+type=kindergarten bully
+website=http://www.geocities.com/CapeCanaveral/11451
+
+[davaeorn]
+fullname=Davaeorn
+type=evil wizard
+outputdir=/home/marijn/enemies/davaeorn
+```
+
+The exact rules for this format -- which is a widely used format, usually called an *INI* file -- are 
+as follows:
+
+* Blank lines and lines starting with semicolons are ignored.
+
+* Lines wrapped in `[` and `]` start a new section
+
+* Lines containing an alphanumeric identifier followed by an `=` character add a setting to the current
+section.
+
+* Anything else is invalid.
+
+Our task is to convert a sstring like this into an object whose properties hold strings for settings written 
+before written before the first section header and subobjects for sections, which those subobjects hodling 
+the section's settings. 
+
+Since the format has to be processed line by line, splitting up the file into separate lines is a good start.
+We saw the `split()` method in *C4*. 
+
+<!-- HERE -- parse ini! -->
