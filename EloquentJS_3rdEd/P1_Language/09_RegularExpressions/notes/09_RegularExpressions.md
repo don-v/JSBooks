@@ -795,6 +795,41 @@ before written before the first section header and subobjects for sections, whic
 the section's settings. 
 
 Since the format has to be processed line by line, splitting up the file into separate lines is a good start.
-We saw the `split()` method in *C4*. 
+We saw the `split()` method in *C4*. Some operating systems, however, use not just a newline character to 
+separate lines but a carrige return followed by a newline (`"\r\n"`). Given that the `split` method also 
+allows a regular expression as its argument, we can use a regular expression like `/\r?\n/` to split in a way 
+that allows both `"\n"` and `"\r\n"` between lines:
+
+```js
+function parseINI(string) {
+  // Start with an object to hold the top-level fields
+  let result = {};
+  let section = result;
+  for (let line of string.split(/\r?\n/)) {
+    let match;
+    if (match = line.match(/^(\w+)=(.*)$/)) {
+      section[match[1]] = match[2];
+    } else if (match = line.match(/^\[(.*)\]$/)) {
+      section = result[match[1]] = {};
+    } else if (!/^\s*(;|$)/.test(line)) {
+      throw new Error("Line '" + line + "' is not valid.");
+    }
+  };
+  return result;
+}
+
+console.log(parseINI(`
+name=Vasilis
+[address]
+city=Tessaloniki`));
+// → {name: "Vasilis", address: {city: "Tessaloniki"}}
+```
+
+The code goes over the file's lines and builds up an object. Properties at the top are 
+stored directly into that object, whereas properties found in sections are stored in a 
+separate section object. The `section` binding points at the object for the current 
+section.
+
+There are two kinds of significant lines -- section headers or property lines. 
 
 <!-- HERE -- parse ini! -->
