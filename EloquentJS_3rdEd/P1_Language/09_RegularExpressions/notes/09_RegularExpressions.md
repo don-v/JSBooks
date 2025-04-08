@@ -830,6 +830,27 @@ stored directly into that object, whereas properties found in sections are store
 separate section object. The `section` binding points at the object for the current 
 section.
 
-There are two kinds of significant lines -- section headers or property lines. 
+There are two kinds of significant lines -- section headers or property lines. When a 
+line is a regular property, it is stored in the current section. When it is a section 
+header, a new section object is created, and `section` is set to point at it. 
 
-<!-- HERE -- parse ini! -->
+Note the recurring use of `^` and `$` to make sure the expression matches the whole 
+line, not just part of it. Leaving these out results in code that mostly works but 
+behaves strangely for some input, which can be a difficult bug to track down.
+
+The pattern `if (match = string.match(...))` makes use of the fact that the value of 
+an assignment expression (`=`) is the assigned value. One often isn't sure that one's 
+call to `match` will succeed, so one can access the resulting object only inside an 
+`if` statement that tests for this. To not break teh pleasant chain of `else if` 
+forms, we assign the result of the match to a binding and immediatelyl use that 
+assignment as the test for the `if` statement. 
+
+If a line is not a section header or a property, the function chcks whether it is a 
+comment or an empty line using the expression `/^\s*(;|$)/` to match lines that 
+either contain only whitespace, or whitespace followed by a semicolon (making the 
+rest of the line a comment). When a line doesn't match any of the expected forms, 
+the function throws an exception.
+
+## CODE UNITS AND CHARACTERS
+
+<!-- HERE -- code units and characters! -->
