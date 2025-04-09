@@ -853,4 +853,38 @@ the function throws an exception.
 
 ## CODE UNITS AND CHARACTERS
 
-<!-- HERE -- code units and characters! -->
+Another design mistake that's been standardized in JS regular expressions is that by 
+default, operators like `.` and `?` work on code units (as discussed in *C5*), not 
+actual characters. This means characters that are composed of two code units 
+behave strangely:
+
+```js
+console.log(/🍎{3}/.test("🍎🍎🍎"));
+// → false
+console.log(/<.>/.test("<🌹>"));
+// → false
+console.log(/<.>/u.test("<🌹>"));
+// → true
+```
+
+The problem is that the 🍎 in the first line is treated as two code units, and `{3}`
+is applied only to the second unit. Similarly, the dot matches a single code unit, not
+the two that make up the reose emoji.
+
+One must add the `u` (Unicode) option to one's regular expression to make it treat such 
+characters properly:
+
+```js
+console.log(/🍎{3}/u.test("🍎🍎🍎"));
+// → true
+```
+
+## SUMMARY
+
+Regular expressions are objects that represent patterns in strings. They use their own 
+language to express patterns.
+
+|pattern|meaning|
+|---|---|
+
+<!-- HERE -- summary! -->
