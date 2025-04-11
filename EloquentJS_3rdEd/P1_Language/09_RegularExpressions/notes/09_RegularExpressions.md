@@ -896,6 +896,21 @@ language to express patterns.
 |`/x?/`|Zero or one occurrence|
 |`/x{2,4}/`|Two to four occurrences|
 |`/(abc)/`|A Group|
-|`/a|b|c/`|Any one of several patterns|
+|`/a\|b\|c/`|Any one of several patterns|
+|`/\d/`|Any digit character|
+|`/\w/`|Any alphanumeric character|
+|`/\s/`|Any whitespace character|
+|`/./`|Any character except newlines|
+|`/\p{L}/u`|Any letter character|
+|`/^/`|Start of input|
+|`/$/`|Endf input|
+|`/(?=a)/`|A look-ahead test|
+
+A regular expression has a method `test` to test whether a given string matches it. 
+It also has a method `exec` that, when a match is found, returns an array containing 
+all matched groups. Such an array has an `index` property that indicates where the 
+match started. 
+
+Strings ...
+
 <!-- HERE -- summary! -->
-|`/a|b|c/`|Any one of several patterns|
