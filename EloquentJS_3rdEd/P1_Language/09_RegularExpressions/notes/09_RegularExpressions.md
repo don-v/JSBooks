@@ -911,6 +911,33 @@ It also has a method `exec` that, when a match is found, returns an array contai
 all matched groups. Such an array has an `index` property that indicates where the 
 match started. 
 
-Strings ...
+Strings have a `match` method to match them against a regular expression and a `search`
+method to search for one, returning only the starting position of the match. Their 
+`replace` method can replace matches of a pattern with a replacement string or function.
 
-<!-- HERE -- summary! -->
+Regular expressions can have options, which are written after the closing slash. The 
+`i` option makes the match case insensitive. The `g` option makes the expression 
+*global*, which, among other things, causes the `replace` method to replace all 
+instances in stead of just the first. The `y` option makes and (?an) expression 
+sticky, which means that it will not search ahead and skip part of the string when 
+looking for a match. The `u` option turns on 'Unicode' moce, which enables
+the `\p` syntax and fixes a number of problems around the handling of characters
+that take up two code units. 
+
+Regular expressions are a shartp tool with an awkward handle. They simplify some 
+tasks tremendously but can quickl become unmanageable when applied to complex problems.
+Part of knowing how to use them is resisting the urge to try to shoehorn things into 
+them that they cannot cleanly express.
+
+## EXERCISES
+
+It is almost unavoidable that, in the course of working on these exercises, one 
+will get confused and frustrated by some regular expression's inexplicable behavior.
+Sometime,s it helps to enter one's expression into an online tool like `debuggex.com`
+to see whether its visualization corresponds to what one intended and to experiment 
+with the way it responds to various input strings. 
+
+### REGEXP GOLD
+
+
+<!-- HERE -- EX1 -- REGEXP GOLF! -->
