@@ -939,5 +939,24 @@ with the way it responds to various input strings.
 
 ### REGEXP GOLD
 
+*Code gold* is a term used for the game of trying to express a particular program in 
+as few characters as possible. Similarly, *regexp golf* is the practice of writing as 
+tiny a regular expression as possible to match a given pattern and *only* that pattern. 
+
+For each of the following items, write a regular expression to test whether the given 
+pattern occurs in a string. The regular expression should atch only strings containing 
+the pattern. When one's expression works, see if one can make it smaller.
+
+1. *car* and *cat*
+2. *pop* and *prop*
+3. *ferret*, *ferry*, and *ferrari*
+4. Any word ending in *ious*
+5. A whitespace character followed by a period, comma, colon, or semicolon.
+6. A word longer than 6 letters.
+7. A word without the letter *e* (or *E*)
 
 <!-- HERE -- EX1 -- REGEXP GOLF! -->
+
+```js
+
+```
