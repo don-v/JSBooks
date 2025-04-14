@@ -939,7 +939,7 @@ with the way it responds to various input strings.
 
 ### REGEXP GOLD
 
-*Code gold* is a term used for the game of trying to express a particular program in 
+*Code golf* is a term used for the game of trying to express a particular program in 
 as few characters as possible. Similarly, *regexp golf* is the practice of writing as 
 tiny a regular expression as possible to match a given pattern and *only* that pattern. 
 
@@ -955,8 +955,48 @@ the pattern. When one's expression works, see if one can make it smaller.
 6. A word longer than 6 letters.
 7. A word without the letter *e* (or *E*)
 
-<!-- HERE -- EX1 -- REGEXP GOLF! -->
+Teach says to refer to the table of regex patterns found in the [summary section](#summary).
 
 ```js
+// Fill in the regular expressions
 
+verify(/.../,
+       ["my car", "bad cats"],
+       ["camper", "high art"]);
+
+verify(/.../,
+       ["pop culture", "mad props"],
+       ["plop", "prrrop"]);
+
+verify(/.../,
+       ["ferret", "ferry", "ferrari"],
+       ["ferrum", "transfer A"]);
+
+verify(/.../,
+       ["how delicious", "spacious room"],
+       ["ruinous", "consciousness"]);
+
+verify(/.../,
+       ["bad punctuation ."],
+       ["escape the period"]);
+
+verify(/.../,
+       ["Siebentausenddreihundertzweiundzwanzig"],
+       ["no", "three small words"]);
+
+verify(/.../,
+       ["red platypus", "wobbling nest"],
+       ["earth bed", "bedrøvet abe", "BEET"]);
+
+
+function verify(regexp, yes, no) {
+  // Ignore unfinished exercises
+  if (regexp.source == "...") return;
+  for (let str of yes) if (!regexp.test(str)) {
+    console.log(`Failure to match '${str}'`);
+  }
+  for (let str of no) if (regexp.test(str)) {
+    console.log(`Unexpected match for '${str}'`);
+  }
+}
 ```
