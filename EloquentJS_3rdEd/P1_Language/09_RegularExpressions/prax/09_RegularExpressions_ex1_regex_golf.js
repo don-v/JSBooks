@@ -4,7 +4,7 @@ as few characters as possible. Similarly, *regexp golf* is the practice of writi
 tiny a regular expression as possible to match a given pattern and *only* that pattern. 
 
 For each of the following items, write a regular expression to test whether the given 
-pattern occurs in a string. The regular expression should atch only strings containing 
+pattern occurs in a string. The regular expression should match only strings containing 
 the pattern. When one's expression works, see if one can make it smaller.
 
 1. *car* and *cat*
@@ -21,7 +21,7 @@ the pattern. When one's expression works, see if one can make it smaller.
 
 let re1 = /abc/;   // example template...
 
-verify(/.../,
+verify(/ca[r|t]/,
     ["my car", "bad cats"],
     ["camper", "high art"]);
 
