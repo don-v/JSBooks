@@ -25,15 +25,15 @@ verify(/ca[r|t]/,
     ["my car", "bad cats"],
     ["camper", "high art"]);
 
-verify(/.../,
+verify(/pr?op/,
     ["pop culture", "mad props"],
     ["plop", "prrrop"]);
 
-verify(/.../,
+verify(/ferr[eya]/,
     ["ferret", "ferry", "ferrari"],
     ["ferrum", "transfer A"]);
 
-verify(/.../,
+verify(/ious$/,
     ["how delicious", "spacious room"],
     ["ruinous", "consciousness"]);
 
