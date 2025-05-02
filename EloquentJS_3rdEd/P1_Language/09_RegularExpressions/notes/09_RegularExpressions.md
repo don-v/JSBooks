@@ -1000,3 +1000,5 @@ function verify(regexp, yes, no) {
   }
 }
 ```
+
+<!-- HERE -- ex1 re golf + -->
