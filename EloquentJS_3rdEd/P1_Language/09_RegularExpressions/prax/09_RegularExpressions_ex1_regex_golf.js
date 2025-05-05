@@ -45,7 +45,7 @@ verify(/\w{6,}/,
     ["Siebentausenddreihundertzweiundzwanzig"],
     ["no", "three small words"]);
 
-verify(/[^eE]/,
+verify(/[^eE]*/,
     ["red platypus", "wobbling nest"],
     ["earth bed", "bedrøvet abe", "BEET"]);
 
