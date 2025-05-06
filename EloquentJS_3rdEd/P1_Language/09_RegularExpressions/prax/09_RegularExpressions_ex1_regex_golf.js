@@ -45,7 +45,14 @@ verify(/\w{6,}/,
     ["Siebentausenddreihundertzweiundzwanzig"],
     ["no", "three small words"]);
 
-verify(/[^eE]*/,
+
+/* 
+/\b\w*[^eE]\w*\b/
+/\b\w*[^\WeE]\w*\b/
+/\b\w*[^\seE]\w*\s+\w*[^\seE]\w*\b/
+*/
+
+verify(/\b\w*[^\seE]\w*\s+\w*[^\seE]\w*/,
     ["red platypus", "wobbling nest"],
     ["earth bed", "bedrøvet abe", "BEET"]);
 
