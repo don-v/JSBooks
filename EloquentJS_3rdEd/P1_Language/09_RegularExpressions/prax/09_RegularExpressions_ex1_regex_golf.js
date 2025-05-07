@@ -50,9 +50,14 @@ verify(/\w{6,}/,
 /\b\w*[^eE]\w*\b/
 /\b\w*[^\WeE]\w*\b/
 /\b\w*[^\seE]\w*\s+\w*[^\seE]\w*\b/
+
+\b[^eE\s]+\b
+\b[^\WeE]+\b
+\b(?:(?!\w*[eE])\w)+\b
+
 */
 
-verify(/\b\w*[^\seE]\w*\s+\w*[^\seE]\w*/,
+verify(/\b[^eE\s]+\b/,
     ["red platypus", "wobbling nest"],
     ["earth bed", "bedrøvet abe", "BEET"]);
 
