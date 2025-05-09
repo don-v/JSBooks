@@ -1001,4 +1001,123 @@ function verify(regexp, yes, no) {
 }
 ```
 
-<!-- HERE -- ex1 re golf +++++++ -->
+#### TEACH KA HINTS:
+
+No hints for this exercise.
+
+#### MY SOLUTION:
+
+```js
+verify(/ca[r|t]/,
+    ["my car", "bad cats"],
+    ["camper", "high art"]);
+
+verify(/pr?op/,
+    ["pop culture", "mad props"],
+    ["plop", "prrrop"]);
+
+verify(/ferr[eya]/,
+    ["ferret", "ferry", "ferrari"],
+    ["ferrum", "transfer A"]);
+
+verify(/ious$|ious\s+/,
+    ["how delicious", "spacious room"],
+    ["ruinous", "consciousness"]);
+
+verify(/\s[\.,:;]/,
+    ["bad punctuation ."],
+    ["escape the period"]);
+
+verify(/\w{6,}/,
+    ["Siebentausenddreihundertzweiundzwanzig"],
+    ["no", "three small words"]);
+
+
+/* 
+/\b\w*[^eE]\w*\b/
+/\b\w*[^\WeE]\w*\b/
+/\b\w*[^\seE]\w*\s+\w*[^\seE]\w*\b/
+
+\b[^eE\s]+\b
+\b[^\WeE]+\b
+\b(?:(?!\w*[eE])\w)+\b
+
+*/
+
+verify(/\b[^\WeE]+\b/,
+    ["red platypus", "wobbling nest"],
+    ["earth bed", "bedrøvet abe", "BEET"]);
+
+
+function verify(regexp, yes, no) {
+// Ignore unfinished exercises
+if (regexp.source == "...") return;
+for (let str of yes) if (!regexp.test(str)) {
+ console.log(`Failure to match '${str}'`);
+}
+for (let str of no) if (regexp.test(str)) {
+ console.log(`Unexpected match for '${str}'`);
+}
+}
+```
+
+#### TEACH KA SOLUTION
+
+```js
+// Fill in the regular expressions
+
+verify(/ca[rt]/,
+       ["my car", "bad cats"],
+       ["camper", "high art"]);
+
+verify(/pr?op/,
+       ["pop culture", "mad props"],
+       ["plop", "prrrop"]);
+
+verify(/ferr(et|y|ari)/,
+       ["ferret", "ferry", "ferrari"],
+       ["ferrum", "transfer A"]);
+
+verify(/ious($|\P{L})/u,
+       ["how delicious", "spacious room"],
+       ["ruinous", "consciousness"]);
+
+verify(/\s[.,:;]/,
+       ["bad punctuation ."],
+       ["escape the dot"]);
+
+verify(/\p{L}{7}/u,
+       ["Siebentausenddreihundertzweiundzwanzig"],
+       ["no", "three small words"]);
+
+verify(/(^|\P{L})[^\P{L}e]+($|\P{L})/ui,
+       ["red platypus", "wobbling nest"],
+       ["earth bed", "bedrøvet abe", "BEET"]);
+
+
+function verify(regexp, yes, no) {
+  // Ignore unfinished exercises
+  if (regexp.source == "...") return;
+  for (let str of yes) if (!regexp.test(str)) {
+    console.log(`Failure to match '${str}'`);
+  }
+  for (let str of no) if (regexp.test(str)) {
+    console.log(`Unexpected match for '${str}'`);
+  }
+}
+```
+
+### EX2: QUOTING STYLE
+
+Imagine one has written a storey and used single quotation marks throughout to mark pieces of diaglogue. Now one wants to replace all the dialogue with double quotes, while keeping the single quotes used in contractions like *aren't*.
+
+Think of a pattern that distinguishes these two kinds of quite usages and crat a call to the replace method that does the proper replacement.
+
+```js
+let text = "'I'm the cook,' he said, 'it's my job.'";
+// Change this call.
+console.log(text.replace(/A/g, "B"));
+// → "I'm the cook," he said, "it's my job."
+```
+
+<!-- HERE -- ex2: quoting style --start check ex file js tomorrow! -->
