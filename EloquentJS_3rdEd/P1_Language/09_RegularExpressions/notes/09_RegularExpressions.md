@@ -1109,9 +1109,13 @@ function verify(regexp, yes, no) {
 
 ### EX2: QUOTING STYLE
 
-Imagine one has written a storey and used single quotation marks throughout to mark pieces of diaglogue. Now one wants to replace all the dialogue with double quotes, while keeping the single quotes used in contractions like *aren't*.
+Imagine one has written a story and used single quotation marks throughout to 
+mark pieces of diaglogue. Now one wants to replace all the dialogue with 
+double quotes, while keeping the single quotes used in contractions like 
+*aren't*.
 
-Think of a pattern that distinguishes these two kinds of quite usages and crat a call to the replace method that does the proper replacement.
+Think of a pattern that distinguishes these two kinds of quite usages and create a 
+call to the replace method that does the proper replacement.
 
 ```js
 let text = "'I'm the cook,' he said, 'it's my job.'";
@@ -1120,4 +1124,4 @@ console.log(text.replace(/A/g, "B"));
 // → "I'm the cook," he said, "it's my job."
 ```
 
-<!-- HERE -- ex2: quoting style --start check ex file js tomorrow! -->
+<!-- HERE -- ex2: quoting style +! -->
