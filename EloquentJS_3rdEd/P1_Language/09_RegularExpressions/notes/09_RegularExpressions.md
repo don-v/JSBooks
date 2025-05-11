@@ -393,7 +393,7 @@ starts with an exlamation mark, and `/x^/` does not match any string (there cann
 start of the string).
 
 There is also a `\b` marker that maches *word boundaries*, positions that have a word characer on 
-one side, an da nonword character on the other. Unfortunately, these use the same simplistic concept of
+one side, and a nonword character on the other. Unfortunately, these use the same simplistic concept of
 word characters as `\w` and are therefore not very reliable. 
 
 Note that these boundary markers don't match any actual chracters. They just enforce that a given condition 
@@ -659,8 +659,8 @@ console.log(regexp.test(text));
 
 ## THE SEARCH METHOD
 
-While the `indefOf` method on strings cannot be called with a regular expression, there is another method,
-`search`, that does expect a regular expression. Like `indefOf`, it returns the first index on which 
+While the `indexOf` method on strings cannot be called with a regular expression, there is another method,
+`search`, that does expect a regular expression. Like `indexOf`, it returns the first index on which 
 the expression was found, or `-1`, when it wasn't found:
 
 ```js
@@ -1124,4 +1124,4 @@ console.log(text.replace(/A/g, "B"));
 // → "I'm the cook," he said, "it's my job."
 ```
 
-<!-- HERE -- ex2: quoting style +! -->
+<!-- HERE -- ex2: quoting style +++(line 410) -->
