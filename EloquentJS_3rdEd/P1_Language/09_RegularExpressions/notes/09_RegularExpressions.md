@@ -410,6 +410,9 @@ console.log(/a(?! )/.exec("a b"));
 // → null
 ```
 
+[MDN look-ahead docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Regular_expressions/Lookahead_assertion)
+[MDN look-behind docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Regular_expressions/Lookbehind_assertion)
+
 The `e` in the first example is necessary to match, but is not part of the matched string. The `(?! )` notation 
 expresses a *negative* look-ahead. This matches only if the pattern in the parentheses *doesn't* match, causing 
 the second example to match only `a` characters that dont' have a space after them. 
@@ -1124,4 +1127,4 @@ console.log(text.replace(/A/g, "B"));
 // → "I'm the cook," he said, "it's my job."
 ```
 
-<!-- HERE -- ex2: quoting style ++++(line 410) -->
+<!-- HERE -- ex2: quoting style +++++(line 410) -->
