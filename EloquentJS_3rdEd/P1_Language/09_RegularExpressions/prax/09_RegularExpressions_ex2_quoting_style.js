@@ -4,11 +4,23 @@ mark pieces of diaglogue. Now one wants to replace all the dialogue with
 double quotes, while keeping the single quotes used in contractions like 
 *aren't*.
 
-Think of a pattern that distinguishes these two kinds of quite usages and create a 
+Think of a pattern that distinguishes these two kinds of quote usages and create a 
 call to the replace method that does the proper replacement.
 */
 
 let text = "'I'm the cook,' he said, 'it's my job.'";
 // Change this call.
+
+/* 
+single quotes 
+open: followed by (close+space, or close plus end)
+close: followed by space or end an preceded by open that is preceded by beginning or space
+
+apostrophe:
+followed by a letter, never a space
+*/
+
+
+
 console.log(text.replace(/'/g, '"'));
 // → "I'm the cook," he said, "it's my job."
