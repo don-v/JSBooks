@@ -1127,4 +1127,4 @@ console.log(text.replace(/A/g, "B"));
 // → "I'm the cook," he said, "it's my job."
 ```
 
-<!-- HERE -- ex2: quoting style +++++++++(line 410)+ -->
+<!-- HERE -- ex2: quoting style +++++++++(line 410)++ -->

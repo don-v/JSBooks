@@ -18,9 +18,20 @@ close: followed by space or end an preceded by open that is preceded by beginnin
 
 apostrophe:
 followed by a letter, never a space
+and preceded by an single-quote that is the beginning of a phrase
+
+lookahead:
+(?=pattern)
+(?!pattern)
+
+lookbefore:
+(?<=pattern)
+(?<!pattern)
+
+
 */
 
+console.log(/'\w(?<=$')/g.test(text));
 
-
-console.log(text.replace(/'/g, '"'));
+// console.log(text.replace(/'/g, '"'));
 // → "I'm the cook," he said, "it's my job."
