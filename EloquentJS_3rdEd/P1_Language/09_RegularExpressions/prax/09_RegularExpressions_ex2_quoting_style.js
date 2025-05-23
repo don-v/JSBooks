@@ -31,7 +31,7 @@ lookbefore:
 
 */
 
-console.log(/(?<=')'\w/g.test(text));
+console.log(/'\s?$/g.test(text));
 
 // console.log(text.replace(/'/g, '"'));
 // → "I'm the cook," he said, "it's my job."
