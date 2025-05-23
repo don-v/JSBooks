@@ -30,8 +30,9 @@ lookbefore:
 
 
 */
-
-console.log(/'\s?$/g.test(text));
+let z=" 'it's'";
+// console.log(/'\s?$/g.test("'"));
+console.log(/^\s?'/g.test(z));
 
 // console.log(text.replace(/'/g, '"'));
 // → "I'm the cook," he said, "it's my job."
