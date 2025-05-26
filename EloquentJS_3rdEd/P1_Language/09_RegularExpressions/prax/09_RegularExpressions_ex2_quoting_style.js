@@ -35,7 +35,10 @@ let z=" 'it's'";
 // console.log(/^\s?'/g.test(z));
 // console.log(/^\s?'\w+/g.test(z));
 // console.log(/(?<=^\s?'\w+)'/g.test(z)); // finds apostrophe following opening single quote
-console.log(/(?<=^\s?'\w+)'\w+/g.test(z));
+// console.log(/(?<=^\s?'\w+)'\w+/g.test(z)); // looks before apostrophe and finds an opening single quote
+// console.log(/'\w+(?='\s?$)/g.test(z)); // finds apostophe with a look head to closing single quote
+console.log(/'\w+(?='\s?$)/g.test(text));
+
 
 // console.log(text.replace(/'/g, '"'));
 // → "I'm the cook," he said, "it's my job."
