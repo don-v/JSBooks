@@ -8,7 +8,7 @@ Think of a pattern that distinguishes these two kinds of quote usages and create
 call to the replace method that does the proper replacement.
 */
 
-let text = "'I'm the cook,' he said, 'it's my job.'";
+
 // Change this call.
 
 /* 
@@ -37,6 +37,9 @@ let z=" 'it's'";
 // console.log(/(?<=^\s?'\w+)'/g.test(z)); // finds apostrophe following opening single quote
 // console.log(/(?<=^\s?'\w+)'\w+/g.test(z)); // looks before apostrophe and finds an opening single quote
 // console.log(/'\w+(?='\s?$)/g.test(z)); // finds apostophe with a look head to closing single quote
+
+let text = "'I'm the cook,' he said, 'it's my job.'";
+
 console.log(/'\w+(?='\s?$)/g.test(text));
 
 
