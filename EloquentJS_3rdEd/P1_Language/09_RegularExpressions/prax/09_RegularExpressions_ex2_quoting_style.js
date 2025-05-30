@@ -40,7 +40,10 @@ let z=" 'it's'";
 
 let text = "'I'm the cook,' he said, 'it's my job.'";
 
-console.log(/^\s?'\w+'\w\s\w+'\s?$/g.test(text));
+// console.log(/(^\s?'\w+'\w\s\w+'\s?$)+/g.test(text)); failed
+console.log(/(')\w+(?='\w+)/g.test(text));
+console.log(text);
+console.log(text.replace(/'\w+(?='\w+)/g, '"'));
 
 // console.log(/'\w+(?='\s?$)/g.test(text)); // not correct, yet.
 // console.log(/'\w+(?='\w+)/g.test(text)); // registered as true -- i think this isolates first opening single quote
