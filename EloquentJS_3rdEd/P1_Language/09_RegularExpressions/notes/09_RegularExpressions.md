@@ -203,12 +203,12 @@ console.log(/'\d*'/.test("''"));
 ```
 
 The start (`*`) has a similar meaning but also allows the pattern to match zero times. 
-Something with a start after itnever prevents a pattern form matching -- it'll just match 
-zero instances if it can't find any suitable texxt to match. 
+Something with a star after it never prevents a pattern from matching -- it'll just match 
+zero instances if it can't find any suitable text to match. 
 
 A question mark (`?`) makes a part of a pattern *optional*, meaning it may occur zero 
 times or one time. In the following example, the *u* character is allowed to occur, but 
-the pattenr also matches when it is missing:
+the pattern also matches when it is missing:
 
 ```js
 let neighbor = /neighbou?r/;
@@ -1132,5 +1132,6 @@ console.log(text.replace(/A/g, "B"));
 ++++(line 410)+
 +++++
 +++++
-++++
++++++
+(line 268)
  -->

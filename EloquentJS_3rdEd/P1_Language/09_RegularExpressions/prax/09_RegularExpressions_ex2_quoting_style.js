@@ -40,7 +40,7 @@ let z=" 'it's'";
 
 let text = "'I'm the cook,' he said, 'it's my job.'";
 
-console.log(/(?<='\w+\s*'\w+)'\s?$/g.test(text));
+console.log(/(?<='.+'\w\s)'\s?$/g.test(text));
 console.log(text);
 console.log(text.replace(/(?<='\w+'\w+)'\s?$/g, '"')); // this successfully replaced opening single quote with double!
 
