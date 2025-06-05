@@ -295,7 +295,7 @@ console.log(quotedText.exec("she said 'hello'"));
 
 When a group does not end up being matched at all (for example, when followed by a question mark),
 its position in the output array will hold `undefined`. When a group is matched multiple times
-(for example, when followed by a `+`), only the lats match ends up in the array.
+(for example, when followed by a `+`), only the last match ends up in the array.
 
 ```js
 console.log(/bad(ly)?/.exec("bad"));
@@ -1133,5 +1133,6 @@ console.log(text.replace(/A/g, "B"));
 +++++
 +++++
 +++++
-(line 268)
+(line 268)++
+
  -->
