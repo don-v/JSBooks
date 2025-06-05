@@ -51,6 +51,10 @@ console.log(text.replace(/(?<='\w+'\w+)'\s?$/g, '"')); // this successfully repl
 // console.log(text);
 //***********************// console.log(text.replace(/'(?=\w+'\w+)/g, '"')); // this successfully replaced opening single quote with double!
 
+console.log(/'(?=\w+'\w+)/g.test(text));
+console.log(/'(?=\w+'\w+)/g.exec(text));
+
+
 // console.log(/'\w+(?='\s?$)/g.test(text)); // not correct, yet.
 // console.log(/'\w+(?='\w+)/g.test(text)); // registered as true -- i think this isolates first opening single quote
 
