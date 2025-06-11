@@ -47,7 +47,7 @@ let text = "'I'm the cook,' he said, 'it's my job.'";
 
 console.log(/(?<=^\s?'\w+'.+)'+/g.exec(text)); 
 
-
+// https://stackoverflow.com/questions/70391646/how-to-reset-entire-match-at-the-end-of-a-capturing-group
 
 
 // console.log(/(^\s?'\w+'\w\s\w+'\s?$)+/g.test(text)); failed
