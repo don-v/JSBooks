@@ -45,7 +45,7 @@ let text = "'I'm the cook,' he said, 'it's my job.'";
 // console.log(text);
 // console.log(text.replace(/(?<='\w+'\w+)'\s?$/g, '"')); // this successfully replaced opening single quote with double!
 
-console.log(/(?<=^\s?'\w+'.+)'+/g.exec(text)); 
+console.log(/(?:(?<=^\s?'\w+'.+)')+/g.exec(text)); 
 
 // https://stackoverflow.com/questions/70391646/how-to-reset-entire-match-at-the-end-of-a-capturing-group
 
