@@ -45,7 +45,7 @@ let text = "'I'm the cook,' he said, 'it's my job.'";
 // console.log(text);
 // console.log(text.replace(/(?<='\w+'\w+)'\s?$/g, '"')); // this successfully replaced opening single quote with double!
 
-console.log(/(?:(?<=^\s?'\w+'.+)')+/g.exec(text)); 
+// console.log(/(?:(?<=^\s?'\w+'.+)')+/g.exec(text)); 
 
 // https://stackoverflow.com/questions/70391646/how-to-reset-entire-match-at-the-end-of-a-capturing-group
 
@@ -66,3 +66,26 @@ console.log(/(?:(?<=^\s?'\w+'.+)')+/g.exec(text));
 
 // console.log(text.replace(/'/g, '"'));
 // → "I'm the cook," he said, "it's my job."
+
+let result = text.replace(/(^|\W)'|'(\W|$)/g, '$1"$2');
+console.log(result);
+
+/* 
+
+Explanation:
+
+    (^|\W)': Matches a single quote ' that is either:
+
+        At the start of the string ^
+
+        Or preceded by a non-word character \W (like space or punctuation)
+
+    '(\W|$): Matches a single quote ' that is either:
+
+        Followed by a non-word character \W (like a comma or space)
+
+        Or at the end of the string $
+
+    $1"$2: Replaces the matched single quote with a double quote, preserving surrounding characters
+
+*/
