@@ -88,4 +88,83 @@ Explanation:
 
     $1"$2: Replaces the matched single quote with a double quote, preserving surrounding characters
 
+Absolutely! Let's walk through the regular expression and the replacement part "$1"$2 in detail.
+🔍 The Regex
+
+/(^|\W)'|'(\W|$)/g
+
+This pattern is designed to find only the single quotes that are acting as quotation marks, not apostrophes in words like “I’m” or “it’s”.
+
+We break it into two parts (separated by the |, which means "or"):
+
+    (^|\W)'
+
+        This matches a single quote ' that comes at the beginning of a quote.
+
+        (^|\W) means:
+
+            ^: Start of the string, or
+
+            \W: A non-word character (i.e., anything that’s not a letter, digit, or underscore)
+
+        Example match: in the start of 'I'm or he said, '.
+
+    '(\W|$)
+
+        This matches a single quote ' that comes at the end of a quote.
+
+        (\W|$) means:
+
+            \W: A non-word character (like a comma or space), or
+
+            $: End of the string
+
+        Example match: in cook,' or job.'
+
+So altogether, the regex matches only opening and closing single quotation marks — not apostrophes inside words.
+🛠 The Replacement
+
+'$1"$2'
+
+This is the replacement string. Let's break it down:
+
+    $1: This refers to the first captured group — (^|\W) from the first part of the regex.
+
+    ": We insert a double quote in place of the single quote.
+
+    $2: This refers to the second captured group — (\W|$) from the second part of the regex.
+
+⚠️ Importantly, only one of the two parts will match at any time, so only one of $1 or $2 will actually contain something.
+Examples:
+Match 1 (opening quote)
+
+Text: 'I'm
+Regex match: (^|\W)' → captures ^ (start of string) and '
+Replacement: $1" → becomes "
+Result: "I'm
+Match 2 (closing quote)
+
+Text: cook,'
+Regex match: '\W → captures ' and ,
+Replacement: "$2 → becomes ",
+Result: cook,"
+✅ Final Example
+
+let text = "'I'm the cook,' he said, 'it's my job.'";
+let result = text.replace(/(^|\W)'|'(\W|$)/g, '$1"$2');
+
+console.log(result);
+// Output: "\"I'm the cook,\" he said, \"it's my job.\""
+
+Key Points:
+
+    Contractions like I'm and it's stay unchanged.
+
+    Quotation marks get replaced by double quotes.
+
+    The surrounding characters (space, punctuation) are preserved correctly using $1 and $2.
+
+Let me know if you want to see a version that also handles nested quotes or more advanced punctuation.
+
+
 */
