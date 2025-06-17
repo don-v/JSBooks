@@ -38,8 +38,6 @@ let z=" 'it's'";
 // console.log(/(?<=^\s?'\w+)'\w+/g.test(z)); // looks before apostrophe and finds an opening single quote
 // console.log(/'\w+(?='\s?$)/g.test(z)); // finds apostophe with a look head to closing single quote
 
-let text = "'I'm the cook,' he said, 'it's my job.'";
-
 // console.log(/(?<='.+'\w\s)'\s?$/g.test(text));
 // console.log(/(?<=^\s?'\w+)'+/g.exec(text));  // catches the apostrophe at index=2 **********************
 // console.log(text);
@@ -67,6 +65,8 @@ let text = "'I'm the cook,' he said, 'it's my job.'";
 // console.log(text.replace(/'/g, '"'));
 // → "I'm the cook," he said, "it's my job."
 
+
+let text = "'I'm the cook,' he said, 'it's my job.'";
 let result = text.replace(/(^|\W)'|'(\W|$)/g, '$1"$2');
 console.log(result);
 

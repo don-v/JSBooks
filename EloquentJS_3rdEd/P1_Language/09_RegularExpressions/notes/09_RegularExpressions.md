@@ -1127,13 +1127,32 @@ console.log(text.replace(/A/g, "B"));
 // → "I'm the cook," he said, "it's my job."
 ```
 
-<!-- HERE -- ex2: quoting style 
-+++++
-++++(line 410)+
-+++++
-+++++
-+++++
-(line 268)+++++
-+++++
-+++++
+#### MY SOLUTION (WITH HELP):
+
+```js
+let text = "'I'm the cook,' he said, 'it's my job.'";
+let result = text.replace(/(^|\W)'|'(\W|$)/g, '$1"$2');
+console.log(result);
+```
+
+#### TEACH KA HINT:
+
+The most obvious solution is to replace only quotes with a nonletter character on at least one side—something like `/\P{L}'|'\P{L}/u`. But you also have to take the start and end of the line into account.
+
+In addition, you must ensure that the replacement also includes the characters that were matched by the \P{L} pattern so that those are not dropped. This can be done by wrapping them in parentheses and including their groups in the replacement string ($1, $2). Groups that are not matched will be replaced by nothing.
+
+#### TEACH KA SOLUTION:
+
+```js
+let text = "'I'm the cook,' he said, 'it's my job.'";
+
+console.log(text.replace(/(^|\P{L})'|'(\P{L}|$)/gu, '$1"$2'));
+// → "I'm the cook," he said, "it's my job."
+```
+
+### EX3: NUMBERS AGAIN
+
+Write an expression that matches only JS-style numbers. It must supoprt an optional minus *or* plus sign in front of the number, the decimal dot, and exponent notation -- `5e-3` or `1E10`-- again with an optional sign in front of the exponent. Also note that it is not necessary ...
+
+<!-- HERE -- ex3: number again!
  -->
