@@ -9,7 +9,7 @@ but the number cannot be a dot alone. That is, .5 and 5. are valid JS numbers, b
 // let number = /^...$/;
 
 
-let number = /\+?|-?\d*\.?e?\+|-?\d*/gi;
+let number = /^\+?|^-?\d*\.?e?\+|-?\d*(?:\.\d)?/gi;
 
 // Tests:
 for (let str of ["1", "-1", "+15", "1.55", ".5", "5.",
