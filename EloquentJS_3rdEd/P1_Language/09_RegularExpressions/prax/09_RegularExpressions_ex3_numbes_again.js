@@ -10,7 +10,8 @@ but the number cannot be a dot alone. That is, .5 and 5. are valid JS numbers, b
 
 
 // let number = /^\+?|^-?\d*\.?e?\+|-?\d*(?:\.\d)?/gi;
-let number = /\+?|-?\d*?\.?\d*?e?\+?|-?\d+?/gi;
+let number=/\+?|-?\d*?\.?\d*?e?\+?|-?\d+?/gi;
+let number2=/[+-]?\d*?\.?\d*?e?[+-]?\d+?/gi;
 
 
 // Tests:
@@ -33,7 +34,7 @@ for (let str of [
   ,
   "1e+12"
 ]) {
-  if (!number.test(str)) {
+  if (!number2.test(str)) {
     console.log(`Failed to match '${str}'`);
   }
 }
@@ -54,8 +55,8 @@ for (let str of [
   // ,
   // "."
 ]) {
-  if (number.test(str)) {
+  if (number2.test(str)) {
     console.log(`Incorrectly accepted '${str}'`);
-    console.log(number.exec(str))
+    console.log(number2.exec(str))
   }
 }
