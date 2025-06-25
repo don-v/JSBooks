@@ -12,7 +12,7 @@ but the number cannot be a dot alone. That is, .5 and 5. are valid JS numbers, b
 // let number = /^\+?|^-?\d*\.?e?\+|-?\d*(?:\.\d)?/gi;
 let number=/\+?|-?\d*?\.?\d*?e?\+?|-?\d+?/gi;
 let number2=/[+-]?\d*?\.?\d*?e?[+-]?\d+?/gi;
-
+let gemini=/^[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?$/
 
 // Tests:
 for (let str of [
@@ -34,7 +34,7 @@ for (let str of [
   ,
   "1e+12"
 ]) {
-  if (!number2.test(str)) {
+  if (!gemini.test(str)) {
     console.log(`Failed to match '${str}'`);
   }
 }
@@ -55,8 +55,33 @@ for (let str of [
   // ,
   // "."
 ]) {
-  if (number2.test(str)) {
+  if (gemini.test(str)) {
     console.log(`Incorrectly accepted '${str}'`);
-    console.log(number2.exec(str))
+    console.log(gemini.exec(str))
   }
 }
+
+/* 
+A regular expression for matching positive or negative numbers, including those in scientific notation, is ^[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?$. This regex handles integers, decimals, and numbers with exponents (scientific notation), allowing for optional positive or negative signs. 
+Here's a breakdown of the regex: 
+
+    ^: Matches the beginning of the string.
+    [+-]?: Matches an optional plus or minus sign.
+    (\d+(\.\d*)?|\.\d+): Matches the numerical part.
+        \d+: Matches one or more digits (integer part).
+        \.: Matches a decimal point.
+        \d*: Matches zero or more digits after the decimal point.
+        |: Separates the two alternatives.
+        \.\d+: Matches a decimal point followed by one or more digits (fractional part). 
+    ([eE][+-]?\d+)?: Matches an optional exponent part.
+        [eE]: Matches "e" or "E".
+        [+-]?: Matches an optional plus or minus sign for the exponent.
+        \d+: Matches one or more digits for the exponent value. 
+    $: Matches the end of the string. 
+
+This regex effectively captures various number formats, including: 
+
+    Integers: 123, -123, +123
+    Decimals: 123.45, -123.45, +123.45, .45, 123., -123., +.123
+    Scientific Notation: 123e4, 123.45e-6, .123e+7, 123E4, 123.45E-6, .123E+7, -123e4, -123.45e-6, -.123e+7
+*/
