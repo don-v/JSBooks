@@ -10,9 +10,10 @@ but the number cannot be a dot alone. That is, .5 and 5. are valid JS numbers, b
 
 
 // let number = /^\+?|^-?\d*\.?e?\+|-?\d*(?:\.\d)?/gi;
-let number=/\+?|-?\d*?\.?\d*?e?\+?|-?\d+?/gi;
-let number2=/[+-]?\d*?\.?\d*?e?[+-]?\d+?/gi;
-let gemini=/^[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?$/
+// let number=/\+?|-?\d*?\.?\d*?e?\+?|-?\d+?/gi;
+// let number2=/[+-]?\d*?\.?\d*?e?[+-]?\d+?/gi;
+let number=/^[+-]?(\d+(\.\d*)?|\.\d+)([eE][+-]?\d+)?$/;
+// let gemini2=/^[+-]?(\d+(\.\d*)?|\.\d+)(e[+-]?\d+)?$/gi;
 
 // Tests:
 for (let str of [
@@ -34,30 +35,30 @@ for (let str of [
   ,
   "1e+12"
 ]) {
-  if (!gemini.test(str)) {
+  if (!number.test(str)) {
     console.log(`Failed to match '${str}'`);
   }
 }
 for (let str of [
   "1a"
-  // ,
-  // "+-1"
-  // ,
-  // "1.2.3"
-  // ,
-  // "1+1"
-  // ,
-  // "1e4.5"
-  // ,
-  // ".5."
-  // ,
-  // "1f5"
-  // ,
-  // "."
+  ,
+  "+-1"
+  ,
+  "1.2.3"
+  ,
+  "1+1"
+  ,
+  "1e4.5"
+  ,
+  ".5."
+  ,
+  "1f5"
+  ,
+  "."
 ]) {
-  if (gemini.test(str)) {
+  if (number.test(str)) {
     console.log(`Incorrectly accepted '${str}'`);
-    console.log(gemini.exec(str))
+    console.log(number.exec(str))
   }
 }
 
