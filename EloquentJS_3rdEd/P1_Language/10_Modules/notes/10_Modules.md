@@ -14,6 +14,18 @@ The phrase "big ball of mud" is often used for such large, structureless program
 
 *Modules* are an attempt to avoid these problems. A module is a piece of program that specifies which other pieces it relies on and which functionality it provides for other modules to use (its *interface*).
 
-Module interfaces ...
+Module interfaces have a lot in common with object interfaces, as we saw in *C6*. They make part of the module available to the outside world and keep the rest private. 
 
-<!-- HERE -- p. modular programs! -->
+But the interface that a module provides for others to use is only half the story. A good module system also requries modules to specify which code *they* use from other modules. These relations are called *dependencies*. If module A uses functionality from module B, it is said to *depend* on that module. When these are clearly specified in the module itself, they can be used to fitur eout which other modules needs to be present to be able to use a given module and to automatically load dependencies. 
+
+When the ways in which modules interact with each other are explicit, a system becomes more like the 'LEGO', where pieces intereact through well-defined connectors, and less like mud, where everything mixes with everything elese.
+
+## ES MODULES
+
+The original JS language did not have any concept of a module. All scripts ran in the same scope, and accessing a function defined in another script was done by referencing the global bindings created by that script. This actively encouraged accidental, hard-to-see entanglement of code and invited problems like unrelated scripts trying to use the same binding name. 
+
+Since ECMAScript 2015, JS spports two different types of programs. *Scripts* behave in the old way: their bindings are defined in the global scope, and they have no way to directly reference other scripts. *Modules* get their won separate scope and support the `import* and `export* keywords, which aren't available in scripts, to declare their dependencies and interface. This module system is usually called *ES modules* (where *ES* stands for ECMAScript).
+
+A modular program is composed of a number of such modules, wired together via their imports and exports. 
+
+<!-- HERE -- p. ES modules! -->
