@@ -28,4 +28,33 @@ Since ECMAScript 2015, JS spports two different types of programs. *Scripts* beh
 
 A modular program is composed of a number of such modules, wired together via their imports and exports. 
 
+The following example module converts between day names and numbers (as returned by `Date`'s `getDay` method). It defines a constant that is not part of its interface, and two functions that are. It has no dependencies:
+
+```js
+const names = ["Sunday", "Monday", "Tuesday", "Wednesday",
+               "Thursday", "Friday", "Saturday"];
+
+export function dayName(number) {
+  return names[number];
+}
+export function dayNumber(name) {
+  return names.indexOf(name);
+}
+```
+
+The `export` keyword can be put in front of a function, class, or binding definition to indicate that that binding is part of the module's interface. This makes it possible for other modules to use that binding by importing it:
+
+```js
+import {dayName} from "./dayname.js";
+let now = new Date();
+console.log(`Today is ${dayName(now.getDay())}`);
+// → Today is Monday
+```
+
+The `import` keyword, followed by a list of binding names in braces, makes bindings from another modujle available in the current module. Modules are identified by quoted strings.
+
+How such a module name is resolved to an actual program differes by platform. The browser treats them as web addresses, whereas 'Node.js' resolves them to files. When one runs a module, all the other modules it depends on -- and the modules *those* depend on -- are loaded, and the exported binidngs are made available to the modules that import them. 
+
+Import and export declarations cannot appear inside of functions, loops, or other blocks. They are immediately resolved when the module is loaded, regardless of how the code in the module executes. To reflect this, they must appear only in the outer module body. 
+
 <!-- HERE -- p. ES modules! -->
