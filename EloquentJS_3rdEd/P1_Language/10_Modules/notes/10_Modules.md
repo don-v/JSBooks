@@ -57,4 +57,36 @@ How such a module name is resolved to an actual program differes by platform. Th
 
 Import and export declarations cannot appear inside of functions, loops, or other blocks. They are immediately resolved when the module is loaded, regardless of how the code in the module executes. To reflect this, they must appear only in the outer module body. 
 
-<!-- HERE -- p. ES modules! -->
+A module's interface thus consists of a collection of named bindings, which other modules that depend on the module can access. Imported bindings can be renamed to give them a new local name using `as` after their name.
+
+```js
+import {dayName as nomDeJour} from "./dayname.js";
+console.log(nomDeJour(3));
+// → Wednesday
+```
+
+A module may also have a special export named `default`, which is often used for modules tht only export a single binding. To define a default export, one writes `export default` before an expression, a function declaration, or a class declaration:
+
+```js
+export default ["Winter", "Spring", "Summer", "Autumn"];
+```
+
+Such a binding is imported by omitting the braces around the name of the import:
+
+```js
+import seasonNames from "./seasonname.js";
+```
+
+To import all bindings from a module at the same time, one can use `import *`. One provides a name, and that name will be bound to an object holding all the module's exports. This can be useful when one is using a lot of different exports:
+
+```js
+import * as dayName from "./dayname.js";
+console.log(dayName.dayName(3));
+// → Wednesday
+```
+
+## PACKAGES
+
+One of the advantages of building a program out of separate pieces and being able to run some of those pieces on their own is that one might be able to use the same piece in different programs.
+
+<!-- HERE -- p. Packages!! -->
