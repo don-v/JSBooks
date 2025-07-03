@@ -89,4 +89,16 @@ console.log(dayName.dayName(3));
 
 One of the advantages of building a program out of separate pieces and being able to run some of those pieces on their own is that one might be able to use the same piece in different programs.
 
+But how does one set this up? Say teach wants to use the `parseINI` function from *C9* in another program. If it is clear what the function depends on(in this case, nothing), teach can just copy that module into his new project and use it. But then, if teach finds a mistake in the code, teach'll probably fix it in whichever program teach is working with at the time and forget to als ofix it in the other program.
+
+One one starts duplicating code, one'll quickly find oneslef wasting time and energy moving copies around and keeping them up to date. That's where *packages* come in. A package is a chunk of code that can be distributed (copied and installed). It may contain one or more modules and has information about which other packages it depends on . A package also usually comes with documentation explaining what it does so that people who didn't write it ight still be able to use it.
+
+When a problem is found in a package or a new feature is added, the package is updated. Now the programs that depend on it (which may also be packages) can copy the new version to get the improvements that were made to the code.
+
+Working in this way requires infrastructure. We need a place to store and find packges and a convenient way to install and upgrade them. In the JS world, this infrastructure is provided by NPM (`https://npmjs.com`)
+
+NPM is two things: an online service wehre one can download (and upload) packages, and a program (bundled wiht Node.js) that helps one install and manage them.
+
+At the time of writing, there are more than 3 million different packages available on NPM. A large portion of those are rubbish, to be fair. But almost every useful, publicly available JS package can be found on NPM. For example, an 'INI' file parser, similar to the one we built in *C9*, is available under the package name `ini`. 
+
 <!-- HERE -- p. Packages!! -->
