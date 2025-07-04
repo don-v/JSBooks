@@ -101,4 +101,26 @@ NPM is two things: an online service wehre one can download (and upload) package
 
 At the time of writing, there are more than 3 million different packages available on NPM. A large portion of those are rubbish, to be fair. But almost every useful, publicly available JS package can be found on NPM. For example, an 'INI' file parser, similar to the one we built in *C9*, is available under the package name `ini`. 
 
-<!-- HERE -- p. Packages!! -->
+*C20* will show how to install such packages localy using the `npm` command lineprogram.
+
+Having quality packages available for download is extrmely valuable. It means that we can often avoid reinventing a program that 100 people have written before and get a solic, well-tested implementaiton at the press of a few keys.
+
+Software is cheap to copy, so once someone ahs written it, distributing it to other people is an efficient process. Writing it in the first place *is* work, though, and responding to people who have found problems in the code or who want to propose new features is even more work. 
+
+By default, one owns the copyright to the code one writes, and other people may use it only with one's permission. But because some people are just nice and because publishing good software cna help make one a little bit famous among programmers, many packages are published udner a license that explicitly allows other people to use it.
+
+Most code on 'NPM' is licensed this way. Some licenses require ont ot also publish code that one builds on top of the package under the same license. Others are less demaning, requiring only that one keeps the license with the code as one distributes it. The JS community mostly uses the latter type of license. When using other people's packages, one should be aware of their licenses. 
+
+Now, instead of writing one's own INI file parser, one can use NPM:
+
+```js
+import {parse} from "ini";
+
+console.log(parse("x = 10\ny = 20"));
+// → {x: "10", y: "20"}
+```
+
+## COMMONJS MODULES
+
+
+<!-- HERE -- p. COMMONJS MODULES!! -->
