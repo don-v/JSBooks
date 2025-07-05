@@ -122,5 +122,30 @@ console.log(parse("x = 10\ny = 20"));
 
 ## COMMONJS MODULES
 
+Before 2015, when the JS language had no built-in module system, people were already building large systems in JS. To make that workable, they *needed* modules.
+
+The community designed its own improvised module systems on top of the language. These use function to create local scope for the modules and regualr object to represent module interfaces. 
+
+Initially, people just manually wrapped their entire module in an "immediately invoked function expression" to create the module's scope and assigned thier interface to a single global variable:
+
+```js
+const weekDay = function() {
+  const names = ["Sunday", "Monday", "Tuesday", "Wednesday",
+                 "Thursday", "Friday", "Saturday"];
+  return {
+    name(number) { return names[number]; },
+    number(name) { return names.indexOf(name); }
+  };
+}();
+
+console.log(weekDay.name(weekDay.number("Sunday")));
+// → Sunday
+```
+
+This style of modules provides isolation, to a certain degree, but it does nto declare dependencies. Instead, it just puts its interface into the global scpe and expects its dependencies, if any, to do the same. This is not ideal.
+
+If we implement our own module loader, we can do better. The most widly used approach to bolted-on JS modules is called *CommonJS modules*. Node.js used this module system form the start (though it is now alos knows how to load ES modules), and it is the module system used by many packages on NPM.
+
+A 'CommonJS module' looks like a regular script, but it has access to two bindings that it sues to interact with other modules. The first is a function called `require`. when oen calls this with the module name of one's dependency, it makes sure the module is laoded and returns its interface.
 
 <!-- HERE -- p. COMMONJS MODULES!! -->
