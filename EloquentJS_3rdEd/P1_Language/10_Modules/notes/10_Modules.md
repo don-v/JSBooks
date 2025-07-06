@@ -146,6 +146,30 @@ This style of modules provides isolation, to a certain degree, but it does nto d
 
 If we implement our own module loader, we can do better. The most widly used approach to bolted-on JS modules is called *CommonJS modules*. Node.js used this module system form the start (though it is now alos knows how to load ES modules), and it is the module system used by many packages on NPM.
 
-A 'CommonJS module' looks like a regular script, but it has access to two bindings that it sues to interact with other modules. The first is a function called `require`. when oen calls this with the module name of one's dependency, it makes sure the module is laoded and returns its interface.
+A 'CommonJS module' looks like a regular script, but it has access to two bindings that it sues to interact with other modules. The first is a function called `require`. when oen calls this with the module name of one's dependency, it makes sure the module is loaded and returns its interface. The second is an object named `exports`, which is the interface object for the module. It starts out empty and one adds properties ot it to defined exported values.
+
+This 'CommonJS' example module provides a date-formatting function. It uses two packages form NPM: `ordinal` -- to convert numbers to strings like "1st" and "2nd", and `date-names` -- to get the English names for weekdays and months. It exports a single function, `formatDate`, which takes a `Data` object and a template string.
+
+The template string may contain codes that direct the format, such as `YYYY` for the full year and `Do` for the ordinal day of the month. One could give it a string like `"MMMM Do YYYY"` to get output like `November 22nd 2017`:
+
+```js
+const ordinal = require("ordinal");
+const {days, months} = require("date-names");
+
+exports.formatDate = function(date, format) {
+  return format.replace(/YYYY|M(MMM)?|Do?|dddd/g, tag => {
+    if (tag == "YYYY") return date.getFullYear();
+    if (tag == "M") return date.getMonth();
+    if (tag == "MMMM") return months[date.getMonth()];
+    if (tag == "D") return date.getDate();
+    if (tag == "Do") return ordinal(date.getDate());
+    if (tag == "dddd") return days[date.getDay()];
+  });
+};
+```
+
+The interface of `ordinal` is a single function, whereas `date-name` exports an object containing multiple things -- `days`, and `months` are arrays of names. Destructuring is very convenient when creating bindings for imported interfaces.
+
+The module adds its interface function to `exports`...
 
 <!-- HERE -- p. COMMONJS MODULES!! -->
