@@ -170,6 +170,39 @@ exports.formatDate = function(date, format) {
 
 The interface of `ordinal` is a single function, whereas `date-name` exports an object containing multiple things -- `days`, and `months` are arrays of names. Destructuring is very convenient when creating bindings for imported interfaces.
 
-The module adds its interface function to `exports`...
+The module adds its interface function to `exports` so that modules that depnd on it get access to it. We could use the module like this:
+
+```js
+const {formatDate} = require("./format-date.js");
+
+console.log(formatDate(new Date(2017, 9, 13),
+                       "dddd the Do"));
+// → Friday the 13th
+```
+
+CommonJS is implemented with a module loader that, when loading a module, wraps its code in a function (giving it its own local scope) and passes the `require` and `exports` bindings to that function as arguments. 
+
+If we assume we have access to a `readFile` function that reads a file by name and gives us its content, we can define a simplified form of require like this:
+
+```js
+function require(name) {
+  if (!(name in require.cache)) {
+    let code = readFile(name);
+    let exports = require.cache[name] = {};
+    let wrapper = Function("require, exports", code);
+    wrapper(require, exports);
+  }
+  return require.cache[name];
+}
+require.cache = Object.create(null);
+```
+
+`Function` is a built-in JavaScript functon that takes a list of arguments (as a comma-separated string) and a string containing the function body and returns a function value with those arguments and that body. This is an interesting concept -- it allows a program to create new pieces of program from string data -- but also a dangerous one, since if someone can trick one's program into putting a string they provide into `Function`, they can make the program do anything they want. 
+
+Standard JS provides no such function as `readFile`, but different JS environments, such as the browser and Node.js, provide their own ways of accessing files. The example just pretends that `readFile` exists. 
+
+To aovid loading the same module multiple times, `require` keeps a store (cache) of already loaded modules. When called, it first checks whether the requested module has been loaded and, if not, loads it.
+
+
 
 <!-- HERE -- p. COMMONJS MODULES!! -->
