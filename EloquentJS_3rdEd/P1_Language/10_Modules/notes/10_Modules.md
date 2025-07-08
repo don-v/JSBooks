@@ -201,8 +201,16 @@ require.cache = Object.create(null);
 
 Standard JS provides no such function as `readFile`, but different JS environments, such as the browser and Node.js, provide their own ways of accessing files. The example just pretends that `readFile` exists. 
 
-To aovid loading the same module multiple times, `require` keeps a store (cache) of already loaded modules. When called, it first checks whether the requested module has been loaded and, if not, loads it.
+To aovid loading the same module multiple times, `require` keeps a store (cache) of already loaded modules. When called, it first checks whether the requested module has been loaded and, if not, loads it. This involves reading the module's code, wrapping it in a function, and calling it.
 
+By defining `require` and `exports` as parameters for the generated wrapper function (and passing the appropriate values when calling it), the loader makes sure that these bindings are available in the module's scope.
 
+An important difference between this system and ES modules is that ES modules imports happen before a module's script starts running, whereas `require` is a normal function, invoked when the module is already running. Unlike `import` declarations, `require` calls *can* appear inside functions, and the name of the dependency can be any expression that evaluates to a string, whereas `import` allows only plain quoted strings.
 
-<!-- HERE -- p. COMMONJS MODULES!! -->
+The transition of the JS community from CommonJS style to ES modules has been a slow and somewhat rough one. Fortunately we are now at a point where most of the poular packages on NPM provide their code as ES modules, and Node.js allows ES modules to import from CommonJS modules. While CommonJS code is still something one will run across, there is no real reason to write new programs in this style anymore.
+
+## BUILDING AND BUNDLE
+
+Many JS packages aren't technically written in JS. Language extensions such as TypeScript, the type checking dialect mentioned in *C8*, are widely used.
+
+<!-- HERE -- p. BUILDING AND BUNDLING!! -->
