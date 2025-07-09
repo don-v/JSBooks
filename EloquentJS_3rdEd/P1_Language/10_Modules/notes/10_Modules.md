@@ -211,6 +211,12 @@ The transition of the JS community from CommonJS style to ES modules has been a 
 
 ## BUILDING AND BUNDLE
 
-Many JS packages aren't technically written in JS. Language extensions such as TypeScript, the type checking dialect mentioned in *C8*, are widely used.
+Many JS packages aren't technically written in JS. Language extensions such as TypeScript, the type checking dialect mentioned in *C8*, are widely used. People also often start using planned new language featurs long before they have been added to the platforms that actually run JS. To make this possible, they *compile* their code, translating it from their chosen JS dialect to plain old JS -- or even to past versions of JS -- so that browsers can run it. 
+
+Including a modular program that consists of 200 different files in a web page produces its own problems. If fetching a single file over the network takes 50 milliseconds, loading the whole program takes 10 seconds, or maybe half that if one can load several files simultatneously. That's a lot of wasted time. Because fetching a single big file tends to be faster than fetching a lot of tiny ones, web programmers have started using tools that combine their programs (which they painstakingly split into modules) into a single big file before they publish it to the web. Such tools are called *bundlers*. 
+
+And we can go further. Apart form the number of files, the *size* of the files also determines how fast they can be trasferred over the network. Thus, the JS community has invented *minifiers*. These are tools that take a JS program and make it smaller by automatically removing comments and whtiespace, renaming bindings, and replacing pieces of code with equivalent code that takes up less space.
+
+It is nto uncommon for the code that one finds in an NPM package or that runs on a web page to have gone through *multiple* stages of transformation -- ...
 
 <!-- HERE -- p. BUILDING AND BUNDLING!! -->
