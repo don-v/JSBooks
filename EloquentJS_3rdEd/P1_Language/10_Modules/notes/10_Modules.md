@@ -217,6 +217,16 @@ Including a modular program that consists of 200 different files in a web page p
 
 And we can go further. Apart form the number of files, the *size* of the files also determines how fast they can be trasferred over the network. Thus, the JS community has invented *minifiers*. These are tools that take a JS program and make it smaller by automatically removing comments and whtiespace, renaming bindings, and replacing pieces of code with equivalent code that takes up less space.
 
-It is nto uncommon for the code that one finds in an NPM package or that runs on a web page to have gone through *multiple* stages of transformation -- ...
+It is not uncommon for the code that one finds in an NPM package or that runs on a web page to have gone through *multiple* stages of transformation -- coverting from modern JS to historic JS, combining the modules into a single file, and minifying the code. We don't go into the details of these tools in this book, since there are many of them, and which one is popular changes regularly. Just be aware that such things exist, and look them up when you need them.
 
-<!-- HERE -- p. BUILDING AND BUNDLING!! -->
+## MODULE DESIGN
+
+Structuring programs is one of the subtler aspects of programming. Any nontrivial piece of functionality can be organized in various ways.
+
+Good program design is subjective -- there are trad-offs invovled, and matters of taste. The best way to learn the value of well-structured design is to read or work on a lot of programs and notice what works and what doesn't. One should not assume that a painful mess is "just the way it is". One can improve the structure of almost everything by putting more thought into it.
+
+One aspect of module design is ease of use. If one is designing something that is intended to be used by multiple peple--or even by yourself, in three months when one no longer remembers the specifics of what one did--it is helpful if one's interface is simple and predictable.
+
+That may mean following existing conventions. A good example is the `ini` package. This module imitates the standard `JSON` object by providing `parse` and `stringify` (to write an 'INI' file) function, and, like `JSON`, converts between strings and plain objects. The interface is small and familiar, and  after one has owrked with it once, one'll likely remember how to use it.
+
+<!-- HERE -- p. MODUE DESIGN!! -->
