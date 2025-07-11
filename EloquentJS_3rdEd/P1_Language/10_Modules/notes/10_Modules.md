@@ -229,4 +229,10 @@ One aspect of module design is ease of use. If one is designing something that i
 
 That may mean following existing conventions. A good example is the `ini` package. This module imitates the standard `JSON` object by providing `parse` and `stringify` (to write an 'INI' file) function, and, like `JSON`, converts between strings and plain objects. The interface is small and familiar, and  after one has owrked with it once, one'll likely remember how to use it.
 
+Even if there's no standard function or widely used package to imitate, one can keep one's modules predictable by using simple data structures and doing a single, focused thing. Many of the 'INI'-file parsing modules on NPM provide a function that directly reads such a file from the hard disk and parses it, for example. This makes it impossible to use such modules in the browser, where we don't have direct filesystem access, and adds complexity that would have been better addressed by *composing* the module with some file-reading function.
+
+This points to another helpful aspect of module design -- the ease with which something can be composed with other code. Focused modules that compute values are applicable in a wider range of programs than bigger modules that perform complciated actions with side effects. An 'INI' file reader that insists on reading teh file from disk is useless in a scanario where the file's content comes from some other source.
+
+Relatedly, stateful objects are sometimes useful or even necessary, but if something can be done with a function, use a function. Several of the 'INI' file readers on 'NPM' provide an interface style that requires one to first create an object, then load the file into one's object, and finally use specialized methods ot get at the results. This type of things is common in the OOP tradition, and it's terrible. Instead of making a single function call and moving on, one has to perform the ritual of moving one's objects through its varous states. And because the data ...
+
 <!-- HERE -- p. MODUE DESIGN!! -->
