@@ -233,6 +233,16 @@ Even if there's no standard function or widely used package to imitate, one can 
 
 This points to another helpful aspect of module design -- the ease with which something can be composed with other code. Focused modules that compute values are applicable in a wider range of programs than bigger modules that perform complciated actions with side effects. An 'INI' file reader that insists on reading teh file from disk is useless in a scanario where the file's content comes from some other source.
 
-Relatedly, stateful objects are sometimes useful or even necessary, but if something can be done with a function, use a function. Several of the 'INI' file readers on 'NPM' provide an interface style that requires one to first create an object, then load the file into one's object, and finally use specialized methods ot get at the results. This type of things is common in the OOP tradition, and it's terrible. Instead of making a single function call and moving on, one has to perform the ritual of moving one's objects through its varous states. And because the data ...
+Relatedly, stateful objects are sometimes useful or even necessary, but if something can be done with a function, use a function. Several of the 'INI' file readers on 'NPM' provide an interface style that requires one to first create an object, then load the file into one's object, and finally use specialized methods ot get at the results. This type of things is common in the OOP tradition, and it's terrible. Instead of making a single function call and moving on, one has to perform the ritual of moving one's objects through its varous states. And because the data is now wrapped in a specialized object type, all code that interacts with it has to know about that type, creating unnecessary interdependencies.
+
+Often, defining new data structures can't be avoided -- only a few basic ones are provided by the language, and many types of data have to be mroe complex than an array or a map. But when an array suffices, use an array.
+
+An example of a slightly more complex data structure is the graph from *C7*. There is no single obvious way to represent a graph in JS. In that chapter, we used an object whose properties hold arrays of strings -- the other nodes reachable from that node.
+
+There are several different pathfinding packges on 'NPM', but none of them uses this graph format. They usually allow the graph's edges to have a weight, which is the cost or distance associated with it. That isn't possible in our representation.
+
+For example, there's the `dijkstrajs` package. A well-knwon approach to pathfinding, quite similar to our `findRoute` function, is called *Dijkstra's algo*, after Edsger Dijkstra, who first wrote it down. The `js` suffix is often added to a package names to indicate the fact that they are written in JS. The `dijkstrajs` package uses a graph format similar to ours, but instead of arrays, it uses objects whose property values are numbers -- the weights of the edges.
+
+If we anted to use that pacakge, we'd have to make sure ...
 
 <!-- HERE -- p. MODUE DESIGN!! -->
