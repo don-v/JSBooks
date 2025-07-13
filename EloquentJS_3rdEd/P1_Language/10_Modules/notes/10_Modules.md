@@ -243,6 +243,29 @@ There are several different pathfinding packges on 'NPM', but none of them uses 
 
 For example, there's the `dijkstrajs` package. A well-knwon approach to pathfinding, quite similar to our `findRoute` function, is called *Dijkstra's algo*, after Edsger Dijkstra, who first wrote it down. The `js` suffix is often added to a package names to indicate the fact that they are written in JS. The `dijkstrajs` package uses a graph format similar to ours, but instead of arrays, it uses objects whose property values are numbers -- the weights of the edges.
 
-If we anted to use that pacakge, we'd have to make sure ...
+If we anted to use that pacakge, we'd have to make sure that our graph was stored in the format it expects. All edges get the same weight, since out simplified model treats each road as having hte same cost (one turn):
 
-<!-- HERE -- p. MODUE DESIGN!! -->
+```js
+const {find_path} = require("dijkstrajs");
+
+let graph = {};
+for (let node of Object.keys(roadGraph)) {
+  let edges = graph[node] = {};
+  for (let dest of roadGraph[node]) {
+    edges[dest] = 1;
+  }
+}
+
+console.log(find_path(graph, "Post Office", "Cabin"));
+// → ["Post Office", "Alice's House", "Cabin"]
+```
+
+This can be a barrier to composition -- when various packages are using different data structures to describe similar things, combining them is difficult. Therefore, if one wants to design for composability, find out what data structures other people are using and, when possible, follow their example.
+
+Designing a fitting module structure for a program can be difficult. In the phase where one is still exploring the problem, tring different things to see waht works, one might want to not worry about it too much, since keeping everything organized can be a big distraction. Once one has something that feels solid, that's a good time to take a step back and organize it.
+
+# SUMMARY
+
+Modules provide structure to bigger programs by separating the code into pieces with clear interfaces and dependencies. The interface is the part of the module that's visisble to to other modules, and the dependencies are the other modules it makes use of.
+
+<!-- HERE -- p. SUMMARY!! -->
