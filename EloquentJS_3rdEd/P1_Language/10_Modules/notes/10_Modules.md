@@ -268,4 +268,32 @@ Designing a fitting module structure for a program can be difficult. In the phas
 
 Modules provide structure to bigger programs by separating the code into pieces with clear interfaces and dependencies. The interface is the part of the module that's visisble to to other modules, and the dependencies are the other modules it makes use of.
 
-<!-- HERE -- p. SUMMARY!! -->
+Because JS historically did not improve a module system, the 'CommonJS' system was built on top of it, Then at some point it *did* get a built-in system, which now coexists uneasily with the 'CommonJS' system.
+
+A package is a chunk of code that can be distributed on its own 'NPM' is a repository of JS packages. One can download all kinds of useful (and useless) packages from it.
+
+## EXERCISES
+
+### A MODULAR ROBOT
+
+These are the bindings that the project form *C7*` creates:
+
+```js
+roads
+buildGraph
+roadGraph
+VillageState
+runRobot
+randomPick
+randomRobot
+mailRoute
+routeRobot
+findRoute
+goalOrientedRobot
+```
+
+If one were to write that project as a modular program, wht modules would one create? Which module would depend on which other module?, and what would their interfaces look like?
+
+Which pieces are likely to be available prewritten on 'NPM'? Woudl one prefer to use an 'NPM' package or write them oneself?
+
+<!-- HERE -- p. ex1 -- modular robot!! -->
