@@ -22,6 +22,8 @@ what modules would one create?
 // module since they are all 'robots'. I would put utilitiy functions in their 
 // own module as well ...
 
+utilities: `buildGraph`, `runRobot`, `VillageState`
+
 Which module would depend on which other module?, and 
 
 what would their interfaces look like?
