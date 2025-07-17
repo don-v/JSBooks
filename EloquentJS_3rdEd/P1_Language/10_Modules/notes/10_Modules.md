@@ -297,4 +297,4 @@ If one were to write that project as a modular program, wht modules would one cr
 Which pieces are likely to be available prewritten on 'NPM'? Woudl one prefer to use an 'NPM' package or write them oneself?
 
 <!-- HERE -- p. ex1 -- modular robot!!
-++ -->
++++ -->
