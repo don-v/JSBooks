@@ -24,7 +24,7 @@ When the ways in which modules interact with each other are explicit, a system b
 
 The original JS language did not have any concept of a module. All scripts ran in the same scope, and accessing a function defined in another script was done by referencing the global bindings created by that script. This actively encouraged accidental, hard-to-see entanglement of code and invited problems like unrelated scripts trying to use the same binding name. 
 
-Since ECMAScript 2015, JS spports two different types of programs. *Scripts* behave in the old way: their bindings are defined in the global scope, and they have no way to directly reference other scripts. *Modules* get their won separate scope and support the `import* and `export* keywords, which aren't available in scripts, to declare their dependencies and interface. This module system is usually called *ES modules* (where *ES* stands for ECMAScript).
+Since ECMAScript 2015, JS spports two different types of programs. *Scripts* behave in the old way: their bindings are defined in the global scope, and they have no way to directly reference other scripts. *Modules* get their won separate scope and support the `import` and `export` keywords, which aren't available in scripts, to declare their dependencies and interface. This module system is usually called *ES modules* (where *ES* stands for ECMAScript).
 
 A modular program is composed of a number of such modules, wired together via their imports and exports. 
 
@@ -319,5 +319,21 @@ So again, this is a trade-off, and you can decide either way depending on how mu
 
 ### EX2: ROADS MODULE!
 
+Write an ES module based on the example from *C7* that contains the array of roads and exports the graph data structure representing them as `roadGraph`. It depends on a module *./graph.js* that exports a function `buildGraph`, used to build the graph. This function expects an array of two-element arrays (the start and end points of the roads).
+
+```js
+// Add dependencies and exports
+
+const roads = [
+  "Alice's House-Bob's House",   "Alice's House-Cabin",
+  "Alice's House-Post Office",   "Bob's House-Town Hall",
+  "Daria's House-Ernie's House", "Daria's House-Town Hall",
+  "Ernie's House-Grete's House", "Grete's House-Farm",
+  "Grete's House-Shop",          "Marketplace-Farm",
+  "Marketplace-Post Office",     "Marketplace-Shop",
+  "Marketplace-Town Hall",       "Shop-Town Hall"
+];
+```
+
 <!-- HERE -- ex2: roads module!
- -->
++ -->
