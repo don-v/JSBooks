@@ -8,6 +8,22 @@ and end points of the roads). */
 
 // *graph.js*:
 
+// export function buildGraph(edges) {
+//   let graph = Object.create(null);
+//   function addEdge(from, to) {
+//     if (graph[from] == null) {
+//       graph[from] = [to];
+//     } else {
+//       graph[from].push(to);
+//     }
+//   }
+//   for (let [from, to] of edges.map(r => r.split("-"))) {
+//     addEdge(from, to);
+//     addEdge(to, from);
+//   }
+//   return graph;
+// }
+
 export function buildGraph(edges) {
   let graph = Object.create(null);
   function addEdge(from, to) {
@@ -17,7 +33,7 @@ export function buildGraph(edges) {
       graph[from].push(to);
     }
   }
-  for (let [from, to] of edges.map(r => r.split("-"))) {
+  for (let [from, to] of edges) {
     addEdge(from, to);
     addEdge(to, from);
   }
@@ -25,7 +41,10 @@ export function buildGraph(edges) {
 }
 
 
+
 // *es_module.js*:
+
+// import buildGraph from "./graph.js";
 
 const roads = [
   "Alice's House-Bob's House",   "Alice's House-Cabin",
@@ -38,6 +57,8 @@ const roads = [
 ];
 
 function getRoadsFromTo(roads_array) {
-  let roads_from_to_array;
-  
+  return roads_array.map(r => r.split("-"));  
 }
+
+const edges = getRoadsFromTo(roads);
+console.log(buildGraph(edges));
