@@ -404,4 +404,29 @@ To export roadGraph, you put the keyword export before its definition. Because b
 
 #### EX2: ROADS MODULE TEACH KA SOLUTION:
 
-<!-- HERE -- EX2 ROADS MODULE! -->
+```js
+import {buildGraph} from "./graph";
+
+const roads = [
+  "Alice's House-Bob's House",   "Alice's House-Cabin",
+  "Alice's House-Post Office",   "Bob's House-Town Hall",
+  "Daria's House-Ernie's House", "Daria's House-Town Hall",
+  "Ernie's House-Grete's House", "Grete's House-Farm",
+  "Grete's House-Shop",          "Marketplace-Farm",
+  "Marketplace-Post Office",     "Marketplace-Shop",
+  "Marketplace-Town Hall",       "Shop-Town Hall"
+];
+
+export const roadGraph = buildGraph(roads.map(r => r.split("-")));
+```
+
+#### EX3: CIRCULAR DEPENDENCIES
+
+A circular dependency is a situation where module A depends on B, and B also, directly or indirectly depends on A. Many module systems simply forbid this because whichiever order on chooses for loading such modules, one cananot make sure that each module's dependencies have been loaded before it runs.
+
+'CommonJS' moculdes allow a limited form of cyclic dependencies. As long as the modules don't access each other's interface until after they finish loading, cyclic dependencies are okay. 
+
+The `require` function given earlier in this chapter supports this type of dependency. Can you see how it handles cycles?
+
+
+<!-- HERE -- EX3 CIRCULAR DEPENDENCIES!! -->
