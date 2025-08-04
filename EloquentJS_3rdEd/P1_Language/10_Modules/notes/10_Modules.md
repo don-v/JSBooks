@@ -142,11 +142,11 @@ console.log(weekDay.name(weekDay.number("Sunday")));
 // → Sunday
 ```
 
-This style of modules provides isolation, to a certain degree, but it does nto declare dependencies. Instead, it just puts its interface into the global scpe and expects its dependencies, if any, to do the same. This is not ideal.
+This style of modules provides isolation, to a certain degree, but it does nto declare dependencies. Instead, it just puts its interface into the global scope and expects its dependencies, if any, to do the same. This is not ideal.
 
-If we implement our own module loader, we can do better. The most widly used approach to bolted-on JS modules is called *CommonJS modules*. Node.js used this module system form the start (though it is now alos knows how to load ES modules), and it is the module system used by many packages on NPM.
+If we implement our own module loader, we can do better. The most widly used approach to bolted-on JS modules is called *CommonJS modules*. Node.js used this module system from the start (though it is now also knows how to load ES modules), and it is the module system used by many packages on NPM.
 
-A 'CommonJS module' looks like a regular script, but it has access to two bindings that it sues to interact with other modules. The first is a function called `require`. when oen calls this with the module name of one's dependency, it makes sure the module is loaded and returns its interface. The second is an object named `exports`, which is the interface object for the module. It starts out empty and one adds properties ot it to defined exported values.
+A 'CommonJS module' looks like a regular script, but it has access to two bindings that it uses to interact with other modules. The first is a function called `require`. when one calls this with the module name of one's dependency, it makes sure the module is loaded and returns its interface. The second is an object named `exports`, which is the interface object for the module. It starts out empty and one adds properties ot it to defined exported values.
 
 This 'CommonJS' example module provides a date-formatting function. It uses two packages form NPM: `ordinal` -- to convert numbers to strings like "1st" and "2nd", and `date-names` -- to get the English names for weekdays and months. It exports a single function, `formatDate`, which takes a `Data` object and a template string.
 
@@ -429,4 +429,6 @@ A circular dependency is a situation where module A depends on B, and B also, di
 The `require` function given earlier in this chapter supports this type of dependency. Can you see how it handles cycles?
 
 
-<!-- HERE -- EX3 CIRCULAR DEPENDENCIES!! -->
+<!-- HERE -- EX3 CIRCULAR DEPENDENCIES!!
++
+ -->
