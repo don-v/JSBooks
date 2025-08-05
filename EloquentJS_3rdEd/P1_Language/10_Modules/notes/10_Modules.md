@@ -430,5 +430,5 @@ The `require` function given earlier in this chapter supports this type of depen
 
 
 <!-- HERE -- EX3 CIRCULAR DEPENDENCIES!!
-+
+++
  -->
