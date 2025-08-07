@@ -223,9 +223,9 @@ It is not uncommon for the code that one finds in an NPM package or that runs on
 
 Structuring programs is one of the subtler aspects of programming. Any nontrivial piece of functionality can be organized in various ways.
 
-Good program design is subjective -- there are trad-offs invovled, and matters of taste. The best way to learn the value of well-structured design is to read or work on a lot of programs and notice what works and what doesn't. One should not assume that a painful mess is "just the way it is". One can improve the structure of almost everything by putting more thought into it.
+Good program design is subjective -- there are trade-offs invovled, and matters of taste. The best way to learn the value of well-structured design is to read or work on a lot of programs and notice what works and what doesn't. One should not assume that a painful mess is "just the way it is". One can improve the structure of almost everything by putting more thought into it.
 
-One aspect of module design is ease of use. If one is designing something that is intended to be used by multiple peple--or even by yourself, in three months when one no longer remembers the specifics of what one did--it is helpful if one's interface is simple and predictable.
+One aspect of module design is ease of use. If one is designing something that is intended to be used by multiple people--or even by yourself, in three months when one no longer remembers the specifics of what one did--it is helpful if one's interface is simple and predictable.
 
 That may mean following existing conventions. A good example is the `ini` package. This module imitates the standard `JSON` object by providing `parse` and `stringify` (to write an 'INI' file) function, and, like `JSON`, converts between strings and plain objects. The interface is small and familiar, and  after one has owrked with it once, one'll likely remember how to use it.
 
@@ -432,4 +432,5 @@ The `require` function given earlier in this chapter supports this type of depen
 <!-- HERE -- EX3 CIRCULAR DEPENDENCIES!!
 ++
 206
+240
  -->
