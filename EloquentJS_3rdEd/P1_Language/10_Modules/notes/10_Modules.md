@@ -262,7 +262,7 @@ console.log(find_path(graph, "Post Office", "Cabin"));
 
 This can be a barrier to composition -- when various packages are using different data structures to describe similar things, combining them is difficult. Therefore, if one wants to design for composability, find out what data structures other people are using and, when possible, follow their example.
 
-Designing a fitting module structure for a program can be difficult. In the phase where one is still exploring the problem, tring different things to see waht works, one might want to not worry about it too much, since keeping everything organized can be a big distraction. Once one has something that feels solid, that's a good time to take a step back and organize it.
+Designing a fitting module structure for a program can be difficult. In the phase where one is still exploring the problem, trying different things to see what works, one might want to not worry about it too much, since keeping everything organized can be a big distraction. Once one has something that feels solid, that's a good time to take a step back and organize it.
 
 # SUMMARY
 
@@ -422,9 +422,9 @@ export const roadGraph = buildGraph(roads.map(r => r.split("-")));
 
 #### EX3: CIRCULAR DEPENDENCIES
 
-A circular dependency is a situation where module A depends on B, and B also, directly or indirectly depends on A. Many module systems simply forbid this because whichiever order on chooses for loading such modules, one cananot make sure that each module's dependencies have been loaded before it runs.
+A circular dependency is a situation where module A depends on B, and B also, directly or indirectly depends on A. Many module systems simply forbid this because whichever order one chooses for loading such modules, one cannot make sure that each module's dependencies have been loaded before it runs.
 
-'CommonJS' moculdes allow a limited form of cyclic dependencies. As long as the modules don't access each other's interface until after they finish loading, cyclic dependencies are okay. 
+'CommonJS' modules allow a limited form of cyclic dependencies. As long as the modules don't access each other's interface until after they finish loading, cyclic dependencies are okay. 
 
 The `require` function given earlier in this chapter supports this type of dependency. Can you see how it handles cycles?
 
@@ -432,5 +432,5 @@ The `require` function given earlier in this chapter supports this type of depen
 <!-- HERE -- EX3 CIRCULAR DEPENDENCIES!!
 ++
 206
-240+
+240++
  -->

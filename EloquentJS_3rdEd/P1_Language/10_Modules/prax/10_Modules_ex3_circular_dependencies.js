@@ -10,3 +10,15 @@ dependencies are okay.
 The `require` function given earlier in this chapter supports this type of dependency. 
 Can you see how it handles cycles?
  */
+
+
+function require(name) {
+  if (!(name in require.cache)) {
+    let code = readFile(name);
+    let exports = require.cache[name] = {};
+    let wrapper = Function("require, exports", code);
+    wrapper(require, exports);
+  }
+  return require.cache[name];
+}
+require.cache = Object.create(null);
