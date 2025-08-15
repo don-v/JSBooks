@@ -24,4 +24,7 @@ The solution to this problem, in a synchronous system, is to start additional th
 
 In the following diagram, the thick lines represent time the program spends running normally, and the thin lines represent time spent waiting for the network. In the synchronous model, the time take by the network is *part* of the timeline for a given thread of control. In the asynchronous model, starting a network action allows the program to continue running while the netowrk communication happens alonside it, notifying the program when it is finished. 
 
+<!-- ![Straign-line Execution](../../../to_ignore/02_ProgramStructure/Straight_line_flow.png) -->
+
+
 <!-- HERE! -->
