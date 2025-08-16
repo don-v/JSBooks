@@ -24,7 +24,13 @@ The solution to this problem, in a synchronous system, is to start additional th
 
 In the following diagram, the thick lines represent time the program spends running normally, and the thin lines represent time spent waiting for the network. In the synchronous model, the time take by the network is *part* of the timeline for a given thread of control. In the asynchronous model, starting a network action allows the program to continue running while the netowrk communication happens alonside it, notifying the program when it is finished. 
 
-<!-- ![Straign-line Execution](../../../to_ignore/02_ProgramStructure/Straight_line_flow.png) -->
+![threading diagram](../../../to_ignore/11_AsynchronousProgramming/threading_diagram.png)
 
+Another way to describe the difference is that waiting for action to finish is *implicit* in the synchronous model, while it is *explicit* -- under our control  -- in the asynchronous one.
 
-<!-- HERE! -->
+Asynchronicity cuts both ways. It makes expressing programs that do not fit the stright-line model of control easier, but it can also make expressing programs that do follow a straight line more awkward. We'll see some ways to reduce this awkwardness later in the chapter.
+
+Both prominent JS programming platforms -- browsers and Node.js -- make operations that might take a while asynchronous, rather than reying on threads. Since programming with threads is notoriously hard (understanding what a program does i much more difficult when it's oding multiple things at once), this is generally considered a good thing. 
+
+## CALLBACKS
+<!-- HERE -- CALLBACKS! -->
