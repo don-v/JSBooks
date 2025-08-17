@@ -33,4 +33,40 @@ Asynchronicity cuts both ways. It makes expressing programs that do not fit the 
 Both prominent JS programming platforms -- browsers and Node.js -- make operations that might take a while asynchronous, rather than reying on threads. Since programming with threads is notoriously hard (understanding what a program does i much more difficult when it's oding multiple things at once), this is generally considered a good thing. 
 
 ## CALLBACKS
-<!-- HERE -- CALLBACKS! -->
+
+One approach to asynchronous programming is to make functions that need to wait for something, take an extra argument, a *callback function*. The asynchronous function starts a process, sets things up so that the callback function is called when the process finishes, and then returns.
+
+As an example, the `setTimeout` function, available both in 'Node.js' and in browsers, waits a given number of milliseconds and then calls a function.
+
+```js
+setTimeout(() => console.log("Tick"), 500);
+```
+
+Waiting is not generally important work, but it can be very useful when one needs to arrange for something to happen at a certain time or check whether some action is taking longer than expected.
+
+Another example of a common asynchronous operation is reading a file from a device's storage. Imagine one has a function `readTextFile` that reads a file's content as a string and passes it to a callback function:
+
+```js
+readTextFile("shopping_list.txt", content => {
+  console.log(`Shopping List:\n${content}`);
+});
+// → Shopping List:
+// → Peanut butter
+// → Bananas
+```
+
+The `readTextFile` function is not part of standard JS. We wil see how to read files in the browser and in Node.js in later chapters.
+
+Performing multiple asynchronous actions in a row using callbacks means that one has to keep passing new functions to handle the continuation of the computation after the actions. An asynchronous function that compares two files and produces a boolean indicating whether their content is the same might look like this:
+
+```js
+function compareFiles(fileA, fileB, callback) {
+  readTextFile(fileA, contentA => {
+    readTextFile(fileB, contentB => {
+      callback(contentA == contentB);
+    });
+  });
+}
+```
+
+<!-- HERE -- callbacks! -->
