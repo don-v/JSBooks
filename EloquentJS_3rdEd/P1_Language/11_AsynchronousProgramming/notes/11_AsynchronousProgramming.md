@@ -69,4 +69,4 @@ function compareFiles(fileA, fileB, callback) {
 }
 ```
 
-<!-- HERE -- callbacks! -->
+<!-- HERE -- callbacks+! -->
