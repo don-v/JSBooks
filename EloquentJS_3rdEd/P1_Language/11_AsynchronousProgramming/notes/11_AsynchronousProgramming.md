@@ -81,4 +81,4 @@ This is what the standard class `Promise` is for. A *promise* is a receipt repre
 
 The easiest way to create a promise is by calling `Promise.resolve`. ...
 
-<!-- HERE -- PROMISES! -->
+<!-- HERE -- PROMISES+! -->
