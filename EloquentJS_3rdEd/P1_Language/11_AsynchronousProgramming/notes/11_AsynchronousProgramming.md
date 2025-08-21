@@ -79,6 +79,32 @@ A slightly different way to build an asynchronous program is to have asynchronou
 
 This is what the standard class `Promise` is for. A *promise* is a receipt representing a value that may not be available yet. It provides a `then` method that allows one to register a function that should be called when the action for which it is waiting finishes. When the promise is *resolved*, meaning its value becomes available, such functions (there can be multiple) are called with the result value. It is possible to call `then` on a promise that has already resolved -- one's function will still be called.
 
-The easiest way to create a promise is by calling `Promise.resolve`. ...
+The easiest way to create a promise is by calling `Promise.resolve`. This function ensures that the value one gives it is wrapped in a promise. If it's already a promise, it is simply returned. Otherwise, one gets a new promise that immediately resolves with your value as its result.
 
-<!-- HERE -- PROMISES+! -->
+```js
+let fifteen = Promise.resolve(15);
+fifteen.then(value => console.log(`Got ${value}`));
+// → Got 15
+```
+
+To create a promise that does not immediately resolve, one can use `Promise` as a constructor. It has a somewhat odd interface: the constructor expects a function as its argument, which it immediately calls, passing it a function that it can use to reslve the promise.
+
+For example, this is how one could create a promise-based interface for the `readTextFile` function:
+
+```js
+function textFile(filename) {
+  return new Promise(resolve => {
+    readTextFile(filename, text => resolve(text));
+  });
+}
+
+textFile("plans.txt").then(console.log);
+```
+
+Note how, in contrast to callback-style funcitons, this asynchronous function returns a meaningful value -- a promise to give you the contenst of the file at some point in the future. 
+
+A useful thing about the `then` method is that it itself returns another promise. This one resolves to the value returned b teh callback function or, if that returned value is a promise, to the value that promise resolves to. Thus, one can "chain" multiple calls to `then` together to setup ups a sequence of asynchronous actions.
+
+This function, which reads a file ...
+
+<!-- HERE -- PROMISES++! -->
