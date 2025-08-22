@@ -105,6 +105,30 @@ Note how, in contrast to callback-style funcitons, this asynchronous function re
 
 A useful thing about the `then` method is that it itself returns another promise. This one resolves to the value returned b teh callback function or, if that returned value is a promise, to the value that promise resolves to. Thus, one can "chain" multiple calls to `then` together to setup ups a sequence of asynchronous actions.
 
-This function, which reads a file ...
+This function, which reads a file full of filenames and returns the content of a ranndom file in that list, shows this kind of asynchronous promise pipeline:
 
-<!-- HERE -- PROMISES++! -->
+```js
+function randomFile(listFile) {
+  return textFile(listFile)
+    .then(content => content.trim().split("\n"))
+    .then(ls => ls[Math.floor(Math.random() * ls.length)])
+    .then(filename => textFile(filename));
+}
+```
+
+The function returns the result of this chain of `then` calls. The initial promise fetches the list of files as a string. The first `then` call transforms that string into an array of lines, producing a new promise. The second `then` call picks a random line form that, producing a third promise that yields a single file name. The final `then` call reads this file, so the result of the function as a whole is a promise that returns the content of a random file.
+
+In this code, the functions used in the first two `then` call returns a regular value that will immediately be passed into the promise returned by `then` when the function returns. The last `then` call returns a promise (`textFile(filename)`), making an actual asynchronous step.
+
+It would also have been possible to perform all these steps inside a single `then` callback, since only the last step is actually asynchronous. But the kind of `then` wrappers that only do some synchronous data transformation are often useful, such as wehn one wants to return a promise that produces a processed version of some asynchronous result.
+
+```js
+function jsonFile(filename) {
+  return textFile(filename).then(JSON.parse);
+}
+
+jsonFile("package.json").then(console.log);
+```
+
+
+<!-- HERE -- PROMISES+++! -->
