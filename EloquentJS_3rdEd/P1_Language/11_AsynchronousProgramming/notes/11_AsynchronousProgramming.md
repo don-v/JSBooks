@@ -75,6 +75,8 @@ In a way, asynchronicity is *contagious*. Any function call that calls a funcito
 
 ## PROMISES
 
+[MDN Promises docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises)
+
 A slightly different way to build an asynchronous program is to have asynchronous functions return an object that represents its (future) reslt instead of passing around callback functions. This way, such functions actually return something meaningful, and the shape of the program more closely resembles that of synchronous programs. 
 
 This is what the standard class `Promise` is for. A *promise* is a receipt representing a value that may not be available yet. It provides a `then` method that allows one to register a function that should be called when the action for which it is waiting finishes. When the promise is *resolved*, meaning its value becomes available, such functions (there can be multiple) are called with the result value. It is possible to call `then` on a promise that has already resolved -- one's function will still be called.
@@ -133,4 +135,4 @@ jsonFile("package.json").then(console.log);
 
 <!-- HERE -- PROMISES
 +++++
-+! -->
+++! -->
