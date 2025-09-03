@@ -132,8 +132,10 @@ function jsonFile(filename) {
 jsonFile("package.json").then(console.log);
 ```
 
+Generally, ...
 
 <!-- HERE -- PROMISES
 +++++
 +++++ccc
++
 ! -->
