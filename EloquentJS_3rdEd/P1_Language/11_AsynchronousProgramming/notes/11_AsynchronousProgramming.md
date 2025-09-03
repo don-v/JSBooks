@@ -132,10 +132,25 @@ function jsonFile(filename) {
 jsonFile("package.json").then(console.log);
 ```
 
-Generally, ...
+Generally, it is useful to think of a promise as a device that lets code ignore the question of when a value is going to arrive. A normal value has to actually exist before we can reference it. A promised value is a value that *might* already be there or might appear at some point in the future. Computations defined in terms of promises, by writing them together with `then` calls, are executed asynchronously as their inputs become avaialble. 
 
-<!-- HERE -- PROMISES
-+++++
-+++++ccc
-+
-! -->
+## FAILURE
+
+Regular JS computations can fail by throwing an exception. Asynchronous computations often need something like that. A network request may fail, a file may not exist, or some code that is part of the asynchronous computation may throw an exception.
+
+One of the most pressing problems with the callback style of asynchronous programming is that it makes it extremely diffiuclt to ensure failures are properly reported to the callbacks.
+
+A common convention is to use the first argument to the callback to indicate that the action failed, and the second to pass the value produced by the action when it is successful:
+
+```js
+someAsyncFunction((error, value) => {
+  if (error) handleError(error);
+  else processValue(value);
+});
+```
+
+Such callback functions must always check whether they received an exception and make sure that any problems they cause, including exceptions thrown by function they call, are caught and given to the right function.
+
+Promises make this easier. ...
+
+<!-- HERE -- FAILURE! -->
