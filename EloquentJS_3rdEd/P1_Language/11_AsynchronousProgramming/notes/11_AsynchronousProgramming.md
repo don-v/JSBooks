@@ -151,6 +151,17 @@ someAsyncFunction((error, value) => {
 
 Such callback functions must always check whether they received an exception and make sure that any problems they cause, including exceptions thrown by function they call, are caught and given to the right function.
 
-Promises make this easier. ...
+Promises make this easier. They can be either resolved (the action finished successfully) or rejected (it failed). Resolve handlers (as registered with `then`) are called only when the action is successful, and rejections are propagated to the new promise returned by `then`. When a handler throws an exception, this automatically causes the promise produced by its `then` call to be rejected. If any element in a chain of asynchronous action fails, the outcome of the whole chain is marked as rejected, as no success handlers are called byond the point where it failed.
 
-<!-- HERE -- FAILURE! -->
+Much like resolving a promise provides a value, rejecting one also provides a value, usually called the *reason* of the rejection. When an exception value is used as the reason. Similarly, when a handler returns a promise that is rejected, that rejection flows into the next promise. There's a `Promise.reject` function that creates a new immediately rejected promise.
+
+To explicitly handle such rejections, promises have a `catch` method that registers a handler to be called when the promise is rejected, similar to how `then` handlers handle normal resolution. It's also very much like `then` in that it returns a new promise, which resolves to the original promise's value when that resolves normally and to the result of the `catch` handler otherwise. If a `catch` handler throws an error, the new promise is also rejected.
+
+As a shorthand, `then` also accepts a rejection handler as a second argument, so one can install both types of handlers in a single method call: `.then(acceptHandler, rejectHandler)`.
+
+A function passed to the `Promise` constructor receives a second argument, alongside the resolve function, which...
+
+<!-- HERE -- FAILURE
++
+
+! -->
