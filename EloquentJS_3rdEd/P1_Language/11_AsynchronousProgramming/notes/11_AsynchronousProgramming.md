@@ -159,9 +159,39 @@ To explicitly handle such rejections, promises have a `catch` method that regist
 
 As a shorthand, `then` also accepts a rejection handler as a second argument, so one can install both types of handlers in a single method call: `.then(acceptHandler, rejectHandler)`.
 
-A function passed to the `Promise` constructor receives a second argument, alongside the resolve function, which...
+A function passed to the `Promise` constructor receives a second argument, alongside the resolve function, which it can use to reject the new promise.
 
-<!-- HERE -- FAILURE
-+
+When our `readTextFile` function encounters a problem, it passes the error to its callback function as a second argument. Our `textFile` wrapper should actually check that argument so that a failure causes thepromise it returns to be rejected.
 
-! -->
+```js
+function textFile(filename) {
+  return new Promise((resolve, reject) => {
+    readTextFile(filename, (text, error) => {
+      if (error) reject(error);
+      else resolve(text);
+    });
+  });
+}
+```
+
+The chain of promise values created by calls to `then` and `catch` thus form a pipeline through which asynchronous values or failures move. Since such chains are created by registering handlers, each link has a success handler or a rejection handler (or both) associated with it. Handlers that don't match the type of outcome (success or failure) are ignored. Handlers that do match are called, and thier outcome determines what kind of value comes next -- success when they return a non-promise value, rejection when they throw an exception, and the outcome of the promise when they return a promise.
+
+```js
+new Promise((_, reject) => reject(new Error("Fail")))
+  .then(value => console.log("Handler 1:", value))
+  .catch(reason => {
+    console.log("Caught failure " + reason);
+    return "nothing";
+  })
+  .then(value => console.log("Handler 2:", value));
+// → Caught failure Error: Fail
+// → Handler 2: nothing
+```
+
+The first `then` handler function isn't called because at that point of the pipeline the promise holds a rejection. The `catch` handler handles that rejection and returns a value, which is given to the second `then` handler function.
+
+Much like an uncaught exception is handled by the environment, JS environments can detect when a promise rejection isn't handled and will report this as an error.
+
+## CARLA
+
+<!-- HERE -- CARLA! -->
