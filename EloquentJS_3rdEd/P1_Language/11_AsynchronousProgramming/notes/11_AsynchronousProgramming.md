@@ -194,4 +194,16 @@ Much like an uncaught exception is handled by the environment, JS environments c
 
 ## CARLA
 
-<!-- HERE -- CARLA! -->
+It's a sunny day in Berlin. The runway of the old, decommissioned airport is teemign iwth cyclists and inline skaters. In the grass near a garbage container, a flock of crows noisily mills about, trying to convince a group of tourists to part with their sandwiches.
+
+One of the crows stands out -- a large scruffy female with a few white feathers in her right wing. She is baiting people with a skill and confidence that suggests she's been doing this for a long time. When an elderly man is distracted by the antics of another crow, she casually swoops in, snatches his half-eaten bun from his hand, and sails away. 
+
+Contrary to the rest of the group, who look like they are happy to spend the day goofing around here, the large crow looks purposeful. Carrying her loot, she flies straight toward the roof of the hangar building, disappearing into an air vent.
+
+Inside the building, one can hear an odd tapping sound -- soft, but persistent. It comes from a narrow space under the roof of an unfininshed stairwell. The crow is sitting there, surrounded by her stolen snacks, half a dozen smartphones (several of which are turned on), and a mess of cables. She rapidly taps the screen of one of the phones with her beak. Words are appearing o nit. If one didn't know better, one'd think the was typing.
+
+This crow is know to her peers as “cāāw-krö”. 
+
+<!-- HERE -- CARLA!
++
+ -->
