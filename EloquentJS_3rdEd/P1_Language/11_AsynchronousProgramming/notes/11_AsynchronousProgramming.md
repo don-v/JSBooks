@@ -202,8 +202,18 @@ Contrary to the rest of the group, who look like they are happy to spend the day
 
 Inside the building, one can hear an odd tapping sound -- soft, but persistent. It comes from a narrow space under the roof of an unfininshed stairwell. The crow is sitting there, surrounded by her stolen snacks, half a dozen smartphones (several of which are turned on), and a mess of cables. She rapidly taps the screen of one of the phones with her beak. Words are appearing o nit. If one didn't know better, one'd think the was typing.
 
-This crow is know to her peers as “cāāw-krö”. 
+This crow is known to her peers as “cāāw-krö”. But since those sounds are poorly suited for human vocal chords, we'll refer to her as Carla.
 
-<!-- HERE -- CARLA!
+Carla is a somewhat peculiar crow. In her youth, she was fascinated by human language, eavesdropping on people until she had a good grasp of what they were saying. Later in life, her interest shifted to human technology, and she started stealing phones to study them. Her current project is learning to program. The text she is typing in her hidden lab is, in fact, a piece asynchronous JS code. 
+
+## BREAKING IN
+
+Carla loves the internet. Annoyingly, the phone she is working on is about ot run out of prepaid data. The building has a wireless netowrk, but it requires a code to access.
+
+Fortunately, the wireless routers in the building are 20 years old and poorly secured. Doing some research, Carla finds out that the network authentication mechanism has a flaw she can use. When joining the network, a device must send along the correct six-digit passcode. The access point will reply with a success or failure message depending on whether the right code is provides. However, when spending a partial code (say, only three digits), the response is different based on whether those digits are the correct start of the code or not. Sending incorrect numbers immediately returns a failure message. When sendng the correct ones, the access point waits for more digits. 
+
+This makes it 
+
+<!-- HERE -- BREAKING IN!
 +
  -->
