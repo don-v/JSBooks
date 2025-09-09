@@ -212,7 +212,22 @@ Carla loves the internet. Annoyingly, the phone she is working on is about ot ru
 
 Fortunately, the wireless routers in the building are 20 years old and poorly secured. Doing some research, Carla finds out that the network authentication mechanism has a flaw she can use. When joining the network, a device must send along the correct six-digit passcode. The access point will reply with a success or failure message depending on whether the right code is provides. However, when spending a partial code (say, only three digits), the response is different based on whether those digits are the correct start of the code or not. Sending incorrect numbers immediately returns a failure message. When sendng the correct ones, the access point waits for more digits. 
 
-This makes it 
+This makes it possibly greatly speed up the guessing of the number. Carla can find the first digit by trying each number in turn, until she finds one that doesn't immediately return failure. Having one digit, she can find the second digit in the same way, and so on, until she knows the entire passcode.
+
+Assume Carla has a `joinWifi` function. Given the netowrk name and the passcode (as a string), the function tries to join the netowrk, returning a promise that resolves if successful and rejects if the authentication failed. The first thing she needs is a way to wrap a promise so that it automatically rejects after it takes too much time, to allow the program to quickly move on if the access point doesn't respond.
+
+```js
+function withTimeout(promise, time) {
+  return new Promise((resolve, reject) => {
+    promise.then(resolve, reject);
+    setTimeout(() => reject("Timed out"), time);
+  });
+}
+```
+
+This makes use of the fact that a promise can be resolved or rejected only once. If the promise given as its argument resolves or rejects first, that results will be the result of the promise returned by `withTimeout`. If, on the other hand, the `setTimeout` fires first, rejecting the promise, any further resolve or reject calls are ignored.
+
+To find the whole passcode, the program needs to repeatedly look for the next digit by trying each digit. If authentication succeeds, we know we have found what we are looking for. If it immediately fails, we know that digit was wrong and must try the next digit. If the request times out, we have found another correct digit and must conintue by adding another digit. 
 
 <!-- HERE -- BREAKING IN!
 +

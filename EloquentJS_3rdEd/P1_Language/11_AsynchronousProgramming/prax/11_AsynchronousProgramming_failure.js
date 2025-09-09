@@ -22,3 +22,10 @@ new Promise((_, reject) => reject(new Error("Fail")))
   .then(value => console.log("Handler 2:", value));
 // → Caught failure Error: Fail
 // → Handler 2: nothing
+
+function withTimeout(promise, time) {
+  return new Promise((resolve, reject) => {
+    promise.then(resolve, reject);
+    setTimeout(() => reject("Timed out"), time);
+  });
+}
