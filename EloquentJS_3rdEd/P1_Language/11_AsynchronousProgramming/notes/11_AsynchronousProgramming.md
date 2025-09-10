@@ -229,6 +229,37 @@ This makes use of the fact that a promise can be resolved or rejected only once.
 
 To find the whole passcode, the program needs to repeatedly look for the next digit by trying each digit. If authentication succeeds, we know we have found what we are looking for. If it immediately fails, we know that digit was wrong and must try the next digit. If the request times out, we have found another correct digit and must conintue by adding another digit. 
 
-<!-- HERE -- BREAKING IN!
-+
- -->
+Because ne cannot wait for a promise inside a `for` loop, Carla uses a recursive function to drive this process. On each call, this function gets the code as we know it so far, as well as the next digit to try. Depending on what happens, it may return a fnished code or call through to itself, to either start cracking the next position in the code or ot try again with another digit.
+
+```js
+function crackPasscode(networkID) {
+  function nextDigit(code, digit) {
+    let newCode = code + digit;
+    return withTimeout(joinWifi(networkID, newCode), 50)
+      .then(() => newCode)
+      .catch(failure => {
+        if (failure == "Timed out") {
+          return nextDigit(newCode, 0);
+        } else if (digit < 9) {
+          return nextDigit(code, digit + 1);
+        } else {
+          throw failure;
+        }
+      });
+  }
+  return nextDigit("", 0);
+}
+```
+
+The acces point tends to respond to bad authentication requests in about 20 milliseconds, to be safe, this function waits for 50 milliseconds before timing out a request.
+
+```js
+crackPasscode("HANGAR 2").then(console.log);
+// → 555555
+```
+
+Carla tilts her head and sighs. This would have beenmroe satisfying if the code had been a bit harder to guess.
+
+## ASYNC FUNCTIONS
+
+<!-- HERE -- async funcs! -->
