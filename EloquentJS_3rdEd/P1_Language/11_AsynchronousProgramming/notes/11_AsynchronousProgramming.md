@@ -299,6 +299,32 @@ Inside an `async` function, the word `await` can be put in front of an expressio
 
 Such a function no longer runs from start to completion in one go like a regular JS function. Instead, it can be *frozen* at any point that has an `await` and can be resumed at a later time.
 
-For most asynchronous code, this notation is more convenient than directly using promises. One does still need an understanding of promises, since in many cases one'll still interact with them directly. But ...
+For most asynchronous code, this notation is more convenient than directly using promises. One does still need an understanding of promises, since in many cases one'll still interact with them directly. But when wiring them together, `async` functions are generally more pleasant to write than chains of `then` calls.
 
-<!-- HERE -- async funcs! -->
+
+## GENERATORS
+
+This ability of functions to be paused and then resumed again is not exclusive to `async` functions. JS also has a feature called *generator* functions. These are similar, but without promises.
+
+When one defines a funciton with `function*` (placing an asterisk after the word `function`), it becomes a generator. When one calls a generator, it returns an iterator, which we already saw in *C6*:
+
+```js
+function* powers(n) {
+  for (let current = n;; current *= n) {
+    yield current;
+  }
+}
+
+for (let power of powers(3)) {
+  if (power > 50) break;
+  console.log(power);
+}
+// → 3
+// → 9
+// → 27
+```
+
+Initially, when one calls `powers`, the function froze at its start. Every time one calls `next` on the iterator, the function runs until it hits a `yield` expression, which pauses it and causes the yielded value to become the next value produced by the iterator. When the function returns (the one in the example never does, the iterator is done.)
+
+Writing iterators ...
+<!-- HERE -- generators! -->
