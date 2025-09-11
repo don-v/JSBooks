@@ -262,4 +262,43 @@ Carla tilts her head and sighs. This would have beenmroe satisfying if the code 
 
 ## ASYNC FUNCTIONS
 
+Even with promises, this kind of asynchronous code is annoying ot write. Promises often need to be tied together in verbose, arbitrary-looking ways. To create an asynchronous loop, Carla was forced to introduce a recursive function.
+
+The thing the cracking function actually does is completely linear -- it always waits for the previous action to complete before starting the next one. In a synchronous programming model, it'd be more straightforward to express.
+
+The good news is that JS allwos one to write pseudosynchrnous code to describe asynchronous computation. An `async` function implicitly returns a promsie and can, in its body, `await` other promises in a way that *looks* synchronous.
+
+We can rewrite `crackPasscode` like this:
+
+```js
+async function crackPasscode(networkID) {
+  for (let code = "";;) {
+    for (let digit = 0;; digit++) {
+      let newCode = code + digit;
+      try {
+        await withTimeout(joinWifi(networkID, newCode), 50);
+        return newCode;
+      } catch (failure) {
+        if (failure == "Timed out") {
+          code = newCode;
+          break;
+        } else if (digit == 9) {
+          throw failure;
+        }
+      }
+    }
+  }
+}
+```
+
+This version more clearly shows the double loop structure of the function (the inner loop tries digit 0 to 9 and the outer loop adds digits to the passcode).
+
+An `async` function is marked by the word `async` before the `function` keyword. Methods can also be made `async` by writing `async` before their name. When such a function or method is called, it returns a promise. As soon as the function returns something, that promise is resolved. If teh body throws an exception, the promise is rejected.
+
+Inside an `async` function, the word `await` can be put in front of an expression to wait for a promise to resolve and only then continue the execution of the function. If the promise rejects, an exception is raised at the opint of the `await`. 
+
+Such a function no longer runs from start to completion in one go like a regular JS function. Instead, it can be *frozen* at any point that has an `await` and can be resumed at a later time.
+
+For most asynchronous code, this notation is more convenient than directly using promises. One does still need an understanding of promises, since in many cases one'll still interact with them directly. But ...
+
 <!-- HERE -- async funcs! -->
