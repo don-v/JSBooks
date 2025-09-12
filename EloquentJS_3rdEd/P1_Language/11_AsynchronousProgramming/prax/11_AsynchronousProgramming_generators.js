@@ -11,3 +11,9 @@ for (let power of powers(3)) {
 // → 3
 // → 9
 // → 27
+
+Group.prototype[Symbol.iterator] = function*() {
+  for (let i = 0; i < this.members.length; i++) {
+    yield this.members[i];
+  }
+};

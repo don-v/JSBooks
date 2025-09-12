@@ -326,5 +326,28 @@ for (let power of powers(3)) {
 
 Initially, when one calls `powers`, the function froze at its start. Every time one calls `next` on the iterator, the function runs until it hits a `yield` expression, which pauses it and causes the yielded value to become the next value produced by the iterator. When the function returns (the one in the example never does, the iterator is done.)
 
-Writing iterators ...
-<!-- HERE -- generators! -->
+Writing iterators is often much easier when one uses generator functions. The iterator for the `Group` class (from exercise in *C6*) can be written with this generator:
+
+```js
+Group.prototype[Symbol.iterator] = function*() {
+  for (let i = 0; i < this.members.length; i++) {
+    yield this.members[i];
+  }
+};
+```
+
+There's no longer a need to create an object to hold the iteration state -- generators automatically save their local state every time they yield.
+
+Such `yield` expressions may occur only directly in the generator function itelf and not in an inner function one defines inside of it. The state a generator saves, when yielding, is only its *local*environment and the position where it yielded.
+
+An `async` function is a special type of generator. It produces a promise when called, which is resolved when it returns (finishes) and rejected when it throws an exception. Whenever it yields (awaits) a promise, the result of that promise (value or thrown exception) is the result of the `await` expression.
+
+##  A CORVID ART PROJECT
+
+One morning, Carla wakes up to unfamiliar noise form the tarmac outside of her hangar. Hopping onto the edge of the roof, she sees the humans are setting up for something. There's a lot of electric cabling, a stage, and some kind of black wall being built up.
+
+Being a curious crow, Carla takes a closer look at the wall. It appears to consist of a number of large glass-fronted devices wired up to cables. On the back, the devices say "LedTec SIG-5030".
+
+A quick internet search ...
+
+<!-- HERE -- A corvid art project! -->
