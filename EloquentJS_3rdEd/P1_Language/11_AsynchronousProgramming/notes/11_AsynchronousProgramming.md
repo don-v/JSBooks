@@ -348,6 +348,12 @@ One morning, Carla wakes up to unfamiliar noise form the tarmac outside of her h
 
 Being a curious crow, Carla takes a closer look at the wall. It appears to consist of a number of large glass-fronted devices wired up to cables. On the back, the devices say "LedTec SIG-5030".
 
-A quick internet search ...
+A quick internet search turns up a user manual for these devices. They appear to be traffic signs, with a programmable matrix of amber LED lights. The intent of the humans is probably to display some kind of information on them during their event. Interestingly, the screens can be programmed over a wireless network. could it be they are connected to the building's local network?
+
+Each device on a network gets an *IP address*, which other devices can use ot send it messages. We talk more about that in *C13*. Carla notices that he rown phonees all get addresses like `10.0.0.20` or `10.0.0.33`. It might be worth trying to send messages to all such addresses and see if any of them responds to the interface described in the manual for signs.
+
+*C18* shows how to make real requests on real networks. In this chapter, we'll use a simplified dummy function called `requests` for network communication. This function takes two arguments -- a netowrk address and a mesage, which may be anything that can be sent as JSON -- and returns a promise that either resolves to a response from the machine at the given address, or rejects it there was a problem.
+
+According ot the manual, one can change what is displayed on a SIG-5030 sign by sending it a message with content like ...
 
 <!-- HERE -- A corvid art project! -->
