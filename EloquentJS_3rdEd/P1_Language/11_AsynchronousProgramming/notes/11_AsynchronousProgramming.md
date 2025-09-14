@@ -354,6 +354,35 @@ Each device on a network gets an *IP address*, which other devices can use ot se
 
 *C18* shows how to make real requests on real networks. In this chapter, we'll use a simplified dummy function called `requests` for network communication. This function takes two arguments -- a netowrk address and a mesage, which may be anything that can be sent as JSON -- and returns a promise that either resolves to a response from the machine at the given address, or rejects it there was a problem.
 
-According ot the manual, one can change what is displayed on a SIG-5030 sign by sending it a message with content like ...
+According ot the manual, one can change what is displayed on a SIG-5030 sign by sending it a message with content like `{"command": "display", "data": [0, 0, 3, …]}`, where `data` holds one number per LED dot, providing its brightness -- `0` means off, `3` means maximum brightness. Each sign is 50 lights wide and 30 lights high, so an update command should send 1500 numbers.
+
+This code sends a display update message to all addresses on the local netowrk, to see what sticks. Each of the numbers is an IP address can go form 0 to 255. In the data it sends, it activaates a number of lights corresponding to the network address's last number:
+
+```js
+for (let addr = 1; addr < 256; addr++) {
+  let data = [];
+  for (let n = 0; n < 1500; n++) {
+    data.push(n < addr ? 3 : 0);
+  }
+  let ip = `10.0.0.${addr}`;
+  request(ip, {command: "display", data})
+    .then(() => console.log(`Request to ${ip} accepted`))
+    .catch(() => {});
+}
+```
+
+Since most of these addresses won't exist or will not accept such messages, the `catch` call makes sure netowrk errors don't crash the program. The requests are all sent out immediately, without waiting for other requests to finish, in order to not waste time when some of the machines don't answer. 
+
+Having fired off her netowrk scan, Carla heads back outside to see the result. To her delight, all of the screens are now showing a strie of light in the upper-left corners. They *are* on the local network, and they *do* accept commands. She quickly notes the numbers shown on each screen. There are nine screens, arragned three high and three wide. They have the following network addresses:
+
+```js
+const screenAddresses = [
+  "10.0.0.44", "10.0.0.45", "10.0.0.41",
+  "10.0.0.31", "10.0.0.40", "10.0.0.42",
+  "10.0.0.48", "10.0.0.47", "10.0.0.46"
+];
+```
+
+Now this opens up ...
 
 <!-- HERE -- A corvid art project! -->
