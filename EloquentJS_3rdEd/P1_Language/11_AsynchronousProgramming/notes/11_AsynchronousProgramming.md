@@ -383,6 +383,25 @@ const screenAddresses = [
 ];
 ```
 
-Now this opens up ...
+Now this opens up possibilities for all kinds of sehanigans. She could show "crow rule, humans drool" on the wall in giant letters. But that feels a bit crude. Instead, she plans to show a video of a flying crow covering all of the screens at night.
+
+Carla finds a fitting video clip, in which a second and a half of footage can be repeated to create a looping video showing a crow's wingbeat. To fit the nine screens (each of which can show 50 x 30 pixels), Carla cuts and resizes the videos to get a series of 150x90 images, 10 per second. Those are then each cut into nine rectangles, and processed so that the dark spots on the video (where the crow is) shows a bright light, and the light spots (no crow) are left dark, which should create the effect of an amber crow flying against a black background.
+
+She has set up the `clipImages` variable to hold an array of frames, where each frame is represented with an array of nine sets of pixesl -- one for each screen -- in the format that signs expect.
+
+To display a single frame of the video, Carla needs to send a request ot all the screens at once. But she also needs to wait ofr the result of these requests, both in order to not start sending the next frmae before the current one has been properly sent an din order to notice when requests are failing.
+
+`Promise` has a static method `all` that can be used to convert an array of promises into an single promise that resolves to an array of results. This provides a convenient way to hae some asynchronous actions happen alongside each other, wait for them all to finish, and then do something with thier results (or at least wait for them to make sure they don't fail).
+
+```js
+function displayFrame(frame) {
+  return Promise.all(frame.map((data, i) => {
+    return request(screenAddresses[i], {
+      command: "display",
+      data
+    });
+  }));
+}
+```
 
 <!-- HERE -- A corvid art project! -->
