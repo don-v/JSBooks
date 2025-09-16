@@ -23,3 +23,34 @@ function displayFrame(frame) {
     });
   }));
 }
+
+function wait(time) {
+  return new Promise(accept => setTimeout(accept, time));
+}
+
+class VideoPlayer {
+  constructor(frames, frameTime) {
+    this.frames = frames;
+    this.frameTime = frameTime;
+    this.stopped = true;
+  }
+
+  async play() {
+    this.stopped = false;
+    for (let i = 0; !this.stopped; i++) {
+      let nextFrame = wait(this.frameTime);
+      await displayFrame(this.frames[i % this.frames.length]);
+      await nextFrame;
+    }
+  }
+
+  stop() {
+    this.stopped = true;
+  }
+}
+
+let video = new VideoPlayer(clipImages, 100);
+video.play().catch(e => {
+  console.log("Playback failed: " + e);
+});
+setTimeout(() => video.stop(), 15000);

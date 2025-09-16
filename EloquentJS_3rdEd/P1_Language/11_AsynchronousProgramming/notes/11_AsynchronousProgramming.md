@@ -404,4 +404,53 @@ function displayFrame(frame) {
 }
 ```
 
-<!-- HERE -- A corvid art project! -->
+This maps over the images in `frame` (which is an array of display data arrays) to create an array of request promises. It then returns a promise that combines all of those.
+
+In order to be able to stop a playing video, the process is wrapped in a class. This class has an asynchronous `play` method that returns a promise that resolves only when the playback is stopped again via the `top` method.
+
+```js
+function wait(time) {
+  return new Promise(accept => setTimeout(accept, time));
+}
+
+class VideoPlayer {
+  constructor(frames, frameTime) {
+    this.frames = frames;
+    this.frameTime = frameTime;
+    this.stopped = true;
+  }
+
+  async play() {
+    this.stopped = false;
+    for (let i = 0; !this.stopped; i++) {
+      let nextFrame = wait(this.frameTime);
+      await displayFrame(this.frames[i % this.frames.length]);
+      await nextFrame;
+    }
+  }
+
+  stop() {
+    this.stopped = true;
+  }
+}
+```
+
+The `wait` function wraps `setTimeout` in a promise that resolves after the given number of milliseconds. This is useful for controlling the speed of the playback:
+
+```js
+let video = new VideoPlayer(clipImages, 100);
+video.play().catch(e => {
+  console.log("Playback failed: " + e);
+});
+setTimeout(() => video.stop(), 15000);
+```
+
+For the entire week that screen wall stands, every everning, when it is dark, a huge glowing orange bird mysteriously appears on it.
+
+## THE EVENT LOOOP
+
+An asynchronous program starts by running its main script, which will often set up callbacks to be called later. That main script, as well as the callbacks, run to completion in onepiece, uninterrupted. But between them, the program may sit idle, waiting for something to happen.
+
+So callbacks are not directly called by the code that scheduled them. If each calls `setTimeout` from within a function, that function will have returned by the tme the callback function is called. and when the callback returns, control does not go back to the function that scheduled it.
+
+<!-- HERE -- event loop! -->
