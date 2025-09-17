@@ -453,4 +453,43 @@ An asynchronous program starts by running its main script, which will often set 
 
 So callbacks are not directly called by the code that scheduled them. If each calls `setTimeout` from within a function, that function will have returned by the tme the callback function is called. and when the callback returns, control does not go back to the function that scheduled it.
 
+Asynchronous behavior happens o its own empty function call stack. This is one of the reasons that, without promises, managing exceptions across asynchronous code is so hard. Since each call back starts with a mostly empty stack, one's `catch` handlers won't be on the stack when they throw an exception.
+
+```js
+try {
+  setTimeout(() => {
+    throw new Error("Woosh");
+  }, 20);
+} catch (e) {
+  // This will not run
+  console.log("Caught", e);
+}
+```
+
+No matter how closely together events -- such as timeouts or incoming requests -- happen, a JS environment will run only one program at a time. One can think of this as it running a big loop *around* one's program, called the *event loop*. When there's nothing to be done, that loop is paused. But as events come in, they are added to a queu, and their code is executed one after the other. Because no two things run at tha tsame time, slow-running code can delay the handling of other events.
+
+This example sets a timeout but then dallies unti lafter the timeout's intended point of time, causing the timeout to be late. 
+
+```js
+let start = Date.now();
+setTimeout(() => {
+  console.log("Timeout ran at", Date.now() - start);
+}, 20);
+while (Date.now() < start + 50) {}
+console.log("Wasted time until", Date.now() - start);
+// → Wasted time until 50
+// → Timeout ran at 55
+```
+
+Promises always resolve or reject as a new event. Even if a promise is already resolved, waiting for it will cause one's callback to run after the current script finished, rather than right away.
+
+```js
+Promise.resolve("Done").then(console.log);
+console.log("Me first!");
+// → Me first!
+// → Done
+```
+
+In later chapters, ...
+
 <!-- HERE -- event loop! -->
