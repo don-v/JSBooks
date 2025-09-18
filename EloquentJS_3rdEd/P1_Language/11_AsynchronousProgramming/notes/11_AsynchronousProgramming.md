@@ -490,6 +490,38 @@ console.log("Me first!");
 // → Done
 ```
 
-In later chapters, ...
+In later chapters, we'll see various other types of events that run on the event loop.
 
-<!-- HERE -- event loop! -->
+## ASYNCHRONOUS BUGS
+
+When one's program runs synchronously, in a single go, there are no state changes happening except those that the program itself makes. For asynchronous programs this is different -- they may have *gaps* in their execution during which other code can run.
+
+Let's look at an example. This is a function that tries to report the size of each file in an array of files, making sure to read them all at the same time rather than in sequence.
+
+```js
+async function fileSizes(files) {
+  let list = "";
+  await Promise.all(files.map(async fileName => {
+    list += fileName + ": " +
+      (await textFile(fileName)).length + "\n";
+  }));
+  return list;
+}
+```
+
+The `async fileName =>` part shows how arrow functions can also be made `async` by putting the word `async` in front of them.
+
+The code doesn't immediately look suspicious... it maps the `async` arrow function over the array of names, creating an array of promises, and then uses `Promises.all` to wait for all of these before returning the lsit they build up.
+
+But this program is entirely broken. It'll always return only a single line of output, listing the file that took the longest to read.
+
+```js
+fileSizes(["plans.txt", "shopping_list.txt"])
+  .then(console.log);
+```
+
+Teach asks, 'Can you work out why?'
+
+
+
+<!-- HERE -- async bugs! -->
