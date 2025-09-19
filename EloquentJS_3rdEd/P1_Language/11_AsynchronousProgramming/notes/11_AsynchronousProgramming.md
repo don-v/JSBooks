@@ -522,6 +522,25 @@ fileSizes(["plans.txt", "shopping_list.txt"])
 
 Teach asks, 'Can you work out why?'
 
+The problem lies in the `+=` operator, which takes the *current* value of `list` at the time the statement starts executing and then, when the `await` finished, sets the `list` binding to be that value plus the added string.
+
+But between the time the statement starts executing and the time it finishes, there's an asynchronous gap. The `map` expression runs before anything has been added to the list, so each of the `+=` operators starts from an empty string and ends up, when its storage retrieval finishes, setting `list` to the result of adding its line to the empty string.
+
+This could have easily been avoided by returning the lines from the mapped promises and calling `join` on the result of `Promise.all`, instead of building up the list by changing a binding. As usual, computing new values is less error prone than changing existing values. 
+
+```js
+async function fileSizes(files) {
+  let lines = files.map(async fileName => {
+    return fileName + ": " +
+      (await textFile(fileName)).length;
+  });
+  return (await Promise.all(lines)).join("\n");
+}
+```
+
+Mistakes like this are easy to make, especially when using `await`, and one should be aware of where the gaps in one's code occur. An advantage of JS's explicit asynchronicity (whether through callback, promises, or `await`) is that spotting these gaps is relatively easy. 
+
+## SUMMARY
 
 
-<!-- HERE -- async bugs! -->
+<!-- HERE -- SUMMARY! -->

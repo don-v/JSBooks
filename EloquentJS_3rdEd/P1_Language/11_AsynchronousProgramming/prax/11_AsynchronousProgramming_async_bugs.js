@@ -9,3 +9,11 @@ async function fileSizes(files) {
 
 fileSizes(["plans.txt", "shopping_list.txt"])
   .then(console.log);
+
+async function fileSizes(files) {
+  let lines = files.map(async fileName => {
+    return fileName + ": " +
+      (await textFile(fileName)).length;
+  });
+  return (await Promise.all(lines)).join("\n");
+}
