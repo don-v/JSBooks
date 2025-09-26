@@ -229,7 +229,7 @@ This makes use of the fact that a promise can be resolved or rejected only once.
 
 To find the whole passcode, the program needs to repeatedly look for the next digit by trying each digit. If authentication succeeds, we know we have found what we are looking for. If it immediately fails, we know that digit was wrong and must try the next digit. If the request times out, we have found another correct digit and must conintue by adding another digit. 
 
-Because ne cannot wait for a promise inside a `for` loop, Carla uses a recursive function to drive this process. On each call, this function gets the code as we know it so far, as well as the next digit to try. Depending on what happens, it may return a fnished code or call through to itself, to either start cracking the next position in the code or ot try again with another digit.
+Because one cannot wait for a promise inside a `for` loop, Carla uses a recursive function to drive this process. On each call, this function gets the code as we know it so far, as well as the next digit to try. Depending on what happens, it may return a fnished code or call through to itself, to either start cracking the next position in the code or ot try again with another digit.
 
 ```js
 function crackPasscode(networkID) {
@@ -262,7 +262,7 @@ Carla tilts her head and sighs. This would have beenmroe satisfying if the code 
 
 ## ASYNC FUNCTIONS
 
-Even with promises, this kind of asynchronous code is annoying ot write. Promises often need to be tied together in verbose, arbitrary-looking ways. To create an asynchronous loop, Carla was forced to introduce a recursive function.
+Even with promises, this kind of asynchronous code is annoying to write. Promises often need to be tied together in verbose, arbitrary-looking ways. To create an asynchronous loop, Carla was forced to introduce a recursive function.
 
 The thing the cracking function actually does is completely linear -- it always waits for the previous action to complete before starting the next one. In a synchronous programming model, it'd be more straightforward to express.
 
@@ -545,5 +545,5 @@ Mistakes like this are easy to make, especially when using `await`, and one shou
 
 <!-- HERE -- SUMMARY
 +
-(breaking in)++++
+(breaking in)+++++
 ! -->
