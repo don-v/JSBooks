@@ -266,7 +266,7 @@ Even with promises, this kind of asynchronous code is annoying to write. Promise
 
 The thing the cracking function actually does is completely linear -- it always waits for the previous action to complete before starting the next one. In a synchronous programming model, it'd be more straightforward to express.
 
-The good news is that JS allwos one to write pseudosynchrnous code to describe asynchronous computation. An `async` function implicitly returns a promsie and can, in its body, `await` other promises in a way that *looks* synchronous.
+The good news is that JS allows one to write pseudosynchrnous code to describe asynchronous computation. An `async` function implicitly returns a promsie and can, in its body, `await` other promises in a way that *looks* synchronous.
 
 We can rewrite `crackPasscode` like this:
 
@@ -293,7 +293,7 @@ async function crackPasscode(networkID) {
 
 This version more clearly shows the double loop structure of the function (the inner loop tries digit 0 to 9 and the outer loop adds digits to the passcode).
 
-An `async` function is marked by the word `async` before the `function` keyword. Methods can also be made `async` by writing `async` before their name. When such a function or method is called, it returns a promise. As soon as the function returns something, that promise is resolved. If teh body throws an exception, the promise is rejected.
+An `async` function is marked by the word `async` before the `function` keyword. Methods can also be made `async` by writing `async` before their name. When such a function or method is called, it returns a promise. As soon as the function returns something, that promise is resolved. If the body throws an exception, the promise is rejected.
 
 Inside an `async` function, the word `await` can be put in front of an expression to wait for a promise to resolve and only then continue the execution of the function. If the promise rejects, an exception is raised at the opint of the `await`. 
 
@@ -306,7 +306,7 @@ For most asynchronous code, this notation is more convenient than directly using
 
 This ability of functions to be paused and then resumed again is not exclusive to `async` functions. JS also has a feature called *generator* functions. These are similar, but without promises.
 
-When one defines a funciton with `function*` (placing an asterisk after the word `function`), it becomes a generator. When one calls a generator, it returns an iterator, which we already saw in *C6*:
+When one defines a function with `function*` (placing an asterisk after the word `function`), it becomes a generator. When one calls a generator, it returns an iterator, which we already saw in *C6*:
 
 ```js
 function* powers(n) {
@@ -547,4 +547,5 @@ Mistakes like this are easy to make, especially when using `await`, and one shou
 +
 (breaking in)+++++
 (async funcs)++
+(generators)
 ! -->
