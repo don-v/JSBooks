@@ -344,7 +344,7 @@ An `async` function is a special type of generator. It produces a promise when c
 
 ##  A CORVID ART PROJECT
 
-One morning, Carla wakes up to unfamiliar noise form the tarmac outside of her hangar. Hopping onto the edge of the roof, she sees the humans are setting up for something. There's a lot of electric cabling, a stage, and some kind of black wall being built up.
+One morning, Carla wakes up to unfamiliar noise from the tarmac outside of her hangar. Hopping onto the edge of the roof, she sees the humans are setting up for something. There's a lot of electric cabling, a stage, and some kind of black wall being built up.
 
 Being a curious crow, Carla takes a closer look at the wall. It appears to consist of a number of large glass-fronted devices wired up to cables. On the back, the devices say "LedTec SIG-5030".
 
@@ -547,5 +547,5 @@ Mistakes like this are easy to make, especially when using `await`, and one shou
 +
 (breaking in)+++++
 (async funcs)++
-(generators)
+(generators)+
 ! -->
