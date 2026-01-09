@@ -350,13 +350,13 @@ Being a curious crow, Carla takes a closer look at the wall. It appears to consi
 
 A quick internet search turns up a user manual for these devices. They appear to be traffic signs, with a programmable matrix of amber LED lights. The intent of the humans is probably to display some kind of information on them during their event. Interestingly, the screens can be programmed over a wireless network. could it be they are connected to the building's local network?
 
-Each device on a network gets an *IP address*, which other devices can use ot send it messages. We talk more about that in *C13*. Carla notices that he rown phonees all get addresses like `10.0.0.20` or `10.0.0.33`. It might be worth trying to send messages to all such addresses and see if any of them responds to the interface described in the manual for signs.
+Each device on a network gets an *IP address*, which other devices can use ot send it messages. We talk more about that in *C13*. Carla notices that her own phones all get addresses like `10.0.0.20` or `10.0.0.33`. It might be worth trying to send messages to all such addresses and see if any of them responds to the interface described in the manual for signs.
 
 *C18* shows how to make real requests on real networks. In this chapter, we'll use a simplified dummy function called `requests` for network communication. This function takes two arguments -- a netowrk address and a mesage, which may be anything that can be sent as JSON -- and returns a promise that either resolves to a response from the machine at the given address, or rejects it there was a problem.
 
-According ot the manual, one can change what is displayed on a SIG-5030 sign by sending it a message with content like `{"command": "display", "data": [0, 0, 3, …]}`, where `data` holds one number per LED dot, providing its brightness -- `0` means off, `3` means maximum brightness. Each sign is 50 lights wide and 30 lights high, so an update command should send 1500 numbers.
+According to the manual, one can change what is displayed on a SIG-5030 sign by sending it a message with content like `{"command": "display", "data": [0, 0, 3, …]}`, where `data` holds one number per LED dot, providing its brightness -- `0` means off, `3` means maximum brightness. Each sign is 50 lights wide and 30 lights high, so an update command should send 1500 numbers.
 
-This code sends a display update message to all addresses on the local netowrk, to see what sticks. Each of the numbers is an IP address can go form 0 to 255. In the data it sends, it activaates a number of lights corresponding to the network address's last number:
+This code sends a display update message to all addresses on the local netowrk, to see what sticks. Each of the numbers is an IP address can go form 0 to 255. In the data it sends, it activates a number of lights corresponding to the network address's last number:
 
 ```js
 for (let addr = 1; addr < 256; addr++) {
@@ -406,7 +406,7 @@ function displayFrame(frame) {
 
 This maps over the images in `frame` (which is an array of display data arrays) to create an array of request promises. It then returns a promise that combines all of those.
 
-In order to be able to stop a playing video, the process is wrapped in a class. This class has an asynchronous `play` method that returns a promise that resolves only when the playback is stopped again via the `top` method.
+In order to be able to stop a playing video, the process is wrapped in a class. This class has an asynchronous `play` method that returns a promise that resolves only when the playback is stopped again via the `stop` method.
 
 ```js
 function wait(time) {
@@ -566,5 +566,5 @@ c++++
 +++++
 +++++
 +++++
-+
+++
 ! -->
