@@ -7,7 +7,7 @@ the network and starts sending out a video stream when it is active. Because she
 discovered, Carla has set up a system that notices this kind of wireless network traffic and turns 
 on a light in her lair whenever there is activity outside, so she knows when to keep quiet.
 
-She's also been logging the times at which the camera is tripped for a while and wnts to use this 
+She's also been logging the times at which the camera is tripped for a while and wants to use this 
 information to visualize which times, in an average week, tend to be quiet and which tend to be 
 busy. The log is stored in files holding one time stamp number (as returned by `Date.now()`) per line.
 
@@ -22,6 +22,11 @@ the day. Days are identified by number using the system used by `Date.getDay`, w
 and Saturday is 6.
 
 The `activityGraph` function, provided by the sandbox, summarizes such a table into a string. 
+
+*/
+
+
+/* 
 
 To read the files, use the `textFile` function defined earlier -- given a filename, it returns a 
 promise that resolves to the file's content. Remember that `new Date(timestamp)` creates a `Date` 
