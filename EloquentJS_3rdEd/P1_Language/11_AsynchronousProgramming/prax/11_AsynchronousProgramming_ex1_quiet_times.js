@@ -25,6 +25,14 @@ The `activityGraph` function, provided by the sandbox, summarizes such a table i
 
 */
 
+// load dependencies
+require("./code/load")("code/hangar2.js", "code/chapter/11_async.js");
+
+let video = new VideoPlayer(clipImages, 100);
+video.play().catch(e => {
+  console.log("Playback failed: " + e);
+});
+setTimeout(() => video.stop(), 15000);
 
 /* 
 
@@ -35,7 +43,20 @@ the hour of the day, (respectively).
 
 Both types of files -- the list of logfiles and logfiles themselves -- have each piece of data 
 on its own line, separated by a newline ("\n") characters.
-
-// HERE!
-
 */
+
+function textFile(filename) {
+  return new Promise(resolve => {
+    readTextFile(filename, text => resolve(text));
+  });
+}
+
+
+async function activityTable(day) {
+  let logFileList = await textFile("camera_logs.txt");
+  // Your code here
+}
+
+activityTable(1)
+  .then(table => console.log(activityGraph(table)));
+
