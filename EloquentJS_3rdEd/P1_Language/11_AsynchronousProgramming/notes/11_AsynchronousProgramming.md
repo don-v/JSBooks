@@ -576,7 +576,10 @@ activityTable(1)
   .then(table => console.log(activityGraph(table)));
 ```
 
-<!-- HERE -- EX1+++cccccccc  -->
+<!-- HERE -- EX1+++cccccccc
++
+
+  -->
 
 ### EX2: REAL PROMISES
 
