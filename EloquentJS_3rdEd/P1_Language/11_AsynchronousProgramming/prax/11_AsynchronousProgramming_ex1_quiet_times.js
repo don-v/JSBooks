@@ -26,7 +26,9 @@ The `activityGraph` function, provided by the sandbox, summarizes such a table i
 */
 
 // load dependencies
-require("./code/load")("code/hangar2.js", "code/chapter/11_async.js");
+// require("./code/load")("code/hangar2.js", "code/chapter/11_async.js");
+require("./11_AsynchronousProgramming_ex/code/load")("code/hangar2.js", "code/chapter/11_async.js");
+
 
 let video = new VideoPlayer(clipImages, 100);
 video.play().catch(e => {
