@@ -57,6 +57,7 @@ function textFile(filename) {
 async function activityTable(day) {
   let logFileList = await textFile("camera_logs.txt");
   // Your code here
+  return [1, 2, 3];
 }
 
 activityTable(1)
