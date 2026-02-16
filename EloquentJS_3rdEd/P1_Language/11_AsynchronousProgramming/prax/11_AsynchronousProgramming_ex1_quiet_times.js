@@ -40,7 +40,7 @@ setTimeout(() => video.stop(), 15000);
 
 To read the files, use the `textFile` function defined earlier -- given a filename, it returns a 
 promise that resolves to the file's content. Remember that `new Date(timestamp)` creates a `Date` 
-object for that time, which hs `getDay` and `getHours` methods returning the day of the week and 
+object for that time, which has `getDay` and `getHours` methods returning the day of the week and 
 the hour of the day, (respectively).
 
 Both types of files -- the list of logfiles and logfiles themselves -- have each piece of data 
