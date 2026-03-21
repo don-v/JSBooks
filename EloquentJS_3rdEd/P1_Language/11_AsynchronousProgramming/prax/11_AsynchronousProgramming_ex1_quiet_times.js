@@ -47,6 +47,25 @@ Both types of files -- the list of logfiles and logfiles themselves -- have each
 on its own line, separated by a newline ("\n") characters.
 */
 
+function readTextFile(filename, callback) {
+    if (/^activity/.test(filename)) generateLogs()
+    let file = filename == "files.list" ? Object.keys(files).join("\n") : files[filename]
+    Promise.resolve().then(() => {
+      if (file == null) callback(null, "File " + filename + " does not exist")
+      else callback(file)
+  })
+}
+
+function textFile(filename) {
+  return new Promise((resolve, reject) => {
+    readTextFile(filename, (text, error) => {
+      if (error) reject(error);
+      else resolve(text);
+    });
+  });
+}
+
+
 function textFile(filename) {
   return new Promise(resolve => {
     readTextFile(filename, text => resolve(text));
