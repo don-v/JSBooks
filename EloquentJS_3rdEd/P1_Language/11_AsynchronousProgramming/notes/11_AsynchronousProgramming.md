@@ -552,7 +552,7 @@ Programming asynchronously is made esier by promises, objects that represent act
 
 There's a security camera near Carla's lab that's activated by motion sensor. It is connected to the network and starts sending out a video stream when it is active. Because she'd rather not be discovered, Carla has set up a system that notices this kind of wireless network traffic and turns on a light in her lair whenever there is activity outside, so she knows when to keep quiet.
 
-She's also been logging the times at which the camera is tripped for a while and wnts to use this information to visualize which times, in an average week, tend to be quiet and which tend to be busy. The log is stored in files holding one time stamp number (as returned by `Date.now()`) per line.
+She's also been logging the times at which the camera is tripped for a while and wants to use this information to visualize which times, in an average week, tend to be quiet and which tend to be busy. The log is stored in files holding one time stamp number (as returned by `Date.now()`) per line.
 
 1695709940692
 1695701068331
@@ -586,6 +586,7 @@ activityTable(1)
 +++++
 +++++
 +++++
++
   -->
 
 ### EX2: REAL PROMISES
