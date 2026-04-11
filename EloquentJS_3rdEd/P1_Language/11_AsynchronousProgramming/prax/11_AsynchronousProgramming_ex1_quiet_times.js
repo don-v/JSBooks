@@ -30,11 +30,11 @@ The `activityGraph` function, provided by the sandbox, summarizes such a table i
 require("./11_AsynchronousProgramming_ex/code/load")("code/hangar2.js", "code/chapter/11_async.js");
 
 
-let video = new VideoPlayer(clipImages, 100);
-video.play().catch(e => {
-  console.log("Playback failed: " + e);
-});
-setTimeout(() => video.stop(), 15000);
+// let video = new VideoPlayer(clipImages, 100);
+// video.play().catch(e => {
+//   console.log("Playback failed: " + e);
+// });
+// setTimeout(() => video.stop(), 15000);
 
 /* 
 
@@ -47,23 +47,23 @@ Both types of files -- the list of logfiles and logfiles themselves -- have each
 on its own line, separated by a newline ("\n") characters.
 */
 
-function readTextFile(filename, callback) {
-    if (/^activity/.test(filename)) generateLogs()
-    let file = filename == "files.list" ? Object.keys(files).join("\n") : files[filename]
-    Promise.resolve().then(() => {
-      if (file == null) callback(null, "File " + filename + " does not exist")
-      else callback(file)
-  })
-}
+// function readTextFile(filename, callback) {
+//     if (/^activity/.test(filename)) generateLogs()
+//     let file = filename == "files.list" ? Object.keys(files).join("\n") : files[filename]
+//     Promise.resolve().then(() => {
+//       if (file == null) callback(null, "File " + filename + " does not exist")
+//       else callback(file)
+//   })
+// }
 
-function textFile(filename) {
-  return new Promise((resolve, reject) => {
-    readTextFile(filename, (text, error) => {
-      if (error) reject(error);
-      else resolve(text);
-    });
-  });
-}
+// function textFile(filename) {
+//   return new Promise((resolve, reject) => {
+//     readTextFile(filename, (text, error) => {
+//       if (error) reject(error);
+//       else resolve(text);
+//     });
+//   });
+// }
 
 
 function textFile(filename) {
