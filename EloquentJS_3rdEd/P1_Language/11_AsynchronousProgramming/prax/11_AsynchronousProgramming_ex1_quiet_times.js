@@ -25,6 +25,8 @@ The `activityGraph` function, provided by the sandbox, summarizes such a table i
 
 */
 
+const { text } = require("node:stream/consumers");
+
 // load dependencies
 // require("./code/load")("code/hangar2.js", "code/chapter/11_async.js");
 require("./11_AsynchronousProgramming_ex/code/load")("code/hangar2.js", "code/chapter/11_async.js");
@@ -77,6 +79,12 @@ async function activityTable(day) {
   let logFileList = await textFile("camera_logs.txt");
   // Your code here
   console.log(logFileList)
+  logFileArray = logFileList.split('\n');
+  console.log(logFileArray)
+  for (log of logFileArray) {
+    logContent = await textFile(log);
+    console.log(logContent);
+  }
   return [1, 2, 3];
 }
 
