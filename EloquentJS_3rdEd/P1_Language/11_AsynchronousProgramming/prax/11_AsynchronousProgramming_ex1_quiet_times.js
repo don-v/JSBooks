@@ -87,9 +87,19 @@ async function activityTable(day) {
   // }
   log = logFileArray[0];
   logContent = await textFile(log);
-  console.log(`log-name: ${log}; content:\n ${logContent}`);
+  console.log(`log-name: ${log}; content:\n${logContent}`);
   timestamps = logContent.split('\n');
   console.log(timestamps);
+
+
+// for (log of logFileArray) {
+//   logContent = await textFile(log);
+//   console.log(`log-name: ${log}; content:\n ${logContent}`);
+//   timestamps = logContent.split('\n');
+//   console.log(timestamps);
+// }
+
+
 
   // Initialize counter for 24 hours (0 to 23)
 const hourCounts = new Array(24).fill(0);
