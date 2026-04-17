@@ -92,12 +92,14 @@ async function activityTable(day) {
   console.log(timestamps);
 
 
-// for (log of logFileArray) {
-//   logContent = await textFile(log);
-//   console.log(`log-name: ${log}; content:\n ${logContent}`);
-//   timestamps = logContent.split('\n');
-//   console.log(timestamps);
-// }
+for (log of logFileArray) {
+  arrayLogsLogContents = [];
+  logContent = await textFile(log);
+  console.log(`log-name: ${log}; content:\n ${logContent}`);
+  timestamps = logContent.split('\n');
+  console.log(timestamps);
+  arrayLogsLogContents.push({'log-name': log, 'log-contents': timestamps});
+}
 
 
 
