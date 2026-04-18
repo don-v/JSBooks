@@ -99,6 +99,18 @@ for (log of logFileArray) {
   timestamps = logContent.split('\n');
   console.log(timestamps);
   arrayLogsLogContents.push({'log-name': log, 'log-contents': timestamps});
+
+  let dayHours = new Array(24).fill(0);
+  arrayLogsLogContents.forEach(item => {
+    log = item.log;  
+    ts = item.timestamps;
+    ts.forEach(t => {
+      date = new Date(Number(t));
+      hour = date.getHours();
+      dayHours[hour] += 1;
+    })  
+    }
+  )
 }
 
 
