@@ -100,15 +100,21 @@ for (log of logFileArray) {
   console.log(timestamps);
   arrayLogsLogContents.push({'log-name': log, 'log-contents': timestamps});
 
+  let resultsArray = [];
+  
   let dayHours = new Array(24).fill(0);
   arrayLogsLogContents.forEach(item => {
     log = item.log;  
     ts = item.timestamps;
-    ts.forEach(t => {
-      date = new Date(Number(t));
-      hour = date.getHours();
-      dayHours[hour] += 1;
-    })  
+    // ts.forEach(t => {
+    //   date = new Date(Number(t));
+    //   hour = date.getHours();
+    //   dayHours[hour] += 1;
+    // })  
+    console.log(typeof ts);
+    console.log(ts);
+    // resultsArray.push({log, 'ts-array': dayHours});
+    // console.log(resultsArray);
     }
   )
 }
