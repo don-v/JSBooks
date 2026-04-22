@@ -104,15 +104,15 @@ for (log of logFileArray) {
   
   let dayHours = new Array(24).fill(0);
   arrayLogsLogContents.forEach(item => {
-    log = item.log;  
-    ts = item.timestamps;
-    // ts.forEach(t => {
+    locLog = item['log-name'];  
+    locTs = item['log-contents'];
+    // locTs.forEach(t => {
     //   date = new Date(Number(t));
     //   hour = date.getHours();
     //   dayHours[hour] += 1;
     // })  
-    console.log(typeof ts);
-    console.log(ts);
+    console.log(typeof locTs);
+    console.log(locTs);
     // resultsArray.push({log, 'ts-array': dayHours});
     // console.log(resultsArray);
     }
