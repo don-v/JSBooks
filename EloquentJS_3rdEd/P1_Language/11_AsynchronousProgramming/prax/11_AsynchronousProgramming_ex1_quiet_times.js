@@ -78,39 +78,41 @@ function textFile(filename) {
 async function activityTable(day) {
   let logFileList = await textFile("camera_logs.txt");
   // Your code here
-  console.log(logFileList)
+  // console.log(logFileList)
   logFileArray = logFileList.split('\n');
-  console.log(logFileArray)
+  // console.log(logFileArray)
   // for (log of logFileArray) {
   //   logContent = await textFile(log);
   //   console.log(logContent);
   // }
-  log = logFileArray[0];
-  logContent = await textFile(log);
-  console.log(`log-name: ${log}; content:\n${logContent}`);
-  timestamps = logContent.split('\n');
-  console.log(timestamps);
+  // log = logFileArray[0];
+  // logContent = await textFile(log);
+  // console.log(`log-name: ${log}; content:\n${logContent}`);
+  // timestamps = logContent.split('\n');
+  // console.log(timestamps);
 
 
 for (log of logFileArray) {
   arrayLogsLogContents = [];
   logContent = await textFile(log);
-  console.log(`log-name: ${log}; content:\n ${logContent}`);
+  console.log(`log-name: ${log}; content:\n${logContent}`);
   timestamps = logContent.split('\n');
   console.log(timestamps);
   arrayLogsLogContents.push({'log-name': log, 'log-contents': timestamps});
 
   let resultsArray = [];
   
-  let dayHours = new Array(24).fill(0);
   arrayLogsLogContents.forEach(item => {
+    let dayHours = new Array(24).fill(0);
     locLog = item['log-name'];  
     locTs = item['log-contents'];
-    // locTs.forEach(t => {
-    //   date = new Date(Number(t));
-    //   hour = date.getHours();
-    //   dayHours[hour] += 1;
-    // })  
+    locTs.forEach(t => {
+      dt = new Date(Number(t));
+      d = dt.getDay();
+      hour = dt.getHours();
+      dayHours[hour] += 1;
+      resultsArray.push({d: dayHours})
+    })  
     console.log(typeof locTs);
     console.log(locTs);
     // resultsArray.push({log, 'ts-array': dayHours});
