@@ -1,5 +1,59 @@
 /* 
 
+This is a classic data transformation task. To achieve this, you’ll want to use nested `.map()` calls: the outer one iterates through your files, and the inner one iterates through the timestamps for that specific file.
+
+Since your keys contain hyphens (like `log-name`), we have to use **bracket notation** to access them and **computed property names** (the `[key]: value` syntax) to create the new objects.
+
+### The Implementation
+
+```javascript
+const logsArray = [
+  { 'log-name': 'system_log', 'log-contents': ['2026-04-20', '2026-04-21'] },
+  { 'log-name': 'error_log', 'log-contents': ['2026-04-25'] }
+];
+
+const processedLogs = logsArray.map(logObj => {
+  const logName = logObj['log-name'];
+  const timestamps = logObj['log-contents'];
+
+  // Transform each timestamp into an object with the log name as the key
+  return timestamps.map(timestamp => {
+    const date = new Date(timestamp);
+    const dayOfWeek = date.getDay(); // Returns 0 (Sun) to 6 (Sat)
+
+    return {
+      [logName]: dayOfWeek
+    };
+  });
+});
+
+console.log(processedLogs);
+```
+
+---
+
+### How it Works
+
+* **Outer `.map()`**: This loops through your initial array of log files. It ensures that for every log file input, you get one array of results output.
+* **Inner `.map()`**: This loops through the `log-contents` (the timestamps). It converts each string into a `Date` object so we can extract the day.
+* **Computed Property Names**: In JavaScript, if you want a variable to be the **key** of an object, you must wrap it in square brackets: `{[logName]: dayOfWeek}`. Without the brackets, JS would literally name the key "logName".
+* **`getDay()` Note**: Keep in mind that `getDay()` returns an integer. If you want the string name (e.g., "Monday"), you would map that integer to an array of names:
+    > `const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];`
+    > `const dayName = days[date.getDay()];`
+
+### Resulting Structure
+The variable `processedLogs` will now be an **array of arrays**, looking like this:
+
+```javascript
+[
+  [ { "system_log": 1 }, { "system_log": 2 } ],
+  [ { "error_log": 6 } ]
+]
+```
+
+Do you need these results flattened into one single array, or is the "array of arrays" structure what you were looking for?
+
+
 ### EX1: QUIET TIMES
 
 There's a security camera near Carla's lab that's activated by motion sensor. It is connected to 
@@ -110,7 +164,7 @@ for (log of logFileArray) {
     locTs.forEach(t => {
       dt = new Date(Number(t));
       d = dt.getDay();
-      dayNumbs.push({locLog: d});
+      dayNumbs.push({[locLog]: d});
       hour = dt.getHours();
       // dayHours[hour] += 1;
       // resultsArray.push({d: dayHours})
