@@ -593,7 +593,7 @@ activityTable(1)
 +++++
 +++++
 ++++b
-bbb
+bbbb
   -->
 
 ### EX2: REAL PROMISES
