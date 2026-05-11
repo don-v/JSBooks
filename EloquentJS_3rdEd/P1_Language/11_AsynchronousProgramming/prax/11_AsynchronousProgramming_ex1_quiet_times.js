@@ -162,10 +162,18 @@ for (log of logFileArray) {
     locLog = item['log-name'];  
     locTs = item['log-contents'];
     locTs.forEach(t => {
+      dayTSArrayObj = {};
       dt = new Date(Number(t));
       d = dt.getDay();
-      dayNumbs.push({[locLog]: d});
-      hour = dt.getHours();
+      if (d in dayTSArrayObj) {
+        hour = dt.getHours();
+        dayTSArrayObj[d][hour] += 1
+      } else {
+        dayTSArrayObj[d] = new Array(24).fill(0);
+      }
+
+      // dayNumbs.push({[locLog]: d});
+      
       // dayHours[hour] += 1;
       // resultsArray.push({d: dayHours})
     })  
