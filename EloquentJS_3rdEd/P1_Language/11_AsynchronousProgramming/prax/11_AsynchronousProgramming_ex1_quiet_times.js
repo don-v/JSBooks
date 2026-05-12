@@ -170,6 +170,8 @@ for (log of logFileArray) {
         dayTSArrayObj[d][hour] += 1
       } else {
         dayTSArrayObj[d] = new Array(24).fill(0);
+        hour = dt.getHours();
+        dayTSArrayObj[d][hour] += 1
       }
 
       // dayNumbs.push({[locLog]: d});
@@ -181,7 +183,7 @@ for (log of logFileArray) {
     // console.log(locTs);
     // resultsArray.push({log, 'ts-array': dayHours});
     // console.log(resultsArray);
-    console.log(dayNumbs);
+    console.log(dayTSArrayObj);
     }    
   )
 }
