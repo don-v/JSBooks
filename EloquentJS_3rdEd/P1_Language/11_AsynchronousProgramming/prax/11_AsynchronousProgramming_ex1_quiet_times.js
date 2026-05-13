@@ -165,13 +165,12 @@ for (log of logFileArray) {
       dayTSArrayObj = {};
       dt = new Date(Number(t));
       d = dt.getDay();
+      h = dt.getHours();
       if (d in dayTSArrayObj) {
-        hour = dt.getHours();
-        dayTSArrayObj[d][hour] += 1
+        dayTSArrayObj[d][h] += 1
       } else {
         dayTSArrayObj[d] = new Array(24).fill(0);
-        hour = dt.getHours();
-        dayTSArrayObj[d][hour] += 1
+        dayTSArrayObj[d][h] += 1
       }
 
       // dayNumbs.push({[locLog]: d});
