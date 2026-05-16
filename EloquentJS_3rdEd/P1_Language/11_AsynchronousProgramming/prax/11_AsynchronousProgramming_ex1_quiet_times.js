@@ -161,8 +161,8 @@ for (log of logFileArray) {
     dayNumbs = new Array();
     locLog = item['log-name'];  
     locTs = item['log-contents'];
+    dayTSArrayObj = {};
     locTs.forEach(t => {
-      dayTSArrayObj = {};
       dt = new Date(Number(t));
       d = dt.getDay();
       h = dt.getHours();
