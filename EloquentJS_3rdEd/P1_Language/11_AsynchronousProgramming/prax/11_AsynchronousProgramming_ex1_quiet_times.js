@@ -172,17 +172,10 @@ for (log of logFileArray) {
         dayTSArrayObj[d] = new Array(24).fill(0);
         dayTSArrayObj[d][h] += 1
       }
-
-      // dayNumbs.push({[locLog]: d});
-      
-      // dayHours[hour] += 1;
-      // resultsArray.push({d: dayHours})
     })  
-    // console.log(typeof locTs);
-    // console.log(locTs);
-    // resultsArray.push({log, 'ts-array': dayHours});
-    // console.log(resultsArray);
-    console.log(dayTSArrayObj);
+    console.log(dayTSArrayObj);   
+    console.log(dayTSArrayObj[String(day)]) 
+    // return dayTSArrayObj[String(day)];
     }    
   )
 }
@@ -229,6 +222,7 @@ for (log of logFileArray) {
   
   // return hourCounts;
   return [0, 1, 2, 3];
+  
 }
 
 activityTable(1)
