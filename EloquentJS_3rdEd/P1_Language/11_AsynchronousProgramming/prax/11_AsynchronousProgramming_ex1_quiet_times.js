@@ -154,14 +154,14 @@ for (log of logFileArray) {
   // console.log(timestamps);
   arrayLogsLogContents.push({'log-name': log, 'log-contents': timestamps});
 
-  let resultsArray = [];
+  // let resultsArray = [];
+  dayTSArrayObj = {};
   
   arrayLogsLogContents.forEach(item => {
     // let dayHours = new Array(24).fill(0);
     dayNumbs = new Array();
     locLog = item['log-name'];  
     locTs = item['log-contents'];
-    dayTSArrayObj = {};
     locTs.forEach(t => {
       dt = new Date(Number(t));
       d = dt.getDay();

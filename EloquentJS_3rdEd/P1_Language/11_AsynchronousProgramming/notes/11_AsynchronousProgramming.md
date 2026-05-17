@@ -596,7 +596,7 @@ activityTable(1)
 bbbbb
 bb+++
 +++++
-+
+++
   -->
 
 ### EX2: REAL PROMISES
