@@ -174,7 +174,7 @@ for (log of logFileArray) {
       }
     })  
     console.log(dayTSArrayObj);   
-    console.log(dayTSArrayObj[String(day)]) 
+    // console.log(dayTSArrayObj[String(day)]) 
     // return dayTSArrayObj[String(day)];
     }    
   )
