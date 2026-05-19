@@ -145,7 +145,8 @@ async function activityTable(day) {
   // timestamps = logContent.split('\n');
   // console.log(timestamps);
 
-
+dayTSArrayObj = {};
+  
 for (log of logFileArray) {
   arrayLogsLogContents = [];
   logContent = await textFile(log);
@@ -155,7 +156,7 @@ for (log of logFileArray) {
   arrayLogsLogContents.push({'log-name': log, 'log-contents': timestamps});
 
   // let resultsArray = [];
-  dayTSArrayObj = {};
+  // dayTSArrayObj = {};
   
   arrayLogsLogContents.forEach(item => {
     // let dayHours = new Array(24).fill(0);
