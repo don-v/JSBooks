@@ -132,100 +132,36 @@ function textFile(filename) {
 async function activityTable(day) {
   let logFileList = await textFile("camera_logs.txt");
   // Your code here
-  // console.log(logFileList)
   logFileArray = logFileList.split('\n');
-  // console.log(logFileArray)
-  // for (log of logFileArray) {
-  //   logContent = await textFile(log);
-  //   console.log(logContent);
-  // }
-  // log = logFileArray[0];
-  // logContent = await textFile(log);
-  // console.log(`log-name: ${log}; content:\n${logContent}`);
-  // timestamps = logContent.split('\n');
-  // console.log(timestamps);
 
-dayTSArrayObj = {};
-  
-for (log of logFileArray) {
-  arrayLogsLogContents = [];
-  logContent = await textFile(log);
-  // console.log(`log-name: ${log}; content:\n${logContent}`);
-  timestamps = logContent.split('\n');
-  // console.log(timestamps);
-  arrayLogsLogContents.push({'log-name': log, 'log-contents': timestamps});
+  dayTSArrayObj = {};
+    
+  for (log of logFileArray) {
+    arrayLogsLogContents = [];
+    logContent = await textFile(log);
+    timestamps = logContent.split('\n');
+    arrayLogsLogContents.push({'log-name': log, 'log-contents': timestamps});
+    arrayLogsLogContents.forEach(item => {
+      locLog = item['log-name'];  
+      locTs = item['log-contents'];
+      locTs.forEach(t => {
+          dt = new Date(Number(t));
+          d = dt.getDay();
+          h = dt.getHours();
+          if (d in dayTSArrayObj) {
+            dayTSArrayObj[d][h] += 1
+          } else {
+            dayTSArrayObj[d] = new Array(24).fill(0);
+            dayTSArrayObj[d][h] += 1
+          }
+        })  
+      }    
+    )
+  }
 
-  // let resultsArray = [];
-  // dayTSArrayObj = {};
-  
-  arrayLogsLogContents.forEach(item => {
-    // let dayHours = new Array(24).fill(0);
-    dayNumbs = new Array();
-    locLog = item['log-name'];  
-    locTs = item['log-contents'];
-    locTs.forEach(t => {
-      dt = new Date(Number(t));
-      d = dt.getDay();
-      h = dt.getHours();
-      if (d in dayTSArrayObj) {
-        dayTSArrayObj[d][h] += 1
-      } else {
-        dayTSArrayObj[d] = new Array(24).fill(0);
-        dayTSArrayObj[d][h] += 1
-      }
-    })  
-    console.log(dayTSArrayObj);   
-    // console.log(dayTSArrayObj[String(day)]) 
-    // return dayTSArrayObj[String(day)];
-    }    
-  )
+  console.log(`Activity for day of the week ${day}`);
+  return dayTSArrayObj[day];
 }
 
-
-
-//   // Initialize counter for 24 hours (0 to 23)
-// const hourCounts = new Array(24).fill(0);
-
-// // Optional: Store day + hour for each timestamp
-// const perTimestampInfo = [];
-
-// timestamps.forEach(ts => {
-//   // Convert milliseconds to seconds and create Date object (UTC)
-//   const date = new Date(Number(ts));        // JavaScript Date handles ms timestamps directly
-  
-//   const hour = date.getHours();      // 0 to 23 (UTC)
-//   const weekday = date.getDay();     // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
-  
-//   // Increment the hour counter
-//   hourCounts[hour] += 1;
-  
-//   // Optional: save day of week and hour for this timestamp
-//   perTimestampInfo.push({ weekday, hour, timestamp: ts });
-// });
-
-// // === RESULTS ===
-// console.log("Hour frequencies (0 to 23):");
-// console.log(hourCounts);
-
-// // Pretty print
-// console.log("\nHourly breakdown:");
-// hourCounts.forEach((count, hour) => {
-//   console.log(`Hour ${hour.toString().padStart(2, '0')}: ${count} timestamps`);
-// });
-
-// // Optional: Show day of week names
-// const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-
-// console.log("\nPer timestamp info (first 5):");
-// perTimestampInfo.slice(0, 5).forEach(info => {
-//   console.log(`Timestamp: ${info.timestamp} → ${dayNames[info.weekday]}, Hour ${info.hour}`);
-// });
-  
-  // return hourCounts;
-  return [0, 1, 2, 3];
-  
-}
-
-activityTable(1)
+activityTable(6)
   .then(table => console.log(activityGraph(table)));
-
