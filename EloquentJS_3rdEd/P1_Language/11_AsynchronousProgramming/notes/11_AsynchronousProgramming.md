@@ -576,29 +576,108 @@ activityTable(1)
   .then(table => console.log(activityGraph(table)));
 ```
 
-<!-- HERE -- EX1+++cccccccc
-+++++
-+++++
-+++++
-+++++
-+++++
-+++++
-+++++
-+++++
-+++++
-+++++
-+++++
-+++++
-+++++
-+++++
-+++++
-++++b
-bbbbb
-bb+++
-+++++
-+++++
-+
-  -->
+#### EX1: MY SOLUTION
+
+```js
+const { text } = require("node:stream/consumers");
+
+// load dependencies
+// require("./code/load")("code/hangar2.js", "code/chapter/11_async.js");
+require("./11_AsynchronousProgramming_ex/code/load")("code/hangar2.js", "code/chapter/11_async.js");
+
+
+/* 
+
+To read the files, use the `textFile` function defined earlier -- given a filename, it returns a 
+promise that resolves to the file's content. Remember that `new Date(timestamp)` creates a `Date` 
+object for that time, which has `getDay` and `getHours` methods returning the day of the week and 
+the hour of the day, (respectively).
+
+Both types of files -- the list of logfiles and logfiles themselves -- have each piece of data 
+on its own line, separated by a newline ("\n") characters.
+*/
+
+
+function textFile(filename) {
+  return new Promise(resolve => {
+    readTextFile(filename, text => resolve(text));
+  });
+}
+
+
+async function activityTable(day) {
+  let logFileList = await textFile("camera_logs.txt");
+  // Your code here
+  logFileArray = logFileList.split('\n');
+
+  dayTSArrayObj = {};
+    
+  for (log of logFileArray) {
+    arrayLogsLogContents = [];
+    logContent = await textFile(log);
+    timestamps = logContent.split('\n');
+    arrayLogsLogContents.push({'log-name': log, 'log-contents': timestamps});
+    arrayLogsLogContents.forEach(item => {
+      locLog = item['log-name'];  
+      locTs = item['log-contents'];
+      locTs.forEach(t => {
+          dt = new Date(Number(t));
+          d = dt.getDay();
+          h = dt.getHours();
+          if (d in dayTSArrayObj) {
+            dayTSArrayObj[d][h] += 1
+          } else {
+            dayTSArrayObj[d] = new Array(24).fill(0);
+            dayTSArrayObj[d][h] += 1
+          }
+        })  
+      }    
+    )
+  }
+
+  console.log(`Activity for day of the week ${day}`);
+  return dayTSArrayObj[day];
+}
+
+activityTable(6)
+  .then(table => console.log(activityGraph(table)));
+```
+
+#### TEACH KA HINTS
+
+You will need to convert the content of these files to an array. The easiest way to do that is to use the split method on the string produced by textFile. Note that for the logfiles, that will still give you an array of strings, which you have to convert to numbers before passing them to new Date.
+
+Summarizing all the time points into a table of hours can be done by creating a table (array) that holds a number for each hour in the day. You can then loop over all the timestamps (over the logfiles and the numbers in every logfile) and for each one, if it happened on the correct day, take the hour it occurred in, and add one to the corresponding number in the table.
+
+Make sure you use await on the result of asynchronous functions before doing anything with it, or you’ll end up with a Promise where you expected a string.
+
+
+#### TEACH KA SOLUTION
+
+```js
+async function activityTable(day) {
+  let table = [];
+  for (let i = 0; i < 24; i++) table[i] = 0;
+
+  let logFileList = await textFile("camera_logs.txt");
+  for (let filename of logFileList.split("\n")) {
+    let log = await textFile(filename);
+    for (let timestamp of log.split("\n")) {
+      let date = new Date(Number(timestamp));
+      if (date.getDay() == day) {
+        table[date.getHours()]++;
+      }
+    }
+  }
+
+  return table;
+}
+
+activityTable(1)
+  .then(table => console.log(activityGraph(table)));
+```
+
+
 
 ### EX2: REAL PROMISES
 
@@ -616,6 +695,8 @@ activityTable(6)
 In this style, using `Promise.all` will be more convenient than trying to model a loop over the logfiles. In the `async` function, just using `await` in a loop is simpler. I freadin a file takes some time, which of these two approaches will take the least time to run?
 
 If one of the files listed in the file list has a tpo, and reading it fails, how does the failure end up in the `Promise` object that your function returns?
+
+<!-- HERE -- ex2! -->
 
 
 ### EX3: BUILDING PROMISE.ALL
