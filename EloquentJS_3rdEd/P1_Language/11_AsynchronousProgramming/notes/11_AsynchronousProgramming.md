@@ -696,7 +696,7 @@ In this style, using `Promise.all` will be more convenient than trying to model 
 
 If one of the files listed in the file list has a tpo, and reading it fails, how does the failure end up in the `Promise` object that your function returns?
 
-<!-- HERE -- ex2! -->
+<!-- HERE -- ex2!+ -->
 
 
 ### EX3: BUILDING PROMISE.ALL
