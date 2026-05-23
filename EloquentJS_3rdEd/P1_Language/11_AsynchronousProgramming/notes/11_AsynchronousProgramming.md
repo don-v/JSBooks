@@ -696,7 +696,97 @@ In this style, using `Promise.all` will be more convenient than trying to model 
 
 If one of the files listed in the file list has a tpo, and reading it fails, how does the failure end up in the `Promise` object that your function returns?
 
-<!-- HERE -- ex2!+ -->
+
+#### PROMPT:
+
+In JavaScript, one can use two approaches: 1. `async/await` or traditional 2. `Promise` methods when working with `Promise` objects. Tell me how looping through an iterable is affected with each approach
+
+##### PROMPT RESPONSE:
+Looping through an iterable of asynchronous operations behaves fundamentally differently depending on whether you use `async/await` inside a traditional loop or chain traditional `Promise` methods.
+
+The core difference comes down to **sequence vs. concurrency**—whether you want tasks to run one after another or all at the same time.
+
+---
+
+## 1. The `async/await` Approach (Sequential by Default)
+
+When you use `async/await` inside standard loops (like `for...of`, `for`, or `while`), JavaScript pauses the loop's execution until the current promise resolves.
+
+### How it behaves:
+
+* **Sequential Execution:** It waits for item $A$ to finish before moving to item $B$.
+* **Blocking (within the loop):** The loop is paused, making this ideal when the next iteration depends on the result of the previous one.
+
+```javascript
+async function processSequential(array) {
+  for (const item of array) {
+    // The loop pauses here until the promise resolves
+    const result = await someAsyncFunction(item);
+    console.log(result);
+  }
+}
+
+```
+
+### ⚠️ The `forEach` Gotcha
+
+A very common mistake is using `async/await` inside a standard `.forEach()` loop. **This does not work sequentially.** `.forEach` is not promise-aware; it fires off all async functions concurrently and immediately moves on, ignoring the `await`.
+
+---
+
+## 2. Traditional `Promise` Methods (Concurrent by Default)
+
+When you map an array to a set of promises using traditional methods, JavaScript initiates all the asynchronous operations **at the same time**.
+
+### How it behaves:
+
+* **Concurrent Execution:** All operations start nearly simultaneously.
+* **Non-blocking loop:** The initial loop finishes instantly, returning an array of pending promises.
+
+To handle the results, you typically combine a loop method like `.map()` with **`Promise.all()`** or **`Promise.allSettled()`**.
+
+```javascript
+function processConcurrent(array) {
+  // 1. The map loop finishes instantly, starting all async operations at once
+  const promiseArray = array.map(item => someAsyncFunction(item));
+
+  // 2. Wait for all of them to finish
+  Promise.all(promiseArray)
+    .then(results => {
+      console.log(results); // Array of all results
+    })
+    .catch(error => console.error(error));
+}
+```
+
+---
+
+## Summary Comparison
+
+| Feature | `async/await` (in a `for...of` loop) | Traditional `Promise` (with `Promise.all`) |
+| --- | --- | --- |
+| **Execution Order** | **Sequential** (one after another) | **Concurrent** (all at once) |
+| **Speed** | Slower (total time is the sum of all tasks) | Faster (total time is the duration of the longest task) |
+| **Error Handling** | Standard `try/catch` block around the code. | Handled via `.catch()` or `Promise.allSettled()`. |
+| **Best Used For** | Dependent steps (e.g., updating database row $A$ before reading row $B$). | Independent steps (e.g., fetching 10 different user profiles simultaneously). |
+
+---
+
+### Pro-Tip: Mixing the two
+
+If you prefer the cleaner syntax of `async/await` but still want the **concurrency** of traditional promises, you can combine them like this:
+
+```javascript
+async function processConcurrentWithAwait(array) {
+  const promiseArray = array.map(item => someAsyncFunction(item));
+  
+  // Concurrency achieved, wrapped in clean async/await syntax
+  const results = await Promise.all(promiseArray); 
+  console.log(results);
+}
+```
+
+<!-- HERE -- ex2!++ -->
 
 
 ### EX3: BUILDING PROMISE.ALL
