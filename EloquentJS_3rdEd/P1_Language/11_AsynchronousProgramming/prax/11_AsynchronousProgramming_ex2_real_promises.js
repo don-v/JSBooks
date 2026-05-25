@@ -45,6 +45,16 @@ function textFile(filename) {
 
 function activityTable(day) {
   let table = [];
+  textFile("camera_logs.txt")
+    .then(stringOfTextFileNames => {
+      arrayOfFileNames = stringOfTextFileNames.split("\n")
+      promiseArray = arrayOfFileNames.map(logFile =>
+        textFile(logFile)
+      )
+    })
+
+    Promise.all(promiseArray)
+      .then()
 }
 
 activityTable(6)
