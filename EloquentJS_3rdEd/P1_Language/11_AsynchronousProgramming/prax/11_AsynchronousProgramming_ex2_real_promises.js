@@ -33,8 +33,8 @@ function textFile(filename) {
 //     let log = await textFile(filename);
 //     for (let timestamp of log.split("\n")) {
 //       let date = new Date(Number(timestamp));
-//       if (date.getDay() == day) {
-//         table[date.getHours()]++;
+      // if (date.getDay() == day) {
+      //   table[date.getHours()]++;
 //       }
 //     }
 //   }
@@ -54,7 +54,15 @@ function activityTable(day) {
     })
 
     Promise.all(promiseArray)
-      .then()
+      .then(logfileContents => {
+        arrayOfTimeStamps = logfileContents.split("\n")
+        promiseArray2 = arrayOfTimeStamps.map(timestamp => {
+            let date = new Date(Number(timestamp));
+            if (date.getDay() == day) {
+              table[date.getHours()]++;
+          }
+        )
+      })
 }
 
 activityTable(6)
