@@ -56,12 +56,13 @@ function activityTable(day) {
     Promise.all(promiseArray)
       .then(logfileContents => {
         arrayOfTimeStamps = logfileContents.split("\n")
-        promiseArray2 = arrayOfTimeStamps.map(timestamp => {
-            let date = new Date(Number(timestamp));
-            if (date.getDay() == day) {
-              table[date.getHours()]++;
-          }
-        )
+        // promiseArray2 = arrayOfTimeStamps.map(timestamp => {
+        //     let date = new Date(Number(timestamp));
+        //     if (date.getDay() == day) {
+        //       table[date.getHours()]++;
+        //   }
+        // )
+        console.log(arrayOfTimeStamps);
       })
 }
 
