@@ -786,7 +786,7 @@ async function processConcurrentWithAwait(array) {
 }
 ```
 
-<!-- HERE -- ex2!++++++ -->
+<!-- HERE -- ex2!+++++++ -->
 
 
 ### EX3: BUILDING PROMISE.ALL

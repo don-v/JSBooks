@@ -47,24 +47,25 @@ function activityTable(day) {
   let table = [];
   textFile("camera_logs.txt")
     .then(stringOfTextFileNames => {
-      arrayOfFileNames = stringOfTextFileNames.split("\n")
-      promiseArray = arrayOfFileNames.map(logFile =>
-        textFile(logFile)
-      )
+      // arrayOfFileNames = stringOfTextFileNames.split("\n")
+      // promiseArray = arrayOfFileNames.map(logFile =>
+      //   textFile(logFile)
+      // )
+      console.log(stringOfTextFileNames);
     })
 
-    Promise.all(promiseArray)
-      .then(logfileContents => {
-        arrayOfTimeStamps = logfileContents.split("\n")
-        // promiseArray2 = arrayOfTimeStamps.map(timestamp => {
-        //     let date = new Date(Number(timestamp));
-        //     if (date.getDay() == day) {
-        //       table[date.getHours()]++;
-        //   }
-        // )
-        console.log(arrayOfTimeStamps);
-      })
+    // Promise.all(promiseArray)
+    //   .then(logfileContents => {
+    //     arrayOfTimeStamps = logfileContents.split("\n")
+    //     // promiseArray2 = arrayOfTimeStamps.map(timestamp => {
+    //     //     let date = new Date(Number(timestamp));
+    //     //     if (date.getDay() == day) {
+    //     //       table[date.getHours()]++;
+    //     //   }
+    //     // )
+    //     console.log(arrayOfTimeStamps);
+    //   })
 }
 
-activityTable(6)
-  .then(table => console.log(activityGraph(table)));
+// activityTable(6)
+//   .then(table => console.log(activityGraph(table)));
