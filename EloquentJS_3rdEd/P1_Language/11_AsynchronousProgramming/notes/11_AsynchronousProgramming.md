@@ -692,9 +692,9 @@ activityTable(6)
   .then(table => console.log(activityGraph(table)));
 ```
 
-In this style, using `Promise.all` will be more convenient than trying to model a loop over the logfiles. In the `async` function, just using `await` in a loop is simpler. I freadin a file takes some time, which of these two approaches will take the least time to run?
+In this style, using `Promise.all` will be more convenient than trying to model a loop over the logfiles. In the `async` function, just using `await` in a loop is simpler. If reading a file takes some time, which of these two approaches will take the least time to run?
 
-If one of the files listed in the file list has a tpo, and reading it fails, how does the failure end up in the `Promise` object that your function returns?
+If one of the files listed in the file list has a typo, and reading it fails, how does the failure end up in the `Promise` object that your function returns?
 
 
 #### PROMPT:
@@ -786,7 +786,7 @@ async function processConcurrentWithAwait(array) {
 }
 ```
 
-<!-- HERE -- ex2!+++++++ -->
+<!-- HERE -- ex2!++++++++ -->
 
 
 ### EX3: BUILDING PROMISE.ALL
