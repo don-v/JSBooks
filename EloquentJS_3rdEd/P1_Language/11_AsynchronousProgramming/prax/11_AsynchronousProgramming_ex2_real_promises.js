@@ -46,11 +46,16 @@ function textFile(filename) {
 function activityTable(day) {
   let table = [];
   const clogsPromiseResult = textFile("camera_logs.txt");
-  clogsPromiseResult.then(result => {
+  clogsPromiseResult.then((result) => {
     // console.log(result));
-    arrayOfLogFileNames = result.split("\n"));
+    arrayOfLogFileNames = result.split("\n");
     console.log(arrayOfLogFileNames);
-  } 
+    arrayOfLogFilePromises = arrayOfLogFileNames.map((log) => {
+      textFile(log);
+    });
+    logFileContentArrays = Promise.all(arrayOfLogFilePromises);
+    console.log(logFileContentArrays);
+  }) 
     
 
     // Promise.all(promiseArray)
