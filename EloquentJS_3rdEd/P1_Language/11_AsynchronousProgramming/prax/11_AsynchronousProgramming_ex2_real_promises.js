@@ -55,6 +55,11 @@ function activityTable(day) {
     });
     logFileContentArrays = Promise.all(arrayOfLogFilePromises);
     console.log(logFileContentArrays);
+    logFileContentArrays.then((resolvedLogFilePromises) => {
+      for (logContents of resolvedLogFilePromises) {
+        
+      }
+    });
   }) 
     
 
