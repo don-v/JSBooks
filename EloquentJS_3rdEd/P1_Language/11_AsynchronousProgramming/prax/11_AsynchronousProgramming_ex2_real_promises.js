@@ -31,10 +31,10 @@ function textFile(filename) {
 //   let logFileList = await textFile("camera_logs.txt");
 //   for (let filename of logFileList.split("\n")) {
 //     let log = await textFile(filename);
-//     for (let timestamp of log.split("\n")) {
-//       let date = new Date(Number(timestamp));
-      // if (date.getDay() == day) {
-      //   table[date.getHours()]++;
+    // for (let timestamp of log.split("\n")) {
+    //   let date = new Date(Number(timestamp));
+    //   if (date.getDay() == day) {
+    //     table[date.getHours()]++;
 //       }
 //     }
 //   }
@@ -56,8 +56,12 @@ function activityTable(day) {
     logFileContentArrays = Promise.all(arrayOfLogFilePromises);
     console.log(logFileContentArrays);
     logFileContentArrays.then((resolvedLogFilePromises) => {
-      for (logContents of resolvedLogFilePromises) {
-        
+      for (logContentsString of resolvedLogFilePromises) {
+        arrayOfTimeStamps = logContentsString.split("\n");
+        for (let timestamp of arrayOfTimeStamps) {
+          let date = new Date(Number(timestamp));
+          if (date.getDay() == day) {
+          table[date.getHours()]++;
       }
     });
   }) 
