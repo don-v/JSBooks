@@ -62,6 +62,8 @@ function activityTable(day) {
           let date = new Date(Number(timestamp));
           if (date.getDay() == day) {
           table[date.getHours()]++;
+            }
+          }
       }
     });
   }) 
@@ -78,7 +80,10 @@ function activityTable(day) {
     //     // )
     //     console.log(arrayOfTimeStamps);
     //   })
+    return new Promise((resolve, reject) => {
+      resolve(table);
+    })
 }
 
 activityTable(6)
-//   .then(table => console.log(activityGraph(table)));
+  .then(table => console.log(activityGraph(table)));
