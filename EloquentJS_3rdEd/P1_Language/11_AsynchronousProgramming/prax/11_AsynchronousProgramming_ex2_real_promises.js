@@ -56,6 +56,18 @@ function activityTable(day) {
     logFileContentArrays = Promise.all(arrayOfLogFilePromises);
     console.log(logFileContentArrays);
     logFileContentArrays.then((resolvedLogFilePromises) => {
+      
+      resolvedLogFilePromises.map((content) => {
+        arrayOfTimeStamps = content.trim().split('\n');
+          for (let timestamp of arrayOfTimeStamps) {
+          let date = new Date(Number(timestamp));
+          if (date.getDay() == day) {
+          table[date.getHours()]++;
+            }
+          }  
+      })
+      
+      
       // for (logContentsString of resolvedLogFilePromises) {
       //   arrayOfTimeStamps = logContentsString.split("\n");
       //   // for (let timestamp of arrayOfTimeStamps) {
@@ -84,7 +96,8 @@ function activityTable(day) {
     // return new Promise((resolve, reject) => {
     //   resolve(table);
     // })
+    return table;
 }
 
 activityTable(6)
-  // .then(table => console.log(activityGraph(table)));
+  .then(table => console.log(activityGraph(table)));
