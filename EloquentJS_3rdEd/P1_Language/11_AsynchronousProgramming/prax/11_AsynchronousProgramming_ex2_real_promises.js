@@ -58,8 +58,9 @@ function activityTable(day) {
     logFileContentArrays.then((resolvedLogFilePromises) => {
       
       resolvedLogFilePromises.map((content) => {
-        arrayOfTimeStamps = content.trim().split('\n');
-          for (let timestamp of arrayOfTimeStamps) {
+        return content.trim().split('\n');
+      }).then((result) => {
+        for (let timestamp of result) {
           let date = new Date(Number(timestamp));
           if (date.getDay() == day) {
           table[date.getHours()]++;
@@ -96,7 +97,7 @@ function activityTable(day) {
     // return new Promise((resolve, reject) => {
     //   resolve(table);
     // })
-    return table;
+    return new Promise(table);
 }
 
 activityTable(6)
