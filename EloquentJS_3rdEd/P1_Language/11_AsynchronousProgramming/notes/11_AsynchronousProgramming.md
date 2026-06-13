@@ -928,7 +928,7 @@ To ensure your data flows seamlessly from one `.then()` to the next:
 
 
 
-<!-- HERE -- ex2!++++++++++++++++++++ -->
+<!-- HERE -- ex2!+++++++++++++++++++++ -->
 
 ### EX3: BUILDING PROMISE.ALL
 

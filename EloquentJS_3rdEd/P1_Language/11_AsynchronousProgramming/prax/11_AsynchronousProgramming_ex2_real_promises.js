@@ -42,8 +42,15 @@ function textFile(filename) {
 //   return table;
 // }
 
+function hello() {
+  return new Promise((reject, resolve) => {
+      
+    })
+
+}
 
 function activityTable(day) {
+  
   let table = [];
   const clogsPromiseResult = textFile("camera_logs.txt");
   clogsPromiseResult.then((result) => {
@@ -97,8 +104,10 @@ function activityTable(day) {
     // return new Promise((resolve, reject) => {
     //   resolve(table);
     // })
-    return new Promise(table);
+    return table;
 }
 
+
+  
 activityTable(6)
   .then(table => console.log(activityGraph(table)));
