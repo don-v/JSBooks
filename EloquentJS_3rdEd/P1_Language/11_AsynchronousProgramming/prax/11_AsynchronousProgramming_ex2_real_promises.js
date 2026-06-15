@@ -51,6 +51,7 @@ function hello() {
 
 function activityTable(day) {
   
+  return new Promise((resolve, reject) => {
   let table = [];
   const clogsPromiseResult = textFile("camera_logs.txt");
   clogsPromiseResult.then((result) => {
@@ -65,7 +66,8 @@ function activityTable(day) {
     logFileContentArrays.then((resolvedLogFilePromises) => {
       
       resolvedLogFilePromises.map((content) => {
-        return content.trim().split('\n');
+        // return content.trim().split('\n');
+        return content.split('\n');
       }).then((result) => {
         for (let timestamp of result) {
           let date = new Date(Number(timestamp));
@@ -104,8 +106,11 @@ function activityTable(day) {
     // return new Promise((resolve, reject) => {
     //   resolve(table);
     // })
-    return table;
-}
+    resolve(table);
+
+    })
+
+  }
 
 
   
