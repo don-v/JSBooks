@@ -58,7 +58,7 @@ function activityTable(day) {
     // console.log(result));
     arrayOfLogFileNames = result.split("\n");
     console.log(arrayOfLogFileNames);
-    arrayOfLogFilePromises = arrayOfLogFileNames.map((log) => {
+    return arrayOfLogFilePromises = arrayOfLogFileNames.map((log) => {
       textFile(log);
     });
     logFileContentArrays = Promise.all(arrayOfLogFilePromises);
@@ -74,7 +74,8 @@ function activityTable(day) {
           if (date.getDay() == day) {
           table[date.getHours()]++;
             }
-          }  
+          } 
+        console.log(table);
       })
       
       
