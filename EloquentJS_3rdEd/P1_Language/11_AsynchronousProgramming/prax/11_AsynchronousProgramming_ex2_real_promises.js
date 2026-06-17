@@ -57,12 +57,13 @@ function activityTable(day) {
   clogsPromiseResult.then((result) => {
     // console.log(result));
     arrayOfLogFileNames = result.split("\n");
-    console.log(arrayOfLogFileNames);
+    console.log(`arrayOfLogFileNames (line 60): ${arrayOfLogFileNames}`);
     return arrayOfLogFilePromises = arrayOfLogFileNames.map((log) => {
       textFile(log);
     });
+    console.log(`arrayOfLogFilePromises (line 64): ${arrayOfLogFilePromises}`);
     logFileContentArrays = Promise.all(arrayOfLogFilePromises);
-    console.log(logFileContentArrays);
+    console.log(`logFileContentArrays (line 66): ${logFileContentArrays}`);
     logFileContentArrays.then((resolvedLogFilePromises) => {
       
       resolvedLogFilePromises.map((content) => {
