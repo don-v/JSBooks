@@ -49,9 +49,13 @@ function hello() {
 
 }
 
-function activityTable(day) {
-  
+function activityTable(day) { 
   return new Promise((resolve, reject) => {
+
+  })
+}
+  
+  
   let table = [];
   const clogsPromiseResult = textFile("camera_logs.txt");
   clogsPromiseResult.then((result) => {
@@ -60,13 +64,10 @@ function activityTable(day) {
     console.log(`arrayOfLogFileNames (line 60): ${arrayOfLogFileNames}`);
     return arrayOfLogFilePromises = arrayOfLogFileNames.map((log) => {
       textFile(log);
-    });
-    console.log(`arrayOfLogFilePromises (line 64): ${arrayOfLogFilePromises}`);
-    logFileContentArrays = Promise.all(arrayOfLogFilePromises);
-    console.log(`logFileContentArrays (line 66): ${logFileContentArrays}`);
-    logFileContentArrays.then((resolvedLogFilePromises) => {
-      
-      resolvedLogFilePromises.map((content) => {
+    }).then((arrayOfLogFilePromises) => {
+      return Promise.all(arrayOfLogFilePromises);
+    }).then((logFileContentArrays) => {
+      return logFileContentArrays.map((content) => {
         // return content.trim().split('\n');
         return content.split('\n');
       }).then((result) => {
@@ -77,7 +78,31 @@ function activityTable(day) {
             }
           } 
         console.log(table);
+        return table;
       })
+    })
+
+    resolve(table);
+
+  })
+
+    // console.log(`arrayOfLogFilePromises (line 64): ${arrayOfLogFilePromises}`);
+    // logFileContentArrays = Promise.all(arrayOfLogFilePromises);
+    // console.log(`logFileContentArrays (line 66): ${logFileContentArrays}`);
+    // logFileContentArrays.then((resolvedLogFilePromises) => {
+      
+    //   resolvedLogFilePromises.map((content) => {
+    //     // return content.trim().split('\n');
+    //     return content.split('\n');
+    //   }).then((result) => {
+    //     for (let timestamp of result) {
+    //       let date = new Date(Number(timestamp));
+    //       if (date.getDay() == day) {
+    //       table[date.getHours()]++;
+    //         }
+    //       } 
+    //     console.log(table);
+    //   })
       
       
       // for (logContentsString of resolvedLogFilePromises) {
@@ -89,9 +114,9 @@ function activityTable(day) {
       //   //     }
       //   //   }
       // }
-      console.log(resolvedLogFilePromises);
-    });
-  }) 
+  //     console.log(resolvedLogFilePromises);
+  //   });
+  // }) 
     
 
     // Promise.all(promiseArray)
@@ -108,11 +133,8 @@ function activityTable(day) {
     // return new Promise((resolve, reject) => {
     //   resolve(table);
     // })
-    resolve(table);
-
-    })
-
-  }
+  
+  
 
 
   
