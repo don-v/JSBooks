@@ -63,7 +63,7 @@ function activityTable(day) {
     arrayOfLogFileNames = result.split("\n");
     console.log(`arrayOfLogFileNames (line 60): ${arrayOfLogFileNames}`);
     return arrayOfLogFilePromises = arrayOfLogFileNames.map((log) => {
-      textFile(log);
+      textFile(log)
     }).then((arrayOfLogFilePromises) => {
       return Promise.all(arrayOfLogFilePromises);
     }).then((logFileContentArrays) => {
