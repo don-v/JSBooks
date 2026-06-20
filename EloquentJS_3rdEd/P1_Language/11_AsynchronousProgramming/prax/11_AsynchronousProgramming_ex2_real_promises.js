@@ -50,12 +50,10 @@ function hello() {
 }
 
 function activityTable(day) { 
-  return new Promise((resolve, reject) => {
+  // return new Promise((resolve, reject) => {
 
-  })
-}
-  
-  
+  // })
+
   let table = [];
   const clogsPromiseResult = textFile("camera_logs.txt");
   clogsPromiseResult.then((result) => {
@@ -82,10 +80,14 @@ function activityTable(day) {
       })
     })
 
-    resolve(table);
+    return (table);
 
   })
 
+}
+  
+  
+  
     // console.log(`arrayOfLogFilePromises (line 64): ${arrayOfLogFilePromises}`);
     // logFileContentArrays = Promise.all(arrayOfLogFilePromises);
     // console.log(`logFileContentArrays (line 66): ${logFileContentArrays}`);
@@ -139,4 +141,4 @@ function activityTable(day) {
 
   
 activityTable(6)
-  .then(table => console.log(activityGraph(table)));
+  // .then(table => console.log(activityGraph(table)));
