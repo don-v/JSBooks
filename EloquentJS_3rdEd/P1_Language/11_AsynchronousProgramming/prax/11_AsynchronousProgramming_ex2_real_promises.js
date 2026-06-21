@@ -62,25 +62,28 @@ function activityTable(day) {
     console.log(`arrayOfLogFileNames (line 60): ${arrayOfLogFileNames}`);
     return arrayOfLogFilePromises = arrayOfLogFileNames.map((log) => {
       textFile(log)
-    }).then((arrayOfLogFilePromises) => {
-      return Promise.all(arrayOfLogFilePromises);
-    }).then((logFileContentArrays) => {
+    })
+      
+    Promise.all(arrayOfLogFilePromises).then((logFileContentArrays) => {
+      console.log(`logFileContentArrays (line 68): ${logFileContentArrays}`);
       return logFileContentArrays.map((content) => {
         // return content.trim().split('\n');
-        return content.split('\n');
-      }).then((result) => {
-        for (let timestamp of result) {
-          let date = new Date(Number(timestamp));
-          if (date.getDay() == day) {
-          table[date.getHours()]++;
-            }
-          } 
-        console.log(table);
-        return table;
+        console.log(content.split('\n'));
+        // return content.split('\n');
       })
+      // .then((result) => {
+      //   for (let timestamp of result) {
+      //     let date = new Date(Number(timestamp));
+      //     if (date.getDay() == day) {
+      //     table[date.getHours()]++;
+      //       }
+      //     } 
+      //   console.log(table);
+      //   return table;
+      // })
     })
 
-    return (table);
+    // return (table);
 
   })
 
