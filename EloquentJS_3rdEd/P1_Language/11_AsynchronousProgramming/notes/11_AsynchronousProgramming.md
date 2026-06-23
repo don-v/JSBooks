@@ -927,8 +927,80 @@ To ensure your data flows seamlessly from one `.then()` to the next:
 2. **The `.map()` callback** must return the transformed item (either explicitly or implicitly).
 
 
+#### Prompt
 
-<!-- HERE -- ex2!+++++++++++++++++++++++++++++ -->
+I have a function that reads a file asynchronously named `textFile` and it returns a promise. Let's say I have an array of file names. How can I use `Promise. all` to read all of the files at once using the `then()` syntax (i.e., no `async/await`). Also, let's say the result of reading the files is that the contents is concatenated string of the lines of the file delimited by a `'\n'` character. These lines will then be processed. How can this be incorporated into the solution?
+
+#### RESPONSE
+
+Here is how you can achieve this using the standard `.then()` syntax.
+
+Because `Promise.all` returns a single promise that resolves to an array of results, you can chain a `.then()` right after it to process that array. Since each file's content is already a string of lines delimited by `'\n'`, you can use `.split('\n')` to break them into individual lines for processing.
+
+Here is the complete implementation:
+
+```javascript
+const fileNames = ['file1.txt', 'file2.txt', 'file3.txt'];
+
+// 1. Map the file names to an array of promises
+const filePromises = fileNames.map(file => textFile(file));
+
+// 2. Pass the array of promises to Promise.all
+Promise.all(filePromises)
+  .then(allFileContents => {
+    // allFileContents is an array of strings (one string per file)
+    
+    allFileContents.forEach((content, index) => {
+      console.log(`--- Processing ${fileNames[index]} ---`);
+      
+      // Split the concatenated string by the newline delimiter
+      const lines = content.split('\n');
+      
+      // Process the lines (for example, iterating through them)
+      lines.forEach((line, lineIndex) => {
+        // Simple example: logging non-empty lines
+        if (line.trim() !== '') {
+          console.log(`Line ${lineIndex + 1}: ${line}`);
+        }
+      });
+    });
+  })
+  .catch(error => {
+    // If any single file read fails, the whole operation lands here
+    console.error("An error occurred while reading the files:", error);
+  });
+
+```
+
+---
+
+### ⚙️ How the Data Flows
+
+To help visualize how the data transforms through this promise chain:
+
+1. **`fileNames` Array:** `['file1.txt', 'file2.txt']`
+2. **`filePromises` Array:** `[ Promise { <pending> }, Promise { <pending> } ]`
+3. **`allFileContents` (Inside `.then`):** `["Line 1\nLine 2\nLine 3", "Line A\nLine B"]`
+4. **After `.split('\n')`:** `["Line 1", "Line 2", "Line 3"]` (ready for your processing logic).
+
+### 💡 A Quick Optimization
+
+If you want to flatten *all* lines from *all* files into one single master list of lines to process together, you can change the `.then()` block to look like this instead:
+
+```javascript
+  .then(allFileContents => {
+    // Combine all contents into one string, then split into a single array of lines
+    const allLines = allFileContents.join('\n').split('\n');
+    
+    // Process every line across all files sequentially
+    allLines.forEach(line => {
+      // Your processing logic here
+    });
+  })
+
+```
+
+<!-- HERE -- ex2!++++++++++++++++++++++++++++++ -->
 
 ### EX3: BUILDING PROMISE.ALL
 

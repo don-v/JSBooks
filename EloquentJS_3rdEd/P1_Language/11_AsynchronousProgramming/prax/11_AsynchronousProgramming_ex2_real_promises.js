@@ -66,11 +66,11 @@ function activityTable(day) {
       
     Promise.all(arrayOfLogFilePromises).then((logFileContentArrays) => {
       console.log(`logFileContentArrays (line 68): ${logFileContentArrays}`);
-      return logFileContentArrays.map((content) => {
-        // return content.trim().split('\n');
-        console.log(content.split('\n'));
-        // return content.split('\n');
-      })
+      // return logFileContentArrays.map((content) => {
+      //   // return content.trim().split('\n');
+      //   // console.log(content.split('\n'));
+      //   // return content.split('\n');
+      // })
       // .then((result) => {
       //   for (let timestamp of result) {
       //     let date = new Date(Number(timestamp));
