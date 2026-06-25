@@ -59,6 +59,12 @@ function activityTable(day) {
   clogsPromiseResult.then((result) => {
     // console.log(result));
     arrayOfLogFileNames = result.split("\n");
+    const filePromises = arrayOfLogFileNames.map(file =>
+      textFile(file));
+      Promise.all(filePromises)
+        .then(allFileContents => {
+          // HERE!
+        })
     console.log(`arrayOfLogFileNames (line 60): ${arrayOfLogFileNames}`);
     return arrayOfLogFilePromises = arrayOfLogFileNames.map((log) => {
       textFile(log)
