@@ -63,6 +63,10 @@ function activityTable(day) {
       textFile(file));
       Promise.all(filePromises)
         .then(allFileContents => {
+          allFileContents.forEach((content, index) => {
+            console.log(`Processing ${arrayOfLogFileNames[index]}`)
+          });
+          const lines = content.split('\n')
           // HERE!
         })
     console.log(`arrayOfLogFileNames (line 60): ${arrayOfLogFileNames}`);
