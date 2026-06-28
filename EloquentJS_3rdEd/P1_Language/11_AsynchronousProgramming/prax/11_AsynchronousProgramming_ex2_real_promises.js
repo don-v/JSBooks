@@ -65,35 +65,40 @@ function activityTable(day) {
         .then(allFileContents => {
           allFileContents.forEach((content, index) => {
             console.log(`Processing ${arrayOfLogFileNames[index]}`)
+            const lines = content.split('\n')
+            for (let timestamp of lines) {
+              let date = new Date(Number(timestamp));
+              if (date.getDay() == day) {
+                table[date.getHours()]++;
+              }
+            } 
           });
-          const lines = content.split('\n')
-          // HERE!
         })
-    console.log(`arrayOfLogFileNames (line 60): ${arrayOfLogFileNames}`);
-    return arrayOfLogFilePromises = arrayOfLogFileNames.map((log) => {
-      textFile(log)
-    })
+    // console.log(`arrayOfLogFileNames (line 60): ${arrayOfLogFileNames}`);
+    // return arrayOfLogFilePromises = arrayOfLogFileNames.map((log) => {
+    //   textFile(log)
+    // })
       
-    Promise.all(arrayOfLogFilePromises).then((logFileContentArrays) => {
-      console.log(`logFileContentArrays (line 68): ${logFileContentArrays}`);
-      // return logFileContentArrays.map((content) => {
-      //   // return content.trim().split('\n');
-      //   // console.log(content.split('\n'));
-      //   // return content.split('\n');
-      // })
-      // .then((result) => {
-      //   for (let timestamp of result) {
-      //     let date = new Date(Number(timestamp));
-      //     if (date.getDay() == day) {
-      //     table[date.getHours()]++;
-      //       }
-      //     } 
-      //   console.log(table);
-      //   return table;
-      // })
-    })
+    // Promise.all(arrayOfLogFilePromises).then((logFileContentArrays) => {
+    //   console.log(`logFileContentArrays (line 68): ${logFileContentArrays}`);
+    //   // return logFileContentArrays.map((content) => {
+    //   //   // return content.trim().split('\n');
+    //   //   // console.log(content.split('\n'));
+    //   //   // return content.split('\n');
+    //   // })
+    //   // .then((result) => {
+    //   //   for (let timestamp of result) {
+    //   //     let date = new Date(Number(timestamp));
+    //   //     if (date.getDay() == day) {
+    //   //     table[date.getHours()]++;
+    //   //       }
+    //   //     } 
+    //   //   console.log(table);
+    //   //   return table;
+    //   // })
+    // })
 
-    // return (table);
+    return new Promise(table);
 
   })
 
@@ -154,4 +159,4 @@ function activityTable(day) {
 
   
 activityTable(6)
-  // .then(table => console.log(activityGraph(table)));
+  .then(table => console.log(activityGraph(table)));
