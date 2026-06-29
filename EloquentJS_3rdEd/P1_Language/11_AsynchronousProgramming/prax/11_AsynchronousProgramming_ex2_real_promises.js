@@ -59,9 +59,10 @@ function activityTable(day) {
   clogsPromiseResult.then((result) => {
     // console.log(result));
     arrayOfLogFileNames = result.split("\n");
+    console.log(arrayOfLogFileNames);
     const filePromises = arrayOfLogFileNames.map(file =>
       textFile(file));
-      Promise.all(filePromises)
+      return Promise.all(filePromises)
         .then(allFileContents => {
           allFileContents.forEach((content, index) => {
             console.log(`Processing ${arrayOfLogFileNames[index]}`)
@@ -71,6 +72,7 @@ function activityTable(day) {
               if (date.getDay() == day) {
                 table[date.getHours()]++;
               }
+              return table;
             } 
           });
         })
@@ -159,4 +161,4 @@ function activityTable(day) {
 
   
 activityTable(6)
-  .then(table => console.log(activityGraph(table)));
+  // .then(table => console.log(activityGraph(table)));
