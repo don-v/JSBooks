@@ -72,8 +72,9 @@ function activityTable(day) {
               if (date.getDay() == day) {
                 table[date.getHours()]++;
               }
-              return table;
+              // return table;
             } 
+          console.log(table);  
           });
         })
     // console.log(`arrayOfLogFileNames (line 60): ${arrayOfLogFileNames}`);
