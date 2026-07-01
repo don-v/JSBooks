@@ -68,13 +68,14 @@ function activityTable(day) {
             console.log(`Processing ${arrayOfLogFileNames[index]}`)
             const lines = content.split('\n')
             for (let timestamp of lines) {
+              // console.log(timestamp);
               let date = new Date(Number(timestamp));
               if (date.getDay() == day) {
-                table[date.getHours()]++;
+                table[date.getHours()]++;                
               }
               // return table;
             } 
-          console.log(table);  
+          // console.log(table);  
           });
         })
     // console.log(`arrayOfLogFileNames (line 60): ${arrayOfLogFileNames}`);
