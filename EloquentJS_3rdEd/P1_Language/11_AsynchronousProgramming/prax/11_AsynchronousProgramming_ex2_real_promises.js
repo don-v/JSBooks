@@ -71,7 +71,9 @@ function activityTable(day) {
               // console.log(timestamp);
               let date = new Date(Number(timestamp));
               if (date.getDay() == day) {
-                table[date.getHours()]++;                
+                console.log(`before addition: ${table}; hour: ${date.getHours()}`);                
+                table[date.getHours()]++;
+                console.log(`after addition: ${table}`);
               }
               // return table;
             } 

@@ -1000,7 +1000,7 @@ If you want to flatten *all* lines from *all* files into one single master list 
 
 ```
 
-<!-- HERE -- ex2!+++++++++++++++++++++++++++++++++++++++ -->
+<!-- HERE -- ex2!++++++++++++++++++++++++++++++++++++++++ -->
 
 ### EX3: BUILDING PROMISE.ALL
 
