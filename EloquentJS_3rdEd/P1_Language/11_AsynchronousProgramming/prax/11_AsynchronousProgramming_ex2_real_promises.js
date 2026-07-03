@@ -54,7 +54,8 @@ function activityTable(day) {
 
   // })
 
-  let table = [];
+  // let table = [];
+  const table = Array(24).fill(0);
   const clogsPromiseResult = textFile("camera_logs.txt");
   clogsPromiseResult.then((result) => {
     // console.log(result));

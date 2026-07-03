@@ -1000,7 +1000,63 @@ If you want to flatten *all* lines from *all* files into one single master list 
 
 ```
 
-<!-- HERE -- ex2!++++++++++++++++++++++++++++++++++++++++ -->
+#### prompt
+
+#### output
+
+the `table` array corresponding to the hour of the day for each timestamp. So far, when I do this, I get a `NaN` for each value in my table array, instead of an integer.
+
+The reason you are getting NaN (Not a Number) is because your table array starts out empty.
+
+When you try to increment an index that hasn't been initialized yet (e.g., table[hour]++), JavaScript evaluates table[hour] as undefined. Running undefined + 1 results in NaN.
+
+Here are the two best ways to fix this.
+
+##### Solution 1: Pre-fill the array with zeros (Recommended)
+
+Since a day has 24 hours, the cleanest approach is to initialize your table array with 24 zeros. This ensures every hour index (0–23) already holds a number before you try to increment it.
+
+```js
+const timestamps = ["2026-07-03T08:30:00", "2026-07-03T08:45:00", "2026-07-03T14:15:00"];
+
+// Initialize an array of 24 zeros
+const table = Array(24).fill(0);
+
+timestamps.forEach(ts => {
+    const date = new Date(ts);
+    const hour = date.getHours(); // Returns 0 - 23
+    
+    table[hour]++; 
+});
+
+console.log(table); 
+// table[8] will be 2, table[14] will be 1, all others will be 0
+```
+
+##### Solution 2: Initialize on the fly (Short-circuiting)
+
+If you prefer to keep the array completely empty at the start and only populate the hours that actually appear in your dataset, you need to check if the index exists first. If it doesn't, set it to 0 before adding 1.
+
+```js
+const table = [];
+
+timestamps.forEach(ts => {
+    const date = new Date(ts);
+    const hour = date.getHours();
+    
+    // If table[hour] is undefined, fall back to 0, then add 1
+    table[hour] = (table[hour] || 0) + 1;
+});
+```
+
+Note: This method will create "empty slots" in your array for any hours that didn't have timestamps, which can sometimes look like [empty × 8, 2, empty × 5, 1] when logged.
+
+
+
+
+
+
+<!-- HERE -- ex2!+++++++++++++++++++++++++++++++++++++++++ -->
 
 ### EX3: BUILDING PROMISE.ALL
 
