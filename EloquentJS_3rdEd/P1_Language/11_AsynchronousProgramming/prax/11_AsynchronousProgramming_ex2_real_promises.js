@@ -50,120 +50,32 @@ function hello() {
 }
 
 function activityTable(day) { 
-  // return new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
 
-  // })
+  })
 
-  // let table = [];
   const table = Array(24).fill(0);
   const clogsPromiseResult = textFile("camera_logs.txt");
   clogsPromiseResult.then((result) => {
-    // console.log(result));
     arrayOfLogFileNames = result.split("\n");
-    console.log(arrayOfLogFileNames);
     const filePromises = arrayOfLogFileNames.map(file =>
       textFile(file));
       return Promise.all(filePromises)
         .then(allFileContents => {
           allFileContents.forEach((content, index) => {
-            console.log(`Processing ${arrayOfLogFileNames[index]}`)
             const lines = content.split('\n')
             for (let timestamp of lines) {
-              // console.log(timestamp);
               let date = new Date(Number(timestamp));
               if (date.getDay() == day) {
-                console.log(`before addition: ${table}; hour: ${date.getHours()}`);                
                 table[date.getHours()]++;
-                console.log(`after addition: ${table}`);
               }
-              // return table;
             } 
-          // console.log(table);  
           });
         })
-    // console.log(`arrayOfLogFileNames (line 60): ${arrayOfLogFileNames}`);
-    // return arrayOfLogFilePromises = arrayOfLogFileNames.map((log) => {
-    //   textFile(log)
-    // })
-      
-    // Promise.all(arrayOfLogFilePromises).then((logFileContentArrays) => {
-    //   console.log(`logFileContentArrays (line 68): ${logFileContentArrays}`);
-    //   // return logFileContentArrays.map((content) => {
-    //   //   // return content.trim().split('\n');
-    //   //   // console.log(content.split('\n'));
-    //   //   // return content.split('\n');
-    //   // })
-    //   // .then((result) => {
-    //   //   for (let timestamp of result) {
-    //   //     let date = new Date(Number(timestamp));
-    //   //     if (date.getDay() == day) {
-    //   //     table[date.getHours()]++;
-    //   //       }
-    //   //     } 
-    //   //   console.log(table);
-    //   //   return table;
-    //   // })
-    // })
-
-    return new Promise(table);
-
   })
-
 }
   
   
   
-    // console.log(`arrayOfLogFilePromises (line 64): ${arrayOfLogFilePromises}`);
-    // logFileContentArrays = Promise.all(arrayOfLogFilePromises);
-    // console.log(`logFileContentArrays (line 66): ${logFileContentArrays}`);
-    // logFileContentArrays.then((resolvedLogFilePromises) => {
-      
-    //   resolvedLogFilePromises.map((content) => {
-    //     // return content.trim().split('\n');
-    //     return content.split('\n');
-    //   }).then((result) => {
-    //     for (let timestamp of result) {
-    //       let date = new Date(Number(timestamp));
-    //       if (date.getDay() == day) {
-    //       table[date.getHours()]++;
-    //         }
-    //       } 
-    //     console.log(table);
-    //   })
-      
-      
-      // for (logContentsString of resolvedLogFilePromises) {
-      //   arrayOfTimeStamps = logContentsString.split("\n");
-      //   // for (let timestamp of arrayOfTimeStamps) {
-      //   //   let date = new Date(Number(timestamp));
-      //   //   if (date.getDay() == day) {
-      //   //   table[date.getHours()]++;
-      //   //     }
-      //   //   }
-      // }
-  //     console.log(resolvedLogFilePromises);
-  //   });
-  // }) 
-    
-
-    // Promise.all(promiseArray)
-    //   .then(logfileContents => {
-    //     arrayOfTimeStamps = logfileContents.split("\n")
-    //     // promiseArray2 = arrayOfTimeStamps.map(timestamp => {
-    //     //     let date = new Date(Number(timestamp));
-    //     //     if (date.getDay() == day) {
-    //     //       table[date.getHours()]++;
-    //     //   }
-    //     // )
-    //     console.log(arrayOfTimeStamps);
-    //   })
-    // return new Promise((resolve, reject) => {
-    //   resolve(table);
-    // })
-  
-  
-
-
-  
-activityTable(6)
+    activityTable(6)
   // .then(table => console.log(activityGraph(table)));
