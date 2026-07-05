@@ -1051,7 +1051,7 @@ timestamps.forEach(ts => {
 
 Note: This method will create "empty slots" in your array for any hours that didn't have timestamps, which can sometimes look like [empty × 8, 2, empty × 5, 1] when logged.
 
-<!-- HERE -- ex2!++++++++++++++++++++++++++++++++++++++++++ -->
+<!-- HERE -- ex2!+++++++++++++++++++++++++++++++++++++++++++ -->
 
 ### EX3: BUILDING PROMISE.ALL
 
