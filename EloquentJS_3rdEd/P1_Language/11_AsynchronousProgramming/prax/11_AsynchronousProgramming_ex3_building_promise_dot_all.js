@@ -13,13 +13,16 @@ handles a failure of one's promise.
 function Promise_all(promises) {
   return new Promise((resolve, reject) => {
     results = []
-    for (p of promises) {
-        try {
+    if (promises) {
+        for (p of promises) {
+          try {
+            results.push(resolve(p)) 
+          } catch {
             
-        } catch {
-
-        }
+          }
+      }
     }
+    
   });
 }
 
