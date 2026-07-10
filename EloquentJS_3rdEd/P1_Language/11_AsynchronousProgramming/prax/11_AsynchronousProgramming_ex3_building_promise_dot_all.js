@@ -16,7 +16,7 @@ function Promise_all(promises) {
     if (promises) {
         for (p of promises) {
           try {
-            results.push(resolve(p)) 
+            results.push(p.resolve()) 
           } catch {
             
           }
