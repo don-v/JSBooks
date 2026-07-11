@@ -18,7 +18,7 @@ function Promise_all(promises) {
           try {
             results.push(p.resolve()) 
           } catch {
-            
+            // HERE!
           }
       }
     }
