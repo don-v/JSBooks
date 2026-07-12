@@ -17,12 +17,13 @@ function Promise_all(promises) {
         for (p of promises) {
           try {
             results.push(p.resolve()) 
-          } catch {
-            // HERE!
+          } catch(e){
+            results.push(new Error(e));
           }
       }
+      return results;
     }
-    
+    return results;
   });
 }
 
