@@ -5,7 +5,7 @@ reason from the failing promise.
 
 Implement something like this yourself as a regular function called `Promise_all`. 
 
-Remember that after a promise hs succeeded or failed, it can't succeed or fail again, and 
+Remember that after a promise has succeeded or failed, it can't succeed or fail again, and 
 further calls to the functions that resolve it are ignored. This can simplify the way one 
 handles a failure of one's promise.
  */
@@ -14,16 +14,9 @@ function Promise_all(promises) {
   return new Promise((resolve, reject) => {
     results = []
     if (promises) {
-        for (p of promises) {
-          try {
-            results.push(p.resolve()) 
-          } catch(e){
-            results.push(new Error(e));
-          }
-      }
-      return results;
+      
     }
-    return results;
+    
   });
 }
 
@@ -31,20 +24,20 @@ function Promise_all(promises) {
 Promise_all([]).then(array => {
   console.log("This should be []:", array);
 });
-function soon(val) {
-  return new Promise(resolve => {
-    setTimeout(() => resolve(val), Math.random() * 500);
-  });
-}
-Promise_all([soon(1), soon(2), soon(3)]).then(array => {
-  console.log("This should be [1, 2, 3]:", array);
-});
-Promise_all([soon(1), Promise.reject("X"), soon(3)])
-  .then(array => {
-    console.log("We should not get here");
-  })
-  .catch(error => {
-    if (error != "X") {
-      console.log("Unexpected failure:", error);
-    }
-  });
+// function soon(val) {
+//   return new Promise(resolve => {
+//     setTimeout(() => resolve(val), Math.random() * 500);
+//   });
+// }
+// Promise_all([soon(1), soon(2), soon(3)]).then(array => {
+//   console.log("This should be [1, 2, 3]:", array);
+// });
+// Promise_all([soon(1), Promise.reject("X"), soon(3)])
+//   .then(array => {
+//     console.log("We should not get here");
+//   })
+//   .catch(error => {
+//     if (error != "X") {
+//       console.log("Unexpected failure:", error);
+//     }
+//   });
