@@ -13,6 +13,11 @@ handles a failure of one's promise.
 function Promise_all(promises) {
   return new Promise((resolve, reject) => {
     results = [];
+    if (promises) {
+      for (p of promises) {
+        results.push(p.resolve());
+      }
+    }
     resolve(results);
   });
 }
@@ -26,13 +31,13 @@ function soon(val) {
     setTimeout(() => resolve(val), Math.random() * 500);
   });
 }
-// Promise_all([soon(1), soon(2), soon(3)]).then(array => {
-//   console.log("This should be [1, 2, 3]:", array);
-// });
-
-Promise.all([soon(1), soon(2), soon(3)]).then(array => {
+Promise_all([soon(1), soon(2), soon(3)]).then(array => {
   console.log("This should be [1, 2, 3]:", array);
 });
+
+// Promise.all([soon(1), soon(2), soon(3)]).then(array => {
+//   console.log("This should be [1, 2, 3]:", array);
+// });
 
 
 
