@@ -1181,3 +1181,65 @@ Promise_all([soon(1), Promise.reject("X"), soon(3)])
     }
   });
 ```
+
+#### prompt:
+
+In JavaScript, if I have a 2 Promise object stored in an array, how can I process each one in a for loop to determine if they 'resolve' or 'reject'. Is it possible to capture the resulting 'resolve' and 'reject' outcomes for further processing? How can this be accomplished without using async/await and without using the Promise.all* methods, just plain `then` and `catch`
+
+#### response:
+
+Yes, you can absolutely do this! To process the promises using a plain for loop (or forEach) without async/await or Promise.all methods, you can attach .then() and .catch() handlers to each promise inside the loop.
+
+To capture the outcomes for further processing, you can push the results into a external array (or arrays) from inside those callbacks.
+
+Here is how you can accomplish this:
+
+The Code Implementation
+
+```js
+// Sample promises for demonstration
+const promise1 = Promise.resolve("Success from P1");
+const promise2 = Promise.reject("Error from P2");
+
+const promiseArray = [promise1, promise2];
+
+// Arrays to capture the outcomes
+const resolvedOutcomes = [];
+const rejectedOutcomes = [];
+
+// Using a plain loop to process each promise
+for (let i = 0; i < promiseArray.length; i++) {
+  const currentPromise = promiseArray[i];
+
+  currentPromise
+    .then((value) => {
+      // This runs if the promise resolves
+      resolvedOutcomes.push({ index: i, status: 'resolved', data: value });
+      
+      // Optional: Trigger further processing here
+      handleSuccess(value, i);
+    })
+    .catch((error) => {
+      // This runs if the promise rejects
+      rejectedOutcomes.push({ index: i, status: 'rejected', error: error });
+      
+      // Optional: Trigger further processing here
+      handleFailure(error, i);
+    });
+}
+
+// Example helper functions for further processing
+function handleSuccess(data, index) {
+  console.log(`Processing success for item at index ${index}:`, data);
+}
+
+function handleFailure(err, index) {
+  console.log(`Processing failure for item at index ${index}:`, err);
+}
+```
+How It Works & Key Gotchas
+Asynchronous Execution: Because you aren't using async/await, the for loop itself will finish executing instantly and synchronously. The .then() and .catch() callbacks will execute later, whenever those promises actually settle.
+
+Scoping with let: Using let i = 0 in the for loop is crucial here. It creates a block-scoped variable for each iteration, meaning the correct index i is safely preserved inside the asynchronous .then and .catch callbacks when they eventually fire.
+
+Capturing Results: Because the callbacks have access to the outer scope, they can safely mutate resolvedOutcomes and rejectedOutcomes as soon as they get their data.
