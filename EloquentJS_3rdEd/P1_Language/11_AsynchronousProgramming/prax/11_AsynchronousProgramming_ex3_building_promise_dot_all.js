@@ -13,32 +13,38 @@ handles a failure of one's promise.
 function Promise_all(promises) {
   return new Promise((resolve, reject) => {
     
-    if (promises) {
-      // Arrays to capture the outcomes
-      const resolvedOutcomes = [];
-      const rejectedOutcomes = [];
-
-      // Using a plain loop to process each promise
-      for (let i = 0; i < promises.length; i++) {
-        const currentPromise = promises[i];
-
-        currentPromise
-          .then((value) => {
-            // This runs if the promise resolves
-            resolvedOutcomes.push({ index: i, status: 'resolved', data: value });
-          })
-          .catch((error) => {
-            // This runs if the promise rejects
-            rejectedOutcomes.push({ index: i, status: 'rejected', error: error });
-          });
-      }
-
-      if (resolvedOutcomes.length == promises.length) {
-        resolve(promises);
-      }
-      reject(promises);
+    // 1. Guard against non-iterable inputs or empty arrays
+    if (!Array.isArray(promises)) {
+      return reject(new TypeError("Argument must be an array"));
     }
-    resolve(promises);
+
+    const results = [];
+    let completedCount = 0;
+
+    // Handle the empty array edge case immediately
+    if (promises.length === 0) {
+      return resolve([]);
+    }
+
+    // 2. Iterate over the input array
+    promises.forEach((item, index) => {
+      // Wrap non-promises in Promise.resolve() so everything has a .then()
+      Promise.resolve(item)
+        .then((value) => {
+          // Store result at the original index to preserve input order
+          results[index] = value;
+          completedCount++;
+
+          // Only resolve the outer promise once every item has finished
+          if (completedCount === promises.length) {
+            resolve(results);
+          }
+        })
+        .catch((error) => {
+          // Fail-fast: Rejects the main promise immediately on first error
+          reject(error);
+        });
+    });
     
   });
     
@@ -56,20 +62,21 @@ function soon(val) {
 Promise_all([soon(1), soon(2), soon(3)]).then(array => {
   console.log("This should be [1, 2, 3]:", array);
 });
-
-// Promise.all([soon(1), soon(2), soon(3)]).then(array => {
-//   console.log("This should be [1, 2, 3]:", array);
-// });
-
-
-
-
-// Promise_all([soon(1), Promise.reject("X"), soon(3)])
-//   .then(array => {
-//     console.log("We should not get here");
-//   })
-//   .catch(error => {
-//     if (error != "X") {
-//       console.log("Unexpected failure:", error);
-//     }
-//   });
+Promise_all([soon(1), Promise.reject("X"), soon(3)])
+  .then(array => {
+    console.log("We should not get here");
+  })
+  .catch(error => {
+    if (error != "X") {
+      console.log("Unexpected failure:", error);
+    }
+  });
+Promise_all([soon(1), Promise.reject("X"), soon(3)])
+  .then(array => {
+    console.log("We should not get here");
+  })
+  .catch(error => {
+    if (error == "X") {
+      console.log("Unexpected failure:", error);
+    }
+  });
