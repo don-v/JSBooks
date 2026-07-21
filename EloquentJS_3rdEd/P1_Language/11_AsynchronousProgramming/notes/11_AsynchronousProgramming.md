@@ -1244,4 +1244,4 @@ Scoping with let: Using let i = 0 in the for loop is crucial here. It creates a 
 
 Capturing Results: Because the callbacks have access to the outer scope, they can safely mutate resolvedOutcomes and rejectedOutcomes as soon as they get their data.
 
-<!-- HERE -- ex3++++++++++++! -->
+<!-- HERE -- ex3+++++++++++++! -->
