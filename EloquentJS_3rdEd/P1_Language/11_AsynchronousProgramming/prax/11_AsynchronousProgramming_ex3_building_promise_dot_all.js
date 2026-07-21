@@ -12,28 +12,50 @@ handles a failure of one's promise.
 
 function Promise_all(promises) {
   return new Promise((resolve, reject) => {
-    results = [];
+    
     if (promises) {
-      for (p of promises) {
-        results.push(p.resolve());
+      // Arrays to capture the outcomes
+      const resolvedOutcomes = [];
+      const rejectedOutcomes = [];
+
+      // Using a plain loop to process each promise
+      for (let i = 0; i < promises.length; i++) {
+        const currentPromise = promises[i];
+
+        currentPromise
+          .then((value) => {
+            // This runs if the promise resolves
+            resolvedOutcomes.push({ index: i, status: 'resolved', data: value });
+          })
+          .catch((error) => {
+            // This runs if the promise rejects
+            rejectedOutcomes.push({ index: i, status: 'rejected', error: error });
+          });
       }
+
+      if (resolvedOutcomes.length == promises.length) {
+        resolve(promises);
+      }
+      reject(promises);
     }
-    resolve(results);
+    resolve(promises);
+    
   });
+    
 }
 
 // Test code.
-// Promise_all([]).then(array => {
-//   console.log("This should be []:", array);
-// });
-// function soon(val) {
-//   return new Promise(resolve => {
-//     setTimeout(() => resolve(val), Math.random() * 500);
-//   });
-// }
-// Promise_all([soon(1), soon(2), soon(3)]).then(array => {
-//   console.log("This should be [1, 2, 3]:", array);
-// });
+Promise_all([]).then(array => {
+  console.log("This should be []:", array);
+});
+function soon(val) {
+  return new Promise(resolve => {
+    setTimeout(() => resolve(val), Math.random() * 500);
+  });
+}
+Promise_all([soon(1), soon(2), soon(3)]).then(array => {
+  console.log("This should be [1, 2, 3]:", array);
+});
 
 // Promise.all([soon(1), soon(2), soon(3)]).then(array => {
 //   console.log("This should be [1, 2, 3]:", array);
@@ -51,46 +73,3 @@ function Promise_all(promises) {
 //       console.log("Unexpected failure:", error);
 //     }
 //   });
-
-
-// Sample promises for demonstration
-const promise1 = Promise.resolve("Success from P1");
-const promise2 = Promise.reject("Error from P2");
-
-const promiseArray = [promise1, promise2];
-
-// Arrays to capture the outcomes
-const resolvedOutcomes = [];
-const rejectedOutcomes = [];
-
-// Using a plain loop to process each promise
-for (let i = 0; i < promiseArray.length; i++) {
-  const currentPromise = promiseArray[i];
-
-  currentPromise
-    .then((value) => {
-      // This runs if the promise resolves
-      resolvedOutcomes.push({ index: i, status: 'resolved', data: value });
-      
-      // Optional: Trigger further processing here
-      handleSuccess(value, i);
-    })
-    .catch((error) => {
-      // This runs if the promise rejects
-      rejectedOutcomes.push({ index: i, status: 'rejected', error: error });
-      
-      // Optional: Trigger further processing here
-      handleFailure(error, i);
-    });
-}
-
-// Example helper functions for further processing
-function handleSuccess(data, index) {
-  console.log(`Processing success for item at index ${index}:`, data);
-}
-
-function handleFailure(err, index) {
-  console.log(`Processing failure for item at index ${index}:`, err);
-}
-
-
