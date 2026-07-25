@@ -29,6 +29,21 @@ The uniformity of the Egg language means that things that are operators in JS (s
 
 The data structure that the parser will use to describe a program consists of expression objects, each of which has a `type` property indicating the kind of expression it is and other properties to describe its content. 
 
-Expressions of type `"value"` represent literal strings or numbers. Their `value` property contains the string or number value that they represent. Expressiosn of type `"word"` are used for identifiers. ...
+Expressions of type `"value"` represent literal strings or numbers. Their `value` property contains the string or number value that they represent. Expressiosn of type `"word"` are used for identifiers (names). Such objects have a `name` property that holds the identifier's name as a string. Finally, `"apply"` expressions represent applications. They have an `operator` property that refers to the expression that is being applied, as well as an `args` property that holds an array of argument expressions.
 
-<!-- HERE! -->
+The `>(x, 5)` part of the previous program would be represented like this:
+
+```
+{
+  type: "apply",
+  operator: {type: "word", name: ">"},
+  args: [
+    {type: "word", name: "x"},
+    {type: "value", value: 5}
+  ]
+}
+```
+
+Such a data structure is called a *syntax tree*. If one imagines the objects as dots an dthe links between them as lines between those dots, as shown in the following diagram, the structure has a treelike shape. The fact that expressions contain other expressions, which in turn might contain more expressions, is similar to the wy tree branches split and split again. 
+
+![syntax tree image](../../../to_ignore/12_Project_AProgrammingLanguage/syntax_tree.png)
