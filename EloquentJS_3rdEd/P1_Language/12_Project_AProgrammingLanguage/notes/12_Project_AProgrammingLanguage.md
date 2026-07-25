@@ -47,3 +47,37 @@ The `>(x, 5)` part of the previous program would be represented like this:
 Such a data structure is called a *syntax tree*. If one imagines the objects as dots an dthe links between them as lines between those dots, as shown in the following diagram, the structure has a treelike shape. The fact that expressions contain other expressions, which in turn might contain more expressions, is similar to the wy tree branches split and split again. 
 
 ![syntax tree image](../../../to_ignore/12_Project_AProgrammingLanguage/syntax_tree.png)
+
+Contrast this to the parser teach wrote for the configuration file format in *C9*, which had a simple structure: it split the input into lines and handled those liens one at a time. There were only a few simple forms that a line was allowed to have.
+
+Here we must find a different approach. Expressions are not separated into lines, and they have a recursive structure. Applicaiton expressions *contain* other espressions.
+
+Fortunately, this problem can be solved very well by writing a parser ufnction that is recursive in a way that reflects the recursive nature of the language.
+
+Teach defines a funciton `parseExpression` that takes a string input. It returns an object containing the data structure for the expression at the start of the string, along with the part of the string left after parsing this expression. When parsing subexpressions (the argument to an application, for example), this function can be called again, yielding the argument expression as well as the text that reamins. This text may in turn contain more arguments or may be the closing parenthesis that ends the list of arguments.
+
+This is the first part of the parser:
+
+```js
+function parseExpression(program) {
+  program = skipSpace(program);
+  let match, expr;
+  if (match = /^"([^"]*)"/.exec(program)) {
+    expr = {type: "value", value: match[1]};
+  } else if (match = /^\d+\b/.exec(program)) {
+    expr = {type: "value", value: Number(match[0])};
+  } else if (match = /^[^\s(),#"]+/.exec(program)) {
+    expr = {type: "word", name: match[0]};
+  } else {
+    throw new SyntaxError("Unexpected syntax: " + program);
+  }
+
+  return parseApply(expr, program.slice(match[0].length));
+}
+
+function skipSpace(string) {
+  let first = string.search(/\S/);
+  if (first == -1) return "";
+  return string.slice(first);
+}
+```
