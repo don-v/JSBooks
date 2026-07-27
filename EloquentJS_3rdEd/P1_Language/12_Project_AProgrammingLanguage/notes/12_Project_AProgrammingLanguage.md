@@ -81,3 +81,36 @@ function skipSpace(string) {
   return string.slice(first);
 }
 ```
+
+Because Egg, like JS, allows any amount of whitespace between its elements, we have to repeatedly cut the whitespace off the start of teh program string. The `skipSpace` function helps with this. 
+
+After skipping any leading space, `parseExpression` uses three regular expressions to spot the three atomic elmeents that Egg supports: strings, numbers, and words. The parser constructs a different kind of data structure depending on which expression matches. If the input does not match one of these three forms, it is not a valid expression, and the parser throws an error. We use the `SyntaxErro` constructor here. This is an exception class defined by the standard, like `Error`, but more specific.
+
+We then cut off the part that was matched from the program string and pass that, along with the object for the expression, to `parseApply`, which checks whether the expression is an application. If so, it parses a parenthesized list of arguments.
+
+```js
+function parseApply(expr, program) {
+  program = skipSpace(program);
+  if (program[0] != "(") {
+    return {expr: expr, rest: program};
+  }
+
+  program = skipSpace(program.slice(1));
+  expr = {type: "apply", operator: expr, args: []};
+  while (program[0] != ")") {
+    let arg = parseExpression(program);
+    expr.args.push(arg.expr);
+    program = skipSpace(arg.rest);
+    if (program[0] == ",") {
+      program = skipSpace(program.slice(1));
+    } else if (program[0] != ")") {
+      throw new SyntaxError("Expected ',' or ')'");
+    }
+  }
+  return parseApply(expr, program.slice(1));
+}
+```
+
+If the next character in the program is not an opening parentesis, this is nto an application, and `parseApply` returns the expression it was given. Otherwise, ...
+
+<!-- HERE -->
