@@ -111,6 +111,32 @@ function parseApply(expr, program) {
 }
 ```
 
-If the next character in the program is not an opening parentesis, this is nto an application, and `parseApply` returns the expression it was given. Otherwise, ...
+If the next character in the program is not an opening parentesis, this is nto an application, and `parseApply` returns the expression it was given. Otherwise, it skps the opening parenthesis and creates the syntax tree boject for this application expression. It then recursively calls `parseExpression` to parse each argument until a closing parenthesis is found. The recursion is indirect, through `parseApply` and `parseExpression` calling each other.
+
+Because an application expression can itself be applied (such as in `multiplier(2)(1)`), `parseApply` must, after it has parsed an application, call itself again to check whether another pair of parentheses follow.
+
+This is all we need to parse 'Egg'. We wrap it in a conveient `parse` function that verifies that it has reached the end of the input string after parsing the expression (an Egg program is a single expression), and that gives us the program's data structure:
+
+```js
+function parse(program) {
+  let {expr, rest} = parseExpression(program);
+  if (skipSpace(rest).length > 0) {
+    throw new SyntaxError("Unexpected text after program");
+  }
+  return expr;
+}
+
+console.log(parse("+(a, 10)"));
+// → {type: "apply",
+//    operator: {type: "word", name: "+"},
+//    args: [{type: "word", name: "a"},
+//           {type: "value", value: 10}]}
+```
+
+It works! It doens't give us very helpful information when it fails and doesn't store the line and column on which each expression starts, which might be helpful when reporting errors later, but it's good enough for our pursposes!
+
+## THE EVALUATOR
+
+What can we do with the syntax tree for a program? Run it, of course! And that is what the evaluator does. One gives it a syntax tree and a scope object that associates names with values, and it will evaluate the expression that the tree represents and returns the value that this produces.
 
 <!-- HERE -->
