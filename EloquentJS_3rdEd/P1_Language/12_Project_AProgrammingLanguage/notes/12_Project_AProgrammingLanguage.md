@@ -139,4 +139,61 @@ It works! It doens't give us very helpful information when it fails and doesn't 
 
 What can we do with the syntax tree for a program? Run it, of course! And that is what the evaluator does. One gives it a syntax tree and a scope object that associates names with values, and it will evaluate the expression that the tree represents and returns the value that this produces.
 
+```js
+const specialForms = Object.create(null);
+
+function evaluate(expr, scope) {
+  if (expr.type == "value") {
+    return expr.value;
+  } else if (expr.type == "word") {
+    if (expr.name in scope) {
+      return scope[expr.name];
+    } else {
+      throw new ReferenceError(
+        `Undefined binding: ${expr.name}`);
+    }
+  } else if (expr.type == "apply") {
+    let {operator, args} = expr;
+    if (operator.type == "word" &&
+        operator.name in specialForms) {
+      return specialForms[operator.name](expr.args, scope);
+    } else {
+      let op = evaluate(operator, scope);
+      if (typeof op == "function") {
+        return op(...args.map(arg => evaluate(arg, scope)));
+      } else {
+        throw new TypeError("Applying a non-function.");
+      }
+    }
+  }
+}
+```
+
+The evaluator has code for each of the expression types. A literal value expression produces its value. (For example, the expression `100` evaluates to the number 100.) For a binding, one must check whether it is actually defined in the scope and, if it is, fetch the binding's value.
+
+Applications are more involved. If they are a special form, like `if`, we do not evaluate anything -- we just <?> and pass the argument expression, along with the scope, to the function that handles this form. If it is a normal call, we evaluate the operator, verify that it is a function, and call it with the evaluated arguments.
+
+We use plain JS function values to represent Egg's function values. We will come back to this later, when the special form `fun` is defined.
+
+The recursive structure of `evaluate` resembles the structure of the parse, and both mirror the stricture of the language itself. It would also be possible to combine the parser and the evaluator into one function and evaluate during parsing, but splitting them up this way makes the program clearer and more flexible.
+
+This is really all that's needed to interpret Egg. It's that simple. But without defining a few special forms and adding some useful values to the environment, one can't do much with this language yet.
+
+## SPECIAL FORMS
+
+The `specialForms` object is used to define special syntax in Egg. It associates words with functions that evaluate to such forms. It is currently empty. Let's add `if`:
+
+```js
+specialForms.if = (args, scope) => {
+  if (args.length != 3) {
+    throw new SyntaxError("Wrong number of args to if");
+  } else if (evaluate(args[0], scope) !== false) {
+    return evaluate(args[1], scope);
+  } else {
+    return evaluate(args[2], scope);
+  }
+};
+```
+
+
 <!-- HERE -->
