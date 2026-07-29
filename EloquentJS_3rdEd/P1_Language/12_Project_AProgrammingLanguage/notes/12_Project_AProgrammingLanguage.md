@@ -195,5 +195,39 @@ specialForms.if = (args, scope) => {
 };
 ```
 
+Egg's `if` construct expects exactly three arguments. It will evaluate the first, and if the result isn't the value of `false`, it will evaluate the second. Othewise, the third gets evaluated. This `if` form is more similar to JS's ternary `?:` operator than to JS's `if`. It is an expression, not a statement, and it produces a value -- namely, the result of the second or third argument.
+
+Egg also differs from JS in how it handles the condition value to `if`. It will treat only the value `false` as false, not things like zero or the empty string.
+
+The reason we need to represent `if` is a special form rather than a regular function is that all arguments to functions are evaluated before the function is called, wheras `if` should evaluates only *either* its second or its third argument, depneding on the value of the first.
+
+The `while` form is similar:
+
+```js
+specialForms.while = (args, scope) => {
+  if (args.length != 2) {
+    throw new SyntaxError("Wrong number of args to while");
+  }
+  while (evaluate(args[0], scope) !== false) {
+    evaluate(args[1], scope);
+  }
+
+  // Since undefined does not exist in Egg, we return false,
+  // for lack of a meaningful result
+  return false;
+};
+```
+
+Another basic building block is `do`, which executes all its arguments form top to bottom. Its value is the value produced by the last argument.
+
+```js
+specialForms.do = (args, scope) => {
+  let value = false;
+  for (let arg of args) {
+    value = evaluate(arg, scope);
+  }
+  return value;
+};
+```
 
 <!-- HERE -->
