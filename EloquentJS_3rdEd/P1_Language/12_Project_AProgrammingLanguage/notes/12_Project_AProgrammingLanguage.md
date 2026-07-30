@@ -230,4 +230,32 @@ specialForms.do = (args, scope) => {
 };
 ```
 
+To be able to create bindings and give them new values, we also create a form called `define`. It expects a word as its first argument and an expression producing the value to assign to that word as its second argument. Since `define`, like everything, is an expression, it must return a value. We'll make it return the value that ws assigned (just like JS's `=` operator):
+
+```js
+specialForms.define = (args, scope) => {
+  if (args.length != 2 || args[0].type != "word") {
+    throw new SyntaxError("Incorrect use of define");
+  }
+  let value = evaluate(args[1], scope);
+  scope[args[0].name] = value;
+  return value;
+};
+```
+
+## THE ENVIRONMENT
+
+The scope accepted by `evaluate` is an object with properties whose names correspond to binding names and whose values correspond to the values those bindings are bound to. Let's define an object to represent the global scope.
+
+To be able to use the `if` construct just defined, one must have access to Boolean values. Since there are only two Boolean values, we do not need special syntax for them. We simply bind two names to the value `true` and `false` and use them.
+
+```js
+const topScope = Object.create(null);
+
+topScope.true = true;
+topScope.false = false;
+```
+
+We can now evaluate a simple expression that negates a boolean value.
+
 <!-- HERE -->
