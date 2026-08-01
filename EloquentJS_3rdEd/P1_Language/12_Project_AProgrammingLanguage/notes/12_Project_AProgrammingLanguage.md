@@ -258,4 +258,54 @@ topScope.false = false;
 
 We can now evaluate a simple expression that negates a boolean value.
 
+```js
+let prog = parse(`if(true, false, true)`);
+console.log(evaluate(prog, topScope));
+// → false
+```
+
+To supply basic arithmetic and comparison operators, we will also add some function values to the scope. In the interst of keepign the code short, we'll use `Function` to synthesize a bunch of operator functions in a loop instead of defining them individually:
+
+```js
+for (let op of ["+", "-", "*", "/", "==", "<", ">"]) {
+  topScope[op] = Function("a, b", `return a ${op} b;`);
+}
+```
+
+It is also useful to have a way to output values, so we'll wrap `console.log` in a function and call it `print`:
+
+```js
+topScope.print = value => {
+  console.log(value);
+  return value;
+};
+```
+
+That gives us enough elementary tools to write simple programs. The following function provides a convenient way to parse a program and run it in a fresh scope:
+
+```js
+function run(program) {
+  return evaluate(parse(program), Object.create(topScope));
+}
+```
+
+We'll use object prototype chains to represent nested scopes so that the program can add bindings to its local scope without changing the top-level scope:
+
+```js
+run(`
+do(define(total, 0),
+   define(count, 1),
+   while(<(count, 11),
+         do(define(total, +(total, count)),
+            define(count, +(count, 1)))),
+   print(total))
+`);
+// → 55
+```
+
+This is the program we've seen several times before that computes the sum of the numbers 1 to 10, expressed in Egg. It is clearly uglier than the equivalent JavaScript program -- but not bad for a language implemented in fewer than 150 lines of code.
+
+## FUNCTIONS
+
+A programming ...
 <!-- HERE -->
