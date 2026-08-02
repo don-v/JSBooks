@@ -353,4 +353,20 @@ do(define(pow, fun(base, exp,
 `);
 // → 1024
 ```
+
+## COMPILATION
+
+What we have built is an interpreter. During evaluation, it acts directly on the representatioan of the program produced by the parser.
+
+*Compilation* is the process of adding another step between the parsing and the runnign of a program, which transforms the program into something that can be evaluated more efficiently by doing as much work as possible in advance. For example, in well-designed languages it is obvious, for each use of a binding, which binding is being referred to, without actually running the program. This can be used to avoid looking up the binding by name eveyr time it is accessed, instead directlyl fetching it form some pretermined memory location. 
+
+Traditionally, compilation invovles converting the program to machine code, the raw format that a computer's processor can execute. But any process that converts a program to a different representation can be thought of as a compilation.
+
+It would be impossible to write an alternative evaluation strategy for Egg, one that first converts the program to a JS program, uses `Function` to invoke the JS compiler on it, and runs the result. When done right, this would make Egg run very fast while still being quite simple to implement.
+
+If one is interested in this topic nd willing to spend some time on it, teach encourages one to try to implement such a compiler as an exercise.
+
+## CHEATING
+
+
 <!-- HERE -->
