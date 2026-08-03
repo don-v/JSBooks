@@ -368,5 +368,13 @@ If one is interested in this topic nd willing to spend some time on it, teach en
 
 ## CHEATING
 
+When teach defined `if` and `while`, one probably noticed that they were more or less trivial wrappers around JS's own `if` and `while`. Similarly, the values in'Egg' are just regular old JS values. Bridging teh gap to a more primitive system, such as the machine code the processor understands, takes more effort -- but the way it works resembles waht we are doign here.
+
+Though the toy language in this chapter doens't do anything that couldn't be done better in JS, there *are* situations where writing small languaes helps get real works done.
+
+Such a language does not have to resember a typical programming language. If JS didn't come equipped with regular epressions, for example, one could write one's own parser and evluateor for regular expresisons. 
+
+Or imagine one one is building a program that makes it possible to quickly create parsers by providing a logical description of the languagethey need to parse. One could define a specific notation for that, and a compiler that compiles it to a parser program. 
+
 
 <!-- HERE -->
