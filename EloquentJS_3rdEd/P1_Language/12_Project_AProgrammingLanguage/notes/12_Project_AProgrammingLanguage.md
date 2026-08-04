@@ -376,5 +376,45 @@ Such a language does not have to resember a typical programming language. If JS 
 
 Or imagine one one is building a program that makes it possible to quickly create parsers by providing a logical description of the languagethey need to parse. One could define a specific notation for that, and a compiler that compiles it to a parser program. 
 
+```
+expr = number | string | name | application
 
-<!-- HERE -->
+number = digit+
+
+name = letter+
+
+string = '"' (! '"')* '"'
+
+application = expr '(' (expr (',' expr)*)? ')'
+```
+
+This is what is usually called a *domain-specific language*, a language tailored to express a narrow domain of knowledge. Such a language can be more expressive than a general-purpose language because it is designed to describe exactly the things that need to be described in its domain and nothing else.
+
+## EXERCISES
+
+### ARRAYS
+
+Add support for arrays to Egg by adding the following three functions to the top scope: `array(...values)` to construct an array containing the argument values, `length(array)` to get an array's length, and `element(array, n)` to fetch the *n*th elmeent from an array.
+
+```js
+// Modify these definitions...
+
+topScope.array = "...";
+
+topScope.length = "...";
+
+topScope.element = "...";
+
+run(`
+do(define(sum, fun(array,
+     do(define(i, 0),
+        define(sum, 0),
+        while(<(i, length(array)),
+          do(define(sum, +(sum, element(array, i))),
+             define(i, +(i, 1)))),
+        sum))),
+   print(sum(array(1, 2, 3))))
+`);
+// → 6
+```
+<!-- HERE ex1: array -->
