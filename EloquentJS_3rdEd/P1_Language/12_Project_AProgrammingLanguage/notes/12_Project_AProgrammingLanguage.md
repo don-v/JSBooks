@@ -417,4 +417,4 @@ do(define(sum, fun(array,
 `);
 // → 6
 ```
-<!-- HERE ex1: array+++ -->
+<!-- HERE ex1: array++++ -->
