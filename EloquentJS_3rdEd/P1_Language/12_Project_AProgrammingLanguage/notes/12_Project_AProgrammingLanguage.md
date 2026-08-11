@@ -417,4 +417,167 @@ do(define(sum, fun(array,
 `);
 // → 6
 ```
-<!-- HERE ex1: array++++++ -->
+
+#### PROMPT1
+
+explain this JavaScript code: 
+
+```JavaScript
+function parseExpression(program) {
+  program = skipSpace(program);
+  let match, expr;
+  if (match = /^"([^"]*)"/.exec(program)) {
+    expr = {type: "value", value: match[1]};
+  } else if (match = /^\d+\b/.exec(program)) {
+    expr = {type: "value", value: Number(match[0])};
+  } else if (match = /^[^\s(),#"]+/.exec(program)) {
+    expr = {type: "word", name: match[0]};
+  } else {
+    throw new SyntaxError("Unexpected syntax: " + program);
+  }
+
+  return parseApply(expr, program.slice(match[0].length));
+}
+```
+
+#### RESPONSE1
+
+This JavaScript function, typically found in chapters building a parser (like in Eloquent JavaScript for the "Egg" programming language), is responsible for parsing the first expression found in a string of code.
+
+It identifies whether the expression is a string literal, a number, or a word (like a variable name or function identifier), converts it into an Abstract Syntax Tree (AST) node, and then hands off the rest of the parsing to another function (parseApply).
+Step-by-Step Breakdown
+1. Skipping Whitespace
+```JavaScript
+
+program = skipSpace(program);
+```
+    What it does: Calls a helper function (skipSpace) to remove any leading spaces, tabs, or newlines from the beginning of the program string so that parsing starts cleanly on a meaningful character.
+
+2. Pattern Matching via Regular Expressions
+
+The function uses an if...else if...else chain with Regular Expressions (.exec()) to check what kind of token the code starts with. If a match is found, match[0] contains the matched text, and match[1] (if capturing groups are used) contains specific captured data.
+
+    String Literals:
+```JavaScript
+
+    if (match = /^"([^"]*)"/.exec(program)) {
+      expr = {type: "value", value: match[1]};
+    }
+```
+        Matches: Text enclosed in double quotes (e.g., "hello").
+
+        Result: Creates an AST node of type: "value" holding the string content inside the quotes (match[1]).
+
+    Numbers:
+```JavaScript
+
+    else if (match = /^\d+\b/.exec(program)) {
+      expr = {type: "value", value: Number(match[0])};
+    }
+```
+        Matches: One or more digits followed by a word boundary (e.g., 42).
+
+        Result: Creates an AST node of type: "value", converting the matched string into an actual JavaScript number using Number().
+
+    Words (Identifiers / Keywords):
+```JavaScript
+
+    else if (match = /^[^\s(),#"]+/.exec(program)) {
+      expr = {type: "word", name: match[0]};
+    }
+```
+        Matches: A sequence of characters that are not whitespace, parentheses, commas, hash signs, or quotes. This captures variable names or function names (e.g., x, sum, if).
+
+        Result: Creates an AST node of type: "word" with a name property holding the identifier.
+
+    Syntax Errors:
+```JavaScript
+
+    else {
+      throw new SyntaxError("Unexpected syntax: " + program);
+    }
+```
+        What it does: If the string doesn't match any of the valid starting patterns, it throws an error halting execution.
+
+3. Continuing the Parse
+```JavaScript
+
+return parseApply(expr, program.slice(match[0].length));
+```
+    What it does: Once the primary expression object (expr) is built, it slices off the part of the string that was just successfully parsed (program.slice(match[0].length)) and passes both the expression and the remaining string to parseApply. This handles syntax like function calls (e.g., sum(1, 2)).
+
+#### PROMPT2
+
+explain each regular expression, and also how the match groups work
+
+#### RESPONSE2
+
+##### 1. Detailed Breakdown of Each Regular Expression
+
+Each regular expression (regex) in the function uses the caret `^` anchor, which ensures that the match must occur at the very beginning of the `program` string.
+
+* **String Literal Regex**: `/^"([^"]*)"/`
+
+  * `^`: Asserts the start of the string.
+  
+  * `"`: Matches a literal opening double quote.
+  
+  * `([^"]*)`: This is a capturing group. It matches zero or more characters (`*`) that are not a double quote (`[^"]`).
+  
+  * `"`: Matches the literal closing double quote.*Purpose*: Captures string values like `"hello world"`.
+  
+  * **Number Regex**: `/^\d+\b/`
+  
+    * `^`: Asserts the start of the string.
+    
+    * `\d+`: Matches one or more digits (`0` through `9`).
+    
+    * `\b`: A word boundary. This ensures that the number isn't just the prefix of a larger invalid word (e.g., matching just `42` out of `42x`).
+    
+    * *Purpose*: Captures numeric values like `42` or `3.14` (though `\d+` handles the integer portion).
+    
+  * **Word Regex**: `/^[^\s(),#"]+/`
+  
+    * `^`: Asserts the start of the string.
+    
+    * `[^\s(),#"]+`: A negated character set inside brackets `[...]` with a plus sign `+` (meaning "one or more times"). It matches **any character except**:
+    
+      * `\s` (whitespace, spaces, tabs, newlines)
+      
+      * `(` or `)` (parentheses)
+      
+      * `,` (commas)
+      
+      * `#` (comments, often used in this specific toy language)
+      
+      * `"` (double quotes)
+      
+    * *Purpose*: Captures identifiers, variable names, or operator symbols like `x`, `sum`, or `+`.
+    
+##### 2. How Match Groups Work Here
+
+In JavaScript, when you use regular expression methods like `.exec()`, the return value is an array-like object (referred to as `match` in your code) containing details about the match.
+
+  * `match[0]` **(The Full Match)**:
+  
+  Regardless of parentheses, index `0` always contains the **entire substring** that matched the full regular expression pattern.
+  
+    * *Example*: If `program` is `"hello" + 5`, running the string regex results in:
+    
+      `match[0]` $\rightarrow$ `'"hello"'` (including the outer quotes).
+      
+    * This is why the code uses `match[0].length` to slice off the exact portion of the string that was just processed.
+  
+  * `match[1]` **and Beyond (Capturing Groups)**:
+  
+  Parentheses `()` in a regular expression create **capturing groups**. They tell JavaScript to remember the specific slice of text that matched only what is inside those parentheses.
+  
+    * *Example*: For the string regex `/^"([^"]*)"/`, the capturing group `([^"]*)` isolates everything inside the quotes. If program is `"hello"`, then:
+    
+      * `match[0]` $\rightarrow$ `'"hello"'`
+      
+      * `match[1]` $\rightarrow$ `'hello'` (the quotes are stripped away).
+      
+    * This allows the code to assign `expr = {type: "value", value: match[1]}` so the resulting AST node stores the raw string value *without* the literal quote characters.
+
+<!-- HERE ex1: array+++++++ -->
