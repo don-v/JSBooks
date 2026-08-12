@@ -580,4 +580,4 @@ In JavaScript, when you use regular expression methods like `.exec()`, the retur
       
     * This allows the code to assign `expr = {type: "value", value: match[1]}` so the resulting AST node stores the raw string value *without* the literal quote characters.
 
-<!-- HERE ex1: array+++++++ -->
+<!-- HERE ex1: array++++++++ -->
