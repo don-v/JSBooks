@@ -580,4 +580,101 @@ In JavaScript, when you use regular expression methods like `.exec()`, the retur
       
     * This allows the code to assign `expr = {type: "value", value: match[1]}` so the resulting AST node stores the raw string value *without* the literal quote characters.
 
-<!-- HERE ex1: array++++++++ -->
+#### PROMPT3
+
+explain the following JavaScript code: 
+
+```js
+function parseApply(expr, program) {
+  program = skipSpace(program);
+  if (program[0] != "(") {
+    return {expr: expr, rest: program};
+  }
+
+  program = skipSpace(program.slice(1));
+  expr = {type: "apply", operator: expr, args: []};
+  while (program[0] != ")") {
+    let arg = parseExpression(program);
+    expr.args.push(arg.expr);
+    program = skipSpace(arg.rest);
+    if (program[0] == ",") {
+      program = skipSpace(program.slice(1));
+    } else if (program[0] != ")") {
+      throw new SyntaxError("Expected ',' or ')'");
+    }
+  }
+  return parseApply(expr, program.slice(1));
+}
+```
+
+#### RESPONSE4
+
+This JavaScript code is part of a parser for a custom programming language (specifically, the "Egg" language from the book Eloquent JavaScript).
+
+The `parseApply` function is responsible for parsing function applications (or expression applications), which look like function calls, such as `sum(1, 2)` or chained calls like `f(x)(y)`. It takes an existing expression (`expr`) and the remaining code string (`program`), returning an updated Abstract Syntax Tree (AST) node.
+Step-by-Step Breakdown
+1. Checking for an Application
+```JavaScript
+
+program = skipSpace(program);
+if (program[0] != "(") {
+  return {expr: expr, rest: program};
+}
+```
+
+    `skipSpace(program)`: Removes any leading whitespace from the code string.
+
+    The check `(!= "(")`: If the next character is not an opening parenthesis, it means the current expression is not being followed by a function call. The function simply returns the current expression as-is along with the remaining unparsed code.
+
+2. Initializing the Application Node
+```JavaScript
+
+program = skipSpace(program.slice(1));
+expr = {type: "apply", operator: expr, args: []};
+```
+
+    If the code does start with an `(`, it means we are dealing with an application.
+
+    `program.slice(1)` strips away the opening parenthesis.
+
+    It transforms the current `expr` into an AST node of type `"apply"`. The original expression becomes the `operator` (the thing being called), and an empty `args` array is created to hold the arguments.
+
+3. Parsing Arguments Inside the Parentheses
+```JavaScript
+
+while (program[0] != ")") {
+  let arg = parseExpression(program);
+  expr.args.push(arg.expr);
+  program = skipSpace(arg.rest);
+  if (program[0] == ",") {
+    program = skipSpace(program.slice(1));
+  } else if (program[0] != ")") {
+    throw new SyntaxError("Expected ',' or ')'");
+  }
+}
+```
+
+    `while (program[0] != ")")`: Loops through the code until it hits the closing parenthesis ).
+
+    `parseExpression(program)`: Parses the individual argument expression.
+
+    `expr.args.push(arg.expr)`: Adds the newly parsed argument to our application's argument list.
+
+    Comma & Error Handling:
+
+        If the next character is a comma (`,`), it consumes it and moves on to the next argument.
+
+        If it's neither a comma nor a closing parenthesis, it throws a `SyntaxError` because the syntax is malformed.
+
+4. Handling Chained Applications (Recursion)
+```JavaScript
+
+return parseApply(expr, program.slice(1));
+```
+
+    Once the loop finishes, it strips off the closing parenthesis `)` using `program.slice(1)`.
+
+    Recursion: It calls `parseApply` again with the new `expr` node. This handles chained applications (e.g., `f(1)(2))`, where the result of the first call is immediately treated as an operator for a second call.
+
+
+<!-- HERE ex1: array+++++++++ -->
