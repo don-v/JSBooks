@@ -677,4 +677,4 @@ return parseApply(expr, program.slice(1));
     Recursion: It calls `parseApply` again with the new `expr` node. This handles chained applications (e.g., `f(1)(2))`, where the result of the first call is immediately treated as an operator for a second call.
 
 
-<!-- HERE ex1: array++++++++++ -->
+<!-- HERE ex1: array+++++++++++ -->
