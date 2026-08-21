@@ -787,5 +787,5 @@ Would you like to see an example of how specialForms or a sample scope object wo
 <!-- HERE ex1: array
 +++++++
 +++++++ 
-++
++++
 -->
