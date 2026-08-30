@@ -6,6 +6,8 @@ length(array) to get an array’s length, and
 element(array, n) to fetch the nth element from an array.
 */
 
+require("../egg_src/egg");
+
 // Modify these definitions...
 
 topScope.array = "...";
