@@ -6,6 +6,15 @@ length(array) to get an array’s length, and
 element(array, n) to fetch the nth element from an array.
 */
 
+
+/* 
+Strategy: 
+pseudo code
+
+take the values
+
+*/
+
 require("../egg_src/egg");
 
 // Modify these definitions...
