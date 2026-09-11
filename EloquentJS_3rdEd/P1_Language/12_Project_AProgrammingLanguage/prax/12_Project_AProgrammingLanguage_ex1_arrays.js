@@ -13,7 +13,23 @@ pseudo code
 
 take the values
 
+first attempt failed:
+
+```js
+topScope.array = values =>
+  return new Array(...values);
+
+topScope.length = array =>
+  return array.length;
+
+topScope.element = (array, i) =>
+  return array[i];
+```
+
 */
+
+
+
 
 require("../egg_src/egg");
 
