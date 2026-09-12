@@ -24,6 +24,20 @@ topScope.length = array =>
 
 topScope.element = (array, i) =>
   return array[i];
+
+
+#############################
+
+second failed attempt:
+
+// Modify these definitions...
+
+topScope.array = Function("values", `return new Array(...${values});`);
+
+topScope.length = Function("array", `return ${array}.length;`);
+
+topScope.element = Function("array", "element", `return ${array}[${element}];`);
+
 ```
 
 */
