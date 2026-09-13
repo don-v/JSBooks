@@ -38,6 +38,26 @@ topScope.length = Function("array", `return ${array}.length;`);
 
 topScope.element = Function("array", "element", `return ${array}[${element}];`);
 
+#############################
+
+third failed attempt
+
+topScope.array = Function("...values", "return new Array(values);");
+
+topScope.length = Function("array", "return array.length;");
+
+topScope.element = Function("array", "element", "return array[element];");
+
+#############################
+
+fourth attempt success!
+
+topScope.array = Function("...values", "return new Array(...values);");
+
+topScope.length = Function("array", "return array.length;");
+
+topScope.element = Function("array", "element", "return array[element];");
+
 ```
 
 */
