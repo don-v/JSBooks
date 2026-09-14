@@ -65,15 +65,16 @@ topScope.element = Function("array", "element", "return array[element];");
 
 
 
-require("../egg_src/egg");
+require("../prax/12_Project_AProgrammingLanguage_ex/load")("../../egg_src/egg");
 
 // Modify these definitions...
 
-topScope.array = "...";
+topScope.array = Function("...values", "return new Array(...values);");
 
-topScope.length = "...";
+topScope.length = Function("array", "return array.length;");
 
-topScope.element = "...";
+topScope.element = Function("array", "element", "return array[element];");
+
 
 run(`
 do(define(sum, fun(array,
