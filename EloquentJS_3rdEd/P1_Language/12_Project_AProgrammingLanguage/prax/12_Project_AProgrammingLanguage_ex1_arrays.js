@@ -65,7 +65,7 @@ topScope.element = Function("array", "element", "return array[element];");
 
 
 
-require("../prax/12_Project_AProgrammingLanguage_ex/load")("../../egg_src/egg");
+require("../prax/12_Project_AProgrammingLanguage_ex/load")("../egg_src/egg.js");
 
 // Modify these definitions...
 

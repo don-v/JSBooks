@@ -892,6 +892,65 @@ If you want to tweak this setup, let me know:
 * Do you want to avoid putting load.js inside a subdirectory (i.e., keep all three files in the exact same folder)?
 * Do you want to modify the loader so it can return data using standard module.exports instead of relying on global scope injection?
 
+### PROMPT
+I used the following JavaScript code: ```module.exports = function(...args) {
+  for (let arg of args)
+    (1,eval)(require("fs").readFileSync(__dirname + "/../" + arg, "utf8"))
+}
+``` to load code from another module (`to_be_loaded.js` into the global namespace for my `main.js` script to have access to while executing. However, when I run my `main.js` script with node, I get the following error: `ReferenceError: <var-name> is not defined`; however, `<var-name>` was in fact defined in teh file `to_be_loaded.js`. What might be going wrong?
+
+### RESPONSE:
+
+The `ReferenceError: <var-name> is not defined` error occurs due to how **Node.js module scoping** and **JavaScript `eval` scoping rules** interact. Even though you are using an indirect eval `(1, eval)(...)` to run the code in the global scope, the variables declared inside `to_be_loaded.js` fail to bleed into `main.js` for a few key reasons:
+
+### Why It Fails
+
+1. **`let` and `const` are Block-Scoped to the `eval` Call**
+If `<var-name>` in `to_be_loaded.js` is declared using `let` or `const`, those variables are strictly scoped to that specific `eval` execution block. They do not persist globally or leak out to other modules.
+2. **`var` Does Not Automatically Attach to `global` in Node.js**
+Even if you use `var`, top-level variable declarations inside Node.js modules (or module-like eval contexts) do not automatically become properties of the Node.js `global` object.
+3. **Module Isolation**
+Node.js treats every file as an isolated module wrapped in its own function scope. An indirect `eval` evaluates code globally, but it doesn't automatically bridge local module environments together.
+
+---
+
+### How to Fix It
+
+Depending on what you are trying to achieve, you have two primary ways to resolve this:
+
+#### Approach 1: Explicitly attach to the `global` object (If you must inject into the global namespace)
+
+If your goal is truly to make the variable globally available across files without using `require`, you must explicitly attach it to the `global` object inside `to_be_loaded.js`:
+
+```javascript
+// inside to_be_loaded.js
+global.myVarName = "Hello from loaded file";
+
+```
+
+Then, `main.js` can access it directly via `global.myVarName` or just `myVarName`.
+
+#### Approach 2: Use standard CommonJS exports (Recommended)
+
+Relying on `eval` to manage namespaces can lead to hard-to-debug bugs, security risks, and poor performance. The idiomatic Node.js way is to export the variables or functions explicitly:
+
+```javascript
+// inside to_be_loaded.js
+const varName = "Hello from loaded file";
+module.exports = { varName };
+
+```
+
+And load it cleanly in `main.js`:
+
+```javascript
+// inside main.js
+const { varName } = require("./path/to_to_be_loaded.js");
+console.log(varName);
+
+```
+
+---
 
 
 
@@ -901,5 +960,5 @@ If you want to tweak this setup, let me know:
 +++++++
 +++++++
 +++++++
-++++
++++++
 -->
