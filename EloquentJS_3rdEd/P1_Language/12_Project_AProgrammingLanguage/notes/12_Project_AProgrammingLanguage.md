@@ -392,32 +392,6 @@ This is what is usually called a *domain-specific language*, a language tailored
 
 ## EXERCISES
 
-### ARRAYS
-
-Add support for arrays to Egg by adding the following three functions to the top scope: `array(...values)` to construct an array containing the argument values, `length(array)` to get an array's length, and `element(array, n)` to fetch the *n*th elmeent from an array.
-
-```js
-// Modify these definitions...
-
-topScope.array = "...";
-
-topScope.length = "...";
-
-topScope.element = "...";
-
-run(`
-do(define(sum, fun(array,
-     do(define(i, 0),
-        define(sum, 0),
-        while(<(i, length(array)),
-          do(define(sum, +(sum, element(array, i))),
-             define(i, +(i, 1)))),
-        sum))),
-   print(sum(array(1, 2, 3))))
-`);
-// → 6
-```
-
 #### PROMPT1
 
 explain this JavaScript code: 
@@ -953,12 +927,62 @@ console.log(varName);
 ---
 
 
+### ARRAYS
 
-<!-- HERE ex1: array
-+++++++
-+++++++ 
-+++++++
-+++++++
-+++++++
-+++++++
--->
+Add support for arrays to Egg by adding the following three functions to the top scope: `array(...values)` to construct an array containing the argument values, `length(array)` to get an array's length, and `element(array, n)` to fetch the *n*th elmeent from an array.
+
+```js
+// Modify these definitions...
+
+topScope.array = "...";
+
+topScope.length = "...";
+
+topScope.element = "...";
+
+run(`
+do(define(sum, fun(array,
+     do(define(i, 0),
+        define(sum, 0),
+        while(<(i, length(array)),
+          do(define(sum, +(sum, element(array, i))),
+             define(i, +(i, 1)))),
+        sum))),
+   print(sum(array(1, 2, 3))))
+`);
+// → 6
+```
+
+#### MY SOLUTION:
+
+```js
+topScope.array = Function("...values", "return new Array(...values);");
+
+topScope.length = Function("array", "return array.length;");
+
+topScope.element = Function("array", "element", "return array[element];");
+```
+
+#### TEACH KA HINTS:
+
+<!-- 
+
+The easiest way to do this is to represent Egg arrays with JavaScript arrays.
+
+The values added to the top scope must be functions. By using a rest argument (with triple-dot notation), the definition of array can be very simple.
+
+ -->
+
+#### TEACH KA SOLUTION:
+
+```js
+topScope.array = (...values) => values;
+
+topScope.length = array => array.length;
+
+topScope.element = (array, i) => array[i];
+```
+
+### CLOSURE
+
+<!-- HERE -- ex2 closure! -->
