@@ -1001,7 +1001,19 @@ Go back to the definition of `fun` form and explain which mechanism causes this 
 
 #### EX2 -- CLOSURE: MY SOLUTION
 
+it appears this section of the `fun` definition allows access to locally scoped variables:
+
+```js
+let localScope = Object.create(scope);
+    for (let i = 0; i < args.length; i++) {
+      localScope[params[i]] = args[i];
+    }
+    return evaluate(body, localScope);
+```
+
 #### EX2 -- CLOSURE: DISPLAY HINTS
+
+
 
 #### EX2 -- CLOSURE: TEACH KA SOLUTION
 
