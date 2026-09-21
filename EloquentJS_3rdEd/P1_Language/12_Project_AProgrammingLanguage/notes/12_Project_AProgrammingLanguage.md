@@ -1013,8 +1013,18 @@ let localScope = Object.create(scope);
 
 #### EX2 -- CLOSURE: DISPLAY HINTS
 
+Again, we are riding along on a JavaScript mechanism to get the equivalent feature in Egg. Special forms are passed the local scope in which they are evaluated so that they can evaluate their subforms in that scope. The function returned by fun has access to the scope argument given to its enclosing function and uses that to create the function’s local scope when it is called.
 
+This means that the prototype of the local scope will be the scope in which the function was created, which makes it possible to access bindings in that scope from the function. This is all there is to implementing closure (though to compile it in a way that is actually efficient, you’d need to do some more work).
 
 #### EX2 -- CLOSURE: TEACH KA SOLUTION
 
-<!-- HERE -- ex2 closure! -->
+'teach ka solution' is in this exercises 'display hints' section!
+
+### EX3 -- COMMENTS
+
+It would be nice if we could write comments in Egg. For example, wherever we find a hash sign (`#`), we could treat the rest of the line as a comment and ignore it, similar to `//` in JS.
+
+We do not have to make any big changes to the parser to support this. We can simply change `skipSpace` to skip comments s if they are whitespace so tht all the points where `skipSpace` is called will now also skip comments. Make this change.
+
+<!-- HERE -- ex3 comments -->
