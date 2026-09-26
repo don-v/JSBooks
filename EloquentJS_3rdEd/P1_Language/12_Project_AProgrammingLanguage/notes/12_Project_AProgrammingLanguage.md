@@ -1044,4 +1044,42 @@ console.log(parse("a # one\n   # two\n()"));
 //    args: []}
 ```
 
-<!-- HERE -- ex3 comments +++++ -->
+
+### EX3 SMART FRIEND
+
+#### PROMPT
+how can one use the javascript String.search function to locate the first `\S` character after another sequence of characters?
+
+#### RESPONSE
+To locate the index of the first non-whitespace character (`\S`) immediately following a specific sequence of characters using JavaScript's `String.prototype.search()`, you can use a **positive lookbehind assertion** (`(?<=...)`).
+
+Because lookbehind allows the regular expression to check what precedes the target without including the preceding sequence in the final match, `search()` will return the exact index of that first `\S` character.
+
+### Code Example
+
+```javascript
+const text = "Error: File not found    [Details: missing config]";
+const sequence = "not found";
+
+// Construct a regex with a positive lookbehind for the sequence, followed by \S
+const regex = new RegExp(`(?<=${sequence})\\S`);
+
+const index = text.search(regex);
+
+console.log(index); // Output: 25 (the index of the '[' character)
+console.log(text[index]); // Output: "["
+
+```
+
+### How It Works
+
+* **`(?<=sequence)`**: This is the positive lookbehind. It asserts that the position in the string must be immediately preceded by your target sequence.
+* **`\S`**: This matches the actual character you are looking for (any non-whitespace character).
+* **`search()` Return Value**: Because the lookbehind is a zero-width assertion, the only part of the regex that actually gets "matched" is the `\S` character. Therefore, `search()` returns the index of that specific `\S` character rather than the start of the sequence.
+
+> **Note:** JavaScript lookbehind assertions are supported in all modern browsers and Node.js environments (ES2018+). If your sequence is dynamic, make sure to escape any special regular expression characters (like `.`, `*`, or `?`) if they appear in your search sequence.
+
+
+<!-- HERE -- ex3 comments 
+++++++
+-->
