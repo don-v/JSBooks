@@ -196,6 +196,20 @@ specialForms.fun = (args, scope) => {
 };
 
 
+/* 
+### first attempt:
+```js
+// This is the old skipSpace. Modify it...
+function skipSpace(string) {
+  const regex = new RegExp(`(?<=#.*)\\S`);
+  let first = string.search(regex);
+  if (first == -1) return "";
+  return string.slice(first);
+}
+```
+*/
+
+
 
 // This is the old skipSpace. Modify it...
 function skipSpace(string) {
