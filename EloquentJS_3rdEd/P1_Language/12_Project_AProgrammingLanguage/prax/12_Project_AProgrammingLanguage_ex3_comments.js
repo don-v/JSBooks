@@ -207,6 +207,19 @@ function skipSpace(string) {
   return string.slice(first);
 }
 ```
+
+### second attempt:
+```js
+// This is the old skipSpace. Modify it...
+function skipSpace(string) {
+  const regex1 = new RegExp(`(?<=#.*\\n)\\S`);
+  const regex2 = new RegExp(`\\S`);
+  let first = string.search(regex1);
+  let second = string.search(regex2);
+  if (first == -1 & second == -1) return "";
+  return string.slice(Math.max(first,second));
+}
+```
 */
 
 
