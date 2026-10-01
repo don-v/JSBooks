@@ -240,11 +240,16 @@ function skipSpace(string) {
 // console.log(parse("# hello\nx"));
 // → {type: "word", name: "x"}
 
-console.log("Begin phrase 1:");
-skipSpace("# hello\nx");
+const phrase1 = "# hello\nx";
+const phrase2 = "a # one\n   # two\n()";
 
-console.log("Begin phrase 2:");
-skipSpace("a # one\n   # two\n()");
+console.log("Begin phrase1:\n");
+console.log(`length of phrase1: ${phrase1.length}`)
+skipSpace(phrase1);
+
+console.log("Begin phrase2:\n");
+console.log(`length of phrase2: ${phrase2.length}`)
+skipSpace(phrase2);
 
 // console.log(parse("a # one\n   # two\n()"));
 // → {type: "apply",
