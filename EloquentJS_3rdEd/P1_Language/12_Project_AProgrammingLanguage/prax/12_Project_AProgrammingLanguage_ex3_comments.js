@@ -229,8 +229,9 @@ function skipSpace(string) {
 // This is the old skipSpace. Modify it...
 function skipSpace(string) {
   const regex = new RegExp(`(?<=#.*\\n)\\S`);
-  let first = string.search(regex);
-  let second = string.search(/\S/);
+  let first = string.search(/\S/);
+  updatedString = (first == -1 ? string : string.slice(first));
+  let second = updatedString.search(regex);
   // if (first == -1) return "";
   // return string.slice(first);
   console.log(`first: ${first}`);
@@ -244,10 +245,12 @@ const phrase1 = "# hello\nx";
 const phrase2 = "a # one\n   # two\n()";
 
 console.log("Begin phrase1:\n");
+console.log(`phrase1: "${phrase1}"`)
 console.log(`length of phrase1: ${phrase1.length}`)
 skipSpace(phrase1);
 
 console.log("Begin phrase2:\n");
+console.log(`phrase2: "${phrase2}"`)
 console.log(`length of phrase2: ${phrase2.length}`)
 skipSpace(phrase2);
 
