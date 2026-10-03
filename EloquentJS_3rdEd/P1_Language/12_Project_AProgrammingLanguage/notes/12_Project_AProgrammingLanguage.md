@@ -1082,5 +1082,5 @@ console.log(text[index]); // Output: "["
 
 <!-- HERE -- ex3 comments 
 +++++++
-+++++
+++++++
 -->

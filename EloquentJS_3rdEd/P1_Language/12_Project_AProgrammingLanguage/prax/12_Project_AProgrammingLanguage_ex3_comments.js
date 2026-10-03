@@ -232,27 +232,29 @@ function skipSpace(string) {
   let first = string.search(/\S/);
   updatedString = (first == -1 ? string : string.slice(first));
   let second = updatedString.search(regex);
-  // if (first == -1) return "";
-  // return string.slice(first);
   console.log(`first: ${first}`);
   console.log(`second: ${second}`);
+  
+  if (second == -1) return "";
+  return updatedString.slice(second);
+  
 }
-
-// console.log(parse("# hello\nx"));
-// → {type: "word", name: "x"}
 
 const phrase1 = "# hello\nx";
 const phrase2 = "a # one\n   # two\n()";
 
-console.log("Begin phrase1:\n");
-console.log(`phrase1: "${phrase1}"`)
+console.log("\nBegin phrase1:\n");
+console.log(`phrase1:\n"${phrase1}"`)
 console.log(`length of phrase1: ${phrase1.length}`)
 skipSpace(phrase1);
 
-console.log("Begin phrase2:\n");
-console.log(`phrase2: "${phrase2}"`)
+console.log("\nBegin phrase2:\n");
+console.log(`phrase2:\n"${phrase2}"`)
 console.log(`length of phrase2: ${phrase2.length}`)
 skipSpace(phrase2);
+
+// console.log(parse("# hello\nx"));
+// → {type: "word", name: "x"}
 
 // console.log(parse("a # one\n   # two\n()"));
 // → {type: "apply",
