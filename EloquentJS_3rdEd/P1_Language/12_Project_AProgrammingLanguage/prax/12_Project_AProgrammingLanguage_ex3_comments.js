@@ -228,7 +228,7 @@ function skipSpace(string) {
 ```js
 // This is the old skipSpace. Modify it...
 function skipSpace(string) {
-  const regex = new RegExp(`(?<=#.*\\n)\\S`);
+  const regex = new RegExp(`(?<=\\S*#.*\\n)\\S`);
   let first = string.search(/\S/);
   updatedString = (first == -1 ? string : string.slice(first));
   let second = updatedString.search(regex);
