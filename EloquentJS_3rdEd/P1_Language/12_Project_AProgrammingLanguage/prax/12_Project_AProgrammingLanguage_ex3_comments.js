@@ -232,8 +232,8 @@ function skipSpace(string) {
   let first = string.search(/\S/);
   updatedString = (first == -1 ? string : string.slice(first));
   let second = updatedString.search(regex);
-  console.log(`first: ${first}`);
-  console.log(`second: ${second}`);
+  console.log(`first \`/\S/\`: ${first}`);
+  console.log(`second \`(?<=\\S*#.*\\n)\\S\`: ${second}`);
   
   if (second == -1) return "";
   return updatedString.slice(second);
