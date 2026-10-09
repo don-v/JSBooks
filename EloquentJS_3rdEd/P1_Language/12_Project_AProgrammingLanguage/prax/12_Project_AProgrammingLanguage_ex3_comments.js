@@ -296,19 +296,20 @@ console.log(parse("a # one\n   # two\n()"));
 //    operator: {type: "word", name: "a"},
 //    args: []}
 ```
-
-
-
-
-
-
 */
 
 
 
+// // This is the old skipSpace. Modify it...
+// function skipSpace(string) {
+//   let first = string.search(/\S/);
+//   if (first == -1) return "";
+//   return string.slice(first);
+// }
+
 // This is the old skipSpace. Modify it...
 function skipSpace(string) {
-  let first = string.search(/\S/);
+  let first = string.search(/[^\s#]+/);
   if (first == -1) return "";
   return string.slice(first);
 }
