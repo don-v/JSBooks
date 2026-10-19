@@ -1080,9 +1080,103 @@ console.log(text[index]); // Output: "["
 > **Note:** JavaScript lookbehind assertions are supported in all modern browsers and Node.js environments (ES2018+). If your sequence is dynamic, make sure to escape any special regular expression characters (like `.`, `*`, or `?`) if they appear in your search sequence.
 
 
+
+#### Understanding Regular Expressions (RegEx)
+
+A regular expression (commonly called regex or regexp) is a sequence of characters that forms a search pattern. It acts as an advanced, programmatic "Find and Replace" engine. Instead of searching for an exact literal piece of text, regex allows you to describe a structural layout of text—such as detecting an email format, extracting numbers from a mixed log, or stripping out illegal characters.
+
+#### Regular Expressions in JavaScript
+
+In JavaScript, regular expressions are first-class objects. They are natively implemented through the built-in RegExp object. You can create a regular expression in one of two ways:
+
+1. Regex Literal Syntax: Enclosed in forward slashes. This is preferred for static patterns because it compiles when the script is loaded.javascript
+const pattern = /\d+/g;
+Use code with caution.
+
+2. RegExp Constructor: Created from a string. This is useful when you need to dynamically build your regex at runtime using variables.javascript
+const pattern = new RegExp("\\d+", "g"); // Note the double backslash to escape the string
+Use code with caution.
+
+##### Common JavaScript RegEx Methods
+
+Rather than relying on an imported module, JavaScript embeds regex execution directly into its native string and object methods:
+• `regex.test(string)`: Returns true or false depending on whether the pattern matches anywhere in the string.
+• `string.match(regex)`: Retrieves the matches. When used with the global flag /g, it returns an array of all matching substrings.
+• `string.replace(regex, replacement)`: Replaces matching text with a new string.
+• `string.split(regex)`: Breaks a string into an array of substrings using the regex pattern as the delimiter.
+
+#### Lookahead and Lookbehind Groups (Lookarounds)
+
+Lookaround assertions (lookaheads and lookbehinds) are a specialized feature in JavaScript regex. They allow you to match a specific pattern only if it is surrounded by another pattern, without actually including those surrounding characters in the final match result.
+Because they match a conceptual position rather than physical characters, lookarounds are considered zero-width assertions. They do not "consume" text on the screen, meaning the engine evaluates the condition, steps back to its original position, and continues matching.
+Modern JavaScript (ES2018 and later) fully supports all four types of lookarounds:
+
+Type	Syntax	Meaning	Direction Evaluated
+Positive Lookahead	`(?=pattern)`	Matches if the text is followed by pattern	Looks Forward (Right)
+Negative Lookahead	`(?!pattern)`	Matches if the text is NOT followed by pattern	Looks Forward (Right)
+Positive Lookbehind	`(?<=pattern)`	Matches if the text is preceded by pattern	Looks Backward (Left)
+Negative Lookbehind	`(?<!pattern)`	Matches if the text is NOT preceded by pattern	Looks Backward (Left)
+
+
+#### Lookahead & Lookbehind Examples in JavaScript
+
+
+1. Lookahead Groups (Looking Forward)
+
+Lookaheads scan the text directly to the right of your current matching position.
+
+• Positive Lookahead `(?=...)` Example:
+
+Extract a number, but only if it represents a gigabyte (GB) measurement.
+
+```javascript
+const specifications = "The drive has 256GB of space and 16GB of RAM.";
+const sizes = specifications.match(/\d+(?=GB)/g);
+
+console.log(sizes); 
+// Output: ['256', '16'] (The 'GB' text was verified, but not swallowed into the output array)
+```
+
+• Negative Lookahead `(?!...)` Example:
+Match the word "Java" only if it is not immediately followed by the word "Script".
+```javascript
+const techStack = "We use Java, JavaScript, and Python.";
+const language = techStack.match(/Java(?!Script)/g);
+
+console.log(language); 
+// Output: ['Java'] (Matches the standalone 'Java', ignores the one inside 'JavaScript')
+```
+
+2. Lookbehind Groups (Looking Backward)
+
+Lookbehinds scan the text directly to the left of your current matching position.
+(Note: Unlike languages like Python, JavaScript fully supports variable-width lookbehinds, meaning you can safely use quantifiers like + or * inside them).
+
+• Positive Lookbehind `(?<=...)` Example:
+Extract monetary values out of a string without keeping the currency symbol.
+```javascript
+const checkout = "The item costs $45 and tax is $3.";
+const prices = checkout.match(/(?<=\$)\d+/g);
+
+console.log(prices); 
+// Output: ['45', '3']
+```
+
+• Negative Lookbehind `(?<!...)` Example:
+Find numbers that are positive (numbers that do not have a minus sign directly in front of them).
+```javascript
+const timeline = "The temperature dropped from 15 degrees down to -5 degrees.";
+const positiveTemps = timeline.match(/(?<!-)\b\d+/g);
+
+console.log(positiveTemps); 
+// Output: ['15'] (Ignores '5' because it is preceded by a minus sign)
+```
+
+
+
 <!-- HERE -- ex3 comments 
 +++++++
 +++++++
 +++++++
-++++++
++++++++
 -->
