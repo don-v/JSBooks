@@ -309,7 +309,8 @@ console.log(parse("a # one\n   # two\n()"));
 
 // This is the old skipSpace. Modify it...
 function skipSpace(string) {
-  let first = string.search(/[^\s#]+/);
+  // let first = string.search(/[^\s#]+/);
+  let first = string.search(/(?<!#.*)\S/g);
   if (first == -1) return "";
   return string.slice(first);
 }
