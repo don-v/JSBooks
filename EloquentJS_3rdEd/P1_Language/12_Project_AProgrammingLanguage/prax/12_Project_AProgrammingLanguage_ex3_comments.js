@@ -296,6 +296,29 @@ console.log(parse("a # one\n   # two\n()"));
 //    operator: {type: "word", name: "a"},
 //    args: []}
 ```
+
+
+#### ATTEMPT 5:
+
+```js
+// This is the old skipSpace. Modify it...
+function skipSpace(string) {
+  // let first = string.search(/\S/);
+  let first = string.search(/(?<!(#.*)?)\S/g);
+  console.log(string);
+  console.log(first);
+  if (first == -1) return "";
+  return string.slice(first);
+}
+
+console.log(parse("# hello\nx"));
+// → {type: "word", name: "x"}
+
+console.log(parse("a # one\n   # two\n()"));
+// → {type: "apply",
+//    operator: {type: "word", name: "a"},
+//    args: []}
+```
 */
 
 

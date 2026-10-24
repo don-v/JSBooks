@@ -1172,12 +1172,17 @@ console.log(positiveTemps);
 // Output: ['15'] (Ignores '5' because it is preceded by a minus sign)
 ```
 
+#### EX3 -- DISPLAY HINTS:
 
+
+Make sure your solution handles multiple comments in a row, with whitespace potentially between or after them.
+
+A regular expression is probably the easiest way to solve this. Write something that matches “whitespace or a comment, zero or more times”. Use the exec or match method and look at the length of the first element in the returned array (the whole match) to find out how many characters to slice off.
 
 <!-- HERE -- ex3 comments 
 +++++++
 +++++++
 +++++++
 +++++++
-+r+++
++r++++
 -->
