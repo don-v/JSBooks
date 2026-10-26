@@ -1179,10 +1179,121 @@ Make sure your solution handles multiple comments in a row, with whitespace pote
 
 A regular expression is probably the easiest way to solve this. Write something that matches “whitespace or a comment, zero or more times”. Use the exec or match method and look at the length of the first element in the returned array (the whole match) to find out how many characters to slice off.
 
+
+In JavaScript, working with regular expressions involves two primary methods: **`exec()`** (a method on the Regular Expression object) and **`match()`** (a method on the String object). While both are used to find patterns, they have distinct return values and behaviors.
+
+---
+
+### 1. `RegExp.prototype.exec()`
+
+The `exec()` method executes a search for a match in a specified string. It is called **on the regex object** and passed the string.
+
+#### **Return Value:**
+
+* **If a match is found:** It returns an **Array-like result object** containing:
+* Index `0`: The complete matched text.
+* Indices `1`, `2`, etc.: Any capturing groups (parentheses `(...)`) matched in the expression.
+* **Properties attached to the array:**
+* `index`: The 0-based index of where the match starts in the string.
+* `input`: The original string being searched.
+* `groups`: An object containing named capture groups (if any).
+
+
+
+
+* **If no match is found:** It returns `null`.
+
+> **Key Feature:** If the regular expression has the global (`g`) flag enabled, calling `exec()` updates the regex object’s `lastIndex` property. This allows you to call `exec()` repeatedly in a loop to find all matches sequentially.
+
+#### **Example:**
+
+```javascript
+const regex = /(\d{4})-(\d{2})-(\d{2})/g;
+const text = "Events on 2026-03-30 and 2025-12-25.";
+
+let matchResult;
+
+// Using a loop with exec() to find all matches and capture groups
+while ((matchResult = regex.exec(text)) !== null) {
+  console.log(`Found: ${matchResult[0]}`);          // Full match (e.g., "2026-03-30")
+  console.log(`Year: ${matchResult[1]}`);           // 1st capturing group
+  console.log(`Month: ${matchResult[2]}`);          // 2nd capturing group
+  console.log(`Day: ${matchResult[3]}`);            // 3rd capturing group
+  console.log(`Starts at index: ${matchResult.index}\n`);
+}
+
+```
+
+---
+
+### 2. `String.prototype.match()`
+
+The `match()` method retrieves the matches when matching a string against a regular expression. It is called **on the string** and passed the regex object.
+
+#### **Return Value (Depends on the Global `g` Flag):**
+
+1. **Without the global (`g`) flag:**
+* Returns the **exact same result structure as `exec()**` (a single match array containing capturing groups, plus `index`, `input`, and `groups` properties).
+* Returns `null` if no match is found.
+
+
+2. **With the global (`g`) flag:**
+* Returns a **standard JavaScript Array** containing **all overall matches** found in the string.
+* **Important:** It completely discards capturing groups, `index`, and `input` properties.
+* Returns `null` if no match is found.
+
+
+
+#### **Examples:**
+
+**A. Without the `g` flag (Detailed single match):**
+
+```javascript
+const text = "The temperature is 22°C.";
+const regex = /([0-9]+)(°C)/; // Has capturing groups
+
+const result = text.match(regex);
+
+console.log(result[0]); // "22°C" (Full match)
+console.log(result[1]); // "22"   (1st capture group)
+console.log(result[2]); // "°C"   (2nd capture group)
+console.log(result.index); // 19 (Position where match starts)
+
+```
+
+**B. With the `g` flag (List of all matches):**
+
+```javascript
+const text = "Orders: 105, 204, 309";
+const regex = /\d+/g; // Global flag enabled
+
+const result = text.match(regex);
+
+console.log(result); 
+// Output: ['105', '204', '309']
+// Note: Individual capturing groups and 'index' properties are lost here.
+
+```
+
+---
+
+### Quick Comparison Table
+
+| Feature | `RegExp.prototype.exec(str)` | `String.prototype.match(regex)` (No `g`) | `String.prototype.match(regex)` (With `g`) |
+| --- | --- | --- | --- |
+| **Called on** | The RegExp object | The String object | The String object |
+| **Returns (Match)** | Array + `index`, `input`, groups | Array + `index`, `input`, groups | Array of strings only |
+| **Capturing Groups** | Yes | Yes | No |
+| **Stateful (`lastIndex`)** | Yes (advances with `g`) | No | No |
+| **Best Used For** | Iterating through global matches with full detail | Finding a single match with capture groups | Quick extraction of all matching tokens |
+
+> **Pro Tip:** If you need **both** all matches *and* capturing groups/indices when using the global flag, modern JavaScript provides **`String.prototype.matchAll()`**, which returns an iterator of all match results complete with capture groups and indices.
+
 <!-- HERE -- ex3 comments 
 +++++++
 +++++++
 +++++++
 +++++++
-+r++++
++r+++++
++
 -->
