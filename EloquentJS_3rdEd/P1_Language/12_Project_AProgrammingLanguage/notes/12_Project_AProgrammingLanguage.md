@@ -1199,8 +1199,6 @@ The `exec()` method executes a search for a match in a specified string. It is c
 * `groups`: An object containing named capture groups (if any).
 
 
-
-
 * **If no match is found:** It returns `null`.
 
 > **Key Feature:** If the regular expression has the global (`g`) flag enabled, calling `exec()` updates the regex object’s `lastIndex` property. This allows you to call `exec()` repeatedly in a loop to find all matches sequentially.
@@ -1295,5 +1293,5 @@ console.log(result);
 +++++++
 +++++++
 +r+++++
-+
+++
 -->
