@@ -1287,6 +1287,65 @@ console.log(result);
 
 > **Pro Tip:** If you need **both** all matches *and* capturing groups/indices when using the global flag, modern JavaScript provides **`String.prototype.matchAll()`**, which returns an iterator of all match results complete with capture groups and indices.
 
+
+To match one pattern **or** another in JavaScript regular expressions, you use the **alternation operator**, which is represented by the pipe symbol (`|`).
+
+Here is how you can use it in different scenarios:
+
+---
+
+### 1. Basic Alternation (Matching Literal Words)
+
+If you want to check if a string contains either `cat` or `dog`, separate them with a pipe inside your regular expression:
+
+```javascript
+const regex = /cat|dog/;
+
+console.log(regex.test("I have a cat."));    // true
+console.log(regex.test("She has a dog."));   // true
+console.log(regex.test("Birds can fly."));   // false
+
+```
+
+---
+
+### 2. Grouping with Parentheses `()`
+
+If you want the "OR" condition to apply only to a specific part of a larger pattern, wrap the choices in parentheses.
+
+For example, matching either `Mr.` or `Ms.` followed by a name:
+
+```javascript
+const regex = /(Mr|Ms)\.\s[A-Z][a-z]+/;
+
+console.log(regex.test("Mr. Smith"));   // true
+console.log(regex.test("Ms. Davis"));   // true
+console.log(regex.test("Dr. Jones"));   // false (Dr. is not in the group)
+
+```
+
+---
+
+### 3. Using Multiple Alternatives
+
+You can chain as many alternatives together as needed using multiple pipe symbols:
+
+```javascript
+const regex = /apple|banana|cherry/;
+
+console.log(regex.test("I want a banana smoothie.")); // true
+console.log(regex.test("I love grapes."));          // false
+
+```
+
+---
+
+### Key Tips
+
+* **Order matters:** JavaScript checks alternatives from **left to right**. If you are matching overlapping patterns (like `cat` and `caterpillar`), put the longer or more specific pattern first (`/caterpillar|cat/`), otherwise, it will match the shorter one and stop.
+* **Case sensitivity:** By default, regex is case-sensitive. Add the `i` flag at the end (e.g., `/cat|dog/i`) if you want it to be case-insensitive.
+
+
 <!-- HERE -- ex3 comments 
 +++++++
 +++++++
@@ -1294,5 +1353,5 @@ console.log(result);
 +++++++
 +r+++++
 +++++++
-+
+++
 -->
