@@ -1287,6 +1287,7 @@ console.log(result);
 
 > **Pro Tip:** If you need **both** all matches *and* capturing groups/indices when using the global flag, modern JavaScript provides **`String.prototype.matchAll()`**, which returns an iterator of all match results complete with capture groups and indices.
 
+### Pipe symbol in regex! (`|`)
 
 To match one pattern **or** another in JavaScript regular expressions, you use the **alternation operator**, which is represented by the pipe symbol (`|`).
 
