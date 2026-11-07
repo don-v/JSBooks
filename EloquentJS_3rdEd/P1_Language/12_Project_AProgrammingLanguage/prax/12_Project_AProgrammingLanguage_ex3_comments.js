@@ -349,6 +349,9 @@ off.
 function skipSpace(string) {
   // let first = string.search(/[^\s#]+/);
   let first = string.search(/(?<!(#.*)?)\S/g);
+  let first_comment = string.search(/(#.+)*/);
+  let first_nws_char = string.search(/\S/);
+  let first_comment_ = string.search(/(#.*)*/);
   if (first == -1) return "";
   return string.slice(first);
 }
