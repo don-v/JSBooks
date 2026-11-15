@@ -332,7 +332,9 @@ with whitespace potentially between or after them.
   (the whole match) to find out how many characters to slice 
   off.
 
-
+```js
+let comment_pos = string.search(/(#.*\s?.*\s?)/)
+```
 
 */
 
