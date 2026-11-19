@@ -333,7 +333,7 @@ with whitespace potentially between or after them.
   off.
 
 ```js
-let comment_pos = string.search(/(#.*\s?.*\s?)/)
+let comment_pos = string.search(/(#.*\s*.*\s*)/)
 ```
 
 */
