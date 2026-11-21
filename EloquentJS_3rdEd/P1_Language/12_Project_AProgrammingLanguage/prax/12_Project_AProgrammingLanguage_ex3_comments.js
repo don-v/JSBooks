@@ -335,10 +335,17 @@ with whitespace potentially between or after them.
 ```js
 let comment_pos = string.search(/(#.*\s*.*\s*)/)
 ```
-
 */
 
 
+function skipSpace(string) {
+  let first = string.match(/(\s|#.*)*/);
+  console.log(first);
+  console.log(first[0].length);
+  char_slice = first[0].length;
+  if (first == -1) return "";
+  return string.slice(char_slice);
+}
 
 // // This is the old skipSpace. Modify it...
 // function skipSpace(string) {
