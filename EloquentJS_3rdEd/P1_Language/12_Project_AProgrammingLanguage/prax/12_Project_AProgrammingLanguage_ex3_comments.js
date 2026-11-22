@@ -338,15 +338,6 @@ let comment_pos = string.search(/(#.*\s*.*\s*)/)
 */
 
 
-function skipSpace(string) {
-  let first = string.match(/(\s|#.*)*/);
-  console.log(first);
-  console.log(first[0].length);
-  char_slice = first[0].length;
-  if (first == -1) return "";
-  return string.slice(char_slice);
-}
-
 // // This is the old skipSpace. Modify it...
 // function skipSpace(string) {
 //   let first = string.search(/\S/);
@@ -355,18 +346,29 @@ function skipSpace(string) {
 // }
 
 // This is the old skipSpace. Modify it...
-function skipSpace(string) {
-  // let first = string.search(/[^\s#]+/);
-  let first = string.search(/(?<!(#.*)?)\S/g);
-  let first_comment = string.search(/(#.+)*/);
-  let first_nws_char = string.search(/\S/);
-  let first_comment_ = string.search(/(#.*)*/);
-  let zero_more_whitespace_match = string.search(/\s*/);
-  let length_zero_more_ws_match = length(zero_more_whitespace_match[0]);
+// function skipSpace(string) {
+//   // let first = string.search(/[^\s#]+/);
+//   let first = string.search(/(?<!(#.*)?)\S/g);
+//   let first_comment = string.search(/(#.+)*/);
+//   let first_nws_char = string.search(/\S/);
+//   let first_comment_ = string.search(/(#.*)*/);
+//   let zero_more_whitespace_match = string.search(/\s*/);
+//   let length_zero_more_ws_match = length(zero_more_whitespace_match[0]);
 
+//   if (first == -1) return "";
+//   return string.slice(first);
+// }
+
+function skipSpace(string) {
+  let first = string.match(/(\s|#.*)*/);
+  // console.log(first);
+  // console.log(first[0].length);
+  char_slice = first[0].length;
   if (first == -1) return "";
-  return string.slice(first);
+  // if (char_slice == 0) return "";
+  return string.slice(char_slice);
 }
+
 
 console.log(parse("# hello\nx"));
 // → {type: "word", name: "x"}
