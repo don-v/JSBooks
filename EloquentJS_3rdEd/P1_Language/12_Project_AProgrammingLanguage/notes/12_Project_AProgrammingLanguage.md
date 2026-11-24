@@ -1359,3 +1359,49 @@ console.log(regex.test("I love grapes."));          // false
 ++++++r
 +
 -->
+
+### MY SOLUTION
+
+```js
+function skipSpace(string) {
+  let first = string.match(/(\s|#.*)*/);
+  char_slice = first[0].length;
+  if (first == -1) return "";
+  return string.slice(char_slice);
+}
+
+
+console.log(parse("# hello\nx"));
+// → {type: "word", name: "x"}
+
+console.log(parse("a # one\n   # two\n()"));
+// → {type: "apply",
+//    operator: {type: "word", name: "a"},
+//    args: []}
+
+```
+
+### TEACH KA SOLUTION
+
+```js
+function skipSpace(string) {
+  let skippable = string.match(/^(\s|#.*)*/);
+  return string.slice(skippable[0].length);
+}
+
+console.log(parse("# hello\nx"));
+// → {type: "word", name: "x"}
+
+console.log(parse("a # one\n   # two\n()"));
+// → {type: "apply",
+//    operator: {type: "word", name: "a"},
+//    args: []}
+```
+
+### EX4 -- FIXING SCOPE
+
+Currently, the only way to assign a binding a value is `define`. This contruct acts as a way both to define new bindings and to give existing ones a new value.
+
+This ambiguity causes a problem. When one tries to give a nonlocal ...
+
+<!-- HERE -- ex4 fix scope -->
