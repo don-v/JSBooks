@@ -1404,4 +1404,6 @@ Currently, the only way to assign a binding a value is `define`. This contruct a
 
 This ambiguity causes a problem. When one tries to give a nonlocal ...
 
-<!-- HERE -- ex4 fix scope -->
+<!-- HERE -- ex4 fix scope
+r
+ -->
