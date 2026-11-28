@@ -1425,5 +1425,5 @@ run(`set(quux, true)`);
 ```
 
 <!-- HERE -- ex4 fix scope
-r++
+r++r
  -->
